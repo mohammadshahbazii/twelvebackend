@@ -1,0 +1,131 @@
+﻿@model ViewModels.BlogGroupsPostsPaginationViewModel
+<div class="blog-news-container">
+    @foreach (var posts in Model.Posts)
+    {
+        <div class="blog-news-item">
+            <div class="blog-img-title-container">
+                <a href="/PostBlogs/@posts.BlogID">
+                    <img src="/Images/Blogs/@posts.ImageName"
+                         class="w-100 radius-20"
+                         alt="@posts.Title" />
+                </a>
+                <a href="/PostBlogs/@posts.BlogID"
+                   class="blog-news-title text-darkblue">
+                    <p class="text-darkblue">@posts.Title</p>
+                </a>
+            </div>
+            <a href="/PostBlogs/@posts.BlogID">
+                <div class="blog-news-footer">
+                    <p class="blog-news-source text-darkblue fw-bold">
+                        <span class="fa fa-clock-o"></span>
+                        @posts.CreateDate | @posts.Source
+                    </p>
+                    <p class="blog-news-motalee text-darkblue">
+                        مطالعه پست
+                        <span>
+                            <svg width="8"
+                                 height="14"
+                                 viewBox="0 0 8 14"
+                                 fill="none"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 class="mx-2">
+                                <path d="M7 13L1.4882 8.06061C0.837266 7.47727 0.837266 6.52273 1.4882 5.93939L7 1"
+                                      stroke="#62748B"
+                                      stroke-miterlimit="10"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                    </p>
+                </div>
+            </a>
+        </div>
+
+
+    }
+</div>
+<div class="row">
+    <div class="col-lg-6 col-md-12">
+        <div class="text-lg-start text-center">
+            <a href="/Blog"
+               class="btn btn-outline-dark mt-5 py-3 px-4 rounded-pill">
+                همه پست ها
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12">
+        @if (Model.Pagination.PageCount > 1)
+        {
+            <div class="direction-ltr pt-5 d-none d-lg-block d-xl-block d-xxl-block">
+                <nav>
+                    <ul class="pagination">
+
+
+
+                        @if (Model.Pagination.PageID >= Model.Pagination.PageCount)
+                        {
+                            <li class="page-item text-darkblue disabled">
+                                <a class="page-link px-3 py-2 font-Bold fs-12 bg-silver border-0 text-darkblue rounded-pill"
+                                   aria-label="Next">
+                                    <span class="mx-2 fw-bold fa fa-angle-left"></span>
+                                    صفحه بعدی
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item text-darkblue">
+                                <a onclick="GetBlogs(@(Model.Pagination.PageID + 1),@(Model.GroupID))"
+                                   class="page-link px-3 py-2 font-Bold fs-12 bg-silver border-0 text-darkblue rounded-pill"
+                                   aria-label="Next">
+                                    <span class="mx-2 fw-bold fa fa-angle-left"></span>
+                                    صفحه بعدی
+                                </a>
+                            </li>
+                        }
+                        @foreach (var PageID in Model.Pagination.PageNumbers)
+                        {
+                            if (PageID == Model.Pagination.PageID)
+                            {
+                                <li class="page-item mx-1 text-darkblue ">
+                                    <a class="page-link page-number font-Fanum active bg-silver border-0 text-darkblue"
+                                       onclick="GetBlogs(@(PageID),@(Model.GroupID))">@PageID</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="page-item mx-1 text-darkblue ">
+                                    <a class="page-link page-number font-Fanum bg-silver border-0 text-darkblue"
+                                       onclick="GetBlogs(@(PageID),@(Model.GroupID))">@PageID</a>
+                                </li>
+                            }
+                        }
+                        @if (Model.Pagination.PageID == 1)
+                        {
+                            <li class="page-item mx-3 rounded-circle text-darkblue disabled">
+                                <a class="page-link px-3 py-2 font-Bold fs-12 bg-silver border-0 text-darkblue rounded-pill"
+                                   aria-label="Previous">
+                                    صفحه قبل
+                                    <span class="mx-2 fw-bold fa fa-angle-right"></span>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item mx-3 rounded-circle text-darkblue ">
+                                <a class="page-link px-3 py-2 font-Bold fs-12 bg-silver border-0 text-darkblue rounded-pill"
+                                   onclick="GetBlogs(@(Model.Pagination.PageID - 1),@(Model.GroupID))"
+                                   aria-label="Previous">
+                                    صفحه قبل
+                                    <span class="mx-2 fw-bold fa fa-angle-right"></span>
+                                </a>
+                            </li>
+                        }
+
+                    </ul>
+                </nav>
+            </div>
+
+        }
+    </div>
+</div>

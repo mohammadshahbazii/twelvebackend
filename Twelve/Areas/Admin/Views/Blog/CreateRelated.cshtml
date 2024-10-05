@@ -1,0 +1,94 @@
+﻿@model ViewModels.CreateRelatedBlogsViewModel
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            افزودن مقاله مرتبط
+                            <span class="text-dark mx-2">@ViewBag.Message</span>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="post" enctype="multipart/form-data">
+                        <div class="card-body">
+                            <div class="row">
+                                @Html.HiddenFor(m=> m.BlogID)
+                                <div class="col-12">
+                                    <div class="card card-info">
+                                        <div class="card-header">
+                                            <h3 class="card-title">لیست مقالات</h3>
+                                            <div class="card-tools">
+                                                <div class="input-group input-group-sm" style="width: 150px;">
+                                                    <input type="text" id="BlogSearch" name="BlogSearch" class="form-control float-right" placeholder="جستجو">
+
+                                                    <div class="input-group-append">
+                                                        <a onclick="GetBlogs($('#BlogSearch').val())" class="btn btn-default"><i class="fa fa-search"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- /.card-header -->
+                                        <!-- form start -->
+                                        <div class="form-check m-2">
+
+                                            <input type="checkbox" class="form-check-input" id="selectall" onclick="toggle(this);" value="0">
+                                            <label class="form-check-label" for="selectall">انتخاب همه</label>
+                                        </div>
+                                        <div id="BlogTable">
+                                            @foreach (var item in Model.Blogs)
+                                            {
+
+                                                <div class="form-check m-2">
+
+                                                    <input type="checkbox" class="form-check-input" @((Model.SelectedBlogs.Any(s => s == item.BlogID) ? "checked" : "")) id="@item.BlogID" name="SelectedBlogs" value="@item.BlogID">
+                                                    <label class="form-check-label" for="@item.BlogID">@item.Title</label>
+                                                </div>
+                                            }
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success">ثبت</button>
+                            <a href="/Admin/Blog/RelatedPosts/@Model.BlogID" class="btn btn-info float-left">بازگشت به لیست</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+<script>
+    function toggle(source) {
+        var checkboxes = document.querySelectorAll('input[name="SelectedBlogs"]');
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i] != source)
+                checkboxes[i].checked = source.checked;
+        }
+    }
+</script>
+<script>
+    function GetBlogs(BlogID) {
+        var q = $('#BlogSearch').val();
+        $.ajax({
+            url: "/Admin/Blog/GetBlogRelatedPosts?BlogID=" + @Model.BlogID + "&q=" + q,
+            type: "Get",
+            data: { q: q, BlogID: BlogID }
+        }).done(function (result) {
+            $("#BlogTable").html(result);
+        });
+
+
+    }
+
+</script>

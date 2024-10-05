@@ -1,0 +1,36 @@
+﻿@model List<ViewModels.SocialMediaItemViewModel>
+@foreach (var item in Model)
+{
+    <style>
+        .@(item.ClassName):hover{
+            color: @item.ColorName;
+        }
+        .@(item.ClassName):hover .@(item.ClassName)-svg {
+                fill: @item.ColorName;
+            }
+
+    </style>
+}
+    <style>
+        
+        .instagram:hover {
+            /* Fallback: Set a background color. */
+            background-color: red;
+            /* Create the gradient. */
+            background-image: linear-gradient(223.28deg, #DA00AD 19.38%, #F8011F 57.73%, #FF9503 84.33%, #F59A67 112.39%, #FFC600 112.39%), linear-gradient(0deg, #818A96, #818A96);
+            /* Set the background size and repeat properties. */
+            background-size: 100%;
+            background-repeat: repeat;
+            /* Use the text as a mask for the background. */
+            /* This will show the gradient as a text color rather than element bg. */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -moz-text-fill-color: transparent;
+        }
+
+            .instagram:hover .instagram-svg {
+                fill: #F8011F;
+            }
+
+        
+    </style>

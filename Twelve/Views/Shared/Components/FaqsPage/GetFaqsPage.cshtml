@@ -1,0 +1,166 @@
+﻿@model List<ViewModels.FaqsGroupsItemViewModel>
+
+<div class="bg-silver p-lg-5 pb-lg-0 position-relative">
+    <div class="container">
+        <!-- Article Content -->
+        <div data-aos="fade-up" data-aos-duration="1800">
+            @await Component.InvokeAsync("FaqContent")
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="d-none d-lg-block d-xl-block d-xxl-block">
+                        <div class=" bg-white p-4 radius-20">
+                            <div class="row">
+                                <div class="col-lg-9 mt-2">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <p class="text-darkblue pt-1 fs-5 fw-bold">
+                                                موضوعات<img src="/Assest/img/list-title-icon.png"
+                                                            width="24"
+                                                            height="24"
+                                                            class="mx-2" />
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <ul class="nav nav-pills nav-fill">
+                                                @foreach (var item in Model)
+                                                {
+                                                    if (item == Model[0])
+                                                    {
+                                                        <li class="nav-item faqs-tab-item">
+                                                            <a class="nav-link faqs-tab text-pencil active"
+                                                               data-bs-toggle="pill"
+                                                               href="#f_@(item.GroupID)">@item.GroupName</a>
+                                                        </li>
+                                                    }
+                                                    else
+                                                    {
+                                                        <li class="nav-item faqs-tab-item">
+                                                            <a class="nav-link faqs-tab text-pencil "
+                                                               data-bs-toggle="pill"
+                                                               href="#f_@(item.GroupID)">@item.GroupName</a>
+                                                        </li>
+                                                    }
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <form >
+                                        <div class="input-group mb-3">
+                                            <input type="text"
+                                                id="FaqsQ"
+                                                   class="form-control fs-6 navbar-search bg-light border border-0"
+                                                   placeholder="جستجو" />
+                                            <a onclick="SearchFaqs()" class="input-group-text bg-light navbar-search-icon border border-0">
+                                                <img src="/Assest/img/SVG/Main/search-normal.svg" />
+                                            </a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-lg-none d-xl-none d-xxl-none d-md-block d-sm-block">
+                        <div class="contact-box  bg-white py-5 px-3 radius-20">
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="text-darkblue fs-6 text-center fw-bold">
+                                        موضوعات<span class="fa fa-list-ul text-darkblue mx-2"></span>
+                                    </p>
+                                </div>
+                                <div class="col-6 text-start px-0">
+                                    <div class="dropdown ms-0">
+                                        <button class="bg-white border-0 text-darkblue fw-bold dropdown-toggle"
+                                                type="button"
+                                                data-bs-toggle="dropdown"
+                                                aria-expanded="false">
+                                            آموزش اپلیکیشن
+                                        </button>
+
+                                        <ul class="dropdown-menu nav-pills" role="tablist">
+                                            @foreach (var item in Model)
+                                            {
+                                                if (item == Model[0])
+                                                {
+                                                    <li class="nav-item faqs-tab-item m-3 text-center">
+                                                        <a class="dropdown-item nav-link faqs-tab text-pencil active"
+                                                           data-bs-toggle="pill"
+                                                           href="#f_@(item.GroupID)">@item.GroupName</a>
+                                                    </li>
+                                                }
+                                                else
+                                                {
+                                                    <li class="nav-item faqs-tab-item m-3 text-center">
+                                                        <a class="dropdown-item nav-link faqs-tab text-pencil"
+                                                           data-bs-toggle="pill"
+                                                           href="#f_@(item.GroupID)">@item.GroupName</a>
+                                                    </li>
+                                                }
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-5">
+                            <form role="search">
+                                <div class="input-group mb-3">
+                                    <input type="text"
+                                           class="form-control fs-6 navbar-search bg-white border border-0"
+                                           placeholder="جستجو" />
+                                    <span class="input-group-text bg-white navbar-search-icon border border-0">
+                                        <img src="/Assest/img/SVG/Main/search-normal.svg" />
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <!-- Content -->
+        <!-- Article Content -->
+    </div>
+</div>
+<div class="container py-lg-2 px-lg-5 position-relative">
+    <!-- Article Content -->
+    <!--Faqs-->
+    <div data-aos="fade-up" data-aos-duration="1800" class="mb-5">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="tab-content">
+                    @foreach (var item in Model)
+                    {
+                        if (item == Model[0])
+                        {
+                            <div class="tab-pane container active" id="f_@(item.GroupID)">
+                                @await Component.InvokeAsync("FaqsByGroups",new{GroupID = item.GroupID})
+
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="tab-pane container fade" id="f_@(item.GroupID)">
+                                @await Component.InvokeAsync("FaqsByGroups",new{GroupID = item.GroupID})
+                            </div>
+                        }
+
+                    }
+                    <div class="tab-pane container active" id="f_search">
+                        <div id="SearchFaq"></div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 ps-lg-5">
+                <h3 class="text-darkblue fw-bold my-5">تبلیغات و برگزیده ها</h3>
+                @await Component.InvokeAsync("Advertisements")
+
+            </div>
+        </div>
+    </div>
+    <!--Faqs-->
+    <!-- Article Content -->
+</div>

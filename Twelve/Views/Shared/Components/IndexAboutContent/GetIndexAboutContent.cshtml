@@ -1,0 +1,20 @@
+﻿@model ViewModels.ContentItemViewModel
+
+<div data-aos="fade-up"
+     data-aos-duration="1800"
+     class="article-content mb-5">
+    <div class="row mt-5">
+        <div class="col-lg-6 col-md-12">
+            <p class="text-green2">@Model.SubTitle</p>
+            <h2 class="font-ExtraBold fs-1 mb-3">
+                @Model.Title
+            </h2>
+            <p class="text-pencil text-justify">@Model.Description</p>
+        </div>
+        <div class="col-lg-1 col-md-12 d-none d-lg-block d-xl-block d-xxl-block middle-col">
+            <img src="/Assest/img/middle-col.png"
+                 class="w-h-100 middle-col-img" />
+        </div>
+        @await Component.InvokeAsync("IndexSecondSlider")
+    </div>
+</div>

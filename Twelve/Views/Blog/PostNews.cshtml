@@ -1,0 +1,159 @@
+﻿@model ViewModels.BlogPostPageDataViewModel
+
+@section NavbarJs {
+    <script src="/Assest/js/Scrolled-WhiteNav.js"></script>
+}
+@section Navbar{
+    <partial name="_WhiteNavbar"></partial>
+}
+
+<!--Content-->
+<article class="position-relative">
+    <div class="bg-silver p-5 position-relative">
+        <!-- Article Content -->
+        <div class="container">
+            <!--Blog News title-->
+            <div data-aos="fade-up" data-aos-duration="1800">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <p class="text-pencil">
+                            خانه / بلاگ و اخبار / @Model.GroupName
+                        </p>
+                    </div>
+                    <div class="col-lg-6 col-md-12"></div>
+                    <div class="col-lg-8 col-md-12">
+                        <p class="text-darkblue fs-12 fw-bold mt-5">
+                            <span class="fa fa-folder-o fw-bold mx-2"></span>
+                            @Model.GroupName
+                        </p>
+                        <h1 class="text-darkblue fw-bold fs-2 font-ExtraBold lh-lg">
+                            @Model.Title
+                        </h1>
+                        <p class="text-darkblue fs-12 mt-5">
+                            زمان انتشار @Model.CreateDate |
+                            زمان مطالعه : @Model.StudyTime
+                            <span class="fa fa-clock-o mx-2"></span>
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="text-center mt-5 single-share-buttons">
+                            <a class="green-btn rounded-pill mx-3">
+                                اشتراک گذاری
+                                <span class="fa fa-share-alt mx-2"></span>
+                            </a>
+                            <a onclick="CopyUrl()" class="btn btn-outline-dark p-19-21 px-5 rounded-pill mx-3">
+                                کپی لینک
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+
+            <br />
+            <!--Blog News title-->
+        </div>
+        <!-- Article Content -->
+    </div>
+    <div class="p-lg-5 position-relative">
+        <div class="container">
+            <!-- Article Content -->
+            <div data-aos="fade-up" data-aos-duration="1800" class="mb-5">
+                <div class="row">
+                    <div class="col-lg-8 col-md-12">
+                        <img src="/Images/Blogs/@Model.ImageName"
+                             class="w-100 mb-5 radius-20"
+                             alt="دوازده" />
+                        <p class="text-darkblue fw-bold fs-5 mb-3 lh-lg">
+                            @Model.Title
+                        </p>
+                        <p class="text-pencil text-justify lh-lg">
+                            @Model.ShortDescription
+                            <br />
+                            @Html.Raw(Model.Description)
+                        </p>
+                        <br />
+                        @await Component.InvokeAsync("NewsTags",new {BlogID=Model.BlogID})
+
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="px-lg-4">
+                            <h4 class="text-darkblue fw-bold mb-4">مطلب برگزیده هفته</h4>
+                            @await Component.InvokeAsync("LatestNews")
+                            @await Component.InvokeAsync("PopularNews")
+                            <br />
+                            <hr class="text-pencil" />
+                            <div data-aos="fade-up" data-aos-duration="1800">
+                                <h3 class="text-darkblue fw-bold my-5">
+                                    تبلیغات و برگزیده ها
+                                </h3>
+                                @await Component.InvokeAsync("Advertisements")
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        @await Component.InvokeAsync("NewsComments",new {BlogID = Model.BlogID})
+                        <!--comments-->
+                        <div id="comment-form"
+                             data-aos="fade-up"
+                             data-aos-duration="1800"
+                             class="my-5">
+                            <div class="p-5 radius-20 border">
+                                <h4 class="text-darkblue my-4 fw-bold">
+                                    نظر خود را درباره مقاله ثبت کنید
+                                </h4>
+                                <form>
+                                    <input type="hidden" id="BlogID" value="@Model.BlogID" />
+                                    <input type="hidden" id="title" value="دوازده" />
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="input-group radius-20 mt-1 mb-3">
+                                                <span class="input-group-text border-0 radius-20 bg-silver px-3 py-4 fw-bold text-darkblue">نام و نام خانوادگی</span>
+                                                <input type="text" id="fullname" name="fullname"
+                                                       class="form-control text-start border-0 radius-20 bg-silver px-3 py-4"
+                                                       placeholder="لطفا نام و نام خانوادگی خود را وارد کنید" />
+                                            </div>
+                                        </div>
+                                        <div class="col-6 d-none">
+                                            <div class="input-group radius-20 mt-1 mb-3">
+                                                <span class="input-group-text border-0 radius-20 bg-silver px-3 py-4 fw-bold text-darkblue">عنوان خود را وارد کنید :</span>
+                                                <input type="text" id="title" name="title"
+                                                       class="form-control text-strat border-0 radius-20 bg-silver px-3 py-4"
+                                                       placeholder="لطفا عنوان مدنظر خود را وارد کنید" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <textarea rows="5" id="Text" name="Text"
+                                              class="radius-20 bg-white border p-4 w-100"
+                                              placeholder="نظر خود نسبت به این مقاله را تایپ کنید تا مفید باشد ..."></textarea>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="text-start mt-1">
+                                                <a onclick="SubmitNewsComment()" class="btn-comment blue-btn px-5 py-4 d-inline-block">
+                                                    ثبت نظر
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="text-start mt-1">
+                                                <p class="text-green2 fw-bold" id="CommentResult"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!--comments-->
+                    </div>
+                </div>
+            </div>
+            <br />
+            <!-- Content -->
+            <!-- Article Content -->
+        </div>
+    </div>
+    @await Component.InvokeAsync("RelatedBlogs",new {BlogID = Model.BlogID})
+
+</article>
+
+<!--Content-->

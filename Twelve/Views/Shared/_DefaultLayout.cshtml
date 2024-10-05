@@ -1,0 +1,352 @@
+﻿<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <title>دوازده</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="title" content="دوازده" />
+  <meta name="description" content="توضیحات کوتاه دوازده" />
+
+  <!-- Favicon -->
+  <link href="/Assest/img/SVG/Main/website-icon.svg" rel="icon" />
+
+  <!-- Bootstrap CSS -->
+  <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.rtl.min.css"
+          integrity="sha384-DOXMLfHhQkvFFp+rWTZwVlPVqdIhpDVYT9csOnHSgWQWPX0v5MCGtjCJbY6ERspU"
+          crossorigin="anonymous"
+  />
+
+  <!-- AOS -->
+  <link rel="stylesheet" href="/Assest/css/aos.css" />
+  <script src="/Assest/js/aos.js"></script>
+  <script src="/Assest/js/jquery-2.1.1.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/Assest/css/font-awesome.css" />
+  <link rel="stylesheet" href="/Assest/css/Style.css" />
+  <link rel="stylesheet" href="/Assest/css/queries.css" />
+  @RenderSection("ExtraLibrary",false)
+    @await Component.InvokeAsync("SocialMediaStyle")
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T1MTTQQQZ0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-T1MTTQQQZ0');
+    </script>
+</head>
+<body>
+@RenderSection("Navbar")
+
+@RenderSection("Header",false)
+@RenderBody()
+<!--Footer-->
+<partial name="_Footer"></partial>
+<!--Footer-->
+
+<!-- Bootstrap js -->
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"
+></script>
+<script>
+  AOS.init();
+</script>
+@RenderSection("NavbarJs")
+<script>
+        function CopyUrl() {
+            // Get the text field
+            var copyText = window.location.href;
+
+
+            // Copy the text inside the text field
+            navigator.clipboard.writeText(window.location.href);
+
+            // Alert the copied text
+            alert("لینک مورد نظر کپی شد");
+        }
+    </script>
+    <script>
+        function SubmitOrder() {
+            $.ajax({
+                url: "/Payment",
+                type: "Get",
+                data: { Amount: $("#amount").val() }
+            }).done(function (result) {
+                if (result.includes("شد")) {
+                    $("#OrderResult").removeClass('text-red');
+                    $("#OrderResult").addClass('text-green2');
+                }
+                else {
+                    $("#OrderResult").removeClass('text-green2');
+                    $("#OrderResult").addClass('text-red');
+                }
+                $("#OrderResult").html(result);
+                $("#amount").html("");
+            });
+
+
+        }
+    </script>
+    <script>
+        function SendSms() {
+            $.ajax({
+                url: "/SendSms",
+                type: "Get",
+                data: { phonenumber: $("#phonenumber").val() }
+            }).done(function (result) {
+                if (result.includes("شد")) {
+                    $("#SmsResult").removeClass('text-red');
+                    $("#SmsResult").addClass('text-green2');
+                }
+                else{
+                    $("#SmsResult").removeClass('text-green2');
+                    $("#SmsResult").addClass('text-red');
+                }
+                $("#SmsResult").html(result);
+                $("#phonenumber").html("");
+            });
+
+
+        }
+    </script>
+    <script>
+        function SearchFaqs() {
+            $.ajax({
+                url: "/SearchFaqs",
+                type: "Get",
+                data: { q: $("#FaqsQ").val() }
+            }).done(function (result) {
+                $("#SearchFaq").html(result);
+            });
+
+
+        }
+    </script>
+    <script>
+        function SubmitNewsComment() {
+            $.ajax({
+                url: "/SubmitNewsComment",
+                type: "Get",
+                data: { BlogID: $("#BlogID").val(), title: $("#title").val(), fullname: $("#fullname").val(), Text: $("#Text").val() }
+            }).done(function (result) {
+                if (result.includes("شد")) {
+                    $("#CommentResult").removeClass('text-red');
+                    $("#CommentResult").addClass('text-green2');
+                }
+                else {
+                    $("#CommentResult").removeClass('text-green2');
+                    $("#CommentResult").addClass('text-red');
+                }
+                $("#CommentResult").html(result);
+                $("#fullname").html("");
+                $("#title").html("");
+                $("#Text").html("");
+            });
+
+
+        }
+    </script>
+    <script>
+        function SubmitComment() {
+            $.ajax({
+                url: "/SubmitComment",
+                type: "Get",
+                data: { BlogID: $("#BlogID").val(), title: $("#title").val(), fullname: $("#fullname").val(), Text: $("#Text").val() }
+            }).done(function (result) {
+                if (result.includes("شد")) {
+                    $("#CommentResult").removeClass('text-red');
+                    $("#CommentResult").addClass('text-green2');
+                }
+                else {
+                    $("#CommentResult").removeClass('text-green2');
+                    $("#CommentResult").addClass('text-red');
+                }
+                $("#CommentResult").html(result);
+                $("#fullname").html("");
+                $("#title").html("");
+                $("#Text").html("");
+            });
+
+
+        }
+    </script>
+    <script>
+        function SubmitMessage() {
+            $.ajax({
+                url: "/SubmitMessage",
+                type: "Get",
+                data: { fullname: $("#fullname").val(), Email: $("#Email").val(), Phonenumber: $("#Phonenumber").val(), Subject: $("#Subject").val(), Text: $("#Text").val() }
+            }).done(function (result) {
+                if (result.includes("شد")) {
+                    $("#MessageResult").removeClass('text-red');
+                    $("#MessageResult").addClass('text-green2');
+                }
+                else {
+                    $("#MessageResult").removeClass('text-green2');
+                    $("#MessageResult").addClass('text-red');
+                }
+                $("#MessageResult").html(result);
+                $("#fullname").html("");
+                $("#Email").html("");
+                $("#Subject").html("");
+                $("#Phonenumber").html("");
+                $("#Text").html("");
+            });
+
+
+        }
+    </script>
+    <script>
+        function SenPassword() {
+            $.ajax({
+                url: "/SenPassword",
+                type: "Get",
+                data: { username: $("#username").val() }
+            }).done(function (result) {
+                if (result.includes("ارسال شد")) {
+                    $("#MessageResult").removeClass('text-red');
+                    $("#MessageResult").addClass('text-green2');
+                    $("#password").removeAttr('disabled');
+
+                }
+                else {
+                    $("#MessageResult").removeClass('text-green2');
+                    $("#MessageResult").addClass('text-red');
+                }
+                $("#MessageResult").html(result);
+            });
+
+
+        }
+    </script>
+    <script>
+        function SenPasswordEmail() {
+            $.ajax({
+                url: "/SendEmail",
+                type: "Get",
+                data: { username: $("#username").val() }
+            }).done(function (result) {
+                if (result.includes("ارسال شد")) {
+                    $("#MessageResult").removeClass('text-red');
+                    $("#MessageResult").addClass('text-green2');
+                    $("#password").removeAttr('disabled');
+
+                }
+                else {
+                    $("#MessageResult").removeClass('text-green2');
+                    $("#MessageResult").addClass('text-red');
+                }
+                $("#MessageResult").html(result);
+            });
+
+
+        }
+    </script>
+    <!--features-->
+    <script>
+        function Morefeature_lg() {
+            if (
+                document
+                    .getElementById("features-lg-items")
+                    .classList.contains("d-none")
+            ) {
+                document
+                    .getElementById("features-lg-items")
+                    .classList.remove("d-none");
+                document.getElementById("features-lg-items").classList.add("d-block");
+                document.getElementById("features-lg-more-info").innerHTML =
+                    "کوتاه سازی";
+            } else if (
+                document
+                    .getElementById("features-lg-items")
+                    .classList.contains("d-block")
+            ) {
+                document.getElementById("features-lg-items").classList.add("d-none");
+                document
+                    .getElementById("features-lg-items")
+                    .classList.remove("d-block");
+                document.getElementById("features-lg-more-info").innerHTML =
+                    "موارد بیشتر";
+            }
+        }
+        function Morefeature_md() {
+            if (
+                document
+                    .getElementById("features-md-items")
+                    .classList.contains("d-none")
+            ) {
+                document
+                    .getElementById("features-md-items")
+                    .classList.remove("d-none");
+                document.getElementById("features-md-items").classList.add("d-block");
+                document.getElementById("features-md-more-info").innerHTML =
+                    "کوتاه سازی";
+            } else if (
+                document
+                    .getElementById("features-md-items")
+                    .classList.contains("d-block")
+            ) {
+                document.getElementById("features-md-items").classList.add("d-none");
+                document
+                    .getElementById("features-md-items")
+                    .classList.remove("d-block");
+                document.getElementById("features-md-more-info").innerHTML =
+                    "موارد بیشتر";
+            }
+        }
+    </script>
+
+<!-- about carousel -->
+<script>
+  // Access the Images
+  let slideImages_2nd = document.querySelectorAll(
+          ".home-2nd-carousel-slide-container img"
+  );
+  // Access the next and prev buttons
+  let next_2nd = document.querySelector(".nextBtn-2nd");
+  let prev_2nd = document.querySelector(".prevBtn-2nd");
+  // Access the indicators
+  let dots_2nd = document.querySelectorAll(".dot");
+
+  var counter_2nd = 0;
+
+  // Code for next button
+  next_2nd.addEventListener("click", slideNext_2nd);
+  function slideNext_2nd() {
+    slideImages_2nd[counter_2nd].style.animation =
+            "next1 1s ease-in forwards";
+    if (counter_2nd >= slideImages_2nd.length - 1) {
+      counter_2nd = 0;
+    } else {
+      counter_2nd++;
+    }
+    slideImages_2nd[counter_2nd].style.animation =
+            "next2 1s ease-in forwards";
+
+    //indicators();
+  }
+
+  // Code for prev button
+  prev_2nd.addEventListener("click", slidePrev_2nd);
+  function slidePrev_2nd() {
+    slideImages_2nd[counter_2nd].style.animation =
+            "prev1 1s ease-in forwards";
+    if (counter_2nd == 0) {
+      counter_2nd = slideImages_2nd.length - 1;
+    } else {
+      counter_2nd--;
+    }
+    slideImages_2nd[counter_2nd].style.animation =
+            "prev2 1s ease-in forwards";
+    //indicators();
+  }
+</script>
+</body>
+</html>

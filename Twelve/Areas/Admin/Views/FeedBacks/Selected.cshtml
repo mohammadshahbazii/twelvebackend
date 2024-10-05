@@ -1,0 +1,61 @@
+﻿@model List<ViewModels.FeedBacksItemViewModels>
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                             لیست پیشنهادات کاربران انتخاب شده
+                            <a href="/Admin/FeedBacks" class="btn btn-outline-info mx-3">لیست پیشنهادات کاربران</a>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div id="FeedBackTable">
+                        @if (Model.Any())
+                        {
+                            <div class="card-body table-responsive p-0">
+                                <table class="table table-bordered table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <th>نام و نام خانوادگی</th>
+                                            <th>عنوان</th>
+                                            <th>تاریخ</th>
+                                            <th>*</th>
+                                        </tr>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.Fullname</td>
+                                                <td>
+                                                    @item.Subject
+                                                </td>
+                                                <td>
+                                                    @item.CreateDate
+                                                </td>
+                                                <td>
+                                                    <a href="/Admin/FeedBacks/ShowMessage/@item.FeedBackID" class="btn btn-outline-info rounded mx-1" title="نمایش پیام">
+                                                        <span class="fa fa-eye"></span>
+                                                    </a>
+                                                    <a href="/Admin/FeedBacks/SetShow/@item.FeedBackID" class="btn btn-outline-warning rounded mx-1" title="نمایش در سایت">
+                                                        <span class="fa fa-edit"></span>
+                                                    </a>
+                                                    <a href="/Admin/FeedBacks/Delete/@item.FeedBackID" class="btn btn-outline-danger rounded mx-1" title="حذف">
+                                                        <span class="fa fa-trash"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>

@@ -1,0 +1,82 @@
+﻿@model DataLayer.Slider
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            ویرایش آیتم
+                            <span class="text-dark mx-2">@ViewBag.Message</span>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="SliderId" id="SliderId" value="@Model.SliderId" />
+                        <input type="hidden" name="SliderGroupId" id="SliderGroupId" value="@Model.SliderGroupId" />
+                        <input type="hidden" name="ImageName" id="ImageName" value="@Model.ImageName" />
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Title">عنوان</label>
+                                <input type="text" name="Title" class="form-control" value="@Model.Title" id="Title" placeholder="عنوان را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="ShortDescription">توضیح کوتاه</label>
+                                <input type="text" class="form-control" name="ShortDescription" value="@Model.ShortDescription" id="ShortDescription" placeholder="توضیح کوتاه را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="Link">لینک</label>
+                                <input type="text" class="form-control" name="Link" value="@Model.Link" id="Link" placeholder="لینک را وارد کنید">
+                            </div>
+                            <div class="form-group ">
+                                <div class="text-center">
+                                    <img id="imagePreview" class="thumbnail my-5 w-100" src="~/Images/Sliders/@Model.ImageName" />
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <label for="imagePreview">انتخاب تصویر</label>
+                                        <input type="file" accept="Images/" id="imageProduct" name="imageProduct" />
+                                        <p>
+                                            تصویر اسلایدر اول صفحه نخست (دسکتاپ): 107X43 - 1920X774
+                                            <br />
+                                            تصویر اسلایدر اول صفحه نخست (موبایل): 974X1920
+                                            <br />
+
+                                            تصویر اسلایدر دوم صفحه نخست: 7X5 - 1920X1350
+                                            <br />
+
+                                            تصویر اسلایدر اول صفحه درباره ما: 16X9 - 1920X1080
+                                            <br />
+
+                                            تصویر اسلایدر نقل قول ها: 1X1 - 1080X1080
+                                            <br />
+
+                                            تصویر اسلایدر صفحه ارتباط با ما: 8x5 - 512x320
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-warning">ثبت</button>
+                            <a href="/Admin/Sliders" class="btn btn-info float-left">بازگشت به لیست</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+<script>
+    imageProduct.onchange = evt => {
+        const [file] = imageProduct.files
+        if (file) {
+            imagePreview.src = URL.createObjectURL(file)
+        }
+    }
+</script>

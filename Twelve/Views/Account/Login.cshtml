@@ -1,0 +1,43 @@
+﻿@section NavbarJs {
+    <script src="/Assest/js/Scrolled-WhiteNav.js"></script>
+}
+@section Navbar{
+    <partial name="_WhiteNavbar"></partial>
+}
+
+<div class="text-center p-10-20">
+    <div class="mx-auto p-5 bg-silver2 radius-20">
+        <form method="post">
+            
+            <div class="row">
+                <div class="col-3">
+
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <p>نام کاربری</p>
+                            <input type="text" name="username" id="username" placeholder="لطفا نام کاربری را وارد کنید" class="radius-20 w-100 px-5 py-2 text-center">
+                            <p class="mt-3">رمز عبور</p>
+                            <input type="password" disabled name="password" id="password" placeholder="لطفا رمز عبور را وارد کنید" class="radius-20 w-100 px-5 py-2 text-center">
+                            <hr />
+                        </div>
+                        <div class="col-lg-12 col-md-12 mb-3 text-end">
+                            <a onclick="SenPassword()" class="blue-btn border-0 w-100 text-center d-block">ارسال پیامک رمز عبور</a>
+                        </div>
+                        <div class="col-lg-12 col-md-12 mb-3 text-end">
+                            <a onclick="SenPasswordEmail()" class="blue-btn border-0 w-100 text-center d-block">ارسال ایمیل رمز عبور</a>
+                        </div>
+                        <div class="col-lg-12 col-md-12 mb-3 text-start">
+                            <button type="submit" class="blue-btn border-0 w-100">ورود به پنل</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                </div>
+            </div>
+        </form>
+        <p id="MessageResult" class="text-red fw-bold fs-12">@ViewBag.Message</p>
+
+    </div>
+</div>

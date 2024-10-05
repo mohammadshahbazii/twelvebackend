@@ -1,0 +1,36 @@
+﻿@model DataLayer.CallInfoLink
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            ویرایش لینک
+                            <span class="text-dark mx-2">@ViewBag.Message</span>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="post" enctype="multipart/form-data">
+                        <input type="hidden" value="@Model.CallInfoId" name="CallInfoId" />
+                        <input type="hidden" value="@Model.CallInfoLinkId" name="CallInfoLinkId" />
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Link">لینک</label>
+                                <input type="text" name="Link" value="@Model.Link" class="form-control" id="Link" placeholder="لینک را وارد کنید">
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-warning">ثبت</button>
+                            <a href="/Admin/CallInfoLinks/Links/@ViewBag.CallInfoID" class="btn btn-info float-left">بازگشت به لیست</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>

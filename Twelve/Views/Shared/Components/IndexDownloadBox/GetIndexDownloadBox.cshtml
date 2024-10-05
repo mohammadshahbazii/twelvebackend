@@ -1,0 +1,211 @@
+﻿@model ViewModels.IndexDownloadBoxViewModel
+<div class="bg-white container download-box p-lg-5 pt-5 mx-auto">
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            <h2 class="text-dark fs-1 font-ExtraBold fw-bold">
+                دانلود اپلیکیشن
+            </h2>
+            <p class="text-gray">
+                همین حالا میتونید، اپلیکیشن ((دوازده)) رو از طریق بازار، مایکت و یا با
+                لینک مستقیم دریافت کنید
+            </p>
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <div class="row">
+                <div class="col-lg-8 col-md-12">
+                    <div class="d-none d-lg-block d-xl-block d-xxl-block">
+                        <p>شماره تلفن همراه خود را وارد کنید</p>
+                        <form>
+                            <div class="input-group mb-3">
+                                <input type="text" id="phonenumber" name="phonenumber"
+                                       class="form-control font-Fanum fs-6 p-4 navbar-search bg-light border-dark border-0"
+                                       placeholder="شماره موبایل خود را وارد کنید" />
+                                <span class="input-group-text p-3 font-Fanum font-Bold text-darkblue direction-ltr bg-light navbar-search-icon border-0">
+                                    <span class="font-Fanum border border-dark border-top-0 border-end-0 border-bottom-0 ps-3">
+                                        +98
+                                    </span>
+                                </span>
+                            </div>
+                            <p class=" fw-bold fs-10" id="SmsResult"></p>
+                        </form>
+                    </div>
+                    <div class="d-lg-none d-xl-none d-xxl-none d-md-block d-sm-block">
+                        <ul class="nav nav-pills nav-justified">
+                            @foreach (var item in Model.DownloadLinkGroups)
+                            {
+                                <li class="nav-item">
+                                    @if (item == Model.DownloadLinkGroups[0])
+                                    {
+                                        <a class="nav-link no-bg text-dark active" style="margin-bottom:5px!important;" data-bs-toggle="pill" href="#g_@(item.GroupID)"> دانلود نسخه @item.GroupName</a>
+                                    }
+                                    else
+                                    {
+                                        <a class="nav-link no-bg text-dark" style="margin-bottom:5px!important;" data-bs-toggle="pill" href="#g_@(item.GroupID)"> دانلود نسخه @item.GroupName</a>
+                                    }
+                                </li>
+                            }
+                        </ul>
+                        <hr class="mt-0" />
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            @foreach (var group in Model.DownloadLinkGroups)
+                            {
+                                if (group == Model.DownloadLinkGroups[0])
+                                {
+                                    <div class="tab-pane container active" id="g_@(group.GroupID)">
+                                        <div class="row">
+                                            @foreach (var item in Model.DownloadLinks.Where(d => d.GroupID == group.GroupID))
+                                            {
+                                                if (!string.IsNullOrEmpty(item.ShortDescription))
+                                                {
+                                                    <div class="col-12">
+                                                        <a href="@item.Link">
+                                                            <div class="bg-silver2 radius-20 px-lg-5 py-2 my-4">
+                                                                <div class="row">
+                                                                    <div class="col-3 text-end">
+                                                                        <img src="/Images/Site/@item.ImageName"
+                                                                             class="mx-auto"
+                                                                             width="41"
+                                                                             height="42"
+                                                                             alt="دوازده" />
+                                                                    </div>
+                                                                    <div class="col-3 text-center pt-3">
+                                                                        <p class="text-darkblue fw-bold fs-10">@item.Title</p>
+                                                                    </div>
+                                                                    <div class="col-6 text-start pt-3">
+                                                                        <p class="text-gray2 fs-10">@item.ShortDescription</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="col-6">
+                                                        <a href="@item.Link">
+                                                            <div class="bg-silver2 radius-20 px-lg-5 py-2 my-2">
+                                                                <div class="row">
+                                                                    <div class="col-3 text-end">
+                                                                        <img src="/Images/Site/@item.ImageName"
+                                                                             class="mx-auto"
+                                                                             width="41"
+                                                                             height="42"
+                                                                             alt="دوازده" />
+                                                                    </div>
+                                                                    <div class="col-9 text-center pt-3">
+                                                                        <p class="text-darkblue fw-bold fs-10">@item.Title</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                }
+                                                
+                                            }
+                                            
+                                        </div>
+                                        <br>
+                                        <a href="/Download"
+                                           class="blue-btn p-4 d-block w-100 mt-4 text-center fw-bold fs-12">
+                                            <span class="fa fa-download mx-2"></span>دانلود مستقیم
+                                            اپلیکیشن
+                                        </a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="tab-pane container" id="g_@(group.GroupID)">
+                                        <div class="row">
+                                            @foreach (var item in Model.DownloadLinks.Where(d => d.GroupID == group.GroupID))
+                                            {
+                                                if (!string.IsNullOrEmpty(item.ShortDescription))
+                                                {
+                                                    <div class="col-12">
+                                                        <a href="@item.Link">
+                                                            <div class="bg-silver2 radius-20 px-lg-5 py-2 my-4">
+                                                                <div class="row">
+                                                                    <div class="col-3 text-end">
+                                                                        <img src="/Images/Site/@item.ImageName"
+                                                                             class="mx-auto"
+                                                                             width="41"
+                                                                             height="42"
+                                                                             alt="دوازده" />
+                                                                    </div>
+                                                                    <div class="col-3 text-center pt-3">
+                                                                        <p class="text-darkblue fw-bold fs-10">@item.Title</p>
+                                                                    </div>
+                                                                    <div class="col-6 text-start pt-3">
+                                                                        <p class="text-gray2 fs-10">@item.ShortDescription</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="col-6">
+                                                        <a href="@item.Link">
+                                                            <div class="bg-silver2 radius-20 px-lg-5 py-2 my-2">
+                                                                <div class="row">
+                                                                    <div class="col-3 text-end">
+                                                                        <img src="/Images/Site/@item.ImageName"
+                                                                             class="mx-auto"
+                                                                             width="41"
+                                                                             height="42"
+                                                                             alt="دوازده" />
+                                                                    </div>
+                                                                    <div class="col-9 text-center pt-3">
+                                                                        <p class="text-darkblue fw-bold fs-10">@item.Title</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                }
+
+                                            }
+
+                                        </div>
+                                    </div>
+                                }
+
+                            }
+                        </div>
+                        
+                        
+                        <div class="p-5">
+                            <div class="row">
+                                @foreach (var item in Model.SocialMedia)
+                                {
+                                    <div class="col-2 text-center fs-1">
+
+                                        <a href="@item.Link"
+                                           target="_blank"
+                                           title="@item.Title"
+                                           class="fs-6 @item.ClassName text-darkblue">
+                                            @Html.Raw(item.ImageName)
+                                        </a>
+                                    </div>
+                                    
+                                }
+                            </div>
+
+                        </div>
+                        <p class="text-pencil fs-5 text-center">
+                            ما را در شبکه های اجتماعی دنبال کنید
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="d-none d-lg-block d-xl-block d-xxl-block">
+                        <a href="/Download" class="text-green2 d-block mb-3">دانلود با لینک مستقیم</a>
+                        <a onclick="SendSms()" class="green-btn d-block">ارسال لینک</a>
+                    </div>
+                    <div class="d-lg-none d-xl-none d-xxl-none d-md-block d-sm-block"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

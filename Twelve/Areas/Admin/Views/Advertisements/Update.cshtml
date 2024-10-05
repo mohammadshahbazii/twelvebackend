@@ -1,0 +1,60 @@
+﻿@model DataLayer.Advertisement
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            ویرایش تبلیغ
+                            <span class="text-dark mx-2">@ViewBag.Message</span>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="AdvertisementId" id="AdvertisementId" value="@Model.AdvertisementId" />
+                        <input type="hidden" name="ImageName" id="ImageName" value="@Model.ImageName" />
+                        <input type="hidden" name="Title" id="Title" value="@Model.Title" />
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Link">لینک</label>
+                                <input type="text" class="form-control" name="Link" value="@Model.Link" id="Link" placeholder=" لینک را وارد کنید">
+                            </div>
+                            <div class="form-group ">
+                                <div class="text-center">
+                                    <img id="imagePreview" class="thumbnail my-5 w-50 mx-auto" src="~/Images/Ads/@Model.ImageName" />
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <label for="imagePreview">انتخاب تصویر (8x5 - 512x320)</label>
+                                        <input type="file" accept="Images/" id="imageProduct" name="imageProduct" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>بنر صفحه وبلاگ</label>
+                                @Html.CheckBoxFor(m=>m.IsBanner)
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-warning">ثبت</button>
+                            <a href="/Admin/Advertisements" class="btn btn-info float-left">بازگشت به لیست</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+<script>
+    imageProduct.onchange = evt => {
+        const [file] = imageProduct.files
+        if (file) {
+            imagePreview.src = URL.createObjectURL(file)
+        }
+    }
+</script>

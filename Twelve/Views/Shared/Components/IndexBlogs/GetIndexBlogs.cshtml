@@ -1,0 +1,164 @@
+﻿@model ViewModels.IndexBlogsViewModel
+
+@if (Model.News.Any() || Model.Blogs.Any())
+{
+    <div data-aos="fade-up" data-aos-duration="1800" class="my-5">
+        <p class="text-green2 fs-12 d-block fw-bold mx-4">
+            برای اطلاع از جدیدترین رویدادها با ما همراه باشید
+        </p>
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                
+                <h2 class="text-darkblue fw-bold d-inline-block mb-3 mx-4 font-ExtraBold">
+                    آخرین مقالات و اخبار
+                </h2>
+                
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="row">
+                    <div class="col-lg-8 col-md-12">
+                        <!-- Nav pills -->
+                        <ul class="nav nav-pills">
+                            @if (Model.Blogs.Any())
+                            {
+                                <li class="nav-item news-tab-item ms-2">
+                                    <a class="nav-link d-inline-block pt-0 news-tab active"
+                                       data-bs-toggle="pill"
+                                       href="#Blogs">اخبار اپلیکیشن</a>
+                                </li>
+                            }
+                            @if (Model.News.Any())
+                            {
+                                <li class="nav-item news-tab-item ms-2">
+                                    <a class="nav-link d-inline-block  pt-0 news-tab"
+                                       data-bs-toggle="pill"
+                                       href="#News">آموزش منو های اپلیکیشن</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <a href="/Blog" class="text-darkblue">
+                            مشاهده تمام پست ها<span class="fa fa-angle-left mx-2"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Tab panes -->
+        <div class="tab-content mt-5">
+            @if (Model.Blogs.Any())
+            {
+                <div class="tab-pane container active" id="Blogs">
+                    <div class="blog-news-container">
+                        @foreach (var posts in Model.Blogs)
+                        {
+                            <div class="blog-news-item">
+                                <div class="blog-img-title-container">
+                                    <a href="/PostBlogs/@posts.BlogID">
+                                        <img src="/Images/Blogs/@posts.ImageName"
+                                             class="w-100 radius-20"
+                                             alt="@posts.Title" />
+                                    </a>
+                                    <a href="/PostBlogs/@posts.BlogID"
+                                       class="blog-news-title text-darkblue">
+                                        <p class="text-darkblue">@posts.Title</p>
+                                    </a>
+                                </div>
+                                <a href="/PostBlogs/@posts.BlogID">
+                                    <div class="blog-news-footer">
+                                        <p class="blog-news-source text-darkblue fw-bold">
+                                            <span class="fa fa-clock-o"></span>
+                                            @posts.CreateDate | @posts.Source
+                                        </p>
+                                        <p class="blog-news-motalee text-darkblue">
+                                            مطالعه پست
+                                            <span>
+                                                <svg width="8"
+                                                     height="14"
+                                                     viewBox="0 0 8 14"
+                                                     fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg"
+                                                     class="mx-2">
+                                                    <path d="M7 13L1.4882 8.06061C0.837266 7.47727 0.837266 6.52273 1.4882 5.93939L7 1"
+                                                          stroke="#62748B"
+                                                          stroke-miterlimit="10"
+                                                          stroke-linecap="round"
+                                                          stroke-linejoin="round" />
+                                                </svg>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+
+                        }
+                    </div>
+                    <div class="text-center">
+                        <a href="/Blog"
+                           class="btn btn-outline-dark mt-5 py-3 px-4 rounded-pill">
+                            همه پست ها
+                        </a>
+                    </div>
+                </div>
+            }
+
+            @if (Model.News.Any())
+            {
+                <div class="tab-pane container fade" id="News">
+                    <div class="blog-news-container">
+                        @foreach (var posts in Model.News)
+                        {
+                            <div class="blog-news-item">
+                                <div class="blog-img-title-container">
+                                    <a href="/PostNews/@posts.BlogID">
+                                        <img src="/Images/Blogs/@posts.ImageName"
+                                             class="w-100 radius-20"
+                                             height="234"
+                                             alt="@posts.Title" />
+                                    </a>
+                                    <a href="/PostNews/@posts.BlogID"
+                                       class="blog-news-title text-darkblue">
+                                        <p class="text-darkblue">@posts.Title</p>
+                                    </a>
+                                </div>
+                                <a href="/PostNews/@posts.BlogID">
+                                    <div class="blog-news-footer">
+                                        <p class="blog-news-source text-darkblue fw-bold">
+                                            <span class="fa fa-clock-o"></span>
+                                            @posts.CreateDate | @posts.Source
+                                        </p>
+                                        <p class="blog-news-motalee text-darkblue">
+                                            مطالعه پست
+                                            <span>
+                                                <svg width="8"
+                                                     height="14"
+                                                     viewBox="0 0 8 14"
+                                                     fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg"
+                                                     class="mx-2">
+                                                    <path d="M7 13L1.4882 8.06061C0.837266 7.47727 0.837266 6.52273 1.4882 5.93939L7 1"
+                                                          stroke="#62748B"
+                                                          stroke-miterlimit="10"
+                                                          stroke-linecap="round"
+                                                          stroke-linejoin="round" />
+                                                </svg>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+
+                        }
+                    </div>
+                    <div class="text-center">
+                        <a href="/Blog"
+                           class="btn btn-outline-dark mt-5 py-3 px-4 rounded-pill">
+                            همه پست ها
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}

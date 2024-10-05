@@ -1,0 +1,137 @@
+﻿@model DataLayer.AboutUsContent
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            ویرایش اطلاعات صفحه درباره ما
+                            <span class="text-dark mx-2">@ViewBag.Message</span>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <div class="row">
+                        <div class="col-9">
+                            <form role="form" method="post" enctype="multipart/form-data">
+                                <input type="hidden" name="AboutUsContentId" id="AboutUsContentId" value="@Model.AboutUsContentId" />
+                                <input type="hidden" name="ImageName" id="ImageName" value="@Model.ImageName" />
+                                <input type="hidden" name="DownloadImageName" id="DownloadImageName" value="@Model.DownloadImageName" />
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="Title">عنوان هدر</label>
+                                        <input type="text" name="Title" class="form-control" value="@Model.Title" id="Title" placeholder="عنوان هدر را وارد کنید">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="SubTitle">زیر عنوان هدر</label>
+                                        <input type="text" class="form-control" name="SubTitle" value="@Model.SubTitle" id="SubTitle" placeholder="زیر عنوان هدر را وارد کنید">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Description">توضیحات هدر</label>
+                                        <textarea rows="5" name="Description" class="form-control w-100" name="Description">@Model.Description</textarea>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="text-center">
+                                            <img id="imagePreview" class="thumbnail my-5 w-50 mx-auto" src="~/Images/Site/@Model.ImageName" />
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-10">
+                                                <label for="imagePreview">انتخاب تصویر هدر (16x9 - 1920x1080)</label>
+                                                <input type="file" accept="Images/" id="imageProduct" name="imageProduct" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="SecondTitle">عنوان ویژگی های نرم افزار</label>
+                                        <input type="text" name="SecondTitle" class="form-control" value="@Model.SecondTitle" id="SecondTitle" placeholder="عنوان ویژگی های نرم افزار را وارد کنید">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="SecondSubTitle">زیر عنوان ویژگی های نرم افزار</label>
+                                        <input type="text" class="form-control" name="SecondSubTitle" value="@Model.SecondSubTitle" id="SecondSubTitle" placeholder="زیر عنوان ویژگی های نرم افزار را وارد کنید">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="SecondDescription">توضیحات ویژگی های نرم افزار</label>
+                                        <textarea rows="5" name="SecondDescription" class="form-control w-100" name="SecondDescription">@Model.SecondDescription</textarea>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="text-center">
+                                            <img id="downloadPreview" class="thumbnail my-5 w-50 mx-auto" src="~/Images/Site/@Model.DownloadImageName" />
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-10">
+                                                <label for="downloadPreview">انتخاب تصویر دانلود باکس (16x9 - 1920x1080)</label>
+                                                <input type="file" accept="Images/" id="downloadProduct" name="downloadProduct" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ThirdTitle">عنوان سوالات متداول</label>
+                                        <input type="text" name="ThirdTitle" class="form-control" value="@Model.ThirdTitle" id="ThirdTitle" placeholder="عنوان سوالات متداول را وارد کنید">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ThirdSubTitle">زیر عنوان سوالات متداول</label>
+                                        <input type="text" class="form-control" name="ThirdSubTitle" value="@Model.ThirdSubTitle" id="ThirdSubTitle" placeholder="زیر عنوان سوالات متداول را وارد کنید">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ForthTitle">عنوان پاراگراف پایین دانلود باکس</label>
+                                        <input type="text" name="ForthTitle" class="form-control" value="@Model.ForthTitle" id="ForthTitle" placeholder="عنوان پاراگراف پایین دانلود باکس را وارد کنید">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ForthSubTitle">زیر عنوان پاراگراف پایین دانلود باکس</label>
+                                        <input type="text" class="form-control" name="ForthSubTitle" value="@Model.ForthSubTitle" id="ForthSubTitle" placeholder="زیر عنوان پاراگراف پایین دانلود باکس را وارد کنید">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ForthDescription">توضیحات پاراگراف پایین دانلود باکس</label>
+                                        <textarea rows="5" name="ForthDescription" class="form-control w-100" name="ForthDescription">@Model.ForthDescription</textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="LogoTitle">عنوان بخش لوگو</label>
+                                        <input type="text" name="LogoTitle" class="form-control" value="@Model.LogoTitle" id="LogoTitle" placeholder="عنوان بخش لوگو را وارد کنید">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="LogoSubTitle">زیر عنوان بخش لوگو</label>
+                                        <input type="text" class="form-control" name="LogoSubTitle" value="@Model.LogoSubTitle" id="LogoSubTitle" placeholder="زیر عنوان بخش لوگو را وارد کنید">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="LogoDescription">توضیحات بخش لوگو</label>
+                                        <textarea rows="5" name="LogoDescription" class="form-control w-100" name="LogoDescription">@Model.LogoDescription</textarea>
+                                    </div>
+
+                                </div>
+                                <!-- /.card-body -->
+
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-warning">ثبت</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-3">
+                            @await Component.InvokeAsync("AboutUsSights")
+                            @await Component.InvokeAsync("AdminAboutUsArticles")
+                            @await Component.InvokeAsync("AdminAboutUsItems")
+                            @await Component.InvokeAsync("AdminAboutUsLogoes")
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+<script>
+    imageProduct.onchange = evt => {
+        const [file] = imageProduct.files
+        if (file) {
+            imagePreview.src = URL.createObjectURL(file)
+        }
+    }
+</script>
+<script>
+    downloadProduct.onchange = evt => {
+        const [file] = downloadProduct.files
+        if (file) {
+            downloadPreview.src = URL.createObjectURL(file)
+        }
+    }
+</script>

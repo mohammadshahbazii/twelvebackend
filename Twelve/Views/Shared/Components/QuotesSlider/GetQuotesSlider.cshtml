@@ -1,0 +1,126 @@
+﻿@model List<ViewModels.IndexSliderItemViewModel>
+@if (Model.Any())
+{
+    <div id="AboutSlider" class="carousel slide" data-bs-ride="true">
+
+        <div class="carousel-inner">
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                if (i==0)
+                {
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="p-lg-5">
+                                    <div class="bg-silver p-5 radius-20">
+                                        <p class="text-darkblue">
+                                            @Model[i].ShortDescription
+                                        </p>
+                                        <p class="text-darkblue fw-bold fs-5">
+                                            @Model[i].Title
+                                        </p>
+                                        <div class="row mt-5">
+                                            <div class="col-lg-8 col-md-12">
+                                                <div class="position-relative">
+                                                    <div class="carousel-indicatorsSlider">
+                                                        @for (int j = 0; j < Model.Count; j++)
+                                                        {
+                                                            if (j == i)
+                                                            {
+                                                                <button type="button" data-bs-target="#AboutSlider" data-bs-slide-to="@j" class="active" aria-current="true" aria-label="Slide @j"></button>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <button type="button" data-bs-target="#AboutSlider" data-bs-slide-to="j" aria-label="Slide j"></button>
+
+                                                            }
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-12">
+
+                                                <div class="d-none d-lg-block d-xl-block d-xxl-block">
+                                                    <a class="btn btn-light rounded-circle bg-white px-3 py-2 d-inline-block mx-2" data-bs-target="#AboutSlider" data-bs-slide="prev">
+                                                        <span class="fa fa-angle-right fw-bold"></span>
+                                                    </a>
+                                                    <a class="btn btn-light rounded-circle bg-white px-3 py-2 d-inline-block mx-2" data-bs-target="#AboutSlider" data-bs-slide="next">
+                                                        <span class="fa fa-angle-left fw-bold"></span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="p-lg-5">
+                                    <img src="/Images/Sliders/@Model[i].ImageName" alt="دوازده" class="w-h-100 radius-20">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+                else
+                {
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="p-lg-5">
+                                    <div class="bg-silver p-5 radius-20">
+                                        <p class="text-darkblue">
+                                            @Model[i].ShortDescription
+                                        </p>
+                                        <p class="text-darkblue fw-bold fs-5">
+                                            @Model[i].Title
+                                        </p>
+                                        <div class="row mt-5">
+                                            <div class="col-lg-8 col-md-12">
+                                                <div class="position-relative">
+                                                    <div class="carousel-indicatorsSlider">
+                                                        @for (int j = 0; j < Model.Count; j++)
+                                                        {
+                                                            if (j == i)
+                                                            {
+                                                                <button type="button" data-bs-target="#AboutSlider" data-bs-slide-to="@j" class="active" aria-current="true" aria-label="Slide @j"></button>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <button type="button" data-bs-target="#AboutSlider" data-bs-slide-to="j" aria-label="Slide j"></button>
+
+                                                            }
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-12">
+
+                                                <div class="d-none d-lg-block d-xl-block d-xxl-block">
+                                                    <a class="btn btn-light rounded-circle bg-white px-3 py-2 d-inline-block mx-2" data-bs-target="#AboutSlider" data-bs-slide="prev">
+                                                        <span class="fa fa-angle-right fw-bold"></span>
+                                                    </a>
+                                                    <a class="btn btn-light rounded-circle bg-white px-3 py-2 d-inline-block mx-2" data-bs-target="#AboutSlider" data-bs-slide="next">
+                                                        <span class="fa fa-angle-left fw-bold"></span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="p-lg-5">
+                                    <img src="/Images/Sliders/@Model[i].ImageName" alt="دوازده" class="w-h-100 radius-20">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            }
+        </div>
+    </div>
+}

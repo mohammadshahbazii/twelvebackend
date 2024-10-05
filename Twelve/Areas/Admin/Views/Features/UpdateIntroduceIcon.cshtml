@@ -1,0 +1,64 @@
+﻿@model DataLayer.Feature
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            ویرایش ویژگی
+                            <span class="text-dark mx-2">@ViewBag.Message</span>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="post" enctype="multipart/form-data">
+                        @Html.HiddenFor(m=> m.FeatureId)
+                        @Html.HiddenFor(m=> m.ImageName)
+                        @Html.HiddenFor(m=> m.AnimateFilename)
+                        @Html.HiddenFor(m=> m.FirstArticleImage)
+                        @Html.HiddenFor(m=> m.SecondArticleImage)
+                        @Html.HiddenFor(m=> m.IntroduceImageName)
+                        @Html.HiddenFor(m=> m.Title)
+                        @Html.HiddenFor(m=> m.FirstDescription)
+                        @Html.HiddenFor(m=> m.ShortDescription)
+                        @Html.HiddenFor(m=> m.FirstArticleTitle)
+                        @Html.HiddenFor(m=> m.FirstArticleDescription)
+                        @Html.HiddenFor(m=> m.SecondArticleTitle)
+                        @Html.HiddenFor(m=> m.SecondArticleDescription)
+                        <div class="card-body">
+                            <div class="form-group ">
+                                <div class="text-center">
+                                    <img id="introducePreview" class="thumbnail my-5" src="~/Images/Features/@Model.IntroduceImageName" />
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <label for="introducePreview">انتخاب تصویر معرفی نرم افزار در صفحه اول 1x1 - 512x512 (SVG)</label>
+                                        <input type="file" accept="Images/" id="introduceProduct" name="introduceProduct" />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-warning">ثبت</button>
+                            <a href="/Admin/Introduces" class="btn btn-info float-left">بازگشت به لیست</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+<script>
+    introduceProduct.onchange = evt => {
+        const [file] = introduceProduct.files
+        if (file) {
+            introducePreview.src = URL.createObjectURL(file)
+        }
+    }
+</script>

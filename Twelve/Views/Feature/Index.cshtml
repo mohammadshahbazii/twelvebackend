@@ -1,0 +1,114 @@
+﻿@model ViewModels.FeaturePageDataViewModel
+@section NavbarJs {
+    <script src="/Assest/js/Scrolled-WhiteNav.js"></script>
+}
+@section Navbar{
+    <partial name="_WhiteNavbar"></partial>
+}
+
+<!--Content-->
+<article class="position-relative">
+    <div class="bg-silver p-lg-5 position-relative">
+        <div class="container p-5">
+            <!-- Article Content -->
+            @await Component.InvokeAsync("FeaturesContent")
+            <br />
+
+            <!-- Article Content -->
+        </div>
+        @await Component.InvokeAsync("FeaturesSlider")
+
+    </div>
+    <div class="container p-5 pb-0">
+        <!-- Article Content -->
+        <!-- Introduce -->
+        <div data-aos="fade-up" data-aos-duration="1800" class="my-5">
+            <p class="text-green2 text-center fw-bold">
+                ما فراتر از انتظار حرکت کردیم
+            </p>
+            <h2 class="text-darkblue text-center fw-bold fs-2 font-ExtraBold">
+                @Model.Title
+            </h2>
+            <p class="text-pencil text-justify my-5">
+                @Html.Raw(Model.ShortDescription)
+            </p>
+        </div>
+        <br />
+        <!-- Introduce -->
+        <!-- Items -->
+        @if (Model.Icons.Any())
+        {
+            <div data-aos="fade-up" data-aos-duration="1800" class="my-5">
+                <div class="menu-intro-item-box">
+                    @foreach (var item in Model.Icons)
+                    {
+                        <div class="menu-intro-item radius-20 border">
+                            <img src="/Images/Features/@item.ImageName" alt="@item.Title" />
+                            <div>
+                                <h4 class="text-darkblue fw-bold">@item.Title</h4>
+                                <p class="text-pencil mt-3">
+                                    @item.Description
+                                </p>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        }
+        
+        <br />
+        <!-- Items -->
+        <!-- News -->
+        @if (!string.IsNullOrEmpty(Model.FirstNewsTitle))
+        {
+            <div data-aos="fade-up" data-aos-duration="1800" class="my-5">
+                <div class="menu-intro-news-box">
+                    <div class="menu-intro-news-item item-1">
+                        <img src="/Images/Features/@Model.FirstNewsImageName"
+                             class="w-100 radius-20"
+                             alt="@Model.Title" />
+                    </div>
+                    <div class="menu-intro-news-item item-2">
+                        <p class="text-green2 fw-bold my-3">
+                            ما فراتر از انتظار حرکت کردیم
+                        </p>
+                        <h2 class="text-darkblue fw-bold font-ExtraBold">
+                            @Model.FirstNewsTitle
+                        </h2>
+                        <p class="text-pencil text-justify">
+                            @Model.FirstNewsShortDescription
+                        </p>
+                    </div>
+                    @if (!string.IsNullOrEmpty(Model.SecondNewsTitle))
+                    {
+                        <div class="menu-intro-news-item item-3">
+                            <p class="text-green2 fw-bold my-3">
+                                ما فراتر از انتظار حرکت کردیم
+                            </p>
+                            <h2 class="text-darkblue fw-bold font-ExtraBold">
+                                @Model.SecondNewsTitle
+                            </h2>
+                            <p class="text-pencil text-justify">
+                                @Model.SecondNewsShortDescription
+                            </p>
+                        </div>
+                        <div class="menu-intro-news-item item-4">
+                            <img src="/Images/Features/@Model.SecondNewsImageName"
+                                 class="w-100 radius-20"
+                                 alt="title" />
+                        </div>
+                    }
+                </div>
+                <br />
+            </div>
+        }
+        <br />
+
+        <!-- News -->
+        <!-- Article Content -->
+    </div>
+    @await Component.InvokeAsync("RelatedNews",new {FeatureID = Model.FeatureID})
+</article>
+
+<!--Content-->

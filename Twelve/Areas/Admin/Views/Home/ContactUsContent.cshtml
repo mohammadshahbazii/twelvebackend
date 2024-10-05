@@ -1,0 +1,55 @@
+﻿@model DataLayer.ContactUsContent
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            ویرایش اطلاعات تماس با ما
+                            <span class="text-dark mx-2">@ViewBag.Message</span>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="ContactUsContentId" id="ContactUsContentId" value="@Model.ContactUsContentId" />
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="FirstTitle">عنوان هدر</label>
+                                <input type="text" name="FirstTitle" class="form-control" value="@Model.FirstTitle" id="FirstTitle" placeholder="عنوان هدر را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="FirstSubTitle">زیر عنوان هدر</label>
+                                <input type="text" class="form-control" name="FirstSubTitle" value="@Model.FirstSubTitle" id="FirstSubTitle" placeholder="زیر عنوان هدر را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="FristDescription">توضیحات هدر</label>
+                                <textarea rows="5" name="FristDescription" class="form-control w-100" name="FristDescription">@Model.FristDescription</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="SecondTitle">عنوان پاراگراف اول</label>
+                                <input type="text" name="SecondTitle" class="form-control" value="@Model.SecondTitle" id="SecondTitle" placeholder="عنوان پاراگراف اول را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="SecondSubTitle">زیر عنوان پاراگراف اول</label>
+                                <input type="text" class="form-control" name="SecondSubTitle" value="@Model.SecondSubTitle" id="SecondSubTitle" placeholder="زیر عنوان پاراگراف اول را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="SecondDescription">توضیحات پاراگراف اول</label>
+                                <textarea rows="5" name="SecondDescription" class="form-control w-100" name="SecondDescription">@Model.SecondDescription</textarea>
+                            </div>
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-warning">ثبت</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>

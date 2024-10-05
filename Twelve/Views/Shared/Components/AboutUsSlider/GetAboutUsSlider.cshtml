@@ -1,0 +1,87 @@
+﻿@model List<ViewModels.IndexSliderItemViewModel>
+
+@if (Model.Any())
+{
+    <div class="about-slider-wrapper my-5 d-none d-lg-block d-xl-block d-xxl-block">
+        <div class="about-slider-container">
+            @for (int i = 1; i <= Model.Count; i++)
+            {
+                <input type="radio" name="slide" id="c@(i)" checked />
+                <label for="c@(i)" style="background-image:url('/Images/Sliders/@Model[i-1].ImageName')" class="about-slider-card"></label>
+            }
+        </div>
+    </div>
+
+    <div class="d-lg-none d-xl-none d-xxl-none d-md-block d-sm-block">
+        <div class="row mt-5">
+            <div class="col-12">
+                <div id="FeaturesSlider"
+                     class="carousel slide"
+                     data-bs-ride="true">
+                    <div class="position-relative">
+                        <div class="carousel-inner">
+                            @foreach (var item in Model)
+                            {
+                                @if (item == Model[0])
+                                {
+                                    <div class="carousel-item active">
+                                        <a href="@item.Link">
+                                            <img src="/Images/Sliders/@item.ImageName"
+                                                 class="w-h-100"
+                                                 alt="@item.Title" />
+                                        </a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="carousel-item">
+                                        <a href="@item.Link">
+                                            <img src="/Images/Sliders/@item.ImageName"
+                                                 class="w-h-100"
+                                                 alt="@item.Title" />
+                                        </a>
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <div class="slider-btn slider-btn-group">
+                            <button class="slider-btn-group-item"
+                                    data-bs-target="#FeaturesSlider"
+                                    data-bs-slide="next">
+                                <svg width="8"
+                                     height="12"
+                                     viewBox="0 0 6 9"
+                                     fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4.7832 7.53311C4.19843 7.15879 2.83417 6.1776 1.78577 5.41532C1.10651 4.92143 1.10651 3.91283 1.78577 3.41894C2.83417 2.65666 4.19843 1.67547 4.7832 1.30115"
+                                          stroke="#CECFD8"
+                                          stroke-width="1.09059"
+                                          stroke-miterlimit="10"
+                                          stroke-linecap="round"
+                                          stroke-linejoin="round" />
+                                </svg>
+                            </button>
+                            <button class="slider-btn-group-item"
+                                    type="button"
+                                    data-bs-target="#FeaturesSlider"
+                                    data-bs-slide="prev">
+                                <svg width="8"
+                                     height="12"
+                                     viewBox="0 0 5 9"
+                                     fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.8125 7.53311C1.39728 7.15879 2.76153 6.1776 3.80993 5.41532C4.4892 4.92143 4.4892 3.91283 3.80993 3.41894C2.76153 2.65666 1.39728 1.67547 0.8125 1.30115"
+                                          stroke="#CECFD8"
+                                          stroke-width="1.09059"
+                                          stroke-miterlimit="10"
+                                          stroke-linecap="round"
+                                          stroke-linejoin="round" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

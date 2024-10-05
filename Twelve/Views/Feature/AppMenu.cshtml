@@ -1,0 +1,43 @@
+﻿@section NavbarJs {
+    <script src="/Assest/js/Scrolled-WhiteNav.js"></script>
+}
+@section Navbar{
+    <partial name="_WhiteNavbar"></partial>
+}
+@section ExtraLibrary{
+    <link rel="stylesheet" href="/Assest/css/extra.css" />
+    <link rel="stylesheet" href="/Assest/css/queries.css" />
+
+    <!-- SVG -->
+    <?xml version="1.0" encoding="UTF-8" ?>
+    <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+    <script src="https://unpkg.com/@@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+}
+
+<!--Content-->
+<article class="position-relative">
+    <div class="bg-silver p-lg-5 position-relative">
+        <div class="container p-5">
+            <!-- Article Content -->
+            @await Component.InvokeAsync("FeaturesContent")
+            <br />
+
+            <!-- Article Content -->
+        </div>
+
+    </div>
+    
+</article>
+<article class="bg-silver p-5 position-relative">
+    <div class="container">
+        <!-- Features -->
+        @await Component.InvokeAsync("AppMenuFeatures")
+        <!-- Features -->
+
+
+    </div>
+
+
+</article>
+
+<!--Content-->

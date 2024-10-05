@@ -1,0 +1,66 @@
+﻿@model ViewModels.AdminCrudViewModel
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-danger">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            حذف ادمین
+                            <span class="text-dark mx-2">@ViewBag.Message</span>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="post" enctype="multipart/form-data">
+                        @Html.HiddenFor(a => a.AdminID)
+                        @Html.HiddenFor(a => a.Username)
+                        @Html.HiddenFor(a => a.Email)
+                        @Html.HiddenFor(a => a.Phonenumber)
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="form-group">
+                                        <label for="UserName">نام کاربری</label>
+                                        <input type="text" class="form-control" name="UserName" value="@Model.Username" id="UserName" placeholder="نام کاربری را وارد کنید" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Email">ایمیل</label>
+                                        <input type="email" class="form-control" name="Email" value="@Model.Email" id="Email" placeholder="ایمیل را وارد کنید" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Phonenumber">شماره تماس</label>
+                                        <input type="text" class="form-control" name="Phonenumber" value="@Model.Phonenumber" id="Phonenumber" placeholder="شماره تماس را وارد کنید" />
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="card card-info">
+                                        <div class="card-header">
+                                            <h3 class="card-title">دسترسی</h3>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <!-- form start -->
+                                        @foreach (var item in Model.Access)
+                                        {
+                                            <div class="form-check m-2">
+                                                <input type="checkbox" class="form-check-input" disabled id="@item.AccessID" @((Model.SelectedAccess.Any(s => s == item.AccessID) ? "checked" : "")) name="SelectedAccess" value="@item.AccessID">
+                                                <label class="form-check-label" for="@item.AccessID">@item.AccessName</label>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-danger">حذف</button>
+                            <a href="/Admin/Admins" class="btn btn-info float-left">بازگشت به لیست</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>

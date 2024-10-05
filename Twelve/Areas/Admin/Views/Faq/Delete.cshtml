@@ -1,0 +1,62 @@
+﻿@model ViewModels.FaqsCrudViewModel
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-danger">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            حذف سوال متداول
+                            <span class="text-dark mx-2">@ViewBag.Message</span>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="FaqID" value="@Model.FaqID" />
+                        <input type="hidden" name="Question" value="@Model.Question" />
+                        <input type="hidden" name="Answer" value="@Model.Answer" />
+                        <input type="hidden" name="IsMain" value="@Model.IsMain" />
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="form-group">
+                                        <label for="Question">سوال</label>
+                                        <p>@Model.Question</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Answer">پاسخ</label>
+                                        <p>@Model.Question</p>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="card card-info">
+                                        <div class="card-header">
+                                            <h3 class="card-title">دسته بندی</h3>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <!-- form start -->
+                                        @foreach (var item in Model.Groups)
+                                        {
+                                            <div class="form-check m-2">
+                                                <input type="checkbox" class="form-check-input" disabled @((Model.SelectedGroups.Any(s => s == item.GroupID) ? "checked" : "")) id="@item.GroupID" name="SelectedGroups" value="@item.GroupID">
+                                                <label class="form-check-label" for="@item.GroupID">@item.GroupName</label>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-danger">حذف</button>
+                            <a href="/Admin/Faq" class="btn btn-info float-left">بازگشت به لیست</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>

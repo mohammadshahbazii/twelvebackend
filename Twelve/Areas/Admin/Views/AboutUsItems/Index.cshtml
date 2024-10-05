@@ -1,0 +1,54 @@
+﻿@model List<DataLayer.AboutUsItem>
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            لیست آیتم های نرم افزار در صفحه ی درباره ما
+                            <a href="/Admin/AboutUsItems/Create" class="btn btn-outline-success mx-3">افزودن آیتم</a>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div id="BlogTable">
+                        @if (Model.Any())
+                        {
+                            <div class="card-body table-responsive p-0">
+                                <table class="table table-bordered table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <th>عنوان</th>
+                                            <th>توضیح</th>
+                                            <th>تصویر</th>
+                                            <th>*</th>
+                                        </tr>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.ItemTitle</td>
+                                                <td>@item.ItemDescription</td>
+                                                <td><img src="/Images/Site/@item.ImageName" width="50" height="50" /></td>
+                                                <td>
+                                                    <a href="/Admin/AboutUsItems/Update/@item.AboutUsItemId" class="btn btn-outline-warning rounded mx-1" title="ویرایش">
+                                                        <span class="fa fa-edit"></span>
+                                                    </a>
+                                                    <a href="/Admin/AboutUsItems/Delete/@item.AboutUsItemId" class="btn btn-outline-danger rounded mx-1" title="حذف">
+                                                        <span class="fa fa-trash"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>

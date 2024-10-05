@@ -1,0 +1,9 @@
+﻿@model List<DataLayer.CallInfoLink>
+@foreach (var item in Model)
+{
+    <p class="text-end p-0 m-0">
+        <a href="@item.Link" class="my-5  text-darkblue fw-bold">
+            <span class="mx-2">@item.Link</span>
+        </a>
+    </p>
+}

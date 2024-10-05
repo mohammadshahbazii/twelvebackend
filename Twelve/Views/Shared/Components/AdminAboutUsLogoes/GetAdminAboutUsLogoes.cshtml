@@ -1,0 +1,17 @@
+﻿@model List<DataLayer.AboutUsLogo>
+<div class="card card-info m-2">
+    <div class="card-header">
+        <h3 class="card-title">لوگو های صفحه درباره ما</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+    @foreach (var item in Model)
+    {
+        <div class="m-2">
+            <img src="/Images/Site/@item.ImageName" width="50" height="50">
+        </div>
+    }
+    <div class="card-footer">
+        <a href="/Admin/AboutUsLogoes" class="btn btn-info d-block w-100">مشاهده ی لیست</a>
+    </div>
+</div>

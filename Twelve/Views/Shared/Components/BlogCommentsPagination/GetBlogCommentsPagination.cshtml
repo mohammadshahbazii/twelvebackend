@@ -1,0 +1,177 @@
+﻿@model ViewModels.BlogPostCommentsViewModel
+
+@if (Model.Comments.Any())
+{
+    @foreach (var item in Model.Comments.Where(m => m.ParentID == null))
+    {
+        if (!item.IsAnswer)
+        {
+            <div class="radius-20 border mt-2 p-lg-3 p-1">
+                <div class="row">
+                    <div class="col-lg-2 pt-3 text-center d-none d-lg-block d-xl-block d-xxl-block">
+                        <span class="rounded-circle p-4 text-center bg-lightpurple2">
+                            <img src="/Assest/img/SVG/Main/person-purple.svg"
+                                 width="24"
+                                 height="24" />
+                        </span>
+                    </div>
+                    <div class="col-lg-10 col-md-12">
+                        <!--main comment-->
+                        <div>
+                            <div class="row">
+                                <div class="col-lg-9 col-6">
+                                    <p class="text-darkblue fw-bold">
+                                        <span class="fs-5 d-none">@item.BlogTitle</span>
+                                        <span class="text-lightpurple mx-2">
+                                            @item.Fullname
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="col-lg-3 col-6">
+                                    <div class="text-end">
+                                        <span class="text-pencil border-end fs-12 pe-3">
+                                            @item.CreateDate
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-pencil my-4">@item.CommentText</p>
+
+                        </div>
+                        <!--main comment-->
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="radius-20 border mt-2 p-lg-3 p-1">
+                <div class="row">
+                    <div class="col-lg-2 pt-3 text-center d-none d-lg-block d-xl-block d-xxl-block">
+                        <span class="rounded-circle p-4 text-center bg-lightpurple2">
+                            <img src="/Assest/img/SVG/Main/person-purple.svg"
+                                 width="24"
+                                 height="24" />
+                        </span>
+                    </div>
+                    <div class="col-lg-10 col-md-12">
+                        <!--main comment-->
+                        <div>
+                            <div class="row">
+                                <div class="col-lg-9 col-6">
+                                    <p class="text-darkblue fw-bold">
+                                        <span class="fs-5 d-none">@item.BlogTitle</span>
+                                        <span class="text-lightpurple mx-2">
+                                            @item.Fullname
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="col-lg-3 col-6">
+                                    <div class="text-end">
+                                        <span class="text-pencil border-end fs-12 pe-3">
+                                            @item.CreateDate
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-pencil my-4">@item.CommentText</p>
+
+                        </div>
+                        <!--main comment-->
+                        <!--answer comment-->
+                        @foreach (var sub in Model.Comments.Where(m => m.ParentID == item.CommentID))
+                        {
+                            <div>
+                                <div class="bg-silver5 radius-20 mt-3  p-lg-3 p-1">
+                                    <div class="row">
+                                        <div class="col-lg-9 col-6">
+                                            <p class="text-darkblue fw-bold">
+                                                <span class="fs-5 d-none">@sub.BlogTitle</span>
+                                                <span class="text-lightpurple mx-2">@sub.Fullname</span>
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-3 col-6">
+                                            <div class="text-end">
+                                                <span class="text-pencil border-end fs-12 pe-3">@sub.CreateDate</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-pencil my-4">@sub.CommentText</p>
+                                </div>
+                            </div>
+
+                        }
+                        <!--answer comment-->
+                    </div>
+                </div>
+            </div>
+
+        }
+    }
+    <br />
+    @if (Model.Pagination.PageCount > 1)
+    {
+        <nav>
+            <ul class="pagination justify-content-center" style="--bs-pagination-padding-x: 0.75rem;">
+                @if (Model.Pagination.PageID == 1)
+                {
+                    <li class="page-item mx-1 disabled" title="صفحه قبل">
+                        <a class="page-link rounded-circle btn  text-dark" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item mx-1" title="صفحه قبل">
+                        <a onclick="GetBlogs(@(Model.Pagination.PageID - 1),@(Model.BlogID))" class="page-link rounded-circle btn  text-dark" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                }
+
+                @foreach (var PageID in Model.Pagination.PageNumbers)
+                {
+                    if (PageID == Model.Pagination.PageID)
+                    {
+                        <li class="page-item mx-1 ">
+                            <a onclick="GetBlogs(@(PageID),@(Model.BlogID))" class="page-link active rounded-circle btn text-dark font-Fanum">
+                                @PageID
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item mx-1">
+                            <a onclick="GetBlogs(@(PageID),@(Model.BlogID))" class="page-link rounded-circle btn text-dark font-Fanum">
+                                @PageID
+                            </a>
+                        </li>
+                    }
+                }
+                @if (Model.Pagination.PageID >= Model.Pagination.PageCount)
+                {
+                    <li class="page-item mx-1 disabled" title="صفحه بعد">
+                        <a class="page-link rounded-circle btn  text-dark" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item mx-1" title="صفحه بعد">
+                        <a onclick="GetBlogs(@(Model.Pagination.PageID + 1),@(Model.BlogID))" class="page-link rounded-circle btn  text-dark" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                }
+
+            </ul>
+        </nav>
+    }
+
+}
+else
+{
+    <p class="text-pencil">شما میتوانید اولین نفری باشید که دیدگاه خود را درباره ی مقاله ی بالا ، ثبت می کنید</p>
+}

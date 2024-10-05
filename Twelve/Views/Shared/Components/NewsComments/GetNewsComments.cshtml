@@ -1,0 +1,127 @@
+﻿@model List<DataLayer.NewsComment>
+<div data-aos="fade-up" data-aos-duration="1800" class="my-5">
+    <div class="p-5 radius-20 border">
+        <div class="row">
+            <div class="col-lg-9 col-md-12">
+                <h5 class="text-darkblue fw-bold d-inline-block">
+                    نظرات کاربران درباره پست
+                </h5>
+                <span class="text-pencil mx-2 fs-12">
+                    @Model.Count دیدگاه ثبت شده
+                </span>
+            </div>
+            <div class="col-lg-3 col-md-12 d-none d-lg-block d-xl-block d-xxl-block">
+                <div class="ps-5">
+                    <a href="#comment-form"
+                       class="d-block w-100 text-dark text-end fw-bold radius-20 border p-3 ps-0">
+                        <span class="me-3 text-start">ثبت نظر و امتیاز</span>
+                        <span class="fa fa-angle-left float-right ms-5"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        @if (Model.Any())
+        {
+            @foreach (var item in Model.Where(m => m.ParentId == null))
+            {
+                if (!item.IsAnswer)
+                {
+                    <div class="bg-silver5 radius-20 my-5 p-5">
+
+
+                        <div class="row">
+                            <div class="col-9">
+                                <p class="text-darkblue fw-bold">
+                                    <span class="fs-5"> @item.Title </span>
+                                    <span class="text-lightpurple mx-2">
+                                        @item.Fullname
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="col-3">
+                                <div class="text-end">
+                                    <span class="text-pencil border-end fs-12 pe-3">
+                                        @Utilities.DateConvertor.PassDays(item.CreateDate)
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-pencil my-4">
+                            @item.Text
+                        </p>
+                    </div>
+
+                }
+                else
+                {
+                    <div class="radius-20 border p-5">
+                        <div class="row">
+                            <div class="col-lg-2 p-2 text-center d-none d-lg-block d-xl-block d-xxl-block">
+                                <span class="rounded-circle p-4 text-center bg-lightpurple2">
+                                    <img src="/Assest/img/SVG/Main/person-purple.svg"
+                                         width="24"
+                                         height="24" />
+                                </span>
+                            </div>
+                            <div class="col-lg-10 col-md-12">
+                                <!--main comment-->
+                                <div>
+                                    <div class="row">
+                                        <div class="col-9">
+                                            <p class="text-darkblue fw-bold">
+                                                <span class="fs-5">@item.Title</span>
+                                                <span class="text-lightpurple mx-2">
+                                                    @item.Fullname
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="text-end">
+                                                <span class="text-pencil border-end fs-12 pe-3">
+                                                    @Utilities.DateConvertor.PassDays(item.CreateDate)
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-pencil my-4">@item.Text</p>
+
+                                </div>
+                                <!--main comment-->
+                                <!--answer comment-->
+                                @foreach (var sub in Model.Where(m => m.ParentId == item.NewsCommentId))
+                                {
+                                    <div>
+                                        <div class="bg-silver5 radius-20 my-5 p-5">
+                                            <div class="row">
+                                                <div class="col-9">
+                                                    <p class="text-darkblue fw-bold">
+                                                        <span class="fs-5">@sub.Title</span>
+                                                        <span class="text-lightpurple mx-2">@sub.Fullname</span>
+                                                    </p>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="text-end">
+                                                        <span class="text-pencil border-end fs-12 pe-3">@Utilities.DateConvertor.PassDays(sub.CreateDate)</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p class="text-pencil my-4">@sub.Text</p>
+                                        </div>
+                                    </div>
+
+                                }
+                                <!--answer comment-->
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            }
+        }
+        else
+        {
+            <p class="text-pencil">شما میتوانید اولین نفری باشید که دیدگاه خود را درباره ی مقاله ی بالا ، ثبت می کنید</p>
+        }
+
+    </div>
+</div>

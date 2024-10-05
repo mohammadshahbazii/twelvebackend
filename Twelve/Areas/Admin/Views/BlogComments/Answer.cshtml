@@ -1,0 +1,41 @@
+﻿@model DataLayer.BlogComment
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            پاسخ به دیدگاه
+                            <span class="text-dark mx-2">@ViewBag.Message</span>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="post">
+                        <input type="hidden" name="Fullname" id="Fullname" value="تیم پشتیبانی دوازده" />
+                        <input type="hidden" name="ParentId" id="ParentId" value="@ViewBag.CommentsID" />
+                        <input type="hidden" name="BlogId" id="BlogId" value="@ViewBag.BlogID" />
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Title">عنوان</label>
+                                <input type="text" name="Title" class="form-control" id="Title" placeholder="عنوان را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="Text">متن پاسخ</label>
+                                <textarea rows="5" type="text" name="Text" class="form-control w-100" id="Text" placeholder="متن را وارد کنید"></textarea>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success">ثبت</button>
+                            <a href="/Admin/BlogComments" class="btn btn-info float-left">بازگشت به لیست</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>

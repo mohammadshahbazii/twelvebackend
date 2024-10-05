@@ -1,0 +1,164 @@
+﻿@model ViewModels.IntroduceAppViewModel
+<div class="bg-silver position-relative">
+    <div data-aos="fade-up" data-aos-duration="1800">
+        <!-- NAVIGATOR -->
+        <div class="bg-white text-center IntroduceApp-btn-group">
+            <a class="btn btn-light IntroduceApp-btn"
+               data-bs-target="#IntroduceApp"
+               data-bs-slide="next">
+                <svg style="transform: rotate(180deg)"
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="25"
+                     height="25"
+                     viewBox="0 0 250 250">
+                    <defs>
+                        <style>
+                            .cls-1 {
+                                fill: #8f8f8f;
+                                fill-rule: evenodd;
+                            }
+                        </style>
+                    </defs>
+                    <path class="cls-1"
+                          d="M100.559,58.516L157.4,115.36a13.611,13.611,0,0,1,0,19.248l-0.275.276L90.66,68.416A7,7,0,1,1,100.559,58.516Z" />
+                    <path class="cls-1"
+                          d="M90.66,181.553l66.282-66.282a0.261,0.261,0,0,1,.371,0,13.736,13.736,0,0,1,0,19.427l-56.754,56.754A7,7,0,1,1,90.66,181.553Z" />
+                </svg>
+            </a>
+            <a class="btn btn-light IntroduceApp-btn"
+               type="button"
+               data-bs-target="#IntroduceApp"
+               data-bs-slide="prev">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="25"
+                     height="25"
+                     viewBox="0 0 250 250">
+                    <defs>
+                        <style>
+                            .cls-1 {
+                                fill: #8f8f8f;
+                                fill-rule: evenodd;
+                            }
+                        </style>
+                    </defs>
+                    <path class="cls-1"
+                          d="M100.559,58.516L157.4,115.36a13.611,13.611,0,0,1,0,19.248l-0.275.276L90.66,68.416A7,7,0,1,1,100.559,58.516Z" />
+                    <path class="cls-1"
+                          d="M90.66,181.553l66.282-66.282a0.261,0.261,0,0,1,.371,0,13.736,13.736,0,0,1,0,19.427l-56.754,56.754A7,7,0,1,1,90.66,181.553Z" />
+                </svg>
+            </a>
+        </div>
+        <!-- NAVIGATOR -->
+        <div class="introduce-app">
+            <div class="introduce-app-content-box scrolled-content">
+                <div>
+                    <p class="text-green text-start">
+                        آموزش بخش هایی از اپلیکیشن دوازده
+                    </p>
+                    <h2 class="text-light text-start font-ExtraBold fw-bold fs-1">
+                        معرفی و آموزش بخشهای متنوع اپلیکیشن دوازده
+                    </h2>
+                    <ul class="nav nav-pills my-5">
+                        @foreach (var item in Model.items)
+                        {
+                            if (item == Model.items[0])
+                            {
+                                <li class="nav-item w-lg-25 m-2">
+                                    <a data-bs-toggle="pill"
+                                       onclick="GetIntroduceSlider(@(item.Features.FeatureID))"
+                                       href="#i@(item.Features.FeatureID)"
+                                       class="nav-link active green-outline-btn d-block mx-2 mb-2 py-4 px-lg-4 fs-10 w-md-100">
+                                        @item.Features.Title
+                                        <span class="border-green rounded mx-2">
+                                            <img src="/Images/Features/@item.Features.ImageName"
+                                                 width="30"
+                                                 height="30"
+                                                 class="mx-2" />
+                                        </span>
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item w-lg-25 m-2">
+                                    <a data-bs-toggle="pill"
+                                       onclick="GetIntroduceSlider(@(item.Features.FeatureID))"
+                                       href="#i@(item.Features.FeatureID)"
+                                       class="nav-link green-outline-btn d-block mx-2 mb-2 py-4 px-lg-4 fs-10 w-md-100">
+                                        @item.Features.Title
+                                        <span class="border-green rounded mx-2">
+                                            <img src="/Images/Features/@item.Features.ImageName"
+                                                 width="30"
+                                                 height="30"
+                                                 class="mx-2" />
+                                        </span>
+                                    </a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+                <div>
+                    <div class="tab-content">
+                        @foreach (var item in Model.items)
+                        {
+                            if (item == Model.items[0])
+                            {
+                                <div class="tab-pane active" id="i@(item.Features.FeatureID)">
+                                    <div class="mt-5">
+                                        @foreach (var content in item.FeatureItems)
+                                        {
+                                            <h4 class="text-light text-start fw-bold fs-4 mb-4">
+                                                @content.Title
+                                            </h4>
+                                            <p class="text-light direction-rtl text-justify mb-5">@content.Description</p>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="tab-pane fade" id="i@(item.Features.FeatureID)">
+                                    <div class="mt-5">
+                                        @foreach (var content in item.FeatureItems)
+                                        {
+                                            <h4 class="text-light text-start fw-bold fs-4 mb-4">
+                                                @content.Title
+                                            </h4>
+                                            <p class="text-light direction-rtl text-justify mb-5">@content.Description</p>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                            
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="introduce-app-slider-box">
+                
+                <div id="IntroduceApp" class="carousel slide" data-bs-ride="true">
+                    @if (Model.items.Any())
+                    {
+                        @await Component.InvokeAsync("IntroduceAppSlider",new {FeatureID = Model.items[0].Features.FeatureID})
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+</div>
+<script>
+    function GetIntroduceSlider(featureID) {
+        $.ajax({
+            url: "/GetIntroduceSlider/"+featureID,
+            type: "Get",
+            data: { featureID : featureID }
+        }).done(function (result) {
+            $("#IntroduceApp").html(result);
+        });
+
+
+    }
+
+</script>

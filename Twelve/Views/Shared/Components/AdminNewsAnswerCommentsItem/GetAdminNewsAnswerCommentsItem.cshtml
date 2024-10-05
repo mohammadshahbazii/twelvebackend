@@ -1,0 +1,90 @@
+﻿@model ViewModels.BlogCommentsPageDataViewModel
+
+@if (Model.Comments.Any())
+{
+    <div class="card-body table-responsive p-0">
+        <table class="table table-bordered table-hover">
+            <tbody>
+                <tr>
+                    <th>نام و نام خانوادگی</th>
+                    <th>عنوان</th>
+                    <th>عنوان خبر</th>
+                    <th>تاریخ انتشار</th>
+                    <th>*</th>
+                </tr>
+                @foreach (var item in Model.Comments)
+                {
+                    <tr>
+                        <td>@item.Fullname</td>
+                        <td>@item.CommentText</td>
+                        <td>
+                            @item.BlogTitle
+                        </td>
+                        <td>@item.CreateDate</td>
+                        <td>
+                            @if (!item.IsAnswer)
+                            {
+                                <a href="/Admin/NewsComments/Answer/@item.CommentID" class="btn btn-outline-warning rounded mx-1" title="پاسخ به دیدگاه">
+                                    <span class="fa fa-reply"></span>
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="/Admin/NewsComments/ShowAnswer/@item.CommentID" class="btn btn-outline-warning rounded mx-1" title="نمایش پاسخ به دیدگاه">
+                                    <span class="fa fa-comment"></span>
+                                </a>
+                            }
+                            <a href="/Admin/NewsComments/Confirm/@item.CommentID" class="btn btn-outline-info rounded mx-1" title="تایید دیدگاه">
+                                <span class="fa fa-eye"></span>
+                            </a>
+                            <a href="/Admin/NewsComments/delete/@item.CommentID" class="btn btn-outline-danger rounded mx-1" title="حذف دیدگاه">
+                                <span class="fa fa-trash"></span>
+                            </a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer clearfix">
+        @if (Model.PageCount > 1)
+        {
+            <ul class="pagination pagination-sm m-0 justify-content-center ">
+                @if (Model.Pagination.PageID == 1)
+                {
+                    <li class="page-item disabled"><a class="page-link" onclick="GetComments(@(Model.Pagination.PageID - 1))">«</a></li>
+                }
+                else
+                {
+                    <li class="page-item"><a class="page-link" onclick="GetComments(@(Model.Pagination.PageID - 1))">«</a></li>
+
+                }
+                @foreach (var item in Model.Pagination.PageNumbers)
+                {
+                    if (item == Model.Pagination.PageID)
+                    {
+                        <li class="page-item active"><a class="page-link" onclick="GetComments(@(item))">@item</a></li>
+                    }
+                    else
+                    {
+                        <li class="page-item"><a class="page-link" onclick="GetComments(@(item))">@item</a></li>
+                    }
+                }
+
+                @if (Model.Pagination.PageID >= Model.Pagination.PageCount)
+                {
+                    <li class="page-item disabled"><a class="page-link" onclick="GetComments(@(Model.Pagination.PageID + 1))">»</a></li>
+
+                }
+                else
+                {
+                    <li class="page-item"><a class="page-link" onclick="GetComments(@(Model.Pagination.PageID + 1))">»</a></li>
+
+                }
+            </ul>
+
+
+        }
+    </div>
+}

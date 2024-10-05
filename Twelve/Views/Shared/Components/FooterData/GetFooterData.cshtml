@@ -1,0 +1,116 @@
+﻿@model ViewModels.IndexDownloadBoxViewModel
+
+
+
+<div class="row mb-5">
+    <div class="col-lg-3 col-md-12">
+        <img src="/Assest/img/SVG/Main/logo-colorful-per-en.svg"
+             alt="دوازده"
+             class="footer-brand mb-5" />
+        <div class="mt-5">
+            <p class="text-darkblue fw-bold fs-4">پشتیبانی کاربران</p>
+            @await Component.InvokeAsync("SiteEmail")
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-12 d-none d-lg-block d-xl-block d-xxl-block">
+        <div class="footer-title">
+            <h4 class="text-darkblue fw-bold fs-5">دسترسی سریع</h4>
+            <div></div>
+        </div>
+        <div class="mt-5">
+            <a href="/" class="text-pencil w-100 d-block my-4 fs-6">
+                صفحه اصلی
+            </a>
+            <a href="/Faq" class="text-pencil w-100 d-block my-4 fs-6">
+                سوالات متداول
+            </a>
+            <a href="/ContactUs"
+               class="text-pencil w-100 d-block my-4 fs-6">
+                ارتباط با ما
+            </a>
+            <a href="/AboutUs" class="text-pencil w-100 d-block my-4 fs-6">
+                درباره ما
+            </a>
+            <a href="/AppMenu" class="text-pencil w-100 d-block my-4 fs-6">
+                 معرفی منوها
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-12 d-none d-lg-block d-xl-block d-xxl-block">
+        <div class="footer-title">
+            <h4 class="text-darkblue fw-bold fs-5">رسانه‌های مرتبط</h4>
+            <div></div>
+        </div>
+        <div class="mt-5">
+            <a href="https://masaf.ir/units?portalId=2" class="text-pencil w-100 d-block my-4 fs-6">
+                مهدیاران
+            </a>
+            <a href="https://ahlebeytmedia.ir/" class="text-pencil w-100 d-block my-4 fs-6">
+                اهل بیت مدیا
+            </a>
+            <a href="https://masaf.ir/" class="text-pencil w-100 d-block my-4 fs-6">
+                موسسه مصاف ایرانیان
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-5 col-md-12">
+        <div class="footer-title">
+            <h4 class="text-darkblue fw-bold fs-5">دانلود سریع اپلیکیشن</h4>
+            <div></div>
+        </div>
+        <div class="mt-5">
+            <p class="text-pencil mb-5">
+                سوپر اپلیکیشن دوازده، خلوتگاه منتظران امام زمان ارواحنافداه است
+                فضایی جامع از هرآنچه فکرش را بکنید؛ محیطی فراتر از انتظار
+            </p>
+            <div class="footer-download">
+                @foreach (var item in Model.DownloadLinks)
+                {
+                    <div class="footer-download-item bg-white radius-20">
+                        <img src="/Images/Site/@item.ImageName"
+                             width="41"
+                             height="42"
+                             alt="دوازده" />
+                        <a href="@item.Link">
+                            <div class="text-center pt-2">
+                                <p class="text-darkblue text-center fw-bold">@item.Title</p>
+                                <p class="text-gray2 text-center fs-12">
+                                    @item.ShortDescription
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="row my-5">
+    <div class="col-lg-7 col-md-12 my-3">
+        <div class="d-flex justify-content-evenly ">
+            @foreach (var item in Model.SocialMedia)
+            {
+                <a href="@item.Link"
+                   target="_blank"
+                   title="@item.Title"
+                   class="fs-6 @item.ClassName text-darkblue">
+                    @Html.Raw(item.ImageName)
+                    <span class="d-none d-lg-inline-block d-xl-inline-block d-xxl-inline-block">@item.Title</span>
+                </a>
+            }
+            
+            
+        </div>
+    </div>
+    <div class="col-lg-5 col-md-12 my-3">
+        <p class="rights text-darkblue lh-lg text-justify">
+            کلیه حقوق این سایت، متعلق به شرکت
+            <b class="fw-bold">
+                <a href="index.html" class="text-darkblue">دوازده کیمیای خورشید هدایت</a>
+            </b>
+            می‌باشد.
+        </p>
+    </div>
+</div>

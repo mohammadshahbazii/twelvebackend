@@ -1,0 +1,60 @@
+﻿@model List<ViewModels.DownloadLinkViewModel>
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            لیست لینک های دانلود
+                            <a href="/Admin/Downloads/Create" class="btn btn-outline-success mx-3">
+                                افزودن لینک دانلود
+                            </a>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div id="BlogTable">
+                        @if (Model.Any())
+                        {
+                            <div class="card-body table-responsive p-0">
+                                <table class="table table-bordered table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <th>عنوان</th>
+                                            <th>توضیح کوتاه</th>
+                                            <th>تصویر</th>
+                                            <th>لینک</th>
+                                            <th>دسته بندی</th>
+                                            <th>*</th>
+                                        </tr>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.Title</td>
+                                                <td>@item.ShortDescription</td>
+                                                <td><img src="/Images/Site/@item.ImageName" width="50" height="50" /></td>
+                                                <td>@item.Link</td>
+                                                <td>@item.GroupName</td>
+                                                <td>
+                                                    <a href="/Admin/Downloads/Update/@item.DownloadID" class="btn btn-outline-warning rounded mx-1" title="ویرایش">
+                                                        <span class="fa fa-edit"></span>
+                                                    </a>
+                                                    <a href="/Admin/Downloads/Delete/@item.DownloadID" class="btn btn-outline-danger rounded mx-1" title="حذف">
+                                                        <span class="fa fa-trash"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>

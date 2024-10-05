@@ -1,0 +1,22 @@
+﻿@model List<DataLayer.AboutUsSight>
+@if (Model.Any())
+{
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="vision-item col-lg-4 col-md-12">
+                <div class="target-box radius-20 bg-white my-5 p-5">
+                    <div class="d-lg-block d-xl-block d-xxl-block d-md-inline-block d-sm-inline-block text-end mb-5">
+                        <img src="/Images/Site/@item.ImageName" />
+                    </div>
+                    <div class="target-dsc">
+                        <h5 class="d-lg-block d-xl-block d-xxl-block d-md-inline-block d-sm-inline-block text-start text-darkblue fw-bold lh-lg">
+                            @item.SightTitle
+                        </h5>
+                        <p class="text-pencil my-4">@item.SightDescription</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

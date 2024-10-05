@@ -1,0 +1,61 @@
+﻿@model DataLayer.SiteSetting
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            ویرایش اطلاعات سایت
+                            <a class="btn btn-outline-info mx-3" href="/Download">دانلود نسخه فعلی</a>
+                            <span class="text-dark mx-2">@ViewBag.Message</span>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    @using (Html.BeginForm("Settings", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <input type="hidden" name="SiteSettingId" id="SiteSettingId" value="@Model.SiteSettingId" />
+                        <input type="hidden" name="DirectDownloadLink" id="DirectDownloadLink" value="@Model.DirectDownloadLink" />
+                        <input type="hidden" name="BlogBannerImage" id="BlogBannerImage" value="@Model.BlogBannerImage" />
+                        <input type="hidden" name="DownloadCount" id="DownloadCount" value="@Model.DownloadCount" />
+                        <input type="hidden" name="Address" id="Address" value="@Model.Address" />
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Title">عنوان</label>
+                                <input type="text" name="Title" class="form-control" value="@Model.Title" id="Title" placeholder="عنوان را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="ShortDescription">توضیح کوتاه</label>
+                                <input type="text" class="form-control" name="ShortDescription" value="@Model.ShortDescription" id="ShortDescription" placeholder="توضیح کوتاه را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="Email">ایمیل</label>
+                                <input type="email" class="form-control" name="Email" value="@Model.Email" id="Email" placeholder="ایمیل را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="PhoneNumber">شماره تماس</label>
+                                <input type="text" class="form-control" name="PhoneNumber" value="@Model.PhoneNumber" id="PhoneNumber" placeholder="شماره تماس را وارد کنید">
+                            </div>
+
+                            <div class="form-group ">
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <label for="imagePreview">آپلود نسخه جدید</label>
+                                        <input type="file" accept="*" id="file" name="file" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-warning">ثبت</button>
+                        </div>
+                    }
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>

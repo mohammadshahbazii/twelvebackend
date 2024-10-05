@@ -1,0 +1,141 @@
+﻿@model ViewModels.AdminStatisticsViewModel
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">داشبورد</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <h5 class="mb-2">باکس اطلاعات</h5>
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-info-gradient"><i class="fa fa-eye"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">بازدید امروز</span>
+                        <span class="info-box-number">@Model.SiteVisit</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-4 col-sm-6 col-12">
+                @* <div class="info-box">
+                    <span class="info-box-icon bg-info-gradient"><i class="fa fa-credit-card"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">میزان تراکنشات امروز</span>
+                        <span class="info-box-number">@Model.Orders.ToString("#,0") ریال</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div> *@
+                <div class="info-box">
+                    <span class="info-box-icon bg-info-gradient"><i class="fa fa-download"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">تعداد دانلود</span>
+                        <span class="info-box-number">@Model.DownloadCount</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-4 col-sm-6 col-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-info-gradient"><i class="fa fa-comment-o"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">دیدگاه های منتظر تایید</span>
+                        <span class="info-box-number">@Model.ConfirmComment</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-4 col-sm-6 col-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-info-gradient"><i class="fa fa-comment-o"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">دیدگاه های منتظر پاسخ</span>
+                        <span class="info-box-number">@Model.AnswerComment</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <div class="col-md-4 col-sm-6 col-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-info-gradient"><i class="fa fa-comment-o"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">دیدگاه های منتظر تایید اخبار اپلیکیشن</span>
+                        <span class="info-box-number">@Model.NewsConfirmComment</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-4 col-sm-6 col-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-info-gradient"><i class="fa fa-comment-o"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">دیدگاه های منتظر پاسخ اخبار اپلیکیشن</span>
+                        <span class="info-box-number">@Model.NewsAnswerComment</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- Main row -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <canvas id="myChart"></canvas>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row (main row) -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October","November","December"],
+            datasets: [{
+                label: "بازدید سایت",
+                borderColor: 'rgb(255, 99, 132)',
+                data: @ViewBag.Counts,
+            }]
+        },
+
+        // Configuration options go here
+        options: {}
+    });
+</script>

@@ -1,0 +1,50 @@
+﻿@model DataLayer.IntroduceSlider
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            افزودن آیتم
+                            <span class="text-dark mx-2">@ViewBag.Message</span>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="post" enctype="multipart/form-data">
+                        @Html.HiddenFor(m => m.FeatureId)
+                        <div class="card-body">
+                            <div class="form-group ">
+                                <div class="text-center">
+                                    <img id="imagePreview" class="thumbnail my-5" src="~/Assest/img/Logo-colorful.png" />
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <label for="imagePreview">انتخاب تصویر</label>
+                                        <input type="file" accept="Images/" id="imageProduct" name="imageProduct" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success">ثبت</button>
+                            <a href="/Admin/IntroduceSliders/ShowItems/@Model.FeatureId" class="btn btn-info float-left">بازگشت به لیست</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+<script>
+    imageProduct.onchange = evt => {
+        const [file] = imageProduct.files
+        if (file) {
+            imagePreview.src = URL.createObjectURL(file)
+        }
+    }
+</script>

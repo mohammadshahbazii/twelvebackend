@@ -1,0 +1,41 @@
+﻿@section NavbarJs {
+    <script src="/Assest/js/Scrolled-WhiteNav.js"></script>
+}
+@section Navbar{
+    <partial name="_WhiteNavbar"></partial>
+}
+
+<!--Content-->
+<article class="position-relative">
+    <div data-aos="fade-up" data-aos-duration="1800">
+        <div class="container blog-Showcase">
+            <!-- Article Content -->
+            <div class="blog-slider-box">
+                @await Component.InvokeAsync("BlogSlider")
+            </div>
+            <div class="ps-lg-1">
+                @await Component.InvokeAsync("Advertisements")
+            </div>
+            <br />
+            <!-- Content -->
+            <!-- Article Content -->
+        </div>
+    </div>
+    <div class="bg-silver p-lg-5 p-3 position-relative">
+        <!-- Article Content -->
+        <div class="container">
+            <!--Blog News-->
+            <div id="Searched">
+                @await Component.InvokeAsync("BlogPageData")
+            </div>
+            <!--Blog News-->
+            <!--Competition-->
+            <div data-aos="fade-up" data-aos-duration="1800" class="my-5">
+                @await Component.InvokeAsync("BlogBanners")
+            </div>
+            <!--Competition-->
+        </div>
+        <!-- Article Content -->
+    </div>
+</article>
+<!--Content-->

@@ -1,0 +1,73 @@
+﻿@model DataLayer.BlogComment
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-danger">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            حذف دیدگاه
+                            <span class="text-dark mx-2">@ViewBag.Message</span>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="post">
+                        @Html.HiddenFor(m => m.CommentId)
+                        @Html.HiddenFor(m => m.Title)
+                        @Html.HiddenFor(m => m.Text)
+                        @Html.HiddenFor(m => m.CreateDate)
+                        @Html.HiddenFor(m => m.IsAnswer)
+                        @Html.HiddenFor(m => m.ParentId)
+                        @Html.HiddenFor(m => m.BlogId)
+                        @Html.HiddenFor(m => m.Fullname)
+                        @Html.HiddenFor(m => m.Email)
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Fullname">نام و نام خانوادگی</label>
+                                <p>@Model.Fullname</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="Email">ایمیل</label>
+                                <p>@Model.Email</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="CreateDate">تاریخ</label>
+                                <p>@Utilities.DateConvertor.ToShamsi(Model.CreateDate)</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="Title">عنوان</label>
+                                <p>@Model.Title</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="Text">متن</label>
+                                <p>@Model.Text</p>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.IsConfirm,"تایید دیدگاه", htmlAttributes: new { @class = "form-check-label" })
+
+                                @if (Model.IsConfirm)
+                                {
+                                    <p>بله</p>
+
+                                }
+                                else
+                                {
+                                    <p>خیر</p>
+
+                                }
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-danger">حذف</button>
+                            <a href="/Admin/BlogComments" class="btn btn-info float-left">بازگشت به لیست</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>

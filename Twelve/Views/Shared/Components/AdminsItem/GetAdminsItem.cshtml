@@ -1,0 +1,77 @@
+﻿@model ViewModels.AdminsPageDataViewModel
+@if (Model.Admin.Any())
+{
+    <div class="card-body table-responsive p-0">
+        <table class="table table-bordered table-hover">
+            <tbody>
+                <tr>
+                    <th>نام کاربری</th>
+                    <th>دسترسی ها</th>
+                    <th>شماره تماس</th>
+                    <th>*</th>
+                </tr>
+                @foreach (var item in Model.Admin)
+                {
+                    <tr>
+                        <td>@item.Username</td>
+                        <td>
+                            @item.Access
+                        </td>
+                        <td>
+                            @item.Phonenumber
+                        </td>
+                        <td>
+                            <a href="/Admin/Admins/Update/@item.AdminID" class="btn btn-outline-warning rounded mx-1" title="ویرایش">
+                                <span class="fa fa-edit"></span>
+                            </a>
+                            <a href="/Admin/Admins/Delete/@item.AdminID" class="btn btn-outline-danger rounded mx-1" title="حذف">
+                                <span class="fa fa-trash"></span>
+                            </a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer clearfix">
+        @if (Model.PageCount > 1)
+        {
+            <ul class="pagination pagination-sm m-0 justify-content-center ">
+                @if (Model.Pagination.PageID == 1)
+                {
+                    <li class="page-item disabled"><a class="page-link" onclick="GetAdmins(@(Model.Pagination.PageID - 1))">«</a></li>
+                }
+                else
+                {
+                    <li class="page-item"><a class="page-link" onclick="GetAdmins(@(Model.Pagination.PageID - 1))">«</a></li>
+
+                }
+                @foreach (var item in Model.Pagination.PageNumbers)
+                {
+                    if (item == Model.Pagination.PageID)
+                    {
+                        <li class="page-item active"><a class="page-link" onclick="GetAdmins(@(item))">@item</a></li>
+                    }
+                    else
+                    {
+                        <li class="page-item"><a class="page-link" onclick="GetAdmins(@(item))">@item</a></li>
+                    }
+                }
+
+                @if (Model.Pagination.PageID >= Model.Pagination.PageCount)
+                {
+                    <li class="page-item disabled"><a class="page-link" onclick="GetAdmins(@(Model.Pagination.PageID + 1))">»</a></li>
+
+                }
+                else
+                {
+                    <li class="page-item"><a class="page-link" onclick="GetAdmins(@(Model.Pagination.PageID + 1))">»</a></li>
+
+                }
+            </ul>
+
+
+        }
+    </div>
+}

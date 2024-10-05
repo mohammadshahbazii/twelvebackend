@@ -1,0 +1,46 @@
+﻿@model List<DataLayer.SliderGroup>
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            لیست اسلایدر ها
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div id="BlogTable">
+                        @if (Model.Any())
+                        {
+                            <div class="card-body table-responsive p-0">
+                                <table class="table table-bordered table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <th>عنوان</th>
+                                            <th>*</th>
+                                        </tr>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.GroupName</td>
+                                                <td>
+                                                    <a href="/Admin/Sliders/ShowItems/@item.SliderGroupId" class="btn btn-outline-info rounded mx-1" title="نمایش آیتم ها">
+                                                        <span class="fa fa-eye"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>

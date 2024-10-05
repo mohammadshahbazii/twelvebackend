@@ -1,0 +1,161 @@
+﻿@model DataLayer.CallInfo
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            افزودن ویژگی
+                            <span class="text-dark mx-2">@ViewBag.Message</span>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="post" enctype="multipart/form-data">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Title">عنوان</label>
+                                <input type="text" name="Title" class="form-control" id="Title" placeholder="عنوان را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="ShortDescription">توضیح کوتاه</label>
+                                <input type="text" class="form-control" name="ShortDescription" id="ShortDescription" placeholder="توضیح کوتاه را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="FirstDescription">توضیح</label>
+                                <textarea rows="5" class="form-control w-100" name="FirstDescription" id="FirstDescription" placeholder="توضیح را وارد کنید"></textarea>
+                            </div>
+                            <div class="form-group ">
+                                <div class="text-center">
+                                    <img id="imagePreview" class="thumbnail my-5" src="~/Assest/img/Logo-colorful.png" />
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <label for="imagePreview">انتخاب تصویر 1x1 - 512x512 (SVG)</label>
+                                        <input type="file" accept="Images/" id="imageProduct" name="imageProduct" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <label for="animeteFile">انتخاب فایل انیمیشن</label>
+                                        <input type="file" id="animeteFile" name="animeteFile" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="text-center">
+                                    <img id="introducePreview" class="thumbnail my-5" src="~/Assest/img/Logo-colorful.png" />
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <label for="introducePreview">انتخاب تصویر معرفی نرم افزار در صفحه اول 1x1 - 512x512 (SVG)</label>
+                                        <input type="file" accept="Images/" id="introduceProduct" name="introduceProduct" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card card-info">
+                                <div class="card-header">
+                                    <h3 class="card-title">مقاله اول</h3>
+                                </div>
+                                <div class="form-group m-3">
+                                    <label for="FirstArticleTitle">عنوان مقاله اول</label>
+                                    <input type="text" class="form-control" name="FirstArticleTitle" id="FirstArticleTitle" placeholder="عنوان مقاله اول را وارد کنید">
+                                </div>
+                                <div class="form-group m-3">
+                                    <label for="FirstArticleDescription">توضیح مقاله اول</label>
+                                    <textarea rows="5" class="form-control w-100" name="FirstArticleDescription" id="FirstArticleDescription" placeholder="توضیح مقاله اول را وارد کنید"></textarea>
+                                </div>
+                                <div class="form-group m-3 ">
+                                    <div class="text-center">
+                                        <img id="imageFAPreview" class="thumbnail my-5" src="~/Assest/img/Logo-colorful.png" />
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-10">
+                                            <label for="imageFAPreview">انتخاب تصویر مقاله اول (75x74 - 1500x1080)</label>
+                                            <input type="file" accept="Images/" id="imageFAProduct" name="imageFAProduct" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card card-info">
+                                <div class="card-header">
+                                    <h3 class="card-title">مقاله دوم</h3>
+                                </div>
+                                <div class="form-group m-3">
+                                    <label for="SecondArticleTitle">عنوان مقاله دوم</label>
+                                    <input type="text" class="form-control" name="SecondArticleTitle" id="SecondArticleTitle" placeholder="عنوان مقاله دوم را وارد کنید">
+                                </div>
+                                <div class="form-group m-3">
+                                    <label for="SecondArticleDescription">توضیح مقاله دوم</label>
+                                    <textarea rows="5" class="form-control w-100" name="SecondArticleDescription" id="SecondArticleDescription" placeholder="توضیح مقاله دوم را وارد کنید"></textarea>
+                                </div>
+                                <div class="form-group m-3 ">
+                                    <div class="text-center">
+                                        <img id="imageSAPreview" class="thumbnail my-5" src="~/Assest/img/Logo-colorful.png" />
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-10">
+                                            <label for="imageSAPreview">انتخاب تصویر مقاله دوم (75x74 - 1500x1080)</label>
+                                            <input type="file" accept="Images/" id="imageSAProduct" name="imageSAProduct" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success">ثبت</button>
+                            <a href="/Admin/Features" class="btn btn-info float-left">بازگشت به لیست</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+@section Ckeditor{
+<script>
+    $(function () {
+        $('#FirstDescription').ckeditor();
+    });
+</script>
+}
+<script>
+    imageProduct.onchange = evt => {
+        const [file] = imageProduct.files
+        if (file) {
+            imagePreview.src = URL.createObjectURL(file)
+        }
+    }
+</script>
+<script>
+    imageFAProduct.onchange = evt => {
+        const [file] = imageFAProduct.files
+        if (file) {
+            imageFAPreview.src = URL.createObjectURL(file)
+        }
+    }
+</script>
+<script>
+    imageSAProduct.onchange = evt => {
+        const [file] = imageSAProduct.files
+        if (file) {
+            imageSAPreview.src = URL.createObjectURL(file)
+        }
+    }
+</script>
+<script>
+    introduceProduct.onchange = evt => {
+        const [file] = introduceProduct.files
+        if (file) {
+            introducePreview.src = URL.createObjectURL(file)
+        }
+    }
+</script>

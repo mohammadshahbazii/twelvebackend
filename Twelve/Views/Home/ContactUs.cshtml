@@ -1,0 +1,123 @@
+﻿@model List<ViewModels.SocialMediaItemViewModel>
+@section NavbarJs {
+    <script src="/Assest/js/Scrolled-WhiteNav.js"></script>
+}
+@section Navbar{
+    <partial name="_WhiteNavbar"></partial>
+}
+
+ <!--Content-->
+<article class="position-relative">
+    <div class="bg-silver p-lg-5 position-relative">
+        <div class="container p-5">
+            <!-- Article Content -->
+            <div data-aos="fade-up" data-aos-duration="1800" class="my-5">
+                @await Component.InvokeAsync("ContactUsFirstDescription")
+                @await Component.InvokeAsync("CallInfo")
+
+            </div>
+            <br />
+            <div data-aos="fade-up" data-aos-duration="1800" class="my-4">
+                <div class="contact-social row">
+                    <div class="col-lg-6 col-md-12">
+                        <h2 class="text-darkblue fw-bold font-ExtraBold fs-4 mb-4">
+                            شبکه های اجتماعی به آدرس
+                        </h2>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <div class="text-end">
+                            @foreach (var item in Model)
+                            {
+                                <a href="@item.Link"
+                                   target="_blank"
+                                   title="@item.Title"
+                                   class="fs-6 @item.ClassName text-darkblue">
+                                    @Html.Raw(item.ImageName)
+                                </a>
+                            }
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div data-aos="fade-up" data-aos-duration="1800" class="my-5">
+                @await Component.InvokeAsync("ContactUsSecondDescription")
+            </div>
+            @* <br />
+            <div data-aos="fade-up" data-aos-duration="1800" class="my-5">
+                <div class="bg-white radius-20 p-lg-5 p-4">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-12 pe-5">
+                            <h5 class="text-darkblue fw-bold fs-5">
+                                پرداخت از طریق شماره کارت
+                            </h5>
+                            <p class="text-darkblue text-justify my-4">
+                                شما عزیزان میتوانید جهت گسترش اپلیکیشن و تهداف مهدویت از طریق به موسسه مهدویت  یا به صورت آنلاین کمک های مالی خود را ارسال کنید .
+                            </p>
+                            <p id="OrderResult" class="text-green2 fw-bold mt-5">
+                                @ViewBag.Message
+                            </p>
+                        </div>
+                        <div class="col-lg-7 col-md-12">
+                            <form action="Payment">
+                                <p class="text-darkblue fw-bold fs-6">
+                                    پرداخت آنلاین با مبلغ دلخواه شما
+                                </p>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="input-group mt-1 mb-3">
+                                            <span class="input-group-text bg-silver3 border border-0 px-2 py-3 fw-bold text-darkblue">مبلغ</span>
+                                            <input type="number" id="amount" name="Amount" class="form-control bg-silver3 border border-0 p-3" placeholder="مبلغ مورد نظر وارد کنید">
+                                            <span class="input-group-text bg-silver3 border border-0 p-3 text-lightblue">ریال</span>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="text-center">
+                                            <button type="submit" class="green-btn border-0 d-block w-100">پرداخت آنلاین</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div> *@
+            <br>
+            <!-- Content -->
+            <!-- Article Content -->
+        </div>
+    </div>
+    <div class="container p-5 position-relative">
+        <!-- Article Content -->
+        <!--Photos-->
+        <div class="contacts-photo mb-5 container mx-auto">
+            @await Component.InvokeAsync("ContactsSlider")
+        </div>
+        <!--Photos-->
+        <!--ContactUs-->
+        <div data-aos="fade-up" data-aos-duration="1800" class="mt-20 mb-5">
+            <h2 class="text-darkblue fw-bold fs-3 font-ExtraBold">
+                ما اینجا هستیم برای پاسخگویی به شما
+            </h2>
+            <!--<p class="text-green2 fw-bold my-4">
+              این یک نگهدارنده متن برای توضیحات بیشتر این عنوان
+            </p>-->
+            <p class="text-pencil text-justify">
+                دوازده، به منظور پاسخگویی و ارتباط هرچه بهتر با شما کاربران عزیز، این بستر را فراهم کرده است. لطفا فرم زیر را جهت برقراری ارتباط تکمیل و درخواست خود را ثبت کنید.
+            </p>
+        </div>
+        <!--ContactUs-->
+        <!--Contact Form-->
+        <div data-aos="fade-up" data-aos-duration="1800" class="my-5">
+            @await Component.InvokeAsync("ContactsForm")
+        </div>
+        <!--Contact Form-->
+        <!-- Article Content -->
+    </div>
+</article>
+
+<!--Content-->

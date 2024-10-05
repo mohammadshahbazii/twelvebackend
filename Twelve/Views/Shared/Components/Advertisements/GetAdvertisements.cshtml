@@ -1,0 +1,15 @@
+﻿@model List<DataLayer.Advertisement>
+
+@foreach (var item in Model)
+{
+    <a href="@item.Link" class="d-none d-lg-block d-xl-block d-xxl-block" style="width:424.66px;">
+        <div class="blog-banner-@(item.AdvertisementId) pb-3">
+            <img src="/Images/Ads/@item.ImageName" class="w-100" />
+        </div>
+    </a>
+    <a href="@item.Link" class="d-lg-none d-xl-none d-xxl-none d-md-block d-sm-block w-100">
+        <div class="blog-banner-@(item.AdvertisementId) pb-3">
+            <img src="/Images/Ads/@item.ImageName" class="w-100" />
+        </div>
+    </a>
+}

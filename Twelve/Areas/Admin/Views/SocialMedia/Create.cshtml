@@ -1,0 +1,70 @@
+﻿@model DataLayer.SocialMedium
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            افزودن صفحه مجازی
+                            <span class="text-dark mx-2">@ViewBag.Message</span>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="post" enctype="multipart/form-data">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Title">عنوان</label>
+                                <input type="text" name="Title" class="form-control" id="Title" placeholder="عنوان را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="Description">لینک</label>
+                                <input type="text" name="Link" class="form-control" id="Link" placeholder="لینک را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="ClassName">کلاس (کد رنگ روی کلاس تنظیم خواهد شد)</label>
+                                <input type="text" name="ClassName" class="form-control" id="ClassName" placeholder="کلاس را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="ColorCode">کد رنگ</label>
+                                <input type="text" name="ColorCode" class="form-control" id="ColorCode" placeholder="کد رنگ را وارد کنید">
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="text-center" id="output">
+                                    <img src="/Assest/img/Logo-colorful.png" width="30" height="30" />
+                                </div>
+                                <label for="ImageName">تصویر (1X1 - 512X512 (SVG))</label>
+                                <textarea style="direction:ltr;" onchange="Preview()" rows="5" name="ImageName" class="form-control" id="ImageName"></textarea>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success">ثبت</button>
+                            <a href="/Admin/SocialMedia" class="btn btn-info float-left">بازگشت به لیست</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+<script type="text/javascript">
+    function Preview() {
+        document.getElementById("output").innerHTML = "";
+        var oInput = document.getElementById("ImageName");
+        var oOutput = document.getElementById("output");
+        // clean preview area
+        if (oOutput.firstChild)
+            oOutput.removeChild(oOutput.firstChild);
+        // parse text into DOM and show it in preview
+        var oSVGInput = new DOMParser().parseFromString(oInput.value, "text/xml");
+        if (oSVGInput.documentElement)
+            oOutput.appendChild(document.importNode(oSVGInput.documentElement, true));
+        else
+            oOutput.appendChild("Unknown error");
+    }
+</script>

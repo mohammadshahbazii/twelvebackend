@@ -1,0 +1,54 @@
+﻿@model DataLayer.CallInfo
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-danger">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            حذف اطلاعات تماس
+                            <span class="text-dark mx-2">@ViewBag.Message</span>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="CallInfoId" id="CallInfoId" value="@Model.CallInfoId" />
+                        <input type="hidden" name="ImageName" id="ImageName" value="@Model.ImageName" />
+                        <input type="hidden" name="Title" id="Title" value="@Model.Title" />
+                        <input type="hidden" name="ShortDescription" id="ShortDescription" value="@Model.ShortDescription" />
+                        <input type="hidden" name="Description" id="Description" value="@Model.Description" />
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Title">عنوان</label>
+                                <p>@Model.Title</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="ShortDescription">توضیح کوتاه</label>
+                                <p>@Model.ShortDescription</p>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="Description">توضیح تکمیلی</label>
+                                <p>@Model.Description</p>
+
+                            </div>
+                            <div class="form-group ">
+                                <div class="text-center">
+                                    <img id="imagePreview" class="thumbnail my-5" src="~/Images/Site/@Model.ImageName" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-danger">حذف</button>
+                            <a href="/Admin/CallInfo" class="btn btn-info float-left">بازگشت به لیست</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>

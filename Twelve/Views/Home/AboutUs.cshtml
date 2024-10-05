@@ -1,0 +1,233 @@
+﻿@model DataLayer.AboutUsContent
+@section NavbarJs {
+    <script src="/Assest/js/Scrolled-WhiteNav.js"></script>
+}
+@section Navbar{
+    <partial name="_WhiteNavbar"></partial>
+}
+
+<!--Content-->
+<article class="position-relative">
+    <div class="container p-lg-5 p-3">
+        <!-- Article Content -->
+        <!-- Story -->
+        <div data-aos="fade-up"
+             data-aos-duration="1800"
+             class="section--first bg-silver px-lg-5 pt-lg-5 pb-0 story-box radius-20 mb-5">
+            <div class="row pt-5">
+                <div class="col-lg-6 col-md-12 p-5">
+                    <p class="text-lightpurple fw-bold mb-4">
+                        @Model.SubTitle
+                    </p>
+                    <h2 class="text-darkblue fw-bold fs-2 font-ExtraBold mb-4">
+                        @Model.Title
+                    </h2>
+                    <p class="text-pencil lh-lg">@Model.Description</p>
+                </div>
+                <div class="col-lg-6 col-md-12 pt-5">
+                    <div class="position-relative text-center">
+                        <img src="/Assest/img/SVG/Main/green-circle.svg"
+                             style="padding-top: 0"
+                             alt="دوازده"
+                             class="green-list" />
+                        <img src="/Images/Site/@Model.ImageName"
+                             alt="دوازده"
+                             class="w-md-100 h-100" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Story -->
+        <!-- Content -->
+        <div data-aos="fade-up"
+             data-aos-duration="1800"
+             class="section--last my-5">
+            <p class="text-green2 fw-bold my-2 mb-4">
+                @Model.SecondSubTitle
+            </p>
+            <h1 class="text-darkblue fw-bold fs-2 font-ExtraBold">
+                @Model.SecondTitle
+            </h1>
+            <p class="text-pencil text-justify my-4">@Model.SecondDescription</p>
+
+            @await Component.InvokeAsync("AboutUsSlider")
+
+        </div>
+        <br />
+        <!-- Content -->
+        <!-- Article Content -->
+    </div>
+    <div class="bg-silver p-lg-5 position-relative">
+        <div class="container p-lg-5 p-3">
+            <!-- Article Content -->
+            <!-- <div data-aos="fade-up" data-aos-duration="1800" class="my-5">
+                  <h2 class="text-green2 h-1 text-center fw-bold fs-1 my-5 font-ExtraBold">
+                      دوازده ، فراتر از انتظار شما
+                  </h2>
+                  <p class="text-pencil text-justify my-5">
+                      دوازده نه تنها یک برند است، بلکه یک سفر معنوی و فرهنگی است. ما با افتخار راهپیمایی هستیم که شما را در دنیای ارزش‌های معنوی و ارتقاء فردی همراهی می‌کند. یک سفر معنوی و فرهنگی است. ما با افتخار راهپیمایی هستیم که شما را در دنیای ارزش‌های معنوی و ارتقاء فردی همراهی می‌کند.  دوازده نه تنها یک برند است، بلکه یک سفر معنوی و فرهنگی است. ما با افتخار راهپیمایی هستیم که شما را در دنیای ارزش‌های معنوی و ارتقاء فردی همراهی می‌کند. یک سفر معنوی و فرهنگی است. ما با افتخار راهپیمایی هستیم که شما را در دنیای ارزش‌های معنوی و ارتقاء فردی همراهی می‌کند. هدف ما، ارائه محتوا و تجربیاتی است که روح و فکر شما را غنی‌تر کند و به سوی بهترین نسخه‌ی خودتان هدایت کند. هدف ما، ارائه محتوا و تجربیاتی است که روح و فکر شما را غنی‌تر کند و به سوی بهترین نسخه‌ی خودتان هدایت کند.هدف ما، ارائه محتوا و تجربیاتی است که روح و فکر شما را غنی‌تر کند و به سوی بهترین نسخه‌ی خودتان هدایت کند. هدف ما، ارائه محتوا و تجربیاتی است که روح و فکر شما را غنی‌تر کند و به سوی بهترین نسخه‌ی خودتان هدایت کند.
+                  </p>
+              </div>-->
+            <br />
+            <div data-aos="fade-up"
+                 data-aos-duration="1800"
+                 class="">
+                <p class="text-green2 text-center fw-bold my-2 mb-4">
+                    @Model.ThirdSubTitle
+                </p>
+                <h2 class="text-darkblue text-center fw-bold fs-3 font-ExtraBold">
+                    @Model.ThirdTitle
+                </h2>
+                @await Component.InvokeAsync("AboutUsSight")
+            </div>
+            <br />
+            <div data-aos="fade-up" data-aos-duration="1800">
+                @await Component.InvokeAsync("AboutUsArticles")
+
+            </div>
+            <br />
+            <br />
+            <br />
+            <!-- Content -->
+            <!-- Article Content -->
+        </div>
+    </div>
+    <div class="container p-lg-5 p-3 position-relative">
+        <!-- Article Content -->
+        <!--Download App Box-->
+        <div class="downloadApp-box-div px-lg-5 px-2">
+            <div class="downloadApp-box radius-20 my-5">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <p class="text-green fw-bold">
+                            آخرین نسخه از اپلیکیشن آماده است
+                        </p>
+                        <h2 class="text-light font-Bold fw-bold fs-1 ئذ-5">
+                            دریافت سوپر اپلیکیشن دوازده
+                        </h2>
+                        <div class="row mt-5">
+                            <div class="col-4">
+                                <div class="radius-20">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-12 pt-2 px-2">
+                                            <img src="/Assest/img/SVG/Main/google-play-green.svg"
+                                                 width="35"
+                                                 height="35"
+                                                 alt="دوازده" />
+                                        </div>
+                                        <div class="col-lg-9 co-md-12 text-center pt-2">
+                                            <a href="#">
+                                                <p class="text-light text-start mb-0 fw-bold">گوگل پلی</p>
+                                                <p class="text-light text-start fs-12">
+                                                    نسخه کاربران اندروید
+                                                </p>
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <a href="https://cafebazaar.ir/app/app.twelve">
+                                    <div class="radius-20">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-12 pt-2 px-2">
+                                                <img src="/Assest/img/green-bazar.png"
+                                                     width="35"
+                                                     height="35"
+                                                     alt="دوازده" />
+                                            </div>
+                                            <div class="col-lg-9 co-md-12 text-center pt-2">
+                                                <p class="text-light text-start mb-0 fw-bold">
+                                                    کافه بازار
+                                                </p>
+                                                <p class="text-light text-start fs-12">
+                                                    نسخه کاربران اندروید
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                
+                            </div>
+                            <div class="col-4">
+                                <a href="https://myket.ir/app/app.twelve">
+                                    <div class="radius-20">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-12 pt-2 px-2">
+                                                <img src="/Assest/img/SVG/Main/miket-green.svg"
+                                                     class="mx-auto"
+                                                     width="35"
+                                                     height="35"
+                                                     alt="دوازده" />
+                                            </div>
+                                            <div class="col-lg-9 co-md-12 text-center pt-2">
+                                                <p class="text-light text-start mb-0 fw-bold">مایکت</p>
+                                                <p class="text-light text-start fs-12">
+                                                    نسخه کاربران اندروید
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 text-center">
+                        <img src="/Images/Site/@Model.DownloadImageName" class="w-md-100 mt-n20" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Download App Box-->
+        <!--Description-->
+        <div data-aos="fade-up"
+             data-aos-duration="1800"
+             class="mt-25 py-5 mb-5">
+            <p class="text-green2 fw-bold my-4">@Model.ForthSubTitle</p>
+            <div class="row">
+                <div class="col-lg-5 col-md-12">
+                    <h2 class="text-darkblue fw-bold fs-3 mb-5 font-ExtraBold">@Model.ForthTitle</h2>
+                </div>
+            </div>
+            <p class="text-pencil text-justify">@Model.ForthDescription</p>
+        </div>
+        <hr class="text-pencil my-5" />
+        <!--Description-->
+        <!--Features-->
+        <div data-aos="fade-up" data-aos-duration="1800" class="my-5">
+            @await Component.InvokeAsync("AboutUsItems")
+
+        </div>
+        <!--Features-->
+        <!--AboutUs Carousel-->
+        @await Component.InvokeAsync("QuotesSlider")
+
+        <!--AboutUs Carousel-->
+        <!-- Article Content -->
+    </div>
+    <div class="bg-silver p-lg-5 p-3 position-relative">
+        <div class="container p-lg-5">
+            <!-- Article Content -->
+            <div data-aos="fade-up" data-aos-duration="1800" class="my-5">
+                <h2 class="text-darkblue d-inline-block mx-2 fw-bold font-ExtraBold fs-3 my-5">
+                    @Model.LogoTitle
+                </h2>
+                <p class="text-green2 d-inline-block mx-2 fw-bold fs-6">
+                    @Model.LogoSubTitle
+                </p>
+                <p class="text-pencil text-justify">@Model.LogoDescription</p>
+
+                <div data-aos="fade-up" data-aos-duration="1800" class="row my-5">
+                   @await Component.InvokeAsync("AboutUsLogoes")
+                </div>
+            </div>
+            <br />
+            <!-- Content -->
+            <!-- Article Content -->
+        </div>
+    </div>
+</article>
+
+<!--Content-->

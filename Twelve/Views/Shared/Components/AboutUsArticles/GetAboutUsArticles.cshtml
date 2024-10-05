@@ -1,0 +1,49 @@
+﻿@model List<DataLayer.AboutUsArticle>
+@if (Model.Any())
+{
+    <div class="row">
+        @for (int i = 1; i <= Model.Count; i++)
+        {
+            if (i%2!=0)
+            {
+                <div class="col-lg-6 col-md-12 my-5 px-lg-5 text-center">
+                    <p class="text-green2 fw-bold my-3">
+                        @Model[i-1].SubTitle
+                    </p>
+                    <h2 class="text-darkblue fw-bold font-ExtraBold">
+                        @Model[i-1].Title
+                    </h2>
+                    <p class="text-pencil text-justify">@Model[i-1].Description</p>
+                </div>
+                <div class="col-lg-6 col-md-12 my-5">
+                    <img src="/Images/Site/@Model[i-1].ImageName"
+                         width="100%"
+                         class="radius-20 w-md-100"
+                         alt="title" />
+                </div>
+            }
+            else
+            {
+                <div class="col-lg-6 col-md-12 my-5">
+                    <img src="/Images/Site/@Model[i-1].ImageName" 
+                         width="100%"
+                         class="radius-20 w-md-100"
+                         alt="title" />
+                </div>
+                <div class="col-lg-6 col-md-12 my-5 px-lg-5">
+                    <p class="text-green2 fw-bold my-3">
+                        @Model[i-1].SubTitle
+                    </p>
+                    <h2 class="text-darkblue fw-bold font-ExtraBold">
+                        @Model[i-1].Title
+                    </h2>
+                    <p class="text-pencil text-justify">@Model[i-1].Description</p>
+                </div>
+            }
+            <br />
+
+        }
+        
+        
+    </div>
+}

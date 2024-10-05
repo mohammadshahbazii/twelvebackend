@@ -1,0 +1,124 @@
+﻿@model ViewModels.IndexSliderViewModel
+
+<!-- Header -->
+@if (Model.Mobile.Any() || Model.Desktop.Any())
+{
+    <header>
+        <div class="d-none d-lg-block d-xl-block d-xxl-block">
+            @if (Model.Desktop.Any())
+            {
+                <div id="Header-desktop-carousel"
+                data-bs-touch="true"
+                     class="carousel slide "
+                     data-ride="carousel"
+                     data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        @for (int i = 0; i < Model.Desktop.Count; i++)
+                        {
+                            if (i == 0)
+                            {
+                                <button type="button"
+                                        data-bs-target="#Header-desktop-carousel"
+                                        data-bs-slide-to="@i"
+                                        class="active"
+                                        aria-current="true"></button>
+                            }
+                            else
+                            {
+                                <button type="button"
+                                        data-bs-target="#Header-desktop-carousel"
+                                        data-bs-slide-to="@i"></button>
+                            }
+                        }
+
+                    </div>
+                    <div class="carousel-inner border-radius-0">
+                        @foreach (var item in Model.Desktop)
+                        {
+                            if (Model.Desktop[0] == item)
+                            {
+                                <div data-bs-interval="3000" class="carousel-item active">
+                                    <a href="@item.Link">
+                                        <img src="/Images/Sliders/@item.ImageName" class="d-block w-100" alt="@item.Title">
+                                    </a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div data-bs-interval="3000" class="carousel-item">
+                                    <a href="@item.Link">
+                                        <img src="/Images/Sliders/@item.ImageName" class="d-block w-100" alt="@item.Title">
+                                    </a>
+                                </div>
+                            }
+
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="d-lg-none d-xl-none d-xxl-none d-md-block d-sm-block">
+            @if (Model.Mobile.Any())
+            {
+                <div id="Header-mobile-carousel"
+                     class="carousel slide "
+                     data-ride="carousel"
+                     data-bs-ride="carousel">
+                    <div class="carousel-indicators bottom-10">
+                        @for (int i = 0; i < Model.Desktop.Count; i++)
+                        {
+                            if (i == 0)
+                            {
+                                <button type="button"
+                                        data-bs-target="#Header-mobile-carousel"
+                                        data-bs-slide-to="@i"
+                                        class="active"
+                                        aria-current="true"></button>
+                            }
+                            else
+                            {
+                                <button type="button"
+                                        data-bs-target="#Header-mobile-carousel"
+                                        data-bs-slide-to="@i"></button>
+                            }
+                        }
+                    </div>
+                    <div class="carousel-inner border-radius-0">
+                        @foreach (var item in Model.Mobile)
+                        {
+                            if (Model.Mobile[0] == item)
+                            {
+                                <div data-bs-interval="3000" class="carousel-item active">
+                                    <a href="@item.Link">
+                                        <img src="/Images/Sliders/@item.ImageName" class="d-block w-100" alt="@item.Title">
+                                    </a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div data-bs-interval="3000" class="carousel-item">
+                                    <a href="@item.Link">
+                                        <img src="/Images/Sliders/@item.ImageName" class="d-block w-100" alt="@item.Title">
+                                    </a>
+                                </div>
+                            }
+
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </header>
+}
+<!-- Header -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js"></script>
+<script>
+    $(".carousel").swipe({
+        swipe: function (event, direction, distance, duration, fingerCount, fingerData) {
+            if (direction == 'right') $(this).carousel('next');
+            if (direction == 'left') $(this).carousel('prev');
+        },
+        allowPageScroll: "vertical"
+    });
+</script>

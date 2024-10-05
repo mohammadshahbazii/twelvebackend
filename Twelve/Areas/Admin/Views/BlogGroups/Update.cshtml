@@ -1,0 +1,36 @@
+﻿@model DataLayer.BlogGroup
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            ویرایش دسته بندی
+                            <span class="text-dark mx-2">@ViewBag.Message</span>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="post" enctype="multipart/form-data">
+                        @Html.HiddenFor(m => m.BlogGroupId)
+                        @Html.HiddenFor(m => m.ParentId)
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="GroupName">عنوان</label>
+                                <input type="text" name="GroupName" class="form-control" value="@Model.GroupName" id="GroupName" placeholder="عنوان را وارد کنید">
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-warning">ثبت</button>
+                            <a href="/Admin/BlogGroups" class="btn btn-info float-left">بازگشت به لیست</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>

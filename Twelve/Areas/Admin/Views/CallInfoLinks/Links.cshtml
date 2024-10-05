@@ -1,0 +1,54 @@
+﻿@model List<DataLayer.CallInfoLink>
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            لیست لینک های مربوطه
+                            <a href="/Admin/CallInfoLinks/Create/@ViewBag.CallInfoID" class="btn btn-outline-success mx-3">افزودن لینک های مربوطه</a>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div id="BlogTable">
+                        @if (Model.Any())
+                        {
+                            <div class="card-body table-responsive p-0">
+                                <table class="table table-bordered table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <th>لینک</th>
+                                            <th>*</th>
+                                        </tr>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.Link</td>
+                                                <td>
+                                                    <a href="/Admin/CallInfoLinks/Update/@item.CallInfoLinkId" class="btn btn-outline-warning rounded mx-1" title="ویرایش">
+                                                        <span class="fa fa-edit"></span>
+                                                    </a>
+                                                    <a href="/Admin/CallInfoLinks/Delete/@item.CallInfoLinkId" class="btn btn-outline-danger rounded mx-1" title="حذف">
+                                                        <span class="fa fa-trash"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                        else
+                        {
+                            <p class="p-5 text-center">موردی یافت نشد</p>
+                        }
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>

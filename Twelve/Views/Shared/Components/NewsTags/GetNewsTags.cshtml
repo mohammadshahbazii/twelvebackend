@@ -1,0 +1,30 @@
+﻿@model List<string>
+@if (Model.Any())
+{
+    <div class="my-5">
+        <ul class="nav justify-content-start">
+            @foreach (var item in Model)
+            {
+                if (item.Contains("بازدید"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link rounded-pill font-Fanum bg-silver5 mx-2 text-darkblue py-3 px-4">
+                            <img src="/Assest/img/eye.png"
+                                 width="20"
+                                 height="20"
+                                 class="mx-2" />
+                            @item
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link rounded-pill bg-silver5 mx-2 text-darkblue py-3 px-4">@item</a>
+                    </li>
+                }
+            }
+
+        </ul>
+    </div>
+}

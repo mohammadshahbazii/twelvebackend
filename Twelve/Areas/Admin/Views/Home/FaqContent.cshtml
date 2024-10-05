@@ -1,0 +1,44 @@
+﻿@model DataLayer.FaqContent
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            ویرایش اطلاعات سوالات متداول
+                            <span class="text-dark mx-2">@ViewBag.Message</span>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="FaqContentId" id="FaqContentId" value="@Model.FaqContentId" />
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="FaqContentTitle">عنوان</label>
+                                <input type="text" name="FaqContentTitle" class="form-control" value="@Model.FaqContentTitle" id="AboutTitle" placeholder="عنوان را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="FaqContentSubTitle">زیر عنوان</label>
+                                <input type="text" class="form-control" name="FaqContentSubTitle" value="@Model.FaqContentSubTitle" id="FaqContentSubTitle" placeholder="زیر عنوان را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="FaqContentDescription">توضیحات</label>
+                                <textarea rows="5" name="FaqContentDescription" class="form-control w-100" name="FaqContentDescription">@Model.FaqContentDescription</textarea>
+                            </div>
+                            
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-warning">ثبت</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>

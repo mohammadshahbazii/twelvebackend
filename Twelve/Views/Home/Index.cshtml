@@ -1,0 +1,83 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@section NavbarJs {
+<script src="/Assest/js/Scrolled-GreenNav.js"></script>
+}
+@section ExtraLibrary{
+    <link rel="stylesheet" href="/Assest/css/extra.css" />
+    <link rel="stylesheet" href="/Assest/css/queries.css" />
+
+    <!-- SVG -->
+    <?xml version="1.0" encoding="UTF-8" ?>
+    <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+    <script src="https://unpkg.com/@@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+}
+@section Navbar{
+    <partial name="_GreenNavbar"></partial>
+}
+
+@section Header{
+    @await Component.InvokeAsync("IndexHeaderSlider")
+}
+<!--Content-->
+<article class="bg-silver p-5 position-relative">
+    <div class="container">
+        <!-- Download Box -->
+        @await Component.InvokeAsync("IndexDownloadBox")
+        <!-- Download Box -->
+        <!-- Article Content -->
+        @await Component.InvokeAsync("IndexAboutContent")
+
+       
+
+        <br />
+        <!-- Features -->
+        @await Component.InvokeAsync("IndexFeatures")
+        <!-- Features -->
+        <br />
+        <!-- News -->
+        @await Component.InvokeAsync("IndexBlogs")
+        <!-- News -->
+        <br />
+
+
+    </div>
+
+
+</article>
+
+<article class="bg-silver py-5 container-fluid">
+    <!-- App Introduce -->
+    @await Component.InvokeAsync("IndexIntroduceApp")
+
+    <!-- App Introduce -->
+</article>
+
+<article class="bg-silver p-3 p-lg-5 position-relative">
+    <div class="bg-silver p-lg-5 position-relative">
+        <!-- Faq -->
+        <div data-aos="fade-up" data-aos-duration="1800" class="my-5">
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <div class="text-start">
+                        <img src="/Assest/img/SVG/Main/bird-index.svg" alt="دوازده" />
+                    </div>
+                    @await Component.InvokeAsync("IndexFaqContent")
+
+                    <a href="/ContactUs" class="btn btn-outline-dark mt-4">ارتباط با پشتیبانی</a>
+                </div>
+                <div class="col-lg-6 col-md-12 pt-5">
+                    @await Component.InvokeAsync("IndexFaqs")
+                </div>
+            </div>
+        </div>
+        <!-- Faq -->
+        <br />
+        <!-- testimonial -->
+        @await Component.InvokeAsync("IndexFeedBacks")
+        <!-- testimonial -->
+    </div>
+    <!-- Article Content -->
+</article>
+<!--Content-->

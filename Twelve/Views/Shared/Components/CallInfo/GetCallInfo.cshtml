@@ -1,0 +1,38 @@
+﻿@model List<DataLayer.CallInfo>
+@if (Model.Any())
+{
+
+    <div class="row mb-5">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-4 col-md-12">
+                <div class="contact-box mb-5 bg-white p-5 radius-20">
+                    <div class="row">
+                        <div class="col-7">
+                            <p class="text-darkblue fw-bold fs-5">
+                                @item.Title
+                            </p>
+                        </div>
+                        <div class="col-5">
+                            <div class="text-center">
+                                <span>
+                                    <img src="/Images/Site/@item.ImageName"
+                                         alt="دوازده"
+                                         class="w-50 h-50"
+                                         width="24"
+                                         height="26" />
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="my-5 text-darkblue">@item.ShortDescription</p>
+                    <p class="mt-5 text-darkblue fw-bold">
+                        <span class="mx-2">@item.Description</span>
+                    </p>
+                    @await Component.InvokeAsync("CallInfoLinks",new{CallInfoID = item.CallInfoId})
+                </div>
+            </div>
+
+        }
+    </div>
+}

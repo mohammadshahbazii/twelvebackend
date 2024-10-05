@@ -1,0 +1,61 @@
+﻿@model List<DataLayer.AboutUsLogo>
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            لیست لوگو های صفحه ی درباره ما
+                            <a href="/Admin/AboutUsLogoes/Create" class="btn btn-outline-success mx-3">افزودن لوگو</a>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div id="BlogTable">
+                        @if (Model.Any())
+                        {
+                            <div class="card-body table-responsive p-0">
+                                <table class="table table-bordered table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <th>تصویر</th>
+                                            <th>فضای بزرگ تر</th>
+                                            <th>*</th>
+                                        </tr>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+
+                                                <td><img src="/Images/Site/@item.ImageName" width="50" height="50" /></td>
+                                                @if (item.IsMain)
+                                                {
+                                                    <td>بله</td>
+
+                                                }
+                                                else
+                                                {
+                                                    <td>خیر</td>
+                                                }
+                                                <td>
+                                                    <a href="/Admin/AboutUsLogoes/Update/@item.AboutUsLogoId" class="btn btn-outline-warning rounded mx-1" title="ویرایش">
+                                                        <span class="fa fa-edit"></span>
+                                                    </a>
+                                                    <a href="/Admin/AboutUsLogoes/Delete/@item.AboutUsLogoId" class="btn btn-outline-danger rounded mx-1" title="حذف">
+                                                        <span class="fa fa-trash"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>

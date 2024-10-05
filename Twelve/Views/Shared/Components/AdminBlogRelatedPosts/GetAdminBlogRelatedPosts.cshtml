@@ -1,0 +1,17 @@
+﻿@model ViewModels.CreateRelatedBlogsViewModel
+@if (Model.Blogs.Any())
+{
+    foreach (var item in Model.Blogs)
+    {
+
+        <div class="form-check m-2">
+
+            <input type="checkbox" class="form-check-input" @((Model.SelectedBlogs.Any(s => s == item.BlogID) ? "checked" : "")) id="@item.BlogID" name="SelectedBlogs" value="@item.BlogID">
+            <label class="form-check-label" for="@item.BlogID">@item.Title</label>
+        </div>
+    }
+}
+else
+{
+    <p>مقاله ای یافت نشد</p>
+}

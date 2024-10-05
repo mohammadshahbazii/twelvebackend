@@ -1,0 +1,141 @@
+﻿@model List<ViewModels.FeaturesItemViewModel>
+
+<div data-aos="fade-up" data-aos-duration="1800" class="my-5">
+    <div class="text-center mt-5">
+        <img src="/Assest/img/SVG/Main/bird-index.svg"
+             class="mx-auto"
+             alt="دوازده" />
+        @await Component.InvokeAsync("IndexFeatureContent")
+    </div>
+    <div class="mt-5">
+        <div class="row">
+            @for (int i = 0; i < 6; i++)
+            {
+                if (Model[i].IsBig)
+                {
+                    <div class="col-lg-6 col-12  mb-2">
+                        <div class="feature-card">
+                            <a href="/Feature/@Model[i].Demo">
+                                <div class="feature-item">
+                                    <div class="feature-img-box">
+                                        <lottie-player src="/Images/Features/Json/@Model[i].AnimateImage"
+                                                       background="transparent"
+                                                       speed="1"
+                                                       style="width: 300px; height: 180px; display: none"
+                                                       class="feature-lottie"
+                                                       loop
+                                                       autoplay></lottie-player>
+                                        <img src="/Images/Features/@Model[i].ImageName"
+                                             alt="دوازده"
+                                             class="feature-svg"
+                                             width="70"
+                                             height="60" />
+                                    </div>
+                                    <div class="feature-content-box">
+                                        <h4 class="text-lightblue fw-bold">@Model[i].Title</h4>
+                                        <p class="text-pencil">
+                                            @Model[i].ShortDescription
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                }
+                else
+                {
+                    <div class="col-lg-3  col-md-6 col-12 mb-2">
+                        <div class="feature-card">
+                            <a href="/Feature/@Model[i].Demo">
+                                <div class="feature-item">
+                                    <div class="feature-img-box">
+                                        <lottie-player src="/Images/Features/Json/@Model[i].AnimateImage" background="transparent" speed="1" style="width: 300px; height: 180px; display: none" class="feature-lottie" loop="" autoplay=""></lottie-player>
+                                        <img src="/Images/Features/@Model[i].ImageName" alt="دوازده" class="feature-svg" width="70" height="60">
+                                    </div>
+                                    <div class="feature-content-box">
+                                        <h4 class="text-lightblue fw-bold">@Model[i].Title</h4>
+                                        <p class="text-pencil">
+                                            @Model[i].ShortDescription
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                    </div>
+
+                }
+            }
+        </div>
+        <div id="features-lg-items" class="d-none fadeInDown">
+            <div class="row mb-4">
+                @for (int i = 6; i < (Model.Count ); i++)
+                {
+                    if (Model[i].IsBig)
+                    {
+                        <div class="col-lg-6 col-12  mb-2">
+                            <div class="feature-card">
+                                <a href="/Feature/@Model[i].Demo">
+                                    <div class="feature-item">
+                                        <div class="feature-img-box">
+                                            <lottie-player src="/Images/Features/Json/@Model[i].AnimateImage"
+                                                           background="transparent"
+                                                           speed="1"
+                                                           style="width: 300px; height: 180px; display: none"
+                                                           class="feature-lottie"
+                                                           loop
+                                                           autoplay></lottie-player>
+                                            <img src="/Images/Features/@Model[i].ImageName"
+                                                 alt="دوازده"
+                                                 class="feature-svg"
+                                                 width="70"
+                                                 height="60" />
+                                        </div>
+                                        <div class="feature-content-box">
+                                            <h4 class="text-lightblue fw-bold">@Model[i].Title</h4>
+                                            <p class="text-pencil">
+                                                @Model[i].ShortDescription
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="col-lg-3  col-md-6 col-12 mb-2">
+                            <div class="feature-card">
+                                <a href="/Feature/@Model[i].Demo">
+                                    <div class="feature-item">
+                                        <div class="feature-img-box">
+                                            <lottie-player src="/Images/Features/Json/@Model[i].AnimateImage" background="transparent" speed="1" style="width: 300px; height: 180px; display: none" class="feature-lottie" loop="" autoplay=""></lottie-player>
+                                            <img src="/Images/Features/@Model[i].ImageName" alt="دوازده" class="feature-svg" width="70" height="60">
+                                        </div>
+                                        <div class="feature-content-box">
+                                            <h4 class="text-lightblue fw-bold">@Model[i].Title</h4>
+                                            <p class="text-pencil">
+                                                @Model[i].ShortDescription
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+
+                    }
+                }
+            </div>
+        </div>
+        <div class="text-center">
+            <a id="features-lg-more-info"
+               onclick="Morefeature_lg()"
+               class="btn btn-light bg-white rounded-pill px-4 py-3">
+                موارد بیشتر
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,118 @@
+﻿@model ViewModels.SearchPageDataViewModel
+@section NavbarJs {
+    <script src="/Assest/js/Scrolled-WhiteNav.js"></script>
+}
+@section Navbar{
+    <partial name="_WhiteNavbar"></partial>
+}
+
+
+<!--Content-->
+<article class="position-relative">
+    <div class="bg-silver p-lg-5 position-relative">
+        <div class="container">
+            <!-- Article Content -->
+            <div data-aos="fade-up" data-aos-duration="1800">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 mt-5">
+                        <h1 class="text-darkblue fw-bold fs-1 font-ExtraBold">
+                            جستجو در مورد "@ViewBag.q"
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <!-- Content -->
+            <!-- Article Content -->
+        </div>
+    </div>
+    <div class="container p-lg-5 position-relative">
+        <!-- Article Content -->
+        <!--Faqs-->
+        <div data-aos="fade-up" data-aos-duration="1800" class="mb-5">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    @if (Model.Faqs.Any())
+                    {
+                        <div class="accordion-faq accordion" id="Q">
+                            @foreach (var item in Model.Faqs)
+                            {
+                                <div class="accordion-item-faq accordion-item my-2">
+                                    <h2 class="accordion-header-faq accordion-header"
+                                        id="h_@(item.FaqID)">
+                                        <button class="accordion-button-faq accordion-button collapsed"
+                                                type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#q_@(item.FaqID)"
+                                                aria-expanded="false"
+                                                aria-controls="q_@(item.FaqID)">
+                                            @item.Question
+                                        </button>
+                                    </h2>
+                                    <div id="q_@(item.FaqID)"
+                                         class="accordion-collapse collapse"
+                                         aria-labelledby="h_@(item.FaqID)"
+                                         data-bs-parent="#Q">
+                                        <div class="accordion-body p-4">
+                                            <p class="text-pencil">@item.Answer</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <p>موردی در سوالات متداول یافت نشد</p>
+                    }
+                </div>
+            </div>
+        </div>
+        <!--Faqs-->
+        
+        <!-- Article Content -->
+    </div>
+    <div class="bg-silver p-lg-5 position-relative">
+        <div class="container">
+            <div class="col-lg-12 col-md-12">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <h2 class="text-darkblue fw-bold d-inline-block font-ExtraBold">
+                            آخرین مقالات و خبر بر اساس "@ViewBag.q"
+                        </h2>
+                        <p class="text-green2 fs-12 d-inline-block fw-bold mx-4">
+                            برای اطلاع از جدیدترین رویدادها و مقالات همراه ما باشید
+                        </p>
+                    </div>
+                </div>
+                @if (Model.Blogs.Any())
+                {
+                    <div class="row">
+                        @foreach (var item in Model.Blogs)
+                        {
+                            <div class="col-lg-4 col-md-12 my-4">
+                                <a href="/PostBlogs/@item.BlogID">
+                                    <img src="/Images/Blogs/@item.ImageName" class="w-100 radius-20" alt="@item.Title">
+                                </a><a href="/PostBlogs/@item.BlogID" class="text-darkblue">
+                                    <p class="text-darkblue mt-4">@item.Title</p>
+                                </a>
+                                <p class="text-darkblue fw-bold">
+                                    <span class="fa fa-clock-o"></span>
+                                    @item.CreateDate روز قبل | @item.Source
+                                </p>
+
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p>موردی در بخش وبلاگ و اخبار اپلیکیشن یافت نشد</p>
+                }
+            </div>
+        </div>
+    </div>
+</article>
+
+<!--Content-->

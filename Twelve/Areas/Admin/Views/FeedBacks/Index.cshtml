@@ -1,0 +1,128 @@
+﻿@model ViewModels.FeedBacksPageDataViewModel
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            لیست پیشنهادات کاربران
+                            <a href="/Admin/FeedBacks/Selected" class="btn btn-outline-info mx-3">نمایش پیام های انتخاب شده</a>
+                        </h3>
+
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" id="BlogSearch" name="BlogSearch" class="form-control float-right" placeholder="جستجو">
+
+                                <div class="input-group-append">
+                                    <a onclick="GetFeedBacks($('#BlogSearch').val())" class="btn btn-default"><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div id="FeedBackTable">
+                        @if (Model.FeedBacks.Any())
+                        {
+                            <div class="card-body table-responsive p-0">
+                                <table class="table table-bordered table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <th>نام و نام خانوادگی</th>
+                                            <th>عنوان</th>
+                                            <th>تاریخ</th>
+                                            <th>*</th>
+                                        </tr>
+                                        @foreach (var item in Model.FeedBacks)
+                                        {
+                                            <tr>
+                                                <td>@item.Fullname</td>
+                                                <td>
+                                                    @item.Subject
+                                                </td>
+                                                <td>
+                                                    @item.CreateDate
+                                                </td>
+                                                <td>
+                                                    <a href="/Admin/FeedBacks/ShowMessage/@item.FeedBackID" class="btn btn-outline-info rounded mx-1" title="نمایش پیام">
+                                                        <span class="fa fa-eye"></span>
+                                                    </a>
+                                                    <a href="/Admin/FeedBacks/SetShow/@item.FeedBackID" class="btn btn-outline-warning rounded mx-1" title="نمایش در سایت">
+                                                        <span class="fa fa-edit"></span>
+                                                    </a>
+                                                    <a href="/Admin/FeedBacks/Delete/@item.FeedBackID" class="btn btn-outline-danger rounded mx-1" title="حذف">
+                                                        <span class="fa fa-trash"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="card-footer clearfix">
+                                @if (Model.PageCount > 1)
+                                {
+                                    <ul class="pagination pagination-sm m-0 justify-content-center ">
+                                        @if (Model.Pagination.PageID == 1)
+                                        {
+                                            <li class="page-item disabled"><a class="page-link" onclick="GetFeedBacks(@(Model.Pagination.PageID - 1))">«</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li class="page-item"><a class="page-link" onclick="GetFeedBacks(@(Model.Pagination.PageID - 1))">«</a></li>
+
+                                        }
+                                        @foreach (var item in Model.Pagination.PageNumbers)
+                                        {
+                                            if (item == Model.Pagination.PageID)
+                                            {
+                                                <li class="page-item active"><a class="page-link" onclick="GetFeedBacks(@(item))">@item</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li class="page-item"><a class="page-link" onclick="GetFeedBacks(@(item))">@item</a></li>
+                                            }
+                                        }
+
+                                        @if (Model.Pagination.PageID >= Model.Pagination.PageCount)
+                                        {
+                                            <li class="page-item disabled"><a class="page-link" onclick="GetFeedBacks(@(Model.Pagination.PageID + 1))">»</a></li>
+
+                                        }
+                                        else
+                                        {
+                                            <li class="page-item"><a class="page-link" onclick="GetFeedBacks(@(Model.Pagination.PageID + 1))">»</a></li>
+
+                                        }
+                                    </ul>
+
+
+                                }
+                            </div>
+                        }
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+<script>
+    function GetFeedBacks(pageID) {
+        var q = $('#BlogSearch').val();
+        $.ajax({
+            url: "/Admin/FeedBacks/GetFeedBacks?q=" + q + "&PageID=" + pageID,
+            type: "Get",
+            data: { q: q, PageID: pageID }
+        }).done(function (result) {
+            $("#FeedBackTable").html(result);
+        });
+
+
+    }
+
+
+
+</script>

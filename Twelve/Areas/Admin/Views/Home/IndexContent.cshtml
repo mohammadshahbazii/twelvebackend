@@ -1,0 +1,68 @@
+﻿@model DataLayer.IndexContent
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            ویرایش اطلاعات صفحه اول
+                            <a href="/Admin/Introduces" class="btn btn-dark text-light">معرفی نرم افزار در صفحه اول</a>
+                            <span class="text-dark mx-2">@ViewBag.Message</span>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="IndexContentId" id="IndexContentId" value="@Model.IndexContentId" />
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="AboutTitle">عنوان درباره ما</label>
+                                <input type="text" name="AboutTitle" class="form-control" value="@Model.AboutTitle" id="AboutTitle" placeholder="عنوان درباره ما را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="AboutSubTitle">زیر عنوان درباره ما</label>
+                                <input type="text" class="form-control" name="AboutSubTitle" value="@Model.AboutSubTitle" id="AboutSubTitle" placeholder="زیر عنوان درباره ما را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="AboutDescription">توضیحات درباره ما</label>
+                                <textarea rows="5" name="AboutDescription" class="form-control w-100" name="AboutDescription">@Model.AboutDescription</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="FeatureTitle">عنوان ویژگی های نرم افزار</label>
+                                <input type="text" name="FeatureTitle" class="form-control" value="@Model.FeatureTitle" id="FeatureTitle" placeholder="عنوان ویژگی های نرم افزار را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="FeatureSubTitle">زیر عنوان ویژگی های نرم افزار</label>
+                                <input type="text" class="form-control" name="FeatureSubTitle" value="@Model.FeatureSubTitle" id="FeatureSubTitle" placeholder="زیر عنوان ویژگی های نرم افزار را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="FeatureDescription">توضیحات ویژگی های نرم افزار</label>
+                                <textarea rows="5" name="FeatureDescription" class="form-control w-100" name="FeatureDescription">@Model.FeatureDescription</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="FaqTitle">عنوان سوالات متداول</label>
+                                <input type="text" name="FaqTitle" class="form-control" value="@Model.FaqTitle" id="FaqTitle" placeholder="عنوان سوالات متداول را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="FaqSubTitle">زیر عنوان سوالات متداول</label>
+                                <input type="text" class="form-control" name="FaqSubTitle" value="@Model.FaqSubTitle" id="FaqSubTitle" placeholder="زیر عنوان سوالات متداول را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="FaqDescription">توضیحات سوالات متداول</label>
+                                <textarea rows="5" name="FaqDescription" class="form-control w-100" name="FaqDescription">@Model.FaqDescription</textarea>
+                            </div>
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-warning">ثبت</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>

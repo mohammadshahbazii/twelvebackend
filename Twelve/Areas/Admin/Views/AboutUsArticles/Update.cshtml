@@ -1,0 +1,63 @@
+﻿@model DataLayer.AboutUsArticle
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            ویرایش مقاله
+                            <span class="text-dark mx-2">@ViewBag.Message</span>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="AboutUsArticleId" id="AboutUsArticleId" value="@Model.AboutUsArticleId" />
+                        <input type="hidden" name="ImageName" id="ImageName" value="@Model.ImageName" />
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Title">عنوان</label>
+                                <input type="text" name="Title" class="form-control" value="@Model.Title" id="Title" placeholder="عنوان را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="SubTitle">زیر عنوان</label>
+                                <input type="text" name="SubTitle" class="form-control" value="@Model.SubTitle" id="SubTitle" placeholder="زیر عنوان را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="Description">توضیح تکمیلی</label>
+                                <textarea rows="5" class="form-control w-100" name="Description" id="Description" placeholder="توضیح تکمیلی را وارد کنید">@Model.Description</textarea>
+                            </div>
+                            <div class="form-group ">
+                                <div class="text-center">
+                                    <img id="imagePreview" class="thumbnail my-5 w-50 mx-auto" src="~/Images/Site/@Model.ImageName" />
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <label for="imagePreview">انتخاب تصویر</label>
+                                        <input type="file" accept="Images/" id="imageProduct" name="imageProduct" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-warning">ثبت</button>
+                            <a href="/Admin/AboutUsArticles" class="btn btn-info float-left">بازگشت به لیست</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+<script>
+    imageProduct.onchange = evt => {
+        const [file] = imageProduct.files
+        if (file) {
+            imagePreview.src = URL.createObjectURL(file)
+        }
+    }
+</script>

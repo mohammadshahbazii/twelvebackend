@@ -1,0 +1,59 @@
+﻿@model ViewModels.IntroduceCrudViewModel
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-danger">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            حذف آیتم
+                            <span class="text-dark mx-2">@ViewBag.Message</span>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="post" enctype="multipart/form-data">
+                        @Html.HiddenFor(m => m.IntroduceID)
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="form-group">
+                                        <label for="Title">عنوان</label>
+                                        <p>@Model.Title</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Description">توضیح کوتاه</label>
+                                        <p>@Model.Description</p>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="card card-info">
+                                        <div class="card-header">
+                                            <h3 class="card-title">ویژگی ها</h3>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <!-- form start -->
+                                        @foreach (var item in Model.Features)
+                                        {
+                                            <div class="form-check m-2">
+                                                <input type="radio" class="form-check-input " disabled id="@item.FeatureID" @((Model.SelectedFeature.Any(s => s == item.FeatureID) ? "checked" : "")) name="SelectedFeature" value="@item.FeatureID">
+                                                <label class="form-check-label" for="@item.FeatureID">@item.Title</label>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-danger">ثبت</button>
+                            <a href="/Admin/News" class="btn btn-info float-left">بازگشت به لیست</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>

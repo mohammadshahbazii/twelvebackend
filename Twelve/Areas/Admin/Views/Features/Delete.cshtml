@@ -1,0 +1,130 @@
+﻿@model DataLayer.Feature
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-danger">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            حذف ویژگی
+                            <span class="text-dark mx-2">@ViewBag.Message</span>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="post" enctype="multipart/form-data">
+                        @Html.HiddenFor(m=> m.FeatureId)
+                        @Html.HiddenFor(m=> m.ShortDescription)
+                        @Html.HiddenFor(m=> m.Title)
+                        @Html.HiddenFor(m=> m.FirstDescription)
+                        @Html.HiddenFor(m=> m.FirstArticleTitle)
+                        @Html.HiddenFor(m=> m.FirstArticleDescription)
+                        @Html.HiddenFor(m=> m.SecondArticleTitle)
+                        @Html.HiddenFor(m=> m.SecondArticleDescription)
+                        @Html.HiddenFor(m=> m.ImageName)
+                        @Html.HiddenFor(m=> m.IntroduceImageName)
+                        @Html.HiddenFor(m=> m.AnimateFilename)
+                        @Html.HiddenFor(m=> m.FirstArticleImage)
+                        @Html.HiddenFor(m=> m.SecondArticleImage)
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Title">عنوان</label>
+                                <p>@Model.Title</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="ShortDescription">توضیح کوتاه</label>
+                                <p>@Model.ShortDescription</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="FirstDescription">توضیح</label>
+                                <p>@Html.Raw(Model.FirstDescription)</p>
+                            </div>
+                            <div class="form-group ">
+                                <div class="text-center">
+                                    <img id="imagePreview" class="thumbnail my-5" src="~/Images/Features/@Model.ImageName" />
+                                </div>
+                            </div>
+                            
+                            <div class="card card-info">
+                                <div class="card-header">
+                                    <h3 class="card-title">مقاله اول</h3>
+                                </div>
+                                <div class="form-group m-3">
+                                    <label for="FirstArticleTitle">عنوان مقاله اول</label>
+                                    <p>@Model.FirstArticleTitle</p>
+                                </div>
+                                <div class="form-group m-3">
+                                    <label for="FirstArticleDescription">توضیح مقاله اول</label>
+                                    <p>@Model.FirstArticleDescription</p>
+                                </div>
+                                <div class="form-group m-3 ">
+                                    <div class="text-center">
+                                        <img id="imageFAPreview" class="thumbnail w-100 my-5" src="~/Images/Features/@Model.FirstArticleImage" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card card-info">
+                                <div class="card-header">
+                                    <h3 class="card-title">مقاله دوم</h3>
+                                </div>
+                                <div class="form-group m-3">
+                                    <label for="SecondArticleTitle">عنوان مقاله دوم</label>
+                                    <p>@Model.SecondArticleTitle</p>
+                                </div>
+                                <div class="form-group m-3">
+                                    <label for="SecondArticleDescription">توضیح مقاله دوم</label>
+                                    <p>@Model.SecondArticleDescription</p>
+                                </div>
+                                <div class="form-group m-3 ">
+                                    <div class="text-center">
+                                        <img id="imageSAPreview" class="thumbnail w-100 my-5" src="~/Images/Features/@Model.SecondArticleImage" />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-danger">حذف</button>
+                            <a href="/Admin/Features" class="btn btn-info float-left">بازگشت به لیست</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+@section Ckeditor{
+    <script>
+        $(function () {
+            $('#FirstDescription').ckeditor();
+        });
+    </script>
+}
+<script>
+    imageProduct.onchange = evt => {
+        const [file] = imageProduct.files
+        if (file) {
+            imagePreview.src = URL.createObjectURL(file)
+        }
+    }
+</script>
+<script>
+    imageFAProduct.onchange = evt => {
+        const [file] = imageFAProduct.files
+        if (file) {
+            imageFAPreview.src = URL.createObjectURL(file)
+        }
+    }
+</script>
+<script>
+    imageSAProduct.onchange = evt => {
+        const [file] = imageSAProduct.files
+        if (file) {
+            imageSAPreview.src = URL.createObjectURL(file)
+        }
+    }
+</script>

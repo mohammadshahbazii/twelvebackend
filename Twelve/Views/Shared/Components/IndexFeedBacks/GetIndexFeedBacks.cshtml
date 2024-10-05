@@ -1,0 +1,113 @@
+﻿@model List<ViewModels.FeedBacksItemViewModels>
+@if (Model.Any() && Model.Count >=3)
+{
+    <div data-aos="fade-up" data-aos-duration="1800" class="my-5">
+        <p class="text-green2 text-center fw-bold">با شما گفتگو لذت دارد</p>
+        <h3 class="text-darkblue fs-3 text-center fw-bold font-ExtraBold">
+            فیدبک و نظرات شما درباره دوازده
+        </h3>
+        <div class="d-none d-lg-block d-xl-block d-xxl-block">
+            <div class="row mt-5">
+                <div class="col-4">
+                    <div class="text-center pt-5">
+                        <div class="feedback-item p-5 radius-20 text-center">
+                            <p class="text-darkblue">
+                                @Model[0].Text
+                            </p>
+                            <div class="feedback-profile">
+                                <p class="text-darkblue fw-bold mt-5">
+                                    @Model[0].Fullname
+                                </p>
+                                <p class="text-pencil">
+                                    @Model[0].Subject
+                                </p>
+                            </div>
+                        </div>
+                        <img src="/Images/FeedBacks/@Model[0].ImageName"
+                             width="100" height="100"
+                             class="rounded-circle me-4 mt-5" />
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="text-center pt-5">
+                        <div class="feedback-item feedback-item-active p-5 radius-20 text-center">
+                            <p class="text-darkblue">
+                                @Model[1].Text
+                            </p>
+                            <div class="feedback-profile">
+                                <p class="text-darkblue fw-bold mt-5">
+                                    @Model[1].Fullname
+                                </p>
+                                <p class="text-pencil">
+                                    @Model[1].Subject
+                                </p>
+                            </div>
+                        </div>
+                        <img src="/Images/FeedBacks/@Model[1].ImageName"
+                             width="100" height="100"
+                             class="rounded-circle me-4 mt-5" />
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="text-center pt-5">
+                        <div class="feedback-item p-5 radius-20 text-center">
+                            <p class="text-pencil">@Model[2].Text</p>
+                            <div class="feedback-profile">
+                                <p class="text-darkblue fw-bold mt-5">@Model[2].Fullname</p>
+                                <p class="text-pencil">@Model[2].Subject</p>
+                            </div>
+                        </div>
+                        <img src="/Images/FeedBacks/@Model[2].ImageName"
+                             width="100" height="100"
+                             class="rounded-circle me-4 mt-5" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-lg-none d-xl-none d-xxl-none d-md-block d-sm-block">
+            <div id="FeedBack-mobile"
+                 class="carousel slide mt-5"
+                 data-ride="carousel"
+                 data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="4000">
+                        <div class="text-center pt-5">
+                            <div class="feedback-item p-5 radius-20 text-center">
+                                <p class="text-pencil">@Model[0].Text</p>
+                                <p class="text-darkblue fw-bold mt-5">@Model[0].Fullname</p>
+                                <p class="text-pencil">@Model[0].Subject</p>
+                            </div>
+                            <img src="/Images/FeedBacks/@Model[0].ImageName"
+                                 width="100" height="100"
+                                 class="rounded-circle me-4 mt-5" />
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="4000">
+                        <div class="text-center pt-5">
+                            <div class="feedback-item p-5 radius-20 text-center">
+                                <p class="text-darkblue">@Model[1].Text</p>
+                                <p class="text-darkblue fw-bold mt-5">@Model[1].Fullname</p>
+                                <p class="text-pencil">@Model[1].Subject</p>
+                            </div>
+                            <img src="/Images/FeedBacks/@Model[1].ImageName"
+                                 width="100" height="100"
+                                 class="rounded-circle me-4 mt-5" />
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="4000">
+                        <div class="text-center pt-5">
+                            <div class="feedback-item p-5 radius-20 text-center">
+                                <p class="text-pencil">@Model[2].Text</p>
+                                <p class="text-darkblue fw-bold mt-5">@Model[2].Fullname</p>
+                                <p class="text-pencil">@Model[2].Subject</p>
+                            </div>
+                            <img src="/Images/FeedBacks/@Model[2].ImageName"
+                                 width="100" height="100"
+                                 class="rounded-circle me-4 mt-5" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

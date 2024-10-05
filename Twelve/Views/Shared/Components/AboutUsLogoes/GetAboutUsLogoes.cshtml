@@ -1,0 +1,24 @@
+﻿@model ViewModels.AboutUsLogoImagesViewModel
+
+<div class="col-lg-6 col-md-12">
+    <div class="row">
+        @foreach (var item in Model.NormalPics)
+        {
+            <div class="col-lg-4 col-md-12">
+                <img src="/Images/Site/@item.ImageName"
+                     class="hoviat-img w-100"
+                     alt="دوازده" />
+            </div>
+        }
+    </div>
+</div>
+@foreach (var item in Model.MainPics)
+{
+    <div class="col-lg-6 col-md-12">
+        <div class="text-center">
+            <img src="/Images/Site/@item.ImageName"
+                 class="mt-5 w-md-100"
+                 alt="دوازده" />
+        </div>
+    </div>
+}

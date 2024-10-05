@@ -1,0 +1,63 @@
+﻿@model ViewModels.FaqsCrudViewModel
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            افزودن سوال متداول
+                            <span class="text-dark mx-2">@ViewBag.Message</span>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="post" enctype="multipart/form-data">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="form-group">
+                                        <label for="Question">سوال</label>
+                                        <textarea rows="5" class="form-control w-100" name="Question" id="Question" placeholder="سوال را وارد کنید"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Answer">پاسخ</label>
+                                        <textarea rows="5" class="form-control w-100" name="Answer" id="Answer" placeholder="پاسخ را وارد کنید"></textarea>
+                                    </div>
+                                    <div class="form-check">
+                                        @Html.CheckBoxFor(model => model.IsMain,htmlAttributes: new {@class="form-check-input"})
+                                        @Html.ValidationMessageFor(model => model.IsMain, "", new { @class = "text-danger" })
+                                        @Html.LabelFor(model => model.IsMain,"قرار گرفتن سوال در بخش اصلی", htmlAttributes: new { @class = "form-check-label" })
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="card card-info">
+                                        <div class="card-header">
+                                            <h3 class="card-title">دسته بندی</h3>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <!-- form start -->
+                                        @foreach (var item in Model.Groups)
+                                        {
+                                            <div class="form-check m-2">
+                                                <input type="checkbox" class="form-check-input" id="@item.GroupID" name="SelectedGroups" value="@item.GroupID">
+                                                <label class="form-check-label" for="@item.GroupID">@item.GroupName</label>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success">ثبت</button>
+                            <a href="/Admin/Faq" class="btn btn-info float-left">بازگشت به لیست</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>

@@ -1,0 +1,141 @@
+article {
+  padding: 48px;
+}
+
+.carousel-inner.aghaz {
+  border-radius: 24px;
+}
+
+.middle-col {
+  padding: 0;
+}
+
+.carousel-aghaz img {
+  width: 100%;
+}
+
+.middle-col-img {
+  height: 370px;
+}
+
+.download-box {
+  padding: 48px;
+}
+
+
+/*feature lg */
+.feature-lg-cards-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 20px;
+}
+
+.feature-lg-row-1 {
+  display: grid;
+  grid-template-columns: 628px 304px 304px;
+  gap: 20px !important;
+}
+
+.feature-lg-row-2 {
+  display: grid;
+  grid-template-columns: 304px 304px 628px;
+  gap: 20px !important;
+}
+:root {
+  --gradient: linear-gradient(
+    #3cd8c2,
+    #47c1cc,
+    #52a9d6,
+    #5e92e1,
+    #697beb,
+    #7463f5,
+    #7f4cff,
+    #fff,
+    #fff,
+    #fff,
+    #fff,
+    #fff,
+    #fff,
+    #fff,
+    #fff,
+    #fff,
+    #fff,
+    #fff,
+    #fff
+  );
+}
+.article-content {
+  margin-top: 15%;
+}
+.feature-item {
+  padding: 36px;
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 100px 1fr;
+  background-image: var(--gradient);
+  background-size: 100% 500%;
+  background-position: bottom;
+  border-radius: 25px;
+  height: 304px;
+  transition: all 1s;
+  position: relative;
+}
+.feature-item:hover {
+  cursor: pointer;
+  background-position: top;
+}
+
+.feature-lottie {
+  position: absolute;
+  top: -24px;
+  left: -79px;
+}
+
+.feature-item:hover .feature-lottie {
+  display: block !important;
+}
+
+.feature-item:hover .feature-svg {
+  display: none !important;
+}
+
+.feature-item h4,
+.feature-item p {
+  transition: all 1s;
+}
+
+.feature-item:hover h4,
+.feature-item:hover p {
+  color: #fff;
+}
+
+.feature-img-box {
+  justify-self: end;
+  /* height: 110px; */
+}
+/*feature lg */
+/*feature md */
+.features-box {
+  display: grid;
+  justify-content: center;
+}
+.feature-md-row-1 {
+  display: grid;
+  grid-template-columns: 228px 228px;
+  gap: 20px !important;
+}
+
+.feature-md-row-2 {
+  display: grid;
+  grid-template-columns: 447px;
+  gap: 20px !important;
+}
+
+/*feature md */
+
+/* FAQ */
+.btn-ertebat {
+  border-radius: 16px;
+}
+/* FAQ */

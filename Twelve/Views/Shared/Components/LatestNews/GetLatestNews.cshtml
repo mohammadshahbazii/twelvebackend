@@ -1,0 +1,26 @@
+﻿@model List<ViewModels.BlogItemViewModel>
+
+@foreach (var item in Model)
+{
+    <div class="radius-20 border py-3 px-2 mb-4">
+        <a href="/PostNews/@item.BlogID">
+            <div class="row single-chosen-article">
+                <div class="col-4">
+                    <img src="/Images/Blogs/@item.ImageName" alt="@item.Title" class="rounded" />
+                </div>
+                <div class="col-8">
+                    <h6 class="text-darkblue fw-bold pt-2 mb-2 lh-base">
+                        @item.Title
+                    </h6>
+                    <p class="text-darkblue my-1 fs-12">
+                        <span class="fa fa-folder-o mx-1"></span>
+                        @item.GroupName
+                        <span class="fa fa-clock-o mx-1"></span>
+                        @item.CreateDate
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+
+}

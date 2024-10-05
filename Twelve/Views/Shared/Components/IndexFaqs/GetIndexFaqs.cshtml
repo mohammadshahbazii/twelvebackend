@@ -1,0 +1,31 @@
+﻿@model List<ViewModels.FaqsItemViewModel>
+
+@if (Model.Any())
+{
+    <div class="accordion" id="Questions">
+        @foreach (var item in Model)
+        {
+            <div class="accordion-item my-2">
+                <h2 class="accordion-header" id="q_@(item.FaqID)">
+                    <button class="accordion-button collapsed text-darkblue fs-6"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#a_@(item.FaqID)"
+                            aria-expanded="true"
+                            aria-controls="a_@(item.FaqID)">
+                        @item.Question
+                    </button>
+                </h2>
+                <div id="a_@(item.FaqID)"
+                     class="accordion-collapse collapse"
+                     aria-labelledby="q_@(item.FaqID)"
+                     data-bs-parent="#Questions">
+                    <div class="accordion-body p-4">
+                        <p class="text-pencil">@item.Answer</p>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+}

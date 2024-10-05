@@ -1,0 +1,25 @@
+﻿@model List<DataLayer.AboutUsItem>
+@if (Model.Any())
+{
+    <div class="about-features row my-5">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-4 col-md-12 mb-5 px-3">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="rounded-circle p-35 bg-lightgreen text-center">
+                            <img src="/Images/Site/@item.ImageName"
+                                 class="w-h-100" />
+                        </div>
+                    </div>
+                    <div class="col-9 pt-1">
+                        <h5 class="text-darkblue fw-bold">
+                            @item.ItemTitle
+                        </h5>
+                        <p class="text-pencil mt-3">@item.ItemDescription</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

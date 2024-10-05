@@ -1,0 +1,196 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>db1c94f0-2a65-47cb-a462-978cdf059ed3</UserSecretsId>
+    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\Images\Site\logo-colorful-per-en.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Controllers\HomeController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Assest\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\Assest\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\Assest\img\Arrow.svg" />
+    <None Include="wwwroot\Assest\img\burger.svg" />
+    <None Include="wwwroot\Assest\img\instagram.svg" />
+    <None Include="wwwroot\Assest\img\mp3-player2.svg" />
+    <None Include="wwwroot\Assest\img\news.svg" />
+    <None Include="wwwroot\Assest\img\search.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\1000023.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\1168720.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\2759529.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\2759599.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\2902174.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\5002185.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\5085957.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\adie-koliat.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\adie-ziarat.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\ahadis-mahdavi.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\bazar-green-exception.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\bazar-green.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\bazar.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\bell.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\bird-index.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\blog-link-round.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\brid-middle-col.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\browser.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\buroklammer3.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\campain.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\cassette.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\chart-purple.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\checked-purple.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\checked.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\clipboard-1.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\clipboard2 %282%29.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\clipboard2-1.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\clipboard3.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\clipboard5.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\download-desktop.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\download.svg" />
+    <None Include="wwwroot\Images\Site\erae-barname-roshd.svg" />
+    <None Include="wwwroot\Images\Site\erae-mohtava.svg" />
+    <None Include="wwwroot\Images\Site\ertegha-farhangr-2.svg" />
+    <None Include="wwwroot\Images\Site\ertegha-farhangr-3.svg" />
+    <None Include="wwwroot\Images\Site\ertegha-farhangr.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\forooshgah-mahdavi.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\google-play-green.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\google-play.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\green-circle.svg" />
+    <None Include="wwwroot\Images\Site\hamkari.svg" />
+    <None Include="wwwroot\Images\Site\icon-grid-system.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\ide-mahdavi.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\kelas-mahdaviat.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\ketabkhaneh.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\khatm - white.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\khatm.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\Layer 695 %282%29.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\Layer 695.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\Layer 696 copy 2.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\Layer 696.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\Layer 698.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\Layer 699.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\Layer 701.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\left-arrow.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\list.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\logo-colorful-en.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\logo-colorful-per-en.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\logo-colorful-per.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\logo-colorful-s-en.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\logo-colorful-s-per-en.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\logo-colorful-s-per.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\logo-mobile-white.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\logo-white-desktop.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\microphone.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\miket-green.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\miket.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\mohtava-file.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\mosabeghat - white.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\mosabeghat.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\mp3-player2.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\music-app.svg" />
+    <None Include="wwwroot\Images\Site\logo-colorful-per-en.svg" />
+    <None Include="wwwroot\Images\Site\negative-version.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\parchment.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\person-purple.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\phone.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\poshtibani.svg" />
+    <None Include="wwwroot\Images\Site\positive-version.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\Rectangle 3 copy.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\saat-kari.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\search-mobile.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\search-normal.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\shobahat-porseman-2.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\shobahat-porseman.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\sokhanrani.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\taghvim-azangoo.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\tark-gonah - white.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\tark-gonah.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\telegram.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\text.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\top-right-arrow.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\twitter.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\user-1-testimonal.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\user-2-testimonal.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\user-3-testimonal.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\vibration.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\website-icon.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\whatsapp.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\youtube-logo.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\zabt-soat.svg" />
+    <None Include="wwwroot\Assest\img\SVG\Main\مایکت.svg" />
+    <None Include="wwwroot\Assest\img\SVG\submenu1\1000023.svg" />
+    <None Include="wwwroot\Assest\img\SVG\submenu1\2759529.svg" />
+    <None Include="wwwroot\Assest\img\SVG\submenu1\5085957.svg" />
+    <None Include="wwwroot\Assest\img\SVG\submenu1\clipboard.svg" />
+    <None Include="wwwroot\Assest\img\SVG\submenu1\clipboard3.svg" />
+    <None Include="wwwroot\Assest\img\SVG\submenu1\Ellipse 7.svg" />
+    <None Include="wwwroot\Assest\img\SVG\submenu1\email.svg" />
+    <None Include="wwwroot\Assest\img\SVG\submenu1\Layer 696 copy 2.svg" />
+    <None Include="wwwroot\Assest\img\SVG\submenu1\parchment.svg" />
+    <None Include="wwwroot\Assest\img\SVG\submenu2\2902174.svg" />
+    <None Include="wwwroot\Assest\img\SVG\submenu2\5002185.svg" />
+    <None Include="wwwroot\Assest\img\SVG\submenu2\browser.svg" />
+    <None Include="wwwroot\Assest\img\SVG\submenu2\cassette.svg" />
+    <None Include="wwwroot\Assest\img\SVG\submenu2\clipboard.svg" />
+    <None Include="wwwroot\Assest\img\SVG\submenu2\clipboard3.svg" />
+    <None Include="wwwroot\Assest\img\SVG\submenu2\clipboard4444.svg" />
+    <None Include="wwwroot\Assest\img\SVG\submenu2\Layer 1.svg" />
+    <None Include="wwwroot\Assest\img\SVG\submenu2\microphone.svg" />
+    <None Include="wwwroot\Assest\img\SVG\submenu2\music-app.svg" />
+    <None Include="wwwroot\Assest\img\telegram.svg" />
+    <None Include="wwwroot\Assest\img\twitter.svg" />
+    <None Include="wwwroot\Assest\img\whatsapp.svg" />
+    <None Include="wwwroot\Assest\img\youtube.svg" />
+    <None Include="wwwroot\Assest\js\About-carousel.js" />
+    <None Include="wwwroot\Assest\js\aos.js" />
+    <None Include="wwwroot\Assest\js\jquery-2.1.1.js" />
+    <None Include="wwwroot\Assest\js\Scrolled-GreenNav.js" />
+    <None Include="wwwroot\Assest\js\Scrolled-WhiteNav.js" />
+    <None Include="wwwroot\Images\Sliders\slider1-m.png" />
+    <None Include="wwwroot\Images\Sliders\slider1.png" />
+    <None Include="wwwroot\Images\Sliders\slider2-1.png" />
+    <None Include="wwwroot\Images\Sliders\slider2-2.png" />
+    <None Include="wwwroot\Images\Sliders\slider2-m.png" />
+    <None Include="wwwroot\Images\Sliders\slider3-m.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Grpc.Core" Version="2.46.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.12" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="SmsIrRestful" Version="1.1.3" />
+    <PackageReference Include="ZarinpalSandbox" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataLayer\DataLayer.csproj" />
+    <ProjectReference Include="..\Services\Services.csproj" />
+    <ProjectReference Include="..\Utilities\Utilities.csproj" />
+    <ProjectReference Include="..\ViewModels\ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+  </ItemGroup>
+
+</Project>

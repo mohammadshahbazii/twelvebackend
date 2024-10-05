@@ -1,0 +1,173 @@
+﻿@model List<ViewModels.FeaturesItemViewModel>
+
+<div id="infinite-nav" class="container-fluid">
+    <div data-aos="fade-up" data-aos-duration="1800">
+        <div class="d-none d-lg-block d-xl-block d-xxl-block">
+            <!-- Infinite Autoplay Slider -->
+            <div id="Infinite" class="sticky-top top-15 carousel slide mt-5">
+                <div class="row">
+                    <div class="col-1">
+                        <button class="carousel-control-prev no-bg text-dark"
+                                type="button"
+                                data-bs-target="#Infinite"
+                                data-bs-slide="prev">
+                            <a class="bg-white py-2 px-3 btn btn-light rounded-circle">
+                                <span class="fa fa-angle-right text-dark"></span>
+                            </a>
+                        </button>
+                    </div>
+                    <div class="col-10">
+                        <div class="carousel-inner">
+                            <div class="carousel-item carousel-item-infinite active">
+                                <div class="row px-3">
+                                    @for (int i = 0; i < Model.Count/3; i++)
+                                    {
+                                        <div class="col-3">
+                                            <a href="/Feature/@Model[i].Demo">
+                                                <div class="radius-20 bg-white pt-5 text-center">
+                                                    <div class="target-box px-5">
+                                                        <img src="/Images/Features/@Model[i].ImageName"
+                                                             width="68"
+                                                             height="68" />
+                                                        <div class="targets-dsc h-auto text-center">
+                                                            <p class="text-darkblue text-center fw-bold mt-5">
+                                                                @Model[i].Title
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    }
+                                </div>
+                            </div>
+                            <div class="carousel-item carousel-item-infinite">
+                                <div class="row px-3">
+                                    @for (int i = (Model.Count / 3); i < ((Model.Count * 2) / 3); i++)
+                                    {
+                                        <div class="col-3">
+                                            <a href="/Feature/@Model[i].Demo">
+                                                <div class="radius-20 bg-white pt-5 text-center">
+                                                    <div class="target-box px-5">
+                                                        <img src="/Images/Features/@Model[i].ImageName"
+                                                             width="68"
+                                                             height="68" />
+                                                        <div class="targets-dsc h-auto text-center">
+                                                            <p class="text-darkblue text-center fw-bold mt-5">
+                                                                @Model[i].Title
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    }
+                                </div>
+                            </div>
+                            <div class="carousel-item carousel-item-infinite">
+                                <div class="row px-3">
+                                    @for (int i = ((Model.Count * 2) / 3); i < Model.Count; i++)
+                                    {
+                                        <div class="col-3">
+                                            <a href="/Feature/@Model[i].Demo">
+                                                <div class="radius-20 bg-white pt-5 text-center">
+                                                    <div class="target-box px-5">
+                                                        <img src="/Images/Features/@Model[i].ImageName"
+                                                             width="68"
+                                                             height="68" />
+                                                        <div class="targets-dsc h-auto text-center">
+                                                            <p class="text-darkblue text-center fw-bold mt-5">
+                                                                @Model[i].Title
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <button class="carousel-control-next no-bg text-dark"
+                                type="button"
+                                data-bs-target="#Infinite"
+                                data-bs-slide="next">
+                            <a class="bg-white py-2 px-3 btn btn-light rounded-circle">
+                                <span class="fa fa-angle-left text-dark"></span>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-lg-none d-xl-none d-xxl-none d-md-block d-sm-block">
+            <!-- Infinite Autoplay Slider -->
+            <div id="Infinite-mobile"
+                 class="carousel slide mt-5"
+                 data-ride="carousel"
+                 data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    @foreach (var item in Model)
+                    {
+                        if (item == Model[0])
+                        {
+                            <div class="carousel-item carousel-item-infinite active"
+                                 data-bs-interval="100">
+                                <div class="row px-3">
+                                    <div class="col-12">
+                                        <a href="/Feature/@item.Demo">
+                                            <div class="radius-20 bg-white pt-5 text-center">
+                                                <div class="target-box px-5">
+                                                    <img src="/Images/Features/@item.ImageName"
+                                                         width="68"
+                                                         height="68" />
+                                                    <div class="targets-dsc h-auto text-center">
+                                                        <p class="text-darkblue text-center fw-bold mt-5">
+                                                            @item.Title
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                        else
+                        {
+                            <div class="carousel-item carousel-item-infinite "
+                                 data-bs-interval="100">
+                                <div class="row px-3">
+                                    <div class="col-12">
+                                        <a href="/Feature/@item.Demo">
+                                            <div class="radius-20 bg-white pt-5 text-center">
+                                                <div class="target-box px-5">
+                                                    <img src="/Images/Features/@item.ImageName"
+                                                         width="68"
+                                                         height="68" />
+                                                    <div class="targets-dsc h-auto text-center">
+                                                        <p class="text-darkblue text-center fw-bold mt-5">
+                                                            @item.Title
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <!-- Content -->
+</div>
