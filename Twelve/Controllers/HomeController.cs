@@ -49,6 +49,7 @@ namespace Twelve.Controllers
         [Route("AboutUs")]
         public IActionResult AboutUs()
         {
+
             ISiteRepository siteRepository = new SiteRepository();
             var content = siteRepository.GetAboutUsContent();
             return View(content);
