@@ -1,11 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ViewModels
 {
+
+    public class SeoTagsViewModel
+    {
+        public int BlogID { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string ImageName { get; set; }
+    }
 
     public class IntroduceAppViewModel
     {
@@ -43,6 +52,7 @@ namespace ViewModels
     {
         public List<FaqsItemViewModel> Faqs { get; set; }
         public List<BlogItemViewModel> Blogs { get; set; }
+        public List<FeaturesItemViewModel> Features { get; set; }
     }
 
     public class OrderItemViewModel
@@ -100,9 +110,13 @@ namespace ViewModels
     public class DownloadLinkCrudViewModel
     {
         public int DownloadID { get; set; }
+        [Display(Name ="عنوان")]
+        [Required(ErrorMessage ="لطفا {0} را وارد کنید")]
         public string Title { get; set; }
         public string ShortDescription { get; set; }
         public string ImageName { get; set; }
+        [Display(Name = "لینک")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string Link { get; set; }
         public List<DownloadLinkGroupViewModel> Groups { get; set; }
         public List<int> SelectedGroups { get; set; }

@@ -1,0 +1,11 @@
+﻿@model ViewModels.SeoTagsViewModel
+
+<meta name="title" content="@Model.Title" />
+<meta name="description" content="@Model.Description" />
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content="@Model.Title">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://12application.ir/Images/Blogs/@Model.ImageName">
+<meta property="og:url" content="https://12application.ir/PostBlogs/@Model.BlogID">
+<meta property="og:description" content="@Model.Description">

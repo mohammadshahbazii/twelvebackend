@@ -13,24 +13,29 @@
                     <!-- /.card-header -->
                     <!-- form start -->
                     <form role="form" method="post" enctype="multipart/form-data">
-                        @Html.HiddenFor(m=> m.FeatureId)
-                        @Html.HiddenFor(m=> m.ImageName)
-                        @Html.HiddenFor(m=> m.AnimateFilename)
-                        @Html.HiddenFor(m=> m.FirstArticleImage)
-                        @Html.HiddenFor(m=> m.SecondArticleImage)
-                        @Html.HiddenFor(m=> m.IntroduceImageName)
+                        @Html.HiddenFor(m => m.FeatureId)
+                        @Html.HiddenFor(m => m.ImageName)
+                        @Html.HiddenFor(m => m.AnimateFilename)
+                        @Html.HiddenFor(m => m.FirstArticleImage)
+                        @Html.HiddenFor(m => m.SecondArticleImage)
+                        @Html.HiddenFor(m => m.IntroduceImageName)
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="Title">عنوان</label>
                                 <input type="text" name="Title" class="form-control" id="Title" value="@Model.Title" placeholder="عنوان را وارد کنید">
+                                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-group">
                                 <label for="ShortDescription">توضیح کوتاه</label>
                                 <input type="text" class="form-control" name="ShortDescription" value="@Model.ShortDescription" id="ShortDescription" placeholder="توضیح کوتاه را وارد کنید">
+                                @Html.ValidationMessageFor(model => model.ShortDescription, "", new { @class = "text-danger" })
+
                             </div>
                             <div class="form-group">
                                 <label for="FirstDescription">توضیح</label>
                                 <textarea rows="5" class="form-control w-100" name="FirstDescription" id="FirstDescription" placeholder="توضیح را وارد کنید">@Model.FirstDescription</textarea>
+                                @Html.ValidationMessageFor(model => model.FirstDescription, "", new { @class = "text-danger" })
+
                             </div>
                             <div class="form-group ">
                                 <div class="text-center">
@@ -96,7 +101,7 @@
                                 </div>
                                 <div class="form-group m-3">
                                     <label for="SecondArticleDescription">توضیح مقاله دوم</label>
-                                    <textarea rows="5" class="form-control w-100" name="SecondArticleDescription" id="SecondArticleDescription"  placeholder="توضیح مقاله دوم را وارد کنید">@Model.SecondArticleDescription</textarea>
+                                    <textarea rows="5" class="form-control w-100" name="SecondArticleDescription" id="SecondArticleDescription" placeholder="توضیح مقاله دوم را وارد کنید">@Model.SecondArticleDescription</textarea>
                                 </div>
                                 <div class="form-group m-3 ">
                                     <div class="text-center">
@@ -126,7 +131,7 @@
         </div>
     </div><!-- /.container-fluid -->
 </div>
-@section Ckeditor{
+@section Ckeditor {
     <script>
         $(function () {
             $('#FirstDescription').ckeditor();

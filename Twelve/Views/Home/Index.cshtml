@@ -16,7 +16,10 @@
 @section Navbar{
     <partial name="_GreenNavbar"></partial>
 }
-
+@section SeoTags{
+  @await Component.InvokeAsync("MainSeoTags")
+  
+}
 @section Header{
     @await Component.InvokeAsync("IndexHeaderSlider")
 }

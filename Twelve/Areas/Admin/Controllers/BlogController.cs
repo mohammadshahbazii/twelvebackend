@@ -88,6 +88,18 @@ namespace Twelve.Areas.Admin.Controllers
         [Route("Create")]
         public IActionResult Create(BlogCrudViewModel blog, IFormFile imageProduct)
         {
+            if (blog.SelectedGroups == null)
+            {
+                ViewBag.SelectedMessage = "لطفا دسته بندی مدنظر خود را وارد کنید";
+                var content = blogRepository.GetModelForCreate();
+                return View(content);
+            }
+            if (imageProduct == null)
+            {
+                ViewBag.Message = "لطفا تصویر مدنظر خود را وارد کنید";
+                var content = blogRepository.GetModelForCreate();
+                return View(content);
+            }
             if (blogRepository.Create(blog,imageProduct))
             {
                 return RedirectToAction("Index");
@@ -118,6 +130,12 @@ namespace Twelve.Areas.Admin.Controllers
         [Route("Update/{InfoID}")]
         public IActionResult Update(BlogCrudViewModel blog, IFormFile imageProduct)
         {
+            if (blog.SelectedGroups == null)
+            {
+                ViewBag.SelectedMessage = "لطفا دسته بندی مدنظر خود را وارد کنید";
+                var content = blogRepository.GetModelForCreate();
+                return View(content);
+            }
             if (blogRepository.Update(blog , imageProduct))
             {
                 return RedirectToAction("Index");

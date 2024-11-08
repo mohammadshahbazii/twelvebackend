@@ -6,7 +6,10 @@
 @section Navbar{
     <partial name="_WhiteNavbar"></partial>
 }
+@section SeoTags {
+    @await Component.InvokeAsync("NewsSeoTag", new { blogId = Model.BlogID })
 
+}
 <!--Content-->
 <article class="position-relative">
     <div class="bg-silver p-5 position-relative">
@@ -36,14 +39,42 @@
                         </p>
                     </div>
                     <div class="col-lg-4 col-md-12">
-                        <div class="text-center mt-5 single-share-buttons">
-                            <a class="green-btn rounded-pill mx-3">
-                                اشتراک گذاری
-                                <span class="fa fa-share-alt mx-2"></span>
-                            </a>
-                            <a onclick="CopyUrl()" class="btn btn-outline-dark p-19-21 px-5 rounded-pill mx-3">
-                                کپی لینک
-                            </a>
+                        <div class="text-center mt-5">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 py-lg-0 py-2">
+                                    <div class="dropdown-center ">
+                                        <a id="sharebutton" class="green-btn rounded-pill mx-3 d-block" data-bs-toggle="dropdown">
+                                            اشتراک گذاری
+                                            <span class="fa fa-share-alt mx-2"></span>
+                                        </a>
+                                        <ul id="sharebutton-menu" class="dropdown-menu dropdown-menu-center px-3 justify-content-between w-100 mt-2 rounded-pill">
+                                            <li>
+                                                <a class="btn p-2 fs-5 d-inline-block" title="اشتراک گذاری در توییتر" href="https://twitter.com/intent/tweet?url=https://12application.ir/PostNews/@Model.BlogID" target="_blank">
+                                                    <span class="fa twitter fa-twitter"></span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="btn p-2 fs-5 d-inline-block" title="اشتراک گذاری در تلگرام" href="https://t.me/share/url?url=https://12application.ir/PostNews/@Model.BlogID" target="_blank">
+                                                    <span class="fa telegram fa-telegram"></span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="btn p-2 fs-5 d-inline-block" title="اشتراک گذاری در واتساپ" href="https://api.whatsapp.com/send?text=@(Model.Title) https://12application.ir/PostNews/@Model.BlogID" target="_blank">
+                                                    <span class="fa whatsapp fa-whatsapp"></span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 py-lg-0 py-2">
+                                    <a onclick="CopyUrl()" class="btn btn-outline-dark d-block p-19-21 px-5 rounded-pill mx-3">
+                                        کپی لینک
+                                    </a>
+                                </div>
+                            </div>
+
+
+
                         </div>
                     </div>
                 </div>

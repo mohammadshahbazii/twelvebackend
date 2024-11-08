@@ -34,7 +34,7 @@
 
 
 </head>
-<body class="hold-transition sidebar-mini">
+<body id="AdminBody" class="hold-transition sidebar-mini">
     <div class="wrapper">
 
         <!-- Navbar -->
@@ -99,7 +99,7 @@
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <!-- Add icons to the links using the .nav-icon class
                                  with font-awesome or any other icon font library -->
-                            
+
                             <li class="nav-item">
                                 <a href="/Admin" class="nav-link">
                                     <i class="nav-icon fa fa-dashboard"></i>
@@ -118,7 +118,7 @@
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview">
-                                    
+
                                     <li class="nav-item">
                                         <a href="/Admin/Blog" class="nav-link">
                                             <i class="fa fa-circle-o nav-icon"></i>
@@ -168,7 +168,7 @@
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fa fa fa-th"></i>
                                     <p>
-                                         اخبار منوهای اپلیکیشن
+                                        اخبار منوهای اپلیکیشن
                                         <i class="right fa fa-angle-left"></i>
                                     </p>
                                 </a>
@@ -416,9 +416,29 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Template ckeditor -->
+    <script>
+        $(document).ready(function () {
+            function checkWindowSize() {
+                var width = $(window).width();
+                if (width < 992) {  // Bootstrap Medium screen sizes (768px to 991px)
+                    $('#AdminBody').removeClass('sidebar-open');
+                }
+            }
+
+            // Check window size on load
+            checkWindowSize();
+
+            // Optionally, check window size on resize
+            $(window).resize(function () {
+                checkWindowSize();
+            });
+        });
+
+    </script>
     <script src="~/ckeditor/ckeditor.js"></script>
     <script src="~/ckeditor/adapters/jquery.js"></script>
-    @RenderSection("Ckeditor",false)
-    
+    @RenderSection("Ckeditor", false)
+
+
 </body>
 </html>

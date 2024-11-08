@@ -4,7 +4,10 @@
 @section Navbar{
     <partial name="_WhiteNavbar"></partial>
 }
+@section SeoTags {
+    @await Component.InvokeAsync("MainSeoTags")
 
+}
 
 <!--Content-->
 <article class="position-relative">

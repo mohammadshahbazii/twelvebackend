@@ -16,10 +16,20 @@
             </div>
             <a href="/PostNews/@posts.BlogID">
                 <div class="blog-news-footer">
-                    <p class="blog-news-source text-darkblue fw-bold">
-                        <span class="fa fa-clock-o"></span>
-                        @posts.CreateDate | @posts.Source
-                    </p>
+                    @if (!string.IsNullOrEmpty(posts.Source))
+                    {
+                        <p class="blog-news-source text-darkblue fw-bold">
+                            <span class="fa fa-clock-o"></span>
+                            @posts.CreateDate | @posts.Source
+                        </p>
+                    }
+                    else
+                    {
+                        <p class="blog-news-source text-darkblue fw-bold">
+                            <span class="fa fa-clock-o"></span>
+                            @posts.CreateDate
+                        </p>
+                    }
                     <p class="blog-news-motalee text-darkblue">
                         مطالعه پست
                         <span>

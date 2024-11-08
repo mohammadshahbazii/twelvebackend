@@ -11,10 +11,14 @@ namespace Services
 {
     public interface IBlogRepository : IDisposable
     {
+        public SeoTagsViewModel GetBlogSeoTag(int blogID);
+        public SeoTagsViewModel GetNewsSeoTag(int blogID);
         public string GetBlogBanner();
         public CreateRelatedBlogsViewModel GetModelForCreateRelatedBlog(int BlogID , string q ="");
 
         public bool CreateRelatedBlogs(CreateRelatedBlogsViewModel blogs);
+
+        public List<BlogItemViewModel> GetBlogsByTag(string tag);
 
         public List<BlogItemViewModel> GetGroupsForRelated(string q =""); 
         public bool AnswerComment(BlogComment comment);

@@ -63,6 +63,22 @@ namespace Twelve.Areas.Admin.Controllers
         [Route("Create")]
         public IActionResult Create(Feature feature, IFormFile imageProduct, IFormFile animeteFile, IFormFile imageFAProduct, IFormFile imageSAProduct , IFormFile introduceProduct)
         {
+            if (imageProduct == null)
+            {
+                ViewBag.Message = "لطفا تصویر مربوطه را وارد کنید";
+                return View();
+            }
+            if (animeteFile == null)
+            {
+                ViewBag.Message = "لطفا فایل انیمیشن مربوطه را وارد کنید";
+                return View();
+            }
+            if (introduceProduct == null)
+            {
+                ViewBag.Message = "لطفا تصویر معرفی نرم افزار در صفحه اول مربوطه را وارد کنید";
+                return View();
+            }
+
             if (featuresRepository.Create(feature, imageProduct,animeteFile,imageFAProduct,imageSAProduct,introduceProduct))
             {
                 return RedirectToAction("Index");

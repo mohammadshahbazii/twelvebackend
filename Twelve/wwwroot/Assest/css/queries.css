@@ -878,7 +878,9 @@
 
 @media (max-width: 772px) {
     
-
+    .mobile-input{
+        font-size:10px!important;
+    }
     .last-footer-title::before {
         left: 40%;
     }

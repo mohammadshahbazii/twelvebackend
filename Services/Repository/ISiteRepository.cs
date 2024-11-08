@@ -58,5 +58,7 @@ namespace Services
         public List<SocialMediaItemViewModel> GetSocialMedia();
 
         public string GetDirectLink();
+
+        public SeoTagsViewModel GetSeoTags();
     }
 }

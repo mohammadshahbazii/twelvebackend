@@ -43,6 +43,18 @@ namespace Twelve.Areas.Admin.Controllers
         [Route("Create")]
         public IActionResult Create(DownloadLinkCrudViewModel downloadLink, IFormFile imageProduct)
         {
+            if (downloadLink.SelectedGroups == null)
+            {
+                ViewBag.Message = "لطفا دسته بندی مدنظر خود را انتخاب کنید";
+                var content = siteRepository.GetDownloadLinkModelForCreate();
+                return View(content);
+            }
+            if (imageProduct == null)
+            {
+                ViewBag.Message = "لطفا تصویر مدنظر خود را انتخاب کنید";
+                var content = siteRepository.GetDownloadLinkModelForCreate();
+                return View(content);
+            }
             if (siteRepository.Create(downloadLink, imageProduct))
             {
                 return RedirectToAction("Index");
@@ -73,9 +85,24 @@ namespace Twelve.Areas.Admin.Controllers
         [Route("Update/{InfoID}")]
         public IActionResult Update(DownloadLinkCrudViewModel downloadlink, IFormFile imageProduct)
         {
-            if (siteRepository.Update(downloadlink, imageProduct))
+            if (!downloadlink.SelectedGroups.Any())
             {
-                return RedirectToAction("Index");
+                ViewBag.Message = "لطفا دسته بندی مدنظر خود را انتخاب کنید";
+                var content = siteRepository.GetDownloadLinkModelForUpdate(downloadlink.DownloadID);
+                return View(content);
+            }
+            if (ModelState.IsValid)
+            {
+                if (siteRepository.Update(downloadlink, imageProduct))
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Message = "هنگام عملیات خطایی رخ داد لطفا مجددا تلاش کنید";
+                    var content = siteRepository.GetDownloadLinkModelForUpdate(downloadlink.DownloadID);
+                    return View(content);
+                }
             }
             else
             {
@@ -83,6 +110,8 @@ namespace Twelve.Areas.Admin.Controllers
                 var content = siteRepository.GetDownloadLinkModelForUpdate(downloadlink.DownloadID);
                 return View(content);
             }
+
+
         }
 
         [Route("Delete/{InfoID}")]

@@ -42,6 +42,11 @@ namespace Twelve.Areas.Admin.Controllers
         [Route("Create")]
         public IActionResult Create(Advertisement Advertisements, IFormFile imageProduct)
         {
+            if (imageProduct == null)
+            {
+                ViewBag.Message = "لطفا تصویر مورد نظر را وارد کنید";
+                return View();
+            }
             if (advertisementsRepository.Create(Advertisements, imageProduct))
             {
                 return RedirectToAction("Index");
@@ -71,14 +76,23 @@ namespace Twelve.Areas.Admin.Controllers
         [Route("Update/{InfoID}")]
         public IActionResult Update(Advertisement Advertisements, IFormFile imageProduct)
         {
-            if (advertisementsRepository.Update(Advertisements, imageProduct))
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("Index");
+                if (advertisementsRepository.Update(Advertisements, imageProduct))
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Message = "هنگام عملیات خطایی رخ داد لطفا مجددا تلاش کنید";
+                    return View();
+                }
             }
             else
             {
-                ViewBag.Message = "هنگام عملیات خطایی رخ داد لطفا مجددا تلاش کنید";
-                return View();
+                ViewBag.Message = "لطفا لینک مورد نظر را وارد کنید";
+                var content = advertisementsRepository.GetByID(Advertisements.AdvertisementId);
+                return View(content);
             }
         }
 

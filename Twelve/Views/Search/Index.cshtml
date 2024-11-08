@@ -5,7 +5,19 @@
 @section Navbar{
     <partial name="_WhiteNavbar"></partial>
 }
+@section SeoTags {
+    @await Component.InvokeAsync("MainSeoTags")
 
+}
+@section ExtraLibrary {
+    <link rel="stylesheet" href="/Assest/css/extra.css" />
+    <link rel="stylesheet" href="/Assest/css/queries.css" />
+
+    <!-- SVG -->
+    <?xml version="1.0" encoding="UTF-8" ?>
+    <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+    <script src="https://unpkg.com/@@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+}
 
 <!--Content-->
 <article class="position-relative">
@@ -97,10 +109,21 @@
                                 </a><a href="/PostBlogs/@item.BlogID" class="text-darkblue">
                                     <p class="text-darkblue mt-4">@item.Title</p>
                                 </a>
-                                <p class="text-darkblue fw-bold">
-                                    <span class="fa fa-clock-o"></span>
-                                    @item.CreateDate روز قبل | @item.Source
-                                </p>
+                                @if (!string.IsNullOrEmpty(item.Source))
+                                {
+                                    <p class="text-darkblue fw-bold">
+                                        <span class="fa fa-clock-o"></span>
+                                        @item.CreateDate روز قبل  | @item.Source 
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p class="text-darkblue fw-bold">
+                                        <span class="fa fa-clock-o"></span>
+                                        @item.CreateDate روز قبل
+                                    </p>
+                                }
+                                
 
                             </div>
                         }
@@ -113,6 +136,57 @@
             </div>
         </div>
     </div>
+    <article class="bg-silver p-5 position-relative">
+        <div class="container">
+            <!-- Features -->
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <h2 class="text-darkblue fw-bold d-inline-block font-ExtraBold">
+                        جستجوی "@ViewBag.q" در ویژگی ها
+                    </h2>
+                </div>
+            </div>
+            @if (Model.Features.Any())
+            {
+                <div class="mt-5">
+                    <div class="row">
+                        @for (int i = 0; i < (Model.Features.Count); i++)
+                        {
+                            <div class="col-lg-3  col-md-6 col-12 mb-2">
+                                <div class="feature-card">
+                                    <a href="/Feature/@Model.Features[i].Demo">
+                                        <div class="feature-item">
+                                            <div class="feature-img-box">
+                                                <lottie-player src="/Images/Features/Json/@Model.Features[i].AnimateImage" background="transparent" speed="1" style="width: 300px; height: 180px; display: none" class="feature-lottie" loop="" autoplay=""></lottie-player>
+                                                <img src="/Images/Features/@Model.Features[i].ImageName" alt="دوازده" class="feature-svg" width="70" height="60">
+                                            </div>
+                                            <div class="feature-content-box">
+                                                <h4 class="text-lightblue fw-bold">@Model.Features[i].Title</h4>
+                                                <p class="text-pencil">
+                                                    @Model.Features[i].ShortDescription
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+            else
+            {
+                <p>موردی در ویژگی های اپلیکیشن یافت نشد</p>
+            }
+            <!-- Features -->
+
+
+        </div>
+
+
+    </article>
+    
 </article>
 
 <!--Content-->

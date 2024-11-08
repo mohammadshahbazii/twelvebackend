@@ -2,71 +2,73 @@
     <div class="row">
         <div class="col-lg-6 col-md-12">
             <div class="input-group radius-20 mt-1 mb-3">
-                <span class="input-group-text border border-2 border-end-0 radius-20 bg-white px-3 py-4 fw-bold text-darkblue">
+                <span class="input-group-text border border-2 border-end-0 radius-20 bg-white px-lg-3 px-1 py-4 fw-bold text-darkblue mobile-input">
                     نام و نام خانوادگی
                 </span>
-                <span class="input-group-text border border-2 border-end-0 border-start-0 bg-white fs-12 px-3 py-4 text-pencil">
+                <span class="input-group-text border border-2 border-end-0 border-start-0 bg-white fs-12 px-lg-3 px-1 py-4 text-pencil mobile-input">
                     <span class="border border-2 border-start-0 border-top-0 border-bottom-0 pe-2">
                         (اجباری)
                     </span>
                 </span>
                 <input type="text" id="fullname"
-                       class="form-control border border-start-0 radius-20 border-2 bg-white px-3 py-4"
+                       class="form-control border border-start-0 radius-20 border-2 bg-white px-lg-3 px-1 py-4 mobile-input"
                        placeholder="نام خانوداگی خود را وارد کنید" />
             </div>
         </div>
         <div class="col-lg-6 col-md-12">
             <div class="input-group radius-20 mt-1 mb-3">
-                <span class="input-group-text border border-2 border-end-0 radius-20 bg-white px-3 py-4 fw-bold text-darkblue">ایمیل شما</span>
-                <span class="input-group-text border border-2 border-end-0 border-start-0 bg-white fs-12 px-3 py-4 text-pencil">
-                    <span class="border border-2 border-start-0 border-top-0 border-bottom-0 pe-2">
+                <span class="input-group-text border border-2 border-end-0 radius-20 bg-white px-lg-3 px-1 py-4 fw-bold text-darkblue mobile-input">ایمیل شما</span>
+                <span class="input-group-text border border-2 border-end-0 border-start-0 bg-white fs-12 px-lg-3 px-1 py-4 text-pencil mobile-input">
+                    <span class="border border-2 border-start-0 border-top-0 border-bottom-0 pe-2 mobile-input">
                         (اجباری)
                     </span>
                 </span>
                 <input type="email" id="Email"
-                       class="form-control text-start border border-start-0 radius-20 border-2 bg-white px-3 py-4"
+                       class="form-control text-start border border-start-0 radius-20 border-2 bg-white px-lg-3 px-1 py-4 mobile-input"
                        placeholder="ایمیل خود را وارد کنید" />
             </div>
+            <span id="emailError" class="text-red fs-12" style="display: none;">ایمیل شما نا معتبر است</span>
         </div>
         <div class="col-lg-6 col-md-12">
             <div class="input-group radius-20 mt-1 mb-3">
-                <span class="input-group-text border border-2 border-end-0 radius-20 bg-white px-3 py-4 fw-bold text-darkblue">موضوع پیام شما</span>
-                <span class="input-group-text border border-2 border-end-0 border-start-0 bg-white fs-12 px-3 py-4 text-pencil">
-                    <span class="border border-2 border-start-0 border-top-0 border-bottom-0 pe-2">
+                <span class="input-group-text border border-2 border-end-0 radius-20 bg-white px-lg-3 px-1 py-4 fw-bold text-darkblue mobile-input">موضوع پیام شما</span>
+                <span class="input-group-text border border-2 border-end-0 border-start-0 bg-white fs-12 px-lg-3 px-1 py-4 text-pencil mobile-input">
+                    <span class="border border-2 border-start-0 border-top-0 border-bottom-0 pe-2 mobile-input">
                         (اجباری)
                     </span>
                 </span>
                 <input type="text" id="Subject"
-                       class="form-control border border-start-0 radius-20 border-2 bg-white px-3 py-4"
+                       class="form-control border border-start-0 radius-20 border-2 bg-white px-lg-3 px-1 py-4 mobile-input"
                        placeholder="موضوع پیام خود را وارد کنید" />
             </div>
         </div>
         <div class="col-lg-6 col-md-12">
             <div class="input-group radius-20 mt-1 mb-3">
-                <span class="input-group-text border border-2 border-end-0 radius-20 bg-white px-3 py-4 fw-bold text-darkblue">
+                <span class="input-group-text border border-2 border-end-0 radius-20 bg-white px-lg-3 px-1 py-4 fw-bold text-darkblue mobile-input">
                     شماره موبایل
                 </span>
-                <span class="input-group-text border border-2 border-end-0 border-start-0 bg-white fs-12 px-3 py-4 text-pencil">
+                <span class="input-group-text border border-2 border-end-0 border-start-0 bg-white fs-12 px-lg-3 px-1 py-4 text-pencil mobile-input">
                     <span class="border border-2 border-start-0 border-top-0 border-bottom-0 pe-2">
                         (اجباری)
                     </span>
                 </span>
-                <input type="text" id="Phonenumber"
-                       class="form-control text-start border border-start-0 radius-20 border-2 bg-white px-3 py-4"
+                <input type="text" id="phonenumber"
+                       class="form-control text-start border border-start-0 radius-20 border-2 bg-white px-lg-3 px-1 py-4 mobile-input" dir="ltr"
                        placeholder="شماره موبایل خود را وارد کنید" />
             </div>
+            <span id="SmsResult" class="text-red fs-12"></span>
         </div>
         <div class="col-lg-12 col-md-12">
             <div class="input-group radius-20 mt-1 mb-3">
-                <span class="input-group-text border border-2 border-end-0 radius-20 bg-white text-darkblue">
-                    <span class="mt-n50 fw-bold">متن پیام ارسالی</span>
-                    <span class="mt-n50 text-pencil ms-3 pe-3 fs-12 border border-2 border-start-0 border-top-0 border-bottom-0">
+                <span class="input-group-text border border-2 border-end-0 radius-20 bg-white text-darkblue mobile-input">
+                    <span class="mt-n50 fw-bold mobile-input">متن پیام ارسالی</span>
+                    <span class="mt-n50 text-pencil ms-lg-3 ms-1 pe-lg-3 pe-1 fs-12 border border-2 border-start-0 border-top-0 border-bottom-0 mobile-input">
                         (اجباری)
                     </span>
                 </span>
                 <textarea rows="5" id="Text"
                     style="resize:none;"
-                          class="form-control text-start border border-start-0 radius-20 border-2 bg-white px-3 py-4"
+                          class="form-control text-start border border-start-0 radius-20 border-2 bg-white px-lg-3 px-1 py-4 mobile-input"
                           placeholder="متن پیام ارسالی خود را وارد کنید"></textarea>
             </div>
         </div>
@@ -81,3 +83,22 @@
         </div>
     </div>
 </form>
+<script>
+    document.getElementById("Email").addEventListener("focusout", function (event) {
+        var emailInput = document.getElementById("Email");
+        var emailError = document.getElementById("emailError");
+
+        if (!validateEmail(emailInput.value) && emailInput.value!=="") {
+            emailError.style.display = "block";
+            event.preventDefault(); // Prevent form submission
+        } else {
+            emailError.style.display = "none";
+        }
+    });
+
+    function validateEmail(email) {
+        var emailPattern = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/;
+        return emailPattern.test(email);
+    }
+</script>
+

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using Utilities;
@@ -14,6 +15,17 @@ namespace Services
     public class SiteRepository : ISiteRepository
     {
         TwelveDbContext db = new TwelveDbContext();
+
+        public SeoTagsViewModel GetSeoTags()
+        {
+            var modelDB = db.SiteSettings.FirstOrDefault();
+            var content = new SeoTagsViewModel() 
+            {
+                Title = modelDB.Title,
+                Description = modelDB.ShortDescription,
+            };
+            return content;
+        }
 
         public string CheckMessage(FeedBack feedBack)
         {
@@ -218,6 +230,23 @@ namespace Services
                     ImageName = blog.ImageName,
                     Source = blog.Source,
                     CreateDate = DateConvertor.PassDays(blog.CreateDate),
+                });
+            }
+
+            model.Features = new List<FeaturesItemViewModel>();
+            var features = db.Features.Where(f => f.Title.Contains(q)).ToList();
+            for (int i = 0; i < features.Count; i++)
+            {
+                model.Features.Add(new FeaturesItemViewModel()
+                {
+                    FeatureID = features[i].FeatureId,
+                    ImageName = features[i].ImageName,
+                    AnimateImage = features[i].AnimateFilename,
+                    ShortDescription = features[i].ShortDescription,
+                    Title = features[i].Title,
+                    Demo = features[i].Title.Replace(" ", "-"),
+                    IsBig = BigFeatureChecker.Check(i + 1)
+
                 });
             }
             return model;
@@ -687,6 +716,8 @@ namespace Services
             }
             return content;
         }
+
+        
 
 
         #endregion Contents

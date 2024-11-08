@@ -33,6 +33,14 @@ namespace Twelve.Controllers
             return ViewComponent("NewsByPagination", new { PageID = PageID });
         }
 
+        [Route("BlogsByTag/{tag}")]
+        public IActionResult BlogsByTag(string tag)
+        {
+            var content = blogRepository.GetBlogsByTag(tag);
+            ViewBag.tag = tag;
+            return View(content);
+        }
+
         [Route("PostBlogs/{BlogID}")]
         public IActionResult PostBlog(int BlogID)
         {

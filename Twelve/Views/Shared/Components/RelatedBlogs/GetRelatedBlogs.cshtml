@@ -13,9 +13,9 @@
                                 <h2 class="text-darkblue fw-bold d-inline-block">
                                     مقالات مرتبط دیگر
                                 </h2>
-                                <p class="text-green2 d-inline-block fw-bold mx-4">
+                                @* <p class="text-green2 d-inline-block fw-bold mx-4">
                                     این بخش توضیحات کمی درباره عنوان
-                                </p>
+                                </p> *@
                             </div>
                             <div class="col-lg-6 col-md-12">
                                 <div class="row">
@@ -40,10 +40,21 @@
                                             @item.Title
                                         </p>
                                     </a>
-                                    <p class="text-darkblue fw-bold">
-                                        <span class="fa fa-clock-o"></span>
-                                        @item.CreateDate | @item.Source
-                                    </p>
+
+                                    @if (!string.IsNullOrEmpty(item.Source))
+                                    {
+                                        <p class="text-darkblue fw-bold">
+                                            <span class="fa fa-clock-o"></span>
+                                            @item.CreateDate | @item.Source
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <p class="text-darkblue fw-bold">
+                                            <span class="fa fa-clock-o"></span>
+                                            @item.CreateDate 
+                                        </p>
+                                    }
                                 </div>
 
                             }

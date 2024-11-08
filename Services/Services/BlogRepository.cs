@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Dynamic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -1589,6 +1590,66 @@ namespace Services
         public string GetBlogBanner()
         {
             return db.SiteSettings.FirstOrDefault().BlogBannerImage;
+        }
+
+        public SeoTagsViewModel GetBlogSeoTag(int blogID)
+        {
+            var modelDB = GetByID(blogID);
+            var content = new SeoTagsViewModel()
+            {
+                ImageName = modelDB.ImageName,
+                BlogID = modelDB.BlogID,
+                Title = modelDB.Title,
+                Description = modelDB.ShortDescription,
+            };
+            return content;
+        }
+        public SeoTagsViewModel GetNewsSeoTag(int blogID)
+        {
+            var modelDB = GetNewsByID(blogID);
+            var content = new SeoTagsViewModel()
+            {
+                ImageName = modelDB.ImageName,
+                BlogID = modelDB.BlogID,
+                Title = modelDB.Title,
+                Description = modelDB.ShortDescription,
+            };
+            return content;
+        }
+
+        public List<BlogItemViewModel> GetBlogsByTag(string tag)
+        {
+            List<BlogItemViewModel> content = new List<BlogItemViewModel>();
+            var blogModelDB = db.BlogTags.Where(t => t.Tag == tag).Include(t=> t.Blog).Select(t=> t.Blog).ToList();
+            var newsModelDB = db.NewsTags.Where(t => t.Tag == tag).Include(t => t.News).Select(t => t.News).ToList();
+
+            foreach (var blog in blogModelDB)
+            {
+                content.Add(new BlogItemViewModel()
+                {
+                    BlogID = blog.BlogId,
+                    Title = blog.Title,
+                    ImageName = blog.ImageName,
+                    CreateDate = DateConvertor.PassDays(blog.CreateDate),
+                    Source = blog.Source,
+                    IsBlog = true
+                });
+            }
+
+            foreach (var blog in newsModelDB)
+            {
+                content.Add(new BlogItemViewModel()
+                {
+                    BlogID = blog.NewsId,
+                    Title = blog.Title,
+                    ImageName = blog.ImageName,
+                    CreateDate = DateConvertor.PassDays(blog.CreateDate),
+                    Source = blog.Source,
+                    IsBlog = false
+                });
+            }
+
+            return content;
         }
     }
 }

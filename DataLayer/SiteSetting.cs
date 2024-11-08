@@ -22,4 +22,8 @@ public partial class SiteSetting
     public int DownloadCount { get; set; }
 
     public string? BlogBannerImage { get; set; }
+
+    public string SiteLink { get; set; } = null!;
+
+    public string SiteLinkTitle { get; set; } = null!;
 }

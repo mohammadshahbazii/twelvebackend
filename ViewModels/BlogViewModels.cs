@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,8 +19,14 @@ namespace ViewModels
     public class BlogCrudViewModel
     {
         public int BlogID { get; set; }
+        [Display(Name = "عنوان")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string Title { get; set; }
+        [Display(Name = "توضیح کوتاه")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string ShortDescription { get; set; }
+        [Display(Name = "توضیحات")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string Description { get; set; }
         public string ImageName { get; set; }
         public string Source { get; set; }
@@ -107,6 +114,8 @@ namespace ViewModels
         public string ImageName { get; set; }
         public string GroupName { get; set; }
         public string Source { get; set; }
+
+        public bool IsBlog { get; set; }
     }
 
     public class BlogGroupsPostsViewModel

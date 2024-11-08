@@ -5,20 +5,28 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">
-                            لیست پیشنهادات کاربران
-                            <a href="/Admin/FeedBacks/Selected" class="btn btn-outline-info mx-3">نمایش پیام های انتخاب شده</a>
-                        </h3>
+                        <div class="row">
+                            <div class="col-lg-8 col-md-12">
+                                <h3 class="card-title">
+                                    لیست پیشنهادات کاربران
+                                    <a href="/Admin/FeedBacks/Selected" class="btn btn-outline-info mx-3">نمایش پیام های انتخاب شده</a>
+                                </h3>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="card-tools">
+                                    <div class="input-group input-group-sm" style="width: 100%;">
+                                        <input type="text" id="BlogSearch" name="BlogSearch" class="form-control float-right" placeholder="جستجو">
 
-                        <div class="card-tools">
-                            <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" id="BlogSearch" name="BlogSearch" class="form-control float-right" placeholder="جستجو">
-
-                                <div class="input-group-append">
-                                    <a onclick="GetFeedBacks($('#BlogSearch').val())" class="btn btn-default"><i class="fa fa-search"></i></a>
+                                        <div class="input-group-append">
+                                            <a onclick="GetFeedBacks($('#BlogSearch').val())" class="btn btn-default"><i class="fa fa-search"></i></a>
+                                        </div>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
+                        
+
                     </div>
                     <!-- /.card-header -->
                     <div id="FeedBackTable">

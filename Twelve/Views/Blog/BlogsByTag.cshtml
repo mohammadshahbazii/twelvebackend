@@ -1,0 +1,143 @@
+﻿@model List<ViewModels.BlogItemViewModel>
+@section NavbarJs {
+    <script src="/Assest/js/Scrolled-WhiteNav.js"></script>
+}
+@section Navbar {
+    <partial name="_WhiteNavbar"></partial>
+}
+@section SeoTags {
+    @await Component.InvokeAsync("MainSeoTags")
+
+}
+<div data-aos="fade-up" data-aos-duration="1800" class="my-5">
+    <p class="text-green2 fs-12 d-block fw-bold mx-4">
+        برای اطلاع از جدیدترین رویدادها با ما همراه باشید
+    </p>
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+
+            <h2 class="text-darkblue fw-bold d-inline-block mb-3 mx-4 font-ExtraBold">
+                آخرین مقالات و اخبار بر اساس "@ViewBag.tag"
+            </h2>
+
+        </div>
+    </div>
+    <!-- Tab panes -->
+    <div class="m-2 m-lg-4">
+        @if (Model.Any())
+        {
+            <div class="blog-news-container">
+                @foreach (var posts in Model)
+                {
+                    if (posts.IsBlog)
+                    {
+                        <div class="blog-news-item">
+                            <div class="blog-img-title-container">
+                                <a href="/PostBlogs/@posts.BlogID">
+                                    <img src="/Images/Blogs/@posts.ImageName"
+                                         class="w-100 radius-20"
+                                         alt="@posts.Title" />
+                                </a>
+                                <a href="/PostBlogs/@posts.BlogID"
+                                   class="blog-news-title text-darkblue">
+                                    <p class="text-darkblue">@posts.Title</p>
+                                </a>
+                            </div>
+                            <a href="/PostBlogs/@posts.BlogID">
+                                <div class="blog-news-footer">
+                                    @if (!string.IsNullOrEmpty(posts.Source))
+                                    {
+                                        <p class="blog-news-source text-darkblue fw-bold">
+                                            <span class="fa fa-clock-o"></span>
+                                            @posts.CreateDate | @posts.Source
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <p class="blog-news-source text-darkblue fw-bold">
+                                            <span class="fa fa-clock-o"></span>
+                                            @posts.CreateDate
+                                        </p>
+                                    }
+                                    <p class="blog-news-motalee text-darkblue">
+                                        مطالعه پست
+                                        <span>
+                                            <svg width="8"
+                                                 height="14"
+                                                 viewBox="0 0 8 14"
+                                                 fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg"
+                                                 class="mx-2">
+                                                <path d="M7 13L1.4882 8.06061C0.837266 7.47727 0.837266 6.52273 1.4882 5.93939L7 1"
+                                                      stroke="#62748B"
+                                                      stroke-miterlimit="10"
+                                                      stroke-linecap="round"
+                                                      stroke-linejoin="round" />
+                                            </svg>
+                                        </span>
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="blog-news-item">
+                            <div class="blog-img-title-container">
+                                <a href="/PostNews/@posts.BlogID">
+                                    <img src="/Images/Blogs/@posts.ImageName"
+                                         class="w-100 radius-20"
+                                         height="234"
+                                         alt="@posts.Title" />
+                                </a>
+                                <a href="/PostNews/@posts.BlogID"
+                                   class="blog-news-title text-darkblue">
+                                    <p class="text-darkblue">@posts.Title</p>
+                                </a>
+                            </div>
+                            <a href="/PostNews/@posts.BlogID">
+                                <div class="blog-news-footer">
+                                    @if (!string.IsNullOrEmpty(posts.Source))
+                                    {
+                                        <p class="blog-news-source text-darkblue fw-bold">
+                                            <span class="fa fa-clock-o"></span>
+                                            @posts.CreateDate | @posts.Source
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <p class="blog-news-source text-darkblue fw-bold">
+                                            <span class="fa fa-clock-o"></span>
+                                            @posts.CreateDate
+                                        </p>
+                                    }
+                                    <p class="blog-news-motalee text-darkblue">
+                                        مطالعه پست
+                                        <span>
+                                            <svg width="8"
+                                                 height="14"
+                                                 viewBox="0 0 8 14"
+                                                 fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg"
+                                                 class="mx-2">
+                                                <path d="M7 13L1.4882 8.06061C0.837266 7.47727 0.837266 6.52273 1.4882 5.93939L7 1"
+                                                      stroke="#62748B"
+                                                      stroke-miterlimit="10"
+                                                      stroke-linecap="round"
+                                                      stroke-linejoin="round" />
+                                            </svg>
+                                        </span>
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+
+                    }
+
+                }
+            </div>
+
+        }
+    </div>
+</div>

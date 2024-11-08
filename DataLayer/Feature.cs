@@ -1,18 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace DataLayer;
 
 public partial class Feature
 {
     public int FeatureId { get; set; }
+    [Display(Name ="عنوان")]
+    [Required(ErrorMessage ="لطفا {0} را وارد کنید")]
 
     public string Title { get; set; } = null!;
+    [Display(Name = "توضیح کوتاه")]
+    [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
 
     public string ShortDescription { get; set; } = null!;
 
     public string ImageName { get; set; } = null!;
 
+    [Display(Name = "توضیح")]
+    [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
     public string FirstDescription { get; set; } = null!;
 
     public string? SecondDescription { get; set; }

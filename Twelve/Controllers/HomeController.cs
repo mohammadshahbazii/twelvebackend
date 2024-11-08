@@ -28,7 +28,7 @@ namespace Twelve.Controllers
         [Route("SendSms")]
         public string SendSms(string Phonenumber)
         {
-            var result = Utilities.SendSms.Send(Phonenumber);
+            var result = Utilities.SendSms.Send(Phonenumber.Replace(" ",""));
             return result.Result;
 
         }

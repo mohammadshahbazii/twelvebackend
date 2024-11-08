@@ -9,6 +9,8 @@ namespace Twelve.Components
         public IViewComponentResult Invoke()
         {
             var content = siteRepository.GetDownloadBox();
+            ViewBag.SiteLink = siteRepository.GetSiteSetting().SiteLink;
+            ViewBag.SiteLinkTitle = siteRepository.GetSiteSetting().SiteLinkTitle;
             return View("GetFooterData", content);
         }
     }
