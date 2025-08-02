@@ -35,7 +35,8 @@ const translations = {
     fastAppDownload: "Quick app download",
     superAppDesc: "The Twelve super app is the sanctuary of Imam Mahdi's followers, a comprehensive space for everything you can imagine; a realm beyond expectation.",
     rightsPrefix: "All rights of this site belong to ",
-    rightsSuffix: "."
+    rightsSuffix: ".",
+    allPosts: "All posts"
   },
   fa: {
     home: "صفحه اصلی",
@@ -73,7 +74,8 @@ const translations = {
     fastAppDownload: "دانلود سریع اپلیکیشن",
     superAppDesc: "سوپر اپلیکیشن دوازده، خلوتگاه منتظران امام زمان ارواحنافداه است فضایی جامع از هرآنچه فکرش را بکنید؛ محیطی فراتر از انتظار",
     rightsPrefix: "کلیه حقوق این سایت، متعلق به شرکت ",
-    rightsSuffix: "می‌باشد."
+    rightsSuffix: "می‌باشد.",
+    allPosts: "همه پست ها"
   },
   ar: {
     home: "الرئيسية",
@@ -111,7 +113,8 @@ const translations = {
     fastAppDownload: "تحميل سريع للتطبيق",
     superAppDesc: "التطبيق الفائق تويلف هو ملاذ لمنتظري الإمام المهدي عليه السلام، مساحة شاملة لكل ما يخطر ببالك؛ عالم يتجاوز التوقعات",
     rightsPrefix: "جميع حقوق هذا الموقع محفوظة لشركة ",
-    rightsSuffix: "."
+    rightsSuffix: ".",
+    allPosts: "كل المنشورات"
   },
   ur: {
     home: "ہوم",
@@ -149,7 +152,8 @@ const translations = {
     fastAppDownload: "ایپ تیزی سے ڈاؤن لوڈ کریں",
     superAppDesc: "ٹوئیلو سپر ایپ امام مہدی علیہ السلام کے منتظرین کی خلوت گاہ ہے، ہر وہ چیز جس کا آپ تصور کر سکتے ہیں کا جامع مقام؛ توقعات سے بڑھ کر ماحول",
     rightsPrefix: "اس سائٹ کے تمام حقوق کمپنی ",
-    rightsSuffix: "کے پاس ہیں۔"
+    rightsSuffix: "کے پاس ہیں۔",
+    allPosts: "تمام پوسٹس"
   }
 };
 
