@@ -85,7 +85,8 @@ const translations = {
     nextPage: "Next page",
     previousPage: "Previous page",
     noPostsAvailable: "No posts available",
-    read: "Read"
+    read: "Read",
+    allPosts: "All posts"
   },
   fa: {
     home: "صفحه اصلی",
@@ -173,7 +174,8 @@ const translations = {
     nextPage: "صفحه بعدی",
     previousPage: "صفحه قبل",
     noPostsAvailable: "مطلبی موجود نیست",
-    read: "بخوانید"
+    read: "بخوانید",
+    allPosts: "همه پست ها"
   },
   ar: {
     home: "الرئيسية",
@@ -261,7 +263,8 @@ const translations = {
     nextPage: "الصفحة التالية",
     previousPage: "الصفحة السابقة",
     noPostsAvailable: "لا توجد مقالات",
-    read: "اقرأ"
+    read: "اقرأ",
+    allPosts: "كل المنشورات"
   },
   ur: {
     home: "ہوم",
@@ -349,7 +352,8 @@ const translations = {
     nextPage: "اگلا صفحہ",
     previousPage: "پچھلا صفحہ",
     noPostsAvailable: "کوئی مواد موجود نہیں",
-    read: "پڑھیں"
+    read: "پڑھیں",
+    allPosts: "تمام پوسٹس"
   }
 };
 
