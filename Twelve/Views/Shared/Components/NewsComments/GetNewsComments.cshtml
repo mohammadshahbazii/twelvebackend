@@ -3,18 +3,18 @@
     <div class="p-5 radius-20 border">
         <div class="row">
             <div class="col-lg-9 col-md-12">
-                <h5 class="text-darkblue fw-bold d-inline-block">
+                <h5 class="text-darkblue fw-bold d-inline-block" data-i18n-key="userCommentsAboutPost">
                     نظرات کاربران درباره پست
                 </h5>
                 <span class="text-pencil mx-2 fs-12">
-                    @Model.Count دیدگاه ثبت شده
+                    @Model.Count <span data-i18n-key="commentsSubmitted">دیدگاه ثبت شده</span>
                 </span>
             </div>
             <div class="col-lg-3 col-md-12 d-none d-lg-block d-xl-block d-xxl-block">
                 <div class="ps-5">
                     <a href="#comment-form"
                        class="d-block w-100 text-dark text-end fw-bold radius-20 border p-3 ps-0">
-                        <span class="me-3 text-start">ثبت نظر و امتیاز</span>
+                        <span class="me-3 text-start" data-i18n-key="submitCommentAndRating">ثبت نظر و امتیاز</span>
                         <span class="fa fa-angle-left float-right ms-5"></span>
                     </a>
                 </div>
@@ -120,7 +120,7 @@
         }
         else
         {
-            <p class="text-pencil">شما میتوانید اولین نفری باشید که دیدگاه خود را درباره ی مقاله ی بالا ، ثبت می کنید</p>
+            <p class="text-pencil" data-i18n-key="beFirstToComment">شما میتوانید اولین نفری باشید که دیدگاه خود را درباره ی مقاله ی بالا ، ثبت می کنید</p>
         }
 
     </div>

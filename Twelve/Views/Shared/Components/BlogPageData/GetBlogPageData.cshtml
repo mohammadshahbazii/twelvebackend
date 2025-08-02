@@ -9,7 +9,7 @@
                         <div class="blog-filter-row">
                             <div class="blog-filter-title">
                                 <p class="text-darkblue pt-2 font-ExtraBold fw-bold">
-                                    دسته بندی مطالب بلاگ<img src="Assest/img/list-title-icon.png"
+                                    <span data-i18n-key="blogCategories">دسته بندی مطالب بلاگ</span><img src="Assest/img/list-title-icon.png"
                                                              width="24"
                                                              height="24"
                                                              class="mx-2" />
@@ -23,7 +23,7 @@
                                             value="@ViewBag.q"
                                                id="BlogSearch"
                                                class="form-control fs-6 navbar-search bg-light border border-0"
-                                               placeholder="جستجو" />
+                                               placeholder="جستجو" data-i18n-placeholder="search" />
                                         <a onclick="SearchBlogs()" class="input-group-text bg-light navbar-search-icon border border-0">
                                             <img src="Assest/img/SVG/Main/search-normal.svg" />
                                         </a>
@@ -63,7 +63,7 @@
                 <div class="blog-filter-row mt-5">
                     <div class="blog-filter-rightSide">
                         <p class="text-darkblue fs-12 fw-bold">
-                            دسته بندی مطالب بلاگ<img src="/Assest/img/list-title-icon.png"
+                            <span data-i18n-key="blogCategories">دسته بندی مطالب بلاگ</span><img src="/Assest/img/list-title-icon.png"
                                                      width="15"
                                                      height="15"
                                                      class="mx-2" />
@@ -74,7 +74,8 @@
                             <button class="bg-white fs-12 border-0 text-darkblue fw-bold dropdown-toggle"
                                     type="button"
                                     data-bs-toggle="dropdown"
-                                    aria-expanded="false">
+                                    aria-expanded="false"
+                                    data-i18n-key="category">
                                 دسته بندی
                             </button>
 
@@ -110,7 +111,7 @@
                                value="@ViewBag.q"
                                id="BlogSearchs"
                                class="form-control fs-12 navbar-search bg-white border border-0"
-                               placeholder="جستجو" />
+                               placeholder="جستجو" data-i18n-placeholder="search" />
                         <a onclick="SearchsBlogs()" class="input-group-text bg-white navbar-search-icon border border-0">
                             <img src="/Assest/img/SVG/Main/search-normal.svg" />
                         </a>
@@ -126,10 +127,10 @@
         <div class="col-lg-12 col-md-12">
             <div class="row">
                 <div class="col-lg-6 col-md-12">
-                    <h2 class="text-darkblue fw-bold d-inline-block font-ExtraBold">
+                    <h2 class="text-darkblue fw-bold d-inline-block font-ExtraBold" data-i18n-key="latestArticlesNews">
                         آخرین مقالات و خبر
                     </h2>
-                    <p class="text-green2 fs-12 d-inline-block fw-bold mx-4">
+                    <p class="text-green2 fs-12 d-inline-block fw-bold mx-4" data-i18n-key="stayUpdated">
                         برای اطلاع از جدیدترین رویدادها و مقالات همراه ما باشید
                     </p>
                 </div>
@@ -185,7 +186,7 @@
                                                             </p>
                                                         }
                                                         <p class="blog-news-motalee text-darkblue">
-                                                            مطالعه پست
+                                                            <span data-i18n-key="readPost">مطالعه پست</span>
                                                             <span>
                                                                 <svg width="8"
                                                                      height="14"
@@ -232,7 +233,7 @@
                                                                     <a class="page-link px-3 py-2 font-Bold fs-12 bg-silver border-0 text-darkblue rounded-pill"
                                                                        aria-label="Next">
                                                                         <span class="mx-2 fw-bold fa fa-angle-left"></span>
-                                                                        صفحه بعدی
+                                                                        <span data-i18n-key="nextPage">صفحه بعدی</span>
                                                                     </a>
                                                                 </li>
                                                             }
@@ -243,7 +244,7 @@
                                                                        class="page-link px-3 py-2 font-Bold fs-12 bg-silver border-0 text-darkblue rounded-pill"
                                                                        aria-label="Next">
                                                                         <span class="mx-2 fw-bold fa fa-angle-left"></span>
-                                                                        صفحه بعدی
+                                                                        <span data-i18n-key="nextPage">صفحه بعدی</span>
                                                                     </a>
                                                                 </li>
                                                             }
@@ -269,7 +270,7 @@
                                                                 <li class="page-item mx-3 rounded-circle text-darkblue disabled">
                                                                     <a class="page-link px-3 py-2 font-Bold fs-12 bg-silver border-0 text-darkblue rounded-pill"
                                                                        aria-label="Previous">
-                                                                        صفحه قبل
+                                                                        <span data-i18n-key="previousPage">صفحه قبل</span>
                                                                         <span class="mx-2 fw-bold fa fa-angle-right"></span>
                                                                     </a>
                                                                 </li>
@@ -280,7 +281,7 @@
                                                                     <a class="page-link px-3 py-2 font-Bold fs-12 bg-silver border-0 text-darkblue rounded-pill"
                                                                        onclick="GetNews(@(item.Pagination.PageID - 1))"
                                                                        aria-label="Previous">
-                                                                        صفحه قبل
+                                                                        <span data-i18n-key="previousPage">صفحه قبل</span>
                                                                         <span class="mx-2 fw-bold fa fa-angle-right"></span>
                                                                     </a>
                                                                 </li>
@@ -296,7 +297,7 @@
                                 }
                                 else
                                 {
-                                    <p>مطلبی موجود نیست</p>
+                                    <p data-i18n-key="noPostsAvailable">مطلبی موجود نیست</p>
                                 }
 
                             </div>
@@ -342,7 +343,7 @@
                                                             </p>
                                                         }
                                                         <p class="blog-news-motalee text-darkblue">
-                                                            مطالعه پست
+                                                            <span data-i18n-key="readPost">مطالعه پست</span>
                                                             <span>
                                                                 <svg width="8"
                                                                      height="14"
@@ -389,7 +390,7 @@
                                                                     <a class="page-link px-3 py-2 font-Bold fs-12 bg-silver border-0 text-darkblue rounded-pill"
                                                                        aria-label="Next">
                                                                         <span class="mx-2 fw-bold fa fa-angle-left"></span>
-                                                                        صفحه بعدی
+                                                                        <span data-i18n-key="nextPage">صفحه بعدی</span>
                                                                     </a>
                                                                 </li>
                                                             }
@@ -400,7 +401,7 @@
                                                                        class="page-link px-3 py-2 font-Bold fs-12 bg-silver border-0 text-darkblue rounded-pill"
                                                                        aria-label="Next">
                                                                         <span class="mx-2 fw-bold fa fa-angle-left"></span>
-                                                                        صفحه بعدی
+                                                                        <span data-i18n-key="nextPage">صفحه بعدی</span>
                                                                     </a>
                                                                 </li>
                                                             }
@@ -426,7 +427,7 @@
                                                                 <li class="page-item mx-3 rounded-circle text-darkblue disabled">
                                                                     <a class="page-link px-3 py-2 font-Bold fs-12 bg-silver border-0 text-darkblue rounded-pill"
                                                                        aria-label="Previous">
-                                                                        صفحه قبل
+                                                                        <span data-i18n-key="previousPage">صفحه قبل</span>
                                                                         <span class="mx-2 fw-bold fa fa-angle-right"></span>
                                                                     </a>
                                                                 </li>
@@ -437,7 +438,7 @@
                                                                     <a class="page-link px-3 py-2 font-Bold fs-12 bg-silver border-0 text-darkblue rounded-pill"
                                                                        onclick="GetNews(@(item.Pagination.PageID - 1))"
                                                                        aria-label="Previous">
-                                                                        صفحه قبل
+                                                                        <span data-i18n-key="previousPage">صفحه قبل</span>
                                                                         <span class="mx-2 fw-bold fa fa-angle-right"></span>
                                                                     </a>
                                                                 </li>
@@ -453,7 +454,7 @@
                                 }
                                 else
                                 {
-                                    <p>مطلبی موجود نیست</p>
+                                    <p data-i18n-key="noPostsAvailable">مطلبی موجود نیست</p>
                                 }
 
                             </div>
@@ -499,7 +500,7 @@
                                                             </p>
                                                         }
                                                         <p class="blog-news-motalee text-darkblue">
-                                                            مطالعه پست
+                                                            <span data-i18n-key="readPost">مطالعه پست</span>
                                                             <span>
                                                                 <svg width="8"
                                                                      height="14"
@@ -546,7 +547,7 @@
                                                                     <a class="page-link px-3 py-2 font-Bold fs-12 bg-silver border-0 text-darkblue rounded-pill"
                                                                        aria-label="Next">
                                                                         <span class="mx-2 fw-bold fa fa-angle-left"></span>
-                                                                        صفحه بعدی
+                                                                        <span data-i18n-key="nextPage">صفحه بعدی</span>
                                                                     </a>
                                                                 </li>
                                                             }
@@ -557,7 +558,7 @@
                                                                        class="page-link px-3 py-2 font-Bold fs-12 bg-silver border-0 text-darkblue rounded-pill"
                                                                        aria-label="Next">
                                                                         <span class="mx-2 fw-bold fa fa-angle-left"></span>
-                                                                        صفحه بعدی
+                                                                        <span data-i18n-key="nextPage">صفحه بعدی</span>
                                                                     </a>
                                                                 </li>
                                                             }
@@ -583,7 +584,7 @@
                                                                 <li class="page-item mx-3 rounded-circle text-darkblue disabled">
                                                                     <a class="page-link px-3 py-2 font-Bold fs-12 bg-silver border-0 text-darkblue rounded-pill"
                                                                        aria-label="Previous">
-                                                                        صفحه قبل
+                                                                        <span data-i18n-key="previousPage">صفحه قبل</span>
                                                                         <span class="mx-2 fw-bold fa fa-angle-right"></span>
                                                                     </a>
                                                                 </li>
@@ -594,7 +595,7 @@
                                                                     <a class="page-link px-3 py-2 font-Bold fs-12 bg-silver border-0 text-darkblue rounded-pill"
                                                                        onclick="GetBlogs(@(item.Pagination.PageID - 1),@(item.GroupID))"
                                                                        aria-label="Previous">
-                                                                        صفحه قبل
+                                                                        <span data-i18n-key="previousPage">صفحه قبل</span>
                                                                         <span class="mx-2 fw-bold fa fa-angle-right"></span>
                                                                     </a>
                                                                 </li>
@@ -610,7 +611,7 @@
                                 }
                                 else
                                 {
-                                    <p>مطلبی موجود نیست</p>
+                                    <p data-i18n-key="noPostsAvailable">مطلبی موجود نیست</p>
                                 }
 
                             </div>
