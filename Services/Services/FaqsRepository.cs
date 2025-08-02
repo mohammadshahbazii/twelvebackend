@@ -165,6 +165,24 @@ namespace Services
                 Question = faq.Question,
                 IsMain = faq.IsMain
             };
+            var trEn = db.FaqTranslations.FirstOrDefault(t => t.FaqId == FaqID && t.Language == "en");
+            var trAr = db.FaqTranslations.FirstOrDefault(t => t.FaqId == FaqID && t.Language == "ar");
+            var trUr = db.FaqTranslations.FirstOrDefault(t => t.FaqId == FaqID && t.Language == "ur");
+            if (trEn != null)
+            {
+                model.QuestionEn = trEn.Question;
+                model.AnswerEn = trEn.Answer;
+            }
+            if (trAr != null)
+            {
+                model.QuestionAr = trAr.Question;
+                model.AnswerAr = trAr.Answer;
+            }
+            if (trUr != null)
+            {
+                model.QuestionUr = trUr.Question;
+                model.AnswerUr = trUr.Answer;
+            }
             var groups = db.FaqGroups.ToList();
             model.Groups = new List<FaqsGroupsItemViewModel>();
             foreach (var group in groups)
@@ -178,6 +196,30 @@ namespace Services
             var selectedGroups = db.SelectedFaqGroups.Where(f => f.FaqId == FaqID).Select(f => f.FaqGroupId).ToList();
             model.SelectedGroups = selectedGroups;
             return model;
+        }
+
+        public void SaveTranslations(FaqsCrudViewModel faqs)
+        {
+            SaveFaqTranslation(faqs.FaqID, "en", faqs.QuestionEn, faqs.AnswerEn);
+            SaveFaqTranslation(faqs.FaqID, "ar", faqs.QuestionAr, faqs.AnswerAr);
+            SaveFaqTranslation(faqs.FaqID, "ur", faqs.QuestionUr, faqs.AnswerUr);
+        }
+
+        private void SaveFaqTranslation(int faqId, string lang, string question, string answer)
+        {
+            if (string.IsNullOrWhiteSpace(question) && string.IsNullOrWhiteSpace(answer))
+            {
+                return;
+            }
+            var tr = db.FaqTranslations.FirstOrDefault(t => t.FaqId == faqId && t.Language == lang);
+            if (tr == null)
+            {
+                tr = new FaqTranslation { FaqId = faqId, Language = lang };
+                db.FaqTranslations.Add(tr);
+            }
+            tr.Question = question ?? "";
+            tr.Answer = answer ?? "";
+            db.SaveChanges();
         }
 
         public bool Create(FaqsCrudViewModel faqs)
@@ -196,6 +238,7 @@ namespace Services
                 };
                 db.Faqs.Add(faq);
                 db.SaveChanges();
+                faqs.FaqID = faq.FaqId;
                 foreach (var item in faqs.SelectedGroups)
                 {
                     var selected = new SelectedFaqGroup() { FaqId = faq.FaqId , FaqGroupId = item };

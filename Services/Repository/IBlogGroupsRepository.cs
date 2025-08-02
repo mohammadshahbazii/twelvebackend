@@ -15,6 +15,8 @@ namespace Services
         public bool Delete(BlogGroup blogGroup);
         public BlogGroup GetByID(int id);
         public List<BlogGroupNameViewModel> GetAllGroups();
+        public BlogGroupCrudViewModel GetForEdit(int id);
+        public void SaveTranslations(BlogGroupCrudViewModel group);
 
         public string GetBlogGroupNameByBlogID(int BlogID);
     }

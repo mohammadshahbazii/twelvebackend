@@ -23,6 +23,7 @@ namespace Services
         public bool Create(FaqsCrudViewModel faqs);
         public bool Update(FaqsCrudViewModel faqs);
         public bool Delete(int FaqID);
+        public void SaveTranslations(FaqsCrudViewModel faqs);
 
         public PaginationViewModel GetPagination(double PageCount, int PageID = 1);
 
