@@ -63,6 +63,30 @@ namespace Services
             return groups;
         }
 
+        public BlogGroupCrudViewModel GetForEdit(int id)
+        {
+            var group = db.BlogGroups.Find(id);
+            var translations = db.EntityTranslations
+                .Where(t => t.EntityName == nameof(BlogGroup) && t.EntityId == id)
+                .ToList();
+            return new BlogGroupCrudViewModel
+            {
+                BlogGroupId = group.BlogGroupId,
+                GroupName = group.GroupName,
+                ParentId = group.ParentId,
+                GroupNameEn = translations.FirstOrDefault(t => t.Property == "GroupName" && t.Culture == "en")?.Value,
+                GroupNameAr = translations.FirstOrDefault(t => t.Property == "GroupName" && t.Culture == "ar")?.Value,
+                GroupNameUr = translations.FirstOrDefault(t => t.Property == "GroupName" && t.Culture == "ur")?.Value
+            };
+        }
+
+        public void SaveTranslations(BlogGroupCrudViewModel group)
+        {
+            SaveTranslation(nameof(BlogGroup), group.BlogGroupId, "GroupName", "en", group.GroupNameEn);
+            SaveTranslation(nameof(BlogGroup), group.BlogGroupId, "GroupName", "ar", group.GroupNameAr);
+            SaveTranslation(nameof(BlogGroup), group.BlogGroupId, "GroupName", "ur", group.GroupNameUr);
+        }
+
 
         public string GetBlogGroupNameByBlogID(int BlogID)
         {
@@ -91,6 +115,25 @@ namespace Services
             {
                 return false;
             }
+        }
+
+        private void SaveTranslation(string entityName, int entityId, string property, string culture, string value)
+        {
+            if (string.IsNullOrWhiteSpace(value)) return;
+            var tr = db.EntityTranslations.FirstOrDefault(t => t.EntityName == entityName && t.EntityId == entityId && t.Property == property && t.Culture == culture);
+            if (tr == null)
+            {
+                tr = new EntityTranslation
+                {
+                    EntityName = entityName,
+                    EntityId = entityId,
+                    Property = property,
+                    Culture = culture
+                };
+                db.EntityTranslations.Add(tr);
+            }
+            tr.Value = value;
+            db.SaveChanges();
         }
     }
 }

@@ -64,6 +64,21 @@ namespace ViewModels
         public PaginationViewModel Pagination { get; set; }
         public double PageCount { get; set; }
     }
+
+    public class BlogGroupCrudViewModel
+    {
+        public int BlogGroupId { get; set; }
+
+        [Display(Name = "عنوان")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        public string GroupName { get; set; }
+
+        public string GroupNameEn { get; set; }
+        public string GroupNameAr { get; set; }
+        public string GroupNameUr { get; set; }
+
+        public int? ParentId { get; set; }
+    }
     public class BlogGroupNameViewModel
     {
         public int GroupID { get; set; }

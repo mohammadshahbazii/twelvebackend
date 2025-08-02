@@ -628,14 +628,16 @@ namespace Services
                 var posts = db.Blogs.OrderByDescending(b => b.CreateDate).Skip(skip).Take(take).ToList();
                 foreach (var item in posts)
                 {
-                    List<string> groupName = db.SelectedBlogGroups.Where(b => b.BlogId == item.BlogId).Include(b => b.BlogGroup).Select(b => b.BlogGroup.GroupName).ToList();
+                    var tr = db.BlogTranslations.FirstOrDefault(t => t.BlogId == item.BlogId && t.Language == CurrentCulture);
+                    var groups = db.SelectedBlogGroups.Where(b => b.BlogId == item.BlogId).Include(b => b.BlogGroup).ToList();
+                    groups.ForEach(g => g.BlogGroup.ApplyTranslation(db));
                     blogPosts.Posts.Add(new BlogPostsItemViewModel()
                     {
                         BlogID = item.BlogId,
-                        Title = item.Title,
+                        Title = tr?.Title ?? item.Title,
                         CreateDate = DateConvertor.ToShamsi(item.CreateDate),
                         View = item.PostView,
-                        GroupName = string.Join(" ، ", groupName)
+                        GroupName = string.Join(" ، ", groups.Select(g => g.BlogGroup.GroupName))
                     });
                 }
                 double pCount = Convert.ToDouble(Convert.ToDouble(db.Blogs.ToList().Count()) / Convert.ToDouble(take));
@@ -648,14 +650,16 @@ namespace Services
                 var posts = db.Blogs.Where(b => b.Title.Contains(q)).OrderByDescending(b => b.CreateDate).Skip(skip).Take(take).ToList();
                 foreach (var item in posts)
                 {
-                    List<string> groupName = db.SelectedBlogGroups.Where(b => b.BlogId == item.BlogId).Include(b => b.BlogGroup).Select(b => b.BlogGroup.GroupName).ToList();
+                    var tr = db.BlogTranslations.FirstOrDefault(t => t.BlogId == item.BlogId && t.Language == CurrentCulture);
+                    var groups = db.SelectedBlogGroups.Where(b => b.BlogId == item.BlogId).Include(b => b.BlogGroup).ToList();
+                    groups.ForEach(g => g.BlogGroup.ApplyTranslation(db));
                     blogPosts.Posts.Add(new BlogPostsItemViewModel()
                     {
                         BlogID = item.BlogId,
-                        Title = item.Title,
+                        Title = tr?.Title ?? item.Title,
                         CreateDate = DateConvertor.ToShamsi(item.CreateDate),
                         View = item.PostView,
-                        GroupName = string.Join(" ، ", groupName)
+                        GroupName = string.Join(" ، ", groups.Select(g => g.BlogGroup.GroupName))
                     });
                 }
                 double pCount = Convert.ToDouble(Convert.ToDouble(db.Blogs.Where(b => b.Title.Contains(q)).ToList().Count()) / Convert.ToDouble(take));
@@ -1172,6 +1176,7 @@ namespace Services
             BlogCrudViewModel model = new BlogCrudViewModel();
             model.Groups = new List<BlogGroupNameViewModel>();
             var items = db.BlogGroups.ToList();
+            items.ApplyTranslations(db);
             foreach (var item in items)
             {
                 model.Groups.Add(new BlogGroupNameViewModel()
@@ -1223,6 +1228,7 @@ namespace Services
             }
 
             var groups = db.BlogGroups.ToList();
+            groups.ApplyTranslations(db);
             model.Groups = new List<BlogGroupNameViewModel>();
             foreach (var item in groups)
             {
