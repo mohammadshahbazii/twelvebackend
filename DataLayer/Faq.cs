@@ -14,4 +14,6 @@ public partial class Faq
     public bool IsMain { get; set; }
 
     public virtual ICollection<SelectedFaqGroup> SelectedFaqGroups { get; set; } = new List<SelectedFaqGroup>();
+
+    public virtual ICollection<FaqTranslation> FaqTranslations { get; set; } = new List<FaqTranslation>();
 }

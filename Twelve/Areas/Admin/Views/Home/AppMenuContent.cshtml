@@ -5,7 +5,7 @@
             <div class="col-12">
                 <div class="card card-warning">
                     <div class="card-header">
-                        <h3 class="card-title">
+                        <h3 class="card-title" data-i18n-key="editMenuIntroPage">
                             ویرایش اطلاعات صفحه معرفی منو ها
                             <span class="text-dark mx-2">@ViewBag.Message</span>
                         </h3>
@@ -16,15 +16,15 @@
                         <input type="hidden" name="FeatureContentId" id="FeatureContentId" value="@Model.FeatureContentId" />
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="FeaturesTitle">عنوان</label>
-                                <input type="text" name="FeaturesTitle" class="form-control" value="@Model.FeaturesTitle" id="FeaturesTitle" placeholder="عنوان را وارد کنید">
+                                <label for="FeaturesTitle" data-i18n-key="titleLabel">عنوان</label>
+                                <input type="text" name="FeaturesTitle" class="form-control" value="@Model.FeaturesTitle" id="FeaturesTitle" placeholder="عنوان را وارد کنید" data-i18n-placeholder="enterTitle">
                             </div>
                             <div class="form-group">
-                                <label for="FeatruesSubTitle">زیر عنوان</label>
-                                <input type="text" class="form-control" name="FeatruesSubTitle" value="@Model.FeatruesSubTitle" id="FeatruesSubTitle" placeholder="زیر عنوان را وارد کنید">
+                                <label for="FeatruesSubTitle" data-i18n-key="subtitleLabel">زیر عنوان</label>
+                                <input type="text" class="form-control" name="FeatruesSubTitle" value="@Model.FeatruesSubTitle" id="FeatruesSubTitle" placeholder="زیر عنوان را وارد کنید" data-i18n-placeholder="enterSubtitle">
                             </div>
                             <div class="form-group">
-                                <label for="FeaturesDescription">توضیحات</label>
+                                <label for="FeaturesDescription" data-i18n-key="descriptionLabel">توضیحات</label>
                                 <textarea rows="5" name="FeaturesDescription" class="form-control w-100" name="FeaturesDescription">@Model.FeaturesDescription</textarea>
                             </div>
 
@@ -33,7 +33,7 @@
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-warning">ثبت</button>
+                            <button type="submit" class="btn btn-warning" data-i18n-key="submit">ثبت</button>
                         </div>
                     </form>
                 </div>

@@ -8,14 +8,14 @@
                         <div class="row">
                             <div class="col-lg-8 col-md-12">
                                 <h3 class="card-title">
-                                    لیست ویژگی های نرم افزار
-                                    <a href="/Admin/Features/Create" class="btn btn-outline-success mx-3">افزودن ویژگی</a>
+                                    <span data-i18n-key="featureListTitle">لیست ویژگی های نرم افزار</span>
+                                    <a href="/Admin/Features/Create" class="btn btn-outline-success mx-3" data-i18n-key="addFeature">افزودن ویژگی</a>
                                 </h3>
                             </div>
                             <div class="col-lg-4 col-md-12">
                                 <div class="card-tools">
                                     <div class="input-group input-group-sm" style="width: 100%;">
-                                        <input type="text" id="BlogSearch" name="BlogSearch" class="form-control float-right" placeholder="جستجو">
+                                        <input type="text" id="BlogSearch" name="BlogSearch" class="form-control float-right" placeholder="جستجو" data-i18n-placeholder="search">
 
                                         <div class="input-group-append">
                                             <a onclick="GetFeatures($('#BlogSearch').val())" class="btn btn-default"><i class="fa fa-search"></i></a>
@@ -36,9 +36,9 @@
                                 <table class="table table-bordered table-hover">
                                     <tbody>
                                         <tr>
-                                            <th>عنوان</th>
-                                            <th>توضیح کوتاه</th>
-                                            <th>تصویر</th>
+                                            <th data-i18n-key="title">عنوان</th>
+                                            <th data-i18n-key="shortDesc">توضیح کوتاه</th>
+                                            <th data-i18n-key="image">تصویر</th>
                                             <th>*</th>
                                         </tr>
                                         @foreach (var item in Model.Features)

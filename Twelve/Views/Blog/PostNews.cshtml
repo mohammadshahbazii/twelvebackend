@@ -20,7 +20,7 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-12">
                         <p class="text-pencil">
-                            خانه / بلاگ و اخبار / @Model.GroupName
+                            <a class="text-pencil" href="/" data-i18n-key="home">خانه</a> / <a href="/Blog" class="text-pencil" data-i18n-key="blog">بلاگ و اخبار</a> / @Model.GroupName
                         </p>
                     </div>
                     <div class="col-lg-6 col-md-12"></div>
@@ -33,8 +33,8 @@
                             @Model.Title
                         </h1>
                         <p class="text-darkblue fs-12 mt-5">
-                            زمان انتشار @Model.CreateDate |
-                            زمان مطالعه : @Model.StudyTime
+                            <span data-i18n-key="publishTime">زمان انتشار</span> @Model.CreateDate |
+                            <span data-i18n-key="readingTime">زمان مطالعه :</span> @Model.StudyTime
                             <span class="fa fa-clock-o mx-2"></span>
                         </p>
                     </div>
@@ -44,8 +44,8 @@
                                 <div class="col-lg-6 col-md-12 py-lg-0 py-2">
                                     <div class="dropdown-center ">
                                         <a id="sharebutton" class="green-btn rounded-pill mx-3 d-block" data-bs-toggle="dropdown">
-                                            اشتراک گذاری
-                                            <span class="fa fa-share-alt mx-2"></span>
+                                            <span data-i18n-key="share">اشتراک گذاری</span>
+        <span class="fa fa-share-alt mx-2"></span>
                                         </a>
                                         <ul id="sharebutton-menu" class="dropdown-menu dropdown-menu-center px-3 justify-content-between w-100 mt-2 rounded-pill">
                                             <li>
@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="col-lg-6 col-md-12 py-lg-0 py-2">
                                     <a onclick="CopyUrl()" class="btn btn-outline-dark d-block p-19-21 px-5 rounded-pill mx-3">
-                                        کپی لینک
+                                        <span data-i18n-key="copyLink">کپی لینک</span>
                                     </a>
                                 </div>
                             </div>
@@ -109,13 +109,13 @@
                     </div>
                     <div class="col-lg-4 col-md-12">
                         <div class="px-lg-4">
-                            <h4 class="text-darkblue fw-bold mb-4">مطلب برگزیده هفته</h4>
+                            <h4 class="text-darkblue fw-bold mb-4" data-i18n-key="featuredPostOfWeek">مطلب برگزیده هفته</h4>
                             @await Component.InvokeAsync("LatestNews")
                             @await Component.InvokeAsync("PopularNews")
                             <br />
                             <hr class="text-pencil" />
                             <div data-aos="fade-up" data-aos-duration="1800">
-                                <h3 class="text-darkblue fw-bold my-5">
+                                <h3 class="text-darkblue fw-bold my-5" data-i18n-key="adsAndHighlights">
                                     تبلیغات و برگزیده ها
                                 </h3>
                                 @await Component.InvokeAsync("Advertisements")
@@ -130,7 +130,7 @@
                              data-aos-duration="1800"
                              class="my-5">
                             <div class="p-5 radius-20 border">
-                                <h4 class="text-darkblue my-4 fw-bold">
+                                <h4 class="text-darkblue my-4 fw-bold" data-i18n-key="leaveCommentHeading">
                                     نظر خود را درباره مقاله ثبت کنید
                                 </h4>
                                 <form>
@@ -139,10 +139,10 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="input-group radius-20 mt-1 mb-3">
-                                                <span class="input-group-text border-0 radius-20 bg-silver px-3 py-4 fw-bold text-darkblue">نام و نام خانوادگی</span>
+                                                <span class="input-group-text border-0 radius-20 bg-silver px-3 py-4 fw-bold text-darkblue" data-i18n-key="fullName">نام و نام خانوادگی</span>
                                                 <input type="text" id="fullname" name="fullname"
                                                        class="form-control text-start border-0 radius-20 bg-silver px-3 py-4"
-                                                       placeholder="لطفا نام و نام خانوادگی خود را وارد کنید" />
+                                                       placeholder="لطفا نام و نام خانوادگی خود را وارد کنید" data-i18n-placeholder="enterFullName" />
                                             </div>
                                         </div>
                                         <div class="col-6 d-none">
@@ -156,12 +156,12 @@
                                     </div>
                                     <textarea rows="5" id="Text" name="Text"
                                               class="radius-20 bg-white border p-4 w-100"
-                                              placeholder="نظر خود نسبت به این مقاله را تایپ کنید تا مفید باشد ..."></textarea>
+                                              placeholder="نظر خود نسبت به این مقاله را تایپ کنید تا مفید باشد ..." data-i18n-placeholder="commentPlaceholder"></textarea>
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="text-start mt-1">
                                                 <a onclick="SubmitNewsComment()" class="btn-comment blue-btn px-5 py-4 d-inline-block">
-                                                    ثبت نظر
+                                                    <span data-i18n-key="submitComment">ثبت نظر</span>
                                                 </a>
                                             </div>
                                         </div>
