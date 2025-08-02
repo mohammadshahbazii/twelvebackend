@@ -106,7 +106,6 @@ const translations = {
     searchFor: "Search for",
     inFeatures: "in features",
     noFeatureResults: "No items found in the app features section",
-    noFeatureResults: "No items found in the app features section",
     allPosts: "All posts"
   },
   fa: {
