@@ -6,12 +6,14 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using ViewModels;
+using System.Globalization;
 
 namespace Services
 {
     public class FaqsRepository : IFaqsRepository
     {
         TwelveDbContext db = new TwelveDbContext();
+        private string CurrentCulture => CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
         public void Dispose()
         {
             db.Dispose();
@@ -123,11 +125,12 @@ namespace Services
             List<FaqsItemViewModel> model = new List<FaqsItemViewModel>();
             foreach (var item in items)
             {
-                model.Add(new FaqsItemViewModel() 
+                var tr = db.FaqTranslations.FirstOrDefault(t => t.FaqId == item.FaqId && t.Language == CurrentCulture);
+                model.Add(new FaqsItemViewModel()
                 {
                     FaqID = item.FaqId,
-                    Answer = item.Answer,
-                    Question = item.Question,
+                    Answer = tr?.Answer ?? item.Answer,
+                    Question = tr?.Question ?? item.Question,
                     GroupID = GroupID,
                     GroupName = GetFaqGroupNameByID(GroupID)
                 });
@@ -141,10 +144,11 @@ namespace Services
             List<FaqsItemViewModel> model = new List<FaqsItemViewModel>();
             foreach (var faqsItem in faqs)
             {
+                var tr = db.FaqTranslations.FirstOrDefault(t => t.FaqId == faqsItem.FaqId && t.Language == CurrentCulture);
                 model.Add(new FaqsItemViewModel()
                 {
-                    Question = faqsItem.Question,
-                    Answer = faqsItem.Answer,
+                    Question = tr?.Question ?? faqsItem.Question,
+                    Answer = tr?.Answer ?? faqsItem.Answer,
                     FaqID = faqsItem.FaqId
                 });
             }

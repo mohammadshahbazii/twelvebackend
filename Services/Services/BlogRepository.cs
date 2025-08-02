@@ -13,12 +13,14 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Utilities;
 using ViewModels;
+using System.Globalization;
 
 namespace Services
 {
     public class BlogRepository : IBlogRepository
     {
         TwelveDbContext db = new TwelveDbContext();
+        private string CurrentCulture => CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
         public void Dispose()
         {
             db.Dispose();
@@ -109,15 +111,16 @@ namespace Services
             item.PostView += 1;
             db.Blogs.Update(item);
             db.SaveChanges();
+            var tr = db.BlogTranslations.FirstOrDefault(t => t.BlogId == BlogID && t.Language == CurrentCulture);
             BlogPostPageDataViewModel blog = new BlogPostPageDataViewModel()
             {
                 BlogID = BlogID,
                 CreateDate = DateConvertor.GetPersianDate(item.CreateDate),
-                Description = item.Description,
+                Description = tr?.Description ?? item.Description,
                 StudyTime = item.StudyTime + " دقیقه ",
                 ImageName = item.ImageName,
-                ShortDescription = item.ShortDescription,
-                Title = item.Title,
+                ShortDescription = tr?.ShortDescription ?? item.ShortDescription,
+                Title = tr?.Title ?? item.Title,
                 GroupID = groupID,
                 GroupName = db.BlogGroups.Find(groupID).GroupName
             };
@@ -298,10 +301,11 @@ namespace Services
             var blogs = db.Blogs.OrderByDescending(n => n.CreateDate).Take(3).ToList();
             foreach (var blog in blogs)
             {
+                var tr = db.BlogTranslations.FirstOrDefault(t => t.BlogId == blog.BlogId && t.Language == CurrentCulture);
                 model.Blogs.Add(new BlogItemViewModel()
                 {
                     BlogID = blog.BlogId,
-                    Title = blog.Title,
+                    Title = tr?.Title ?? blog.Title,
                     ImageName = blog.ImageName,
                     CreateDate = DateConvertor.PassDays(blog.CreateDate),
                     Source = blog.Source
@@ -331,10 +335,11 @@ namespace Services
             List<BlogItemViewModel> model = new List<BlogItemViewModel>();
             foreach (var blog in items)
             {
+                var tr = db.BlogTranslations.FirstOrDefault(t => t.BlogId == blog.BlogId && t.Language == CurrentCulture);
                 model.Add(new BlogItemViewModel()
                 {
                     BlogID = blog.BlogId,
-                    Title = blog.Title,
+                    Title = tr?.Title ?? blog.Title,
                     ImageName = blog.ImageName,
                     CreateDate = DateConvertor.PassDays(blog.CreateDate),
                     Source = blog.Source,
@@ -386,10 +391,11 @@ namespace Services
             foreach (var blog in items)
             {
                 int groupID = db.SelectedBlogGroups.FirstOrDefault(g => g.BlogId == blog.BlogId).BlogGroupId;
+                var tr = db.BlogTranslations.FirstOrDefault(t => t.BlogId == blog.BlogId && t.Language == CurrentCulture);
                 model.Add(new BlogItemViewModel()
                 {
                     ImageName = blog.ImageName,
-                    Title = blog.Title,
+                    Title = tr?.Title ?? blog.Title,
                     BlogID = blog.BlogId,
                     GroupName = db.BlogGroups.Find(groupID).GroupName,
                     CreateDate = DateConvertor.PassDays(blog.CreateDate)
@@ -404,10 +410,11 @@ namespace Services
             List<IndexSliderItemViewModel> model = new List<IndexSliderItemViewModel>();
             foreach (var blog in items)
             {
+                var tr = db.BlogTranslations.FirstOrDefault(t => t.BlogId == blog.BlogId && t.Language == CurrentCulture);
                 model.Add(new IndexSliderItemViewModel()
                 {
-                    Title = blog.Title,
-                    ShortDescription = blog.Title.Replace(" ", "-"),
+                    Title = tr?.Title ?? blog.Title,
+                    ShortDescription = (tr?.Title ?? blog.Title).Replace(" ", "-"),
                     ImageName = blog.ImageName,
                     SliderID = blog.BlogId
                 });
@@ -1625,10 +1632,11 @@ namespace Services
 
             foreach (var blog in blogModelDB)
             {
+                var tr = db.BlogTranslations.FirstOrDefault(t => t.BlogId == blog.BlogId && t.Language == CurrentCulture);
                 content.Add(new BlogItemViewModel()
                 {
                     BlogID = blog.BlogId,
-                    Title = blog.Title,
+                    Title = tr?.Title ?? blog.Title,
                     ImageName = blog.ImageName,
                     CreateDate = DateConvertor.PassDays(blog.CreateDate),
                     Source = blog.Source,

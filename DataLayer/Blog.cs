@@ -34,4 +34,6 @@ public partial class Blog
     public virtual ICollection<SelectedRelatedBlog> SelectedRelatedBlogMainBlogs { get; set; } = new List<SelectedRelatedBlog>();
 
     public virtual ICollection<SelectedRelatedBlog> SelectedRelatedBlogRelatedBlogs { get; set; } = new List<SelectedRelatedBlog>();
+
+    public virtual ICollection<BlogTranslation> BlogTranslations { get; set; } = new List<BlogTranslation>();
 }
