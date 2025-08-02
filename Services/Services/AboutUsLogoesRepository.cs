@@ -60,12 +60,16 @@ namespace Services
 
         public List<AboutUsLogo> GetAboutUsLogos()
         {
-            return db.AboutUsLogoes.ToList();
+            var items = db.AboutUsLogoes.ToList();
+            items.ApplyTranslations(db);
+            return items;
         }
 
         public AboutUsLogo GetByID(int id)
         {
-            return db.AboutUsLogoes.Find(id);
+            var item = db.AboutUsLogoes.Find(id);
+            item.ApplyTranslation(db);
+            return item;
         }
 
         public bool Update(AboutUsLogo logo, IFormFile ImageName)

@@ -59,12 +59,16 @@ namespace Services
 
         public List<AboutUsItem> GetAboutUsItems()
         {
-            return db.AboutUsItems.ToList();
+            var items = db.AboutUsItems.ToList();
+            items.ApplyTranslations(db);
+            return items;
         }
 
         public AboutUsItem GetByID(int itemID)
         {
-            return db.AboutUsItems.Find(itemID);
+            var item = db.AboutUsItems.Find(itemID);
+            item.ApplyTranslation(db);
+            return item;
         }
 
         public bool Update(AboutUsItem item, IFormFile ImageName)

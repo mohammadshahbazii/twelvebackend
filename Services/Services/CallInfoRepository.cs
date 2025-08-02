@@ -60,17 +60,23 @@ namespace Services
 
         public DataLayer.CallInfo GetByID(int InfoID)
         {
-            return db.CallInfoes.Find(InfoID);
+            var item = db.CallInfoes.Find(InfoID);
+            item.ApplyTranslation(db);
+            return item;
         }
 
         public List<DataLayer.CallInfo> GetCallInfoes()
         {
-            return db.CallInfoes.ToList();
+            var items = db.CallInfoes.ToList();
+            items.ApplyTranslations(db);
+            return items;
         }
 
         public List<CallInfoLink> GetCallInfoLinks(int CallInfoID)
         {
-            return db.CallInfoLinks.Where(c => c.CallInfoId == CallInfoID).ToList();
+            var items = db.CallInfoLinks.Where(c => c.CallInfoId == CallInfoID).ToList();
+            items.ApplyTranslations(db);
+            return items;
         }
 
         public bool Update(DataLayer.CallInfo callInfo, IFormFile ImageName)

@@ -82,6 +82,7 @@ namespace Services
             if (string.IsNullOrEmpty(q))
             {
                 var admins = db.Admins.Skip(skip).Take(take).ToList();
+                admins.ApplyTranslations(db);
                 foreach (var item in admins)
                 {
                     List<string> access = db.SelectedAdminAccesses.Where(a => a.AdminId == item.AdminId).Include(a => a.Access).Select(a => a.Access.AccessText).ToList();
@@ -102,6 +103,7 @@ namespace Services
             else
             {
                 var admins = db.Admins.Where(a => a.UserName.Contains(q)).Skip(skip).Take(take).ToList();
+                admins.ApplyTranslations(db);
                 foreach (var item in admins)
                 {
                     List<string> access = db.SelectedAdminAccesses.Where(a => a.AdminId == item.AdminId).Include(a => a.Access).Select(a => a.Access.AccessText).ToList();

@@ -63,6 +63,7 @@ namespace Services
         public List<AdvertisementsItemViewModel> GetAdvertisements()
         {
             var items = db.Advertisements.ToList();
+            items.ApplyTranslations(db);
             List<AdvertisementsItemViewModel> model = new List<AdvertisementsItemViewModel>();
             foreach (var item in items)
             {
@@ -78,17 +79,23 @@ namespace Services
 
         public List<Advertisement> GetBanners()
         {
-            return db.Advertisements.Where(a => a.IsBanner == true).ToList();
+            var items = db.Advertisements.Where(a => a.IsBanner == true).ToList();
+            items.ApplyTranslations(db);
+            return items;
         }
 
         public Advertisement GetByID(int adsID)
         {
-            return db.Advertisements.Find(adsID);
+            var item = db.Advertisements.Find(adsID);
+            item.ApplyTranslation(db);
+            return item;
         }
 
         public List<Advertisement> GetLittleAds()
         {
-            return db.Advertisements.Where(a => a.IsBanner == false).ToList();
+            var items = db.Advertisements.Where(a => a.IsBanner == false).ToList();
+            items.ApplyTranslations(db);
+            return items;
 
         }
 

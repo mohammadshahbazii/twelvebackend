@@ -105,7 +105,6 @@ const translations = {
     noBlogResults: "No items found in the blog section",
     searchFor: "Search for",
     inFeatures: "in features",
-    noFeatureResults: "No items found in the app features section",
     allPosts: "All posts"
   },
   fa: {

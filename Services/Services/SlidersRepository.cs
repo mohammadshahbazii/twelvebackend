@@ -65,6 +65,7 @@ namespace Services
         public List<IndexSliderItemViewModel> GetAboutUsSlider()
         {
             var content = db.Sliders.Where(s => s.SliderGroupId == 4).OrderByDescending(s => s.SliderId).ToList();
+            content.ApplyTranslations(db);
             List<IndexSliderItemViewModel> model = new List<IndexSliderItemViewModel>();
             foreach (var item in content)
             {
@@ -83,6 +84,7 @@ namespace Services
         {
             IBlogGroupsRepository blogGroupsRepository = new BlogGroupsRepository();
             var blogs = db.Blogs.Where(b => b.IsSlider == true).ToList();
+            blogs.ApplyTranslations(db);
             List<IndexSliderItemViewModel> model = new List<IndexSliderItemViewModel>();
             foreach (var item in blogs)
             {
@@ -100,12 +102,15 @@ namespace Services
 
         public Slider GetByID(int SliderID)
         {
-            return db.Sliders.Find(SliderID);
+            var item = db.Sliders.Find(SliderID);
+            item.ApplyTranslation(db);
+            return item;
         }
 
         public List<IndexSliderItemViewModel> GetContactUsSlider()
         {
             var content = db.Sliders.Where(s => s.SliderGroupId == 6).OrderByDescending(s => s.SliderId).ToList();
+            content.ApplyTranslations(db);
             List<IndexSliderItemViewModel> model = new List<IndexSliderItemViewModel>();
             foreach (var item in content)
             {
@@ -127,6 +132,7 @@ namespace Services
             model.Mobile = new List<IndexSliderItemViewModel>();
 
             var desktops = db.Sliders.Where(s => s.SliderGroupId == 1).OrderByDescending(s => s.SliderId).ToList();
+            desktops.ApplyTranslations(db);
             foreach (var item in desktops)
             {
                 model.Desktop.Add(new IndexSliderItemViewModel()
@@ -139,6 +145,7 @@ namespace Services
             }
 
             var mobiles = db.Sliders.Where(s => s.SliderGroupId == 2).OrderByDescending(s => s.SliderId).ToList();
+            mobiles.ApplyTranslations(db);
             foreach (var item in mobiles)
             {
                 model.Mobile.Add(new IndexSliderItemViewModel()
@@ -155,6 +162,7 @@ namespace Services
         public List<IndexSliderItemViewModel> GetIndexSecondSlider()
         {
             var content = db.Sliders.Where(s => s.SliderGroupId == 3).OrderByDescending(s => s.SliderId).ToList();
+            content.ApplyTranslations(db);
             List<IndexSliderItemViewModel> model = new List<IndexSliderItemViewModel>();
             foreach (var item in content)
             {
@@ -172,6 +180,7 @@ namespace Services
         public List<IndexSliderItemViewModel> GetQoutesSlider()
         {
             var content = db.Sliders.Where(s => s.SliderGroupId == 5).OrderByDescending(s => s.SliderId).ToList();
+            content.ApplyTranslations(db);
             List<IndexSliderItemViewModel> model = new List<IndexSliderItemViewModel>();
             foreach (var item in content)
             {
@@ -188,12 +197,15 @@ namespace Services
 
         public List<SliderGroup> GetSliderGroups()
         {
-            return db.SliderGroups.ToList();
+            var groups = db.SliderGroups.ToList();
+            groups.ApplyTranslations(db);
+            return groups;
         }
 
         public List<Slider> GetSliders(int GroupID)
         {
             var model = db.Sliders.Where(s => s.SliderGroupId == GroupID).OrderByDescending(s => s.SliderId).ToList();
+            model.ApplyTranslations(db);
             return model;
         }
 
