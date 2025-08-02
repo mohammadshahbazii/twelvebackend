@@ -61,6 +61,7 @@ namespace Services
             if (string.IsNullOrEmpty(q))
             {
                 var feedbacks = db.FeedBacks.OrderByDescending(f => f.CreateDate).Skip(skip).Take(take).ToList();
+                feedbacks.ApplyTranslations(db);
                 foreach (var item in feedbacks)
                 {
                     model.FeedBacks.Add(new FeedBacksItemViewModels()
@@ -79,6 +80,7 @@ namespace Services
             else
             {
                 var feedbacks = db.FeedBacks.OrderByDescending(f => f.CreateDate).Where(f => f.Subject.Contains(q)).Skip(skip).Take(take).ToList();
+                feedbacks.ApplyTranslations(db);
                 foreach (var item in feedbacks)
                 {
                     model.FeedBacks.Add(new FeedBacksItemViewModels()
@@ -99,6 +101,7 @@ namespace Services
         public List<FeedBacksItemViewModels> GetSelectedFeedBacks()
         {
             var content = db.FeedBacks.Where(f => f.IsShow == true).Take(3).ToList();
+            content.ApplyTranslations(db);
             List<FeedBacksItemViewModels> model = new List<FeedBacksItemViewModels>();
             foreach (var item in content)
             {
@@ -167,7 +170,9 @@ namespace Services
 
         public FeedBack GetByID(int id)
         {
-            return db.FeedBacks.Find(id);
+            var item = db.FeedBacks.Find(id);
+            item.ApplyTranslation(db);
+            return item;
         }
 
         public bool Delete(FeedBack feedBack)
@@ -187,6 +192,7 @@ namespace Services
         public List<FeedBacksItemViewModels> GetAdminSelectedFeedBacks()
         {
             var content = db.FeedBacks.Where(f => f.IsShow == true).ToList();
+            content.ApplyTranslations(db);
             List<FeedBacksItemViewModels> model = new List<FeedBacksItemViewModels>();
             foreach (var item in content)
             {

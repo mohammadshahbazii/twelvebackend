@@ -79,6 +79,7 @@ namespace Services
             int skip = (PageID - 1) * take;
             model.Orders = new List<OrderItemViewModel>();
             var orders = db.Orders.OrderByDescending(o => o.CreateDate).Skip(skip).Take(take).ToList();
+            orders.ApplyTranslations(db);
             foreach (var item in orders)
             {
                 model.Orders.Add(new OrderItemViewModel()

@@ -60,12 +60,16 @@ namespace Services
 
         public IntroduceSlider GetByID(int id)
         {
-            return db.IntroduceSliders.Find(id);
+            var item = db.IntroduceSliders.Find(id);
+            item.ApplyTranslation(db);
+            return item;
         }
 
         public List<IntroduceSlider> GetListByFeatureID(int featureID)
         {
-            return db.IntroduceSliders.Where(s => s.FeatureId == featureID).ToList();
+            var items = db.IntroduceSliders.Where(s => s.FeatureId == featureID).ToList();
+            items.ApplyTranslations(db);
+            return items;
         }
 
         public bool Update(IntroduceSlider slider, IFormFile ImageName)

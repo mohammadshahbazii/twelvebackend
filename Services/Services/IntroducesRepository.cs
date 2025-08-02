@@ -62,7 +62,8 @@ namespace Services
         public IntroduceCrudViewModel GetByID(int introduceID)
         {
             var introduce = db.Introduces.Find(introduceID);
-            IntroduceCrudViewModel model = new IntroduceCrudViewModel() 
+            introduce.ApplyTranslation(db);
+            IntroduceCrudViewModel model = new IntroduceCrudViewModel()
             {
                 Title = introduce.IntroduceTitle,
                 Description = introduce.IntroduceText,
@@ -71,6 +72,7 @@ namespace Services
             model.Features = new List<FeatureNameViewModel>();
             model.SelectedFeature.Add(introduce.FeatureId);
             var features = db.Features.ToList();
+            features.ApplyTranslations(db);
             foreach (var item in features)
             {
                 model.Features.Add(new FeatureNameViewModel()
@@ -85,15 +87,18 @@ namespace Services
         public List<IntroducesPageDataViewModel> GetIntroduces()
         {
             var content = db.Introduces.ToList();
+            content.ApplyTranslations(db);
             List<IntroducesPageDataViewModel> model = new List<IntroducesPageDataViewModel>();
             foreach (var item in content)
             {
-                model.Add(new IntroducesPageDataViewModel 
+                var feature = db.Features.Find(item.FeatureId);
+                feature.ApplyTranslation(db);
+                model.Add(new IntroducesPageDataViewModel
                 {
                     IntroduceID = item.IntroduceId,
                     Title = item.IntroduceTitle,
                     Description = item.IntroduceText,
-                    Feature = db.Features.Find(item.FeatureId).Title
+                    Feature = feature.Title
                 });
             }
             return model;
@@ -104,6 +109,7 @@ namespace Services
             IntroduceCrudViewModel model = new IntroduceCrudViewModel();
             model.Features = new List<FeatureNameViewModel>();
             var features = db.Features.ToList();
+            features.ApplyTranslations(db);
             foreach (var item in features)
             {
                 model.Features.Add(new FeatureNameViewModel() 

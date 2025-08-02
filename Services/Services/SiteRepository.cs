@@ -19,7 +19,8 @@ namespace Services
         public SeoTagsViewModel GetSeoTags()
         {
             var modelDB = db.SiteSettings.FirstOrDefault();
-            var content = new SeoTagsViewModel() 
+            modelDB.ApplyTranslation(db);
+            var content = new SeoTagsViewModel()
             {
                 Title = modelDB.Title,
                 Description = modelDB.ShortDescription,
@@ -119,6 +120,7 @@ namespace Services
         public IndexDownloadBoxViewModel GetDownloadBox()
         {
             var downloads = db.DownloadLinks.ToList();
+            downloads.ApplyTranslations(db);
             IndexDownloadBoxViewModel model = new IndexDownloadBoxViewModel()
             {
                 DirectLink = GetDirectLink(),
@@ -142,20 +144,26 @@ namespace Services
 
         public DownloadLinkGroup GetDownloadLinkGroup(int dlGroupID)
         {
-            return db.DownloadLinkGroups.Find(dlGroupID);
+            var item = db.DownloadLinkGroups.Find(dlGroupID);
+            item.ApplyTranslation(db);
+            return item;
         }
 
         public DownloadLink GetDownloadLink(int LinkID)
         {
-            return db.DownloadLinks.Find(LinkID);
+            var item = db.DownloadLinks.Find(LinkID);
+            item.ApplyTranslation(db);
+            return item;
         }
 
         public List<DownloadLinkViewModel> GetDownloadLinks()
         {
             var model = new List<DownloadLinkViewModel>();
             var downloads = db.DownloadLinks.Include(d => d.Dlgroup).ToList();
+            downloads.ApplyTranslations(db);
             foreach (var download in downloads)
             {
+                download.Dlgroup.ApplyTranslation(db);
                 model.Add(new DownloadLinkViewModel()
                 {
                     DownloadID = download.DownloadLinkId,
@@ -174,6 +182,7 @@ namespace Services
         {
             List<FaqsItemViewModel> models = new List<FaqsItemViewModel>();
             var faqs = db.Faqs.Where(f => f.Answer.Contains(q) || f.Question.Contains(q)).ToList();
+            faqs.ApplyTranslations(db);
             foreach (var faqsItem in faqs)
             {
                 models.Add(new FaqsItemViewModel()
@@ -188,7 +197,9 @@ namespace Services
 
         public SocialMedium GetMedia(int MediaID)
         {
-            return db.SocialMedia.Find(MediaID);
+            var item = db.SocialMedia.Find(MediaID);
+            item.ApplyTranslation(db);
+            return item;
         }
 
         public SearchPageDataViewModel GetSearchContent(string q = "")
@@ -196,6 +207,7 @@ namespace Services
             SearchPageDataViewModel model = new SearchPageDataViewModel();
             model.Faqs = new List<FaqsItemViewModel>();
             var faqs = db.Faqs.Where(f => f.Question.Contains(q) || f.Answer.Contains(q)).ToList();
+            faqs.ApplyTranslations(db);
             foreach (var item in faqs)
             {
                 model.Faqs.Add(new FaqsItemViewModel()
@@ -208,6 +220,7 @@ namespace Services
 
             model.Blogs = new List<BlogItemViewModel>();
             var blogs = db.Blogs.Where(b => b.Title.Contains(q)).ToList();
+            blogs.ApplyTranslations(db);
             foreach (var blog in blogs)
             {
                 model.Blogs.Add(new BlogItemViewModel()
@@ -221,6 +234,7 @@ namespace Services
             }
 
             var news = db.NewsFeatures.Where(b => b.Title.Contains(q)).ToList();
+            news.ApplyTranslations(db);
             foreach (var blog in news)
             {
                 model.Blogs.Add(new BlogItemViewModel()
@@ -235,6 +249,7 @@ namespace Services
 
             model.Features = new List<FeaturesItemViewModel>();
             var features = db.Features.Where(f => f.Title.Contains(q)).ToList();
+            features.ApplyTranslations(db);
             for (int i = 0; i < features.Count; i++)
             {
                 model.Features.Add(new FeaturesItemViewModel()
@@ -254,13 +269,16 @@ namespace Services
 
         public SiteSetting GetSiteSetting()
         {
-            return db.SiteSettings.FirstOrDefault();
+            var item = db.SiteSettings.FirstOrDefault();
+            item.ApplyTranslation(db);
+            return item;
         }
         public DownloadLinkCrudViewModel GetDownloadLinkModelForCreate()
         {
             DownloadLinkCrudViewModel model = new DownloadLinkCrudViewModel();
             model.Groups = new List<DownloadLinkGroupViewModel>();
             var downloadGroups = db.DownloadLinkGroups.ToList();
+            downloadGroups.ApplyTranslations(db);
             foreach (var group in downloadGroups)
             {
                 model.Groups.Add(new DownloadLinkGroupViewModel()
@@ -287,6 +305,7 @@ namespace Services
             model.SelectedGroups.Add(link.DlgroupId);
             model.Groups = new List<DownloadLinkGroupViewModel>();
             var downloadGroups = db.DownloadLinkGroups.ToList();
+            downloadGroups.ApplyTranslations(db);
             foreach (var group in downloadGroups)
             {
                 model.Groups.Add(new DownloadLinkGroupViewModel()
@@ -301,6 +320,7 @@ namespace Services
         public List<SocialMediaItemViewModel> GetSocialMedia()
         {
             var content = db.SocialMedia.ToList();
+            content.ApplyTranslations(db);
             List<SocialMediaItemViewModel> model = new List<SocialMediaItemViewModel>();
             foreach (var item in content)
             {
@@ -558,27 +578,36 @@ namespace Services
 
         public AboutUsContent GetAboutUsContent()
         {
-            return db.AboutUsContents.FirstOrDefault();
+            var item = db.AboutUsContents.FirstOrDefault();
+            item.ApplyTranslation(db);
+            return item;
         }
 
         public List<AboutUsSight> GetAboutUsSights()
         {
-            return db.AboutUsSights.ToList();
+            var items = db.AboutUsSights.ToList();
+            items.ApplyTranslations(db);
+            return items;
         }
 
         public List<AboutUsArticle> GetAboutUsArticles()
         {
-            return db.AboutUsArticles.ToList();
+            var items = db.AboutUsArticles.ToList();
+            items.ApplyTranslations(db);
+            return items;
         }
 
         public List<AboutUsItem> GetAboutUsItems()
         {
-            return db.AboutUsItems.ToList();
+            var items = db.AboutUsItems.ToList();
+            items.ApplyTranslations(db);
+            return items;
         }
 
         public AboutUsLogoImagesViewModel GetAboutUsLogoImages()
         {
             var content = db.AboutUsLogoes.ToList();
+            content.ApplyTranslations(db);
             AboutUsLogoImagesViewModel model = new AboutUsLogoImagesViewModel();
             model.NormalPics = new List<AboutUsLogoItemViewModel>();
             model.MainPics = new List<AboutUsLogoItemViewModel>();
@@ -599,6 +628,7 @@ namespace Services
         public ContentItemViewModel GetContactUsSecondDescription()
         {
             var content = db.ContactUsContents.FirstOrDefault();
+            content.ApplyTranslation(db);
             ContentItemViewModel model = new ContentItemViewModel()
             {
                 Title = content.SecondTitle,
@@ -611,6 +641,7 @@ namespace Services
         public ContentItemViewModel GetContactUsFirstDescription()
         {
             var content = db.ContactUsContents.FirstOrDefault();
+            content.ApplyTranslation(db);
             ContentItemViewModel model = new ContentItemViewModel()
             {
                 Title = content.FirstTitle,
@@ -623,7 +654,9 @@ namespace Services
         #region Contents
         public IndexContent GetIndexContent()
         {
-            return db.IndexContents.FirstOrDefault();
+            var item = db.IndexContents.FirstOrDefault();
+            item.ApplyTranslation(db);
+            return item;
         }
 
         public bool UpdateIndexContent(IndexContent content)
@@ -699,12 +732,15 @@ namespace Services
 
         public ContactUsContent GetContactUsContent()
         {
-            return db.ContactUsContents.FirstOrDefault();
+            var item = db.ContactUsContents.FirstOrDefault();
+            item.ApplyTranslation(db);
+            return item;
         }
 
         public List<DownloadLinkGroupViewModel> GetDownloadLinkGoroups()
         {
             var modelDB = db.DownloadLinkGroups.ToList();
+            modelDB.ApplyTranslations(db);
             List<DownloadLinkGroupViewModel> content = new List<DownloadLinkGroupViewModel>();
             foreach (var item in modelDB)
             {

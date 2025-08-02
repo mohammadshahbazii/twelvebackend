@@ -30,6 +30,7 @@ namespace Services
             if (string.IsNullOrEmpty(q))
             {
                 var features = db.Features.Skip(skip).Take(take).ToList();
+                features.ApplyTranslations(db);
                 foreach (var feature in features)
                 {
                     model.Features.Add(new FeaturesItemViewModel()
@@ -48,6 +49,7 @@ namespace Services
             else
             {
                 var features = db.Features.Where(f => f.Title.Contains(q)).Skip(skip).Take(take).ToList();
+                features.ApplyTranslations(db);
                 foreach (var feature in features)
                 {
                     model.Features.Add(new FeaturesItemViewModel()
@@ -102,7 +104,8 @@ namespace Services
         {
             string title = Demo.Replace("-"," ");
             Feature feature = db.Features.FirstOrDefault(f => f.Title == title);
-            FeaturePageDataViewModel model = new FeaturePageDataViewModel() 
+            feature.ApplyTranslation(db);
+            FeaturePageDataViewModel model = new FeaturePageDataViewModel()
             {
                 FeatureID = feature.FeatureId,
                 Title = title,
@@ -115,7 +118,8 @@ namespace Services
                 SecondNewsImageName = feature.SecondArticleImage,
             };
             model.Icons = new List<FeatureIconsViewModel>();
-            var items = db.FeatureItems.Where(f => f.FeatureId == feature.FeatureId);
+            var items = db.FeatureItems.Where(f => f.FeatureId == feature.FeatureId).ToList();
+            items.ApplyTranslations(db);
             foreach ( var item in items)
             {
                 model.Icons.Add(new FeatureIconsViewModel() 
@@ -132,6 +136,7 @@ namespace Services
         public List<FeaturesItemViewModel> GetFeatures()
         {
             var content = db.Features.ToList();
+            content.ApplyTranslations(db);
             List<FeaturesItemViewModel> model = new List<FeaturesItemViewModel>();
             for (int i=0;i<content.Count;i++)
             {
@@ -153,7 +158,8 @@ namespace Services
         public List<FeatureIconsViewModel> GetFeaturesIcons(int featureID)
         {
             var Icons = new List<FeatureIconsViewModel>();
-            var items = db.FeatureItems.Where(f => f.FeatureId == featureID);
+            var items = db.FeatureItems.Where(f => f.FeatureId == featureID).ToList();
+            items.ApplyTranslations(db);
             foreach (var item in items)
             {
                 Icons.Add(new FeatureIconsViewModel()
@@ -169,7 +175,9 @@ namespace Services
 
         public FeatureItem GetItemByID(int ItemID)
         {
-            return db.FeatureItems.Find(ItemID);
+            var item = db.FeatureItems.Find(ItemID);
+            item.ApplyTranslation(db);
+            return item;
         }
 
         public bool CreateItem(FeatureItem featureItem, IFormFile ImageName)

@@ -61,12 +61,16 @@ namespace Services
 
         public List<AboutUsSight> GetAboutUsSights()
         {
-            return db.AboutUsSights.ToList();
+            var items = db.AboutUsSights.ToList();
+            items.ApplyTranslations(db);
+            return items;
         }
 
         public AboutUsSight GetByID(int aboutUsSightID)
         {
-            return db.AboutUsSights.Find(aboutUsSightID);
+            var item = db.AboutUsSights.Find(aboutUsSightID);
+            item.ApplyTranslation(db);
+            return item;
         }
 
         public bool Update(AboutUsSight sight , IFormFile ImageName)

@@ -51,6 +51,7 @@ namespace Services
         {
             var groups = new List<BlogGroupNameViewModel>();
             var blogGroups = db.BlogGroups.ToList();
+            blogGroups.ApplyTranslations(db);
             foreach (var blogGroup in blogGroups)
             {
                 groups.Add(new BlogGroupNameViewModel()
@@ -66,12 +67,16 @@ namespace Services
         public string GetBlogGroupNameByBlogID(int BlogID)
         {
             var groupID = db.SelectedBlogGroups.FirstOrDefault(s => s.BlogId == BlogID).BlogGroupId;
-            return db.BlogGroups.Find(groupID).GroupName;
+            var group = db.BlogGroups.Find(groupID);
+            group.ApplyTranslation(db);
+            return group.GroupName;
         }
 
         public BlogGroup GetByID(int id)
         {
-            return db.BlogGroups.Find(id);
+            var item = db.BlogGroups.Find(id);
+            item.ApplyTranslation(db);
+            return item;
         }
 
         public bool Update(BlogGroup blogGroup)

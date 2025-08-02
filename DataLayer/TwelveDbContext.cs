@@ -105,6 +105,8 @@ public partial class TwelveDbContext : DbContext
 
     public virtual DbSet<FaqTranslation> FaqTranslations { get; set; }
 
+    public virtual DbSet<EntityTranslation> EntityTranslations { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("data source=185.79.157.4\\MSSQLSERVER2019;User ID =Twelve;Password =!48HhTv$4rUrZ8;initial catalog=Twelve_DB;Trusted_Connection=False;integrated security=False;MultipleActiveResultSets=true;TrustServerCertificate=True;");
@@ -593,6 +595,14 @@ public partial class TwelveDbContext : DbContext
             entity.HasOne(d => d.Faq).WithMany(p => p.FaqTranslations)
                 .HasForeignKey(d => d.FaqId)
                 .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<EntityTranslation>(entity =>
+        {
+            entity.Property(e => e.EntityTranslationId).HasColumnName("EntityTranslationID");
+            entity.Property(e => e.EntityName).HasMaxLength(100);
+            entity.Property(e => e.Culture).HasMaxLength(10);
+            entity.Property(e => e.Property).HasMaxLength(100);
         });
 
         OnModelCreatingPartial(modelBuilder);

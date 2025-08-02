@@ -46,12 +46,16 @@ namespace Services
 
         public CallInfoLink GetByID(int LinkID)
         {
-            return db.CallInfoLinks.Find(LinkID);
+            var item = db.CallInfoLinks.Find(LinkID);
+            item.ApplyTranslation(db);
+            return item;
         }
 
         public List<CallInfoLink> GetLinks(int CallInfoID)
         {
-            return db.CallInfoLinks.Where(l => l.CallInfoId == CallInfoID).ToList();
+            var items = db.CallInfoLinks.Where(l => l.CallInfoId == CallInfoID).ToList();
+            items.ApplyTranslations(db);
+            return items;
         }
 
         public bool Update(CallInfoLink callInfoLink)
