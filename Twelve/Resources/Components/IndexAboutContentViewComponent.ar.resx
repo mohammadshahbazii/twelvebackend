@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>حول تويلف</value>
+  </data>
+  <data name="AboutSubTitle" xml:space="preserve">
+    <value>لماذا تويلف؟</value>
+  </data>
+  <data name="AboutDescription" xml:space="preserve">
+    <value>تويلف منصة شاملة تُسهّل إدارة الأعمال.</value>
+  </data>
+</root>

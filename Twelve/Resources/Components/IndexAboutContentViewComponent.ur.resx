@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>ٹولیو کے بارے میں</value>
+  </data>
+  <data name="AboutSubTitle" xml:space="preserve">
+    <value>کیوں ٹولیو؟</value>
+  </data>
+  <data name="AboutDescription" xml:space="preserve">
+    <value>ٹولیو ایک جامع پلیٹ فارم ہے جو کاروبار کی مینجمنٹ کو آسان بناتا ہے۔</value>
+  </data>
+</root>
