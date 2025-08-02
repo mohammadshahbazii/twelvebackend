@@ -36,6 +36,22 @@ const translations = {
     superAppDesc: "The Twelve super app is the sanctuary of Imam Mahdi's followers, a comprehensive space for everything you can imagine; a realm beyond expectation.",
     rightsPrefix: "All rights of this site belong to ",
     rightsSuffix: ".",
+    fullName: "Full name",
+    yourEmail: "Your email",
+    subject: "Subject",
+    mobileNumber: "Mobile number",
+    messageText: "Message text",
+    sendMessage: "Send message",
+    required: "(required)",
+    enterFullName: "Enter your full name",
+    enterEmail: "Enter your email",
+    invalidEmail: "Your email is invalid",
+    enterSubject: "Enter the subject of your message",
+    enterPhone: "Enter your mobile number",
+    enterMessage: "Enter your message text",
+    socialNetworksAt: "Social networks at",
+    contactIntroHeading: "We are here to answer you",
+    contactIntroText: "Twelve has provided this platform to better respond and communicate with you dear users. Please fill out the form below to get in touch and submit your request",
     allPosts: "All posts"
   },
   fa: {
@@ -75,6 +91,22 @@ const translations = {
     superAppDesc: "سوپر اپلیکیشن دوازده، خلوتگاه منتظران امام زمان ارواحنافداه است فضایی جامع از هرآنچه فکرش را بکنید؛ محیطی فراتر از انتظار",
     rightsPrefix: "کلیه حقوق این سایت، متعلق به شرکت ",
     rightsSuffix: "می‌باشد.",
+    fullName: "نام و نام خانوادگی",
+    yourEmail: "ایمیل شما",
+    subject: "موضوع پیام شما",
+    mobileNumber: "شماره موبایل",
+    messageText: "متن پیام ارسالی",
+    sendMessage: "ارسال پیام",
+    required: "(اجباری)",
+    enterFullName: "نام و نام خانوادگی خود را وارد کنید",
+    enterEmail: "ایمیل خود را وارد کنید",
+    invalidEmail: "ایمیل شما نا معتبر است",
+    enterSubject: "موضوع پیام خود را وارد کنید",
+    enterPhone: "شماره موبایل خود را وارد کنید",
+    enterMessage: "متن پیام ارسالی خود را وارد کنید",
+    socialNetworksAt: "شبکه های اجتماعی به آدرس",
+    contactIntroHeading: "ما اینجا هستیم برای پاسخگویی به شما",
+    contactIntroText: "دوازده، به منظور پاسخگویی و ارتباط هرچه بهتر با شما کاربران عزیز، این بستر را فراهم کرده است. لطفا فرم زیر را جهت برقراری ارتباط تکمیل و درخواست خود را ثبت کنید",
     allPosts: "همه پست ها"
   },
   ar: {
@@ -114,6 +146,22 @@ const translations = {
     superAppDesc: "التطبيق الفائق تويلف هو ملاذ لمنتظري الإمام المهدي عليه السلام، مساحة شاملة لكل ما يخطر ببالك؛ عالم يتجاوز التوقعات",
     rightsPrefix: "جميع حقوق هذا الموقع محفوظة لشركة ",
     rightsSuffix: ".",
+    fullName: "الاسم الكامل",
+    yourEmail: "بريدك الإلكتروني",
+    subject: "موضوع رسالتك",
+    mobileNumber: "رقم الجوال",
+    messageText: "نص الرسالة",
+    sendMessage: "إرسال الرسالة",
+    required: "(إلزامي)",
+    enterFullName: "أدخل اسمك الكامل",
+    enterEmail: "أدخل بريدك الإلكتروني",
+    invalidEmail: "بريدك الإلكتروني غير صالح",
+    enterSubject: "أدخل موضوع رسالتك",
+    enterPhone: "أدخل رقم جوالك",
+    enterMessage: "أدخل نص رسالتك",
+    socialNetworksAt: "شبكات التواصل على العنوان",
+    contactIntroHeading: "نحن هنا للرد عليك",
+    contactIntroText: "وفرت تويلف هذه المنصة للرد والتواصل بشكل أفضل معكم أيها المستخدمون الأعزاء. يرجى ملء النموذج أدناه للتواصل وتسجيل طلبك",
     allPosts: "كل المنشورات"
   },
   ur: {
@@ -153,6 +201,22 @@ const translations = {
     superAppDesc: "ٹوئیلو سپر ایپ امام مہدی علیہ السلام کے منتظرین کی خلوت گاہ ہے، ہر وہ چیز جس کا آپ تصور کر سکتے ہیں کا جامع مقام؛ توقعات سے بڑھ کر ماحول",
     rightsPrefix: "اس سائٹ کے تمام حقوق کمپنی ",
     rightsSuffix: "کے پاس ہیں۔",
+    fullName: "پورا نام",
+    yourEmail: "آپ کا ای میل",
+    subject: "آپ کے پیغام کا موضوع",
+    mobileNumber: "موبائل نمبر",
+    messageText: "پیغام کا متن",
+    sendMessage: "پیغام بھیجیں",
+    required: "(لازمی)",
+    enterFullName: "اپنا پورا نام درج کریں",
+    enterEmail: "اپنا ای میل درج کریں",
+    invalidEmail: "آپ کا ای میل درست نہیں ہے",
+    enterSubject: "اپنے پیغام کا موضوع درج کریں",
+    enterPhone: "اپنا موبائل نمبر درج کریں",
+    enterMessage: "اپنا پیغام درج کریں",
+    socialNetworksAt: "سوشل نیٹ ورکس برائے",
+    contactIntroHeading: "ہم آپ کو جواب دینے کے لیے یہاں ہیں",
+    contactIntroText: "ٹوئیلو نے آپ عزیز صارفین کے ساتھ بہتر رابطے اور جواب دینے کے لیے یہ پلیٹ فارم فراہم کیا ہے۔ براہ کرم نیچے دیا گیا فارم پُر کریں اور اپنی درخواست جمع کرائیں",
     allPosts: "تمام پوسٹس"
   }
 };
@@ -168,6 +232,13 @@ function applyTranslations(lang) {
     const translation = translations[lang] && translations[lang][key];
     if (translation) {
       el.textContent = translation;
+    }
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    const translation = translations[lang] && translations[lang][key];
+    if (translation) {
+      el.setAttribute('placeholder', translation);
     }
   });
   document.documentElement.setAttribute('lang', lang);
