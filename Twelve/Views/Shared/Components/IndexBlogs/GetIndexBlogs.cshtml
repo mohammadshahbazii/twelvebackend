@@ -3,13 +3,13 @@
 @if (Model.News.Any() || Model.Blogs.Any())
 {
     <div data-aos="fade-up" data-aos-duration="1800" class="my-5">
-        <p class="text-green2 fs-12 d-block fw-bold mx-4">
+        <p class="text-green2 fs-12 d-block fw-bold mx-4" data-i18n-key="stayUpdated">
             برای اطلاع از جدیدترین رویدادها با ما همراه باشید
         </p>
         <div class="row">
             <div class="col-lg-6 col-md-12">
                 
-                <h2 class="text-darkblue fw-bold d-inline-block mb-3 mx-4 font-ExtraBold">
+                <h2 class="text-darkblue fw-bold d-inline-block mb-3 mx-4 font-ExtraBold" data-i18n-key="latestArticlesNews">
                     آخرین مقالات و اخبار
                 </h2>
                 
@@ -24,7 +24,7 @@
                                 <li class="nav-item news-tab-item ms-2">
                                     <a class="nav-link d-inline-block pt-0 news-tab active"
                                        data-bs-toggle="pill"
-                                       href="#Blogs">اخبار اپلیکیشن</a>
+                                       href="#Blogs" data-i18n-key="appNews">اخبار اپلیکیشن</a>
                                 </li>
                             }
                             @if (Model.News.Any())
@@ -32,14 +32,14 @@
                                 <li class="nav-item news-tab-item ms-2">
                                     <a class="nav-link d-inline-block  pt-0 news-tab"
                                        data-bs-toggle="pill"
-                                       href="#News">آموزش منو های اپلیکیشن</a>
+                                       href="#News" data-i18n-key="appMenuTutorial">آموزش منو های اپلیکیشن</a>
                                 </li>
                             }
                         </ul>
                     </div>
                     <div class="col-lg-4 col-md-12">
                         <a href="/Blog" class="text-darkblue">
-                            مشاهده تمام پست ها<span class="fa fa-angle-left mx-2"></span>
+                            <span data-i18n-key="viewAllPosts">مشاهده تمام پست ها</span><span class="fa fa-angle-left mx-2"></span>
                         </a>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                                             </p>
                                         }
                                         <p class="blog-news-motalee text-darkblue">
-                                            مطالعه پست
+                                            <span data-i18n-key="readPost">مطالعه پست</span>
                                             <span>
                                                 <svg width="8"
                                                      height="14"
@@ -107,7 +107,7 @@
                     <div class="text-center">
                         <a href="/Blog"
                            class="btn btn-outline-dark mt-5 py-3 px-4 rounded-pill">
-                            همه پست ها
+                            <span data-i18n-key="allPosts">همه پست ها</span>
                         </a>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
                                             </p>
                                         }
                                         <p class="blog-news-motalee text-darkblue">
-                                            مطالعه پست
+                                            <span data-i18n-key="readPost">مطالعه پست</span>
                                             <span>
                                                 <svg width="8"
                                                      height="14"
@@ -174,7 +174,7 @@
                     <div class="text-center">
                         <a href="/Blog"
                            class="btn btn-outline-dark mt-5 py-3 px-4 rounded-pill">
-                            همه پست ها
+                            <span data-i18n-key="allPosts">همه پست ها</span>
                         </a>
                     </div>
                 </div>

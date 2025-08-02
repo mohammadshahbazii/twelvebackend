@@ -14,7 +14,7 @@
                                     <div class="row">
                                         <div class="col-lg-2">
                                             <p class="text-darkblue pt-1 fs-5 fw-bold">
-                                                موضوعات<img src="/Assest/img/list-title-icon.png"
+                                                <span data-i18n-key="topics">موضوعات</span><img src="/Assest/img/list-title-icon.png"
                                                             width="24"
                                                             height="24"
                                                             class="mx-2" />
@@ -51,7 +51,7 @@
                                             <input type="text"
                                                 id="FaqsQ"
                                                    class="form-control fs-6 navbar-search bg-light border border-0"
-                                                   placeholder="جستجو" />
+                                                   placeholder="جستجو" data-i18n-placeholder="search" />
                                             <a onclick="SearchFaqs()" class="input-group-text bg-light navbar-search-icon border border-0">
                                                 <img src="/Assest/img/SVG/Main/search-normal.svg" />
                                             </a>
@@ -66,7 +66,7 @@
                             <div class="row">
                                 <div class="col-6">
                                     <p class="text-darkblue fs-6 text-center fw-bold">
-                                        موضوعات<span class="fa fa-list-ul text-darkblue mx-2"></span>
+                                        <span data-i18n-key="topics">موضوعات</span><span class="fa fa-list-ul text-darkblue mx-2"></span>
                                     </p>
                                 </div>
                                 <div class="col-6 text-start px-0">
@@ -74,7 +74,8 @@
                                         <button class="bg-white border-0 text-darkblue fw-bold dropdown-toggle"
                                                 type="button"
                                                 data-bs-toggle="dropdown"
-                                                aria-expanded="false">
+                                                aria-expanded="false"
+                                                data-i18n-key="appTraining">
                                             آموزش اپلیکیشن
                                         </button>
 
@@ -108,7 +109,7 @@
                                 <div class="input-group mb-3">
                                     <input type="text"
                                            class="form-control fs-6 navbar-search bg-white border border-0"
-                                           placeholder="جستجو" />
+                                           placeholder="جستجو" data-i18n-placeholder="search" />
                                     <span class="input-group-text bg-white navbar-search-icon border border-0">
                                         <img src="/Assest/img/SVG/Main/search-normal.svg" />
                                     </span>
@@ -155,7 +156,7 @@
                 </div>
             </div>
             <div class="col-lg-4 col-md-12 ps-lg-5">
-                <h3 class="text-darkblue fw-bold my-5">تبلیغات و برگزیده ها</h3>
+                <h3 class="text-darkblue fw-bold my-5" data-i18n-key="adsAndHighlights">تبلیغات و برگزیده ها</h3>
                 @await Component.InvokeAsync("Advertisements")
 
             </div>

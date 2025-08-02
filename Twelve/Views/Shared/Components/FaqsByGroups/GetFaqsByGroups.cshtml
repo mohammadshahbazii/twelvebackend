@@ -1,7 +1,7 @@
 ﻿@model List<ViewModels.FaqsItemViewModel>
 
 <h3 class="text-darkblue fw-bold my-5">
-    سوالات برگزیده @Model[0].GroupName
+    <span data-i18n-key="featuredQuestions">سوالات برگزیده</span> @Model[0].GroupName
 </h3>
 <div class="accordion-faq accordion" id="Q_@(Model[0].GroupID)">
     @foreach (var item in Model)

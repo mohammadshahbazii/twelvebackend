@@ -2,74 +2,74 @@
     <div class="row">
         <div class="col-lg-6 col-md-12">
             <div class="input-group radius-20 mt-1 mb-3">
-                <span class="input-group-text border border-2 border-end-0 radius-20 bg-white px-lg-3 px-1 py-4 fw-bold text-darkblue mobile-input">
+                <span class="input-group-text border border-2 border-end-0 radius-20 bg-white px-lg-3 px-1 py-4 fw-bold text-darkblue mobile-input" data-i18n-key="fullName">
                     نام و نام خانوادگی
                 </span>
                 <span class="input-group-text border border-2 border-end-0 border-start-0 bg-white fs-12 px-lg-3 px-1 py-4 text-pencil mobile-input">
-                    <span class="border border-2 border-start-0 border-top-0 border-bottom-0 pe-2">
+                    <span class="border border-2 border-start-0 border-top-0 border-bottom-0 pe-2" data-i18n-key="required">
                         (اجباری)
                     </span>
                 </span>
                 <input type="text" id="fullname"
                        class="form-control border border-start-0 radius-20 border-2 bg-white px-lg-3 px-1 py-4 mobile-input"
-                       placeholder="نام خانوداگی خود را وارد کنید" />
+                       placeholder="نام و نام خانوادگی خود را وارد کنید" data-i18n-placeholder="enterFullName" />
             </div>
         </div>
         <div class="col-lg-6 col-md-12">
             <div class="input-group radius-20 mt-1 mb-3">
-                <span class="input-group-text border border-2 border-end-0 radius-20 bg-white px-lg-3 px-1 py-4 fw-bold text-darkblue mobile-input">ایمیل شما</span>
+                <span class="input-group-text border border-2 border-end-0 radius-20 bg-white px-lg-3 px-1 py-4 fw-bold text-darkblue mobile-input" data-i18n-key="yourEmail">ایمیل شما</span>
                 <span class="input-group-text border border-2 border-end-0 border-start-0 bg-white fs-12 px-lg-3 px-1 py-4 text-pencil mobile-input">
-                    <span class="border border-2 border-start-0 border-top-0 border-bottom-0 pe-2 mobile-input">
+                    <span class="border border-2 border-start-0 border-top-0 border-bottom-0 pe-2 mobile-input" data-i18n-key="required">
                         (اجباری)
                     </span>
                 </span>
                 <input type="email" id="Email"
                        class="form-control text-start border border-start-0 radius-20 border-2 bg-white px-lg-3 px-1 py-4 mobile-input"
-                       placeholder="ایمیل خود را وارد کنید" />
+                       placeholder="ایمیل خود را وارد کنید" data-i18n-placeholder="enterEmail" />
             </div>
-            <span id="emailError" class="text-red fs-12" style="display: none;">ایمیل شما نا معتبر است</span>
+            <span id="emailError" class="text-red fs-12" style="display: none;" data-i18n-key="invalidEmail">ایمیل شما نا معتبر است</span>
         </div>
         <div class="col-lg-6 col-md-12">
             <div class="input-group radius-20 mt-1 mb-3">
-                <span class="input-group-text border border-2 border-end-0 radius-20 bg-white px-lg-3 px-1 py-4 fw-bold text-darkblue mobile-input">موضوع پیام شما</span>
+                <span class="input-group-text border border-2 border-end-0 radius-20 bg-white px-lg-3 px-1 py-4 fw-bold text-darkblue mobile-input" data-i18n-key="subject">موضوع پیام شما</span>
                 <span class="input-group-text border border-2 border-end-0 border-start-0 bg-white fs-12 px-lg-3 px-1 py-4 text-pencil mobile-input">
-                    <span class="border border-2 border-start-0 border-top-0 border-bottom-0 pe-2 mobile-input">
+                    <span class="border border-2 border-start-0 border-top-0 border-bottom-0 pe-2 mobile-input" data-i18n-key="required">
                         (اجباری)
                     </span>
                 </span>
                 <input type="text" id="Subject"
                        class="form-control border border-start-0 radius-20 border-2 bg-white px-lg-3 px-1 py-4 mobile-input"
-                       placeholder="موضوع پیام خود را وارد کنید" />
+                       placeholder="موضوع پیام خود را وارد کنید" data-i18n-placeholder="enterSubject" />
             </div>
         </div>
         <div class="col-lg-6 col-md-12">
             <div class="input-group radius-20 mt-1 mb-3">
-                <span class="input-group-text border border-2 border-end-0 radius-20 bg-white px-lg-3 px-1 py-4 fw-bold text-darkblue mobile-input">
+                <span class="input-group-text border border-2 border-end-0 radius-20 bg-white px-lg-3 px-1 py-4 fw-bold text-darkblue mobile-input" data-i18n-key="mobileNumber">
                     شماره موبایل
                 </span>
                 <span class="input-group-text border border-2 border-end-0 border-start-0 bg-white fs-12 px-lg-3 px-1 py-4 text-pencil mobile-input">
-                    <span class="border border-2 border-start-0 border-top-0 border-bottom-0 pe-2">
+                    <span class="border border-2 border-start-0 border-top-0 border-bottom-0 pe-2" data-i18n-key="required">
                         (اجباری)
                     </span>
                 </span>
                 <input type="text" id="phonenumber"
                        class="form-control text-start border border-start-0 radius-20 border-2 bg-white px-lg-3 px-1 py-4 mobile-input" dir="ltr"
-                       placeholder="شماره موبایل خود را وارد کنید" />
+                       placeholder="شماره موبایل خود را وارد کنید" data-i18n-placeholder="enterPhone" />
             </div>
             <span id="SmsResult" class="text-red fs-12"></span>
         </div>
         <div class="col-lg-12 col-md-12">
             <div class="input-group radius-20 mt-1 mb-3">
                 <span class="input-group-text border border-2 border-end-0 radius-20 bg-white text-darkblue mobile-input">
-                    <span class="mt-n50 fw-bold mobile-input">متن پیام ارسالی</span>
-                    <span class="mt-n50 text-pencil ms-lg-3 ms-1 pe-lg-3 pe-1 fs-12 border border-2 border-start-0 border-top-0 border-bottom-0 mobile-input">
+                    <span class="mt-n50 fw-bold mobile-input" data-i18n-key="messageText">متن پیام ارسالی</span>
+                    <span class="mt-n50 text-pencil ms-lg-3 ms-1 pe-lg-3 pe-1 fs-12 border border-2 border-start-0 border-top-0 border-bottom-0 mobile-input" data-i18n-key="required">
                         (اجباری)
                     </span>
                 </span>
                 <textarea rows="5" id="Text"
                     style="resize:none;"
                           class="form-control text-start border border-start-0 radius-20 border-2 bg-white px-lg-3 px-1 py-4 mobile-input"
-                          placeholder="متن پیام ارسالی خود را وارد کنید"></textarea>
+                          placeholder="متن پیام ارسالی خود را وارد کنید" data-i18n-placeholder="enterMessage"></textarea>
             </div>
         </div>
         <div class="col-lg-9 col-md-12">
@@ -77,7 +77,7 @@
             </p>
         </div>
         <div class="col-lg-3 col-md-12 pt-4">
-            <a onclick="SubmitMessage()" class="blue-btn d-block w-100 fs-6 text-center py-4">
+            <a onclick="SubmitMessage()" class="blue-btn d-block w-100 fs-6 text-center py-4" data-i18n-key="sendMessage">
                 ارسال پیام
             </a>
         </div>
