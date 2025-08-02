@@ -51,7 +51,8 @@ const translations = {
     enterMessage: "Enter your message text",
     socialNetworksAt: "Social networks at",
     contactIntroHeading: "We are here to answer you",
-    contactIntroText: "Twelve has provided this platform to better respond and communicate with you dear users. Please fill out the form below to get in touch and submit your request"
+    contactIntroText: "Twelve has provided this platform to better respond and communicate with you dear users. Please fill out the form below to get in touch and submit your request",
+    allPosts: "All posts"
   },
   fa: {
     home: "صفحه اصلی",
@@ -105,7 +106,8 @@ const translations = {
     enterMessage: "متن پیام ارسالی خود را وارد کنید",
     socialNetworksAt: "شبکه های اجتماعی به آدرس",
     contactIntroHeading: "ما اینجا هستیم برای پاسخگویی به شما",
-    contactIntroText: "دوازده، به منظور پاسخگویی و ارتباط هرچه بهتر با شما کاربران عزیز، این بستر را فراهم کرده است. لطفا فرم زیر را جهت برقراری ارتباط تکمیل و درخواست خود را ثبت کنید"
+    contactIntroText: "دوازده، به منظور پاسخگویی و ارتباط هرچه بهتر با شما کاربران عزیز، این بستر را فراهم کرده است. لطفا فرم زیر را جهت برقراری ارتباط تکمیل و درخواست خود را ثبت کنید",
+    allPosts: "همه پست ها"
   },
   ar: {
     home: "الرئيسية",
@@ -159,7 +161,8 @@ const translations = {
     enterMessage: "أدخل نص رسالتك",
     socialNetworksAt: "شبكات التواصل على العنوان",
     contactIntroHeading: "نحن هنا للرد عليك",
-    contactIntroText: "وفرت تويلف هذه المنصة للرد والتواصل بشكل أفضل معكم أيها المستخدمون الأعزاء. يرجى ملء النموذج أدناه للتواصل وتسجيل طلبك"
+    contactIntroText: "وفرت تويلف هذه المنصة للرد والتواصل بشكل أفضل معكم أيها المستخدمون الأعزاء. يرجى ملء النموذج أدناه للتواصل وتسجيل طلبك",
+    allPosts: "كل المنشورات"
   },
   ur: {
     home: "ہوم",
@@ -213,7 +216,8 @@ const translations = {
     enterMessage: "اپنا پیغام درج کریں",
     socialNetworksAt: "سوشل نیٹ ورکس برائے",
     contactIntroHeading: "ہم آپ کو جواب دینے کے لیے یہاں ہیں",
-    contactIntroText: "ٹوئیلو نے آپ عزیز صارفین کے ساتھ بہتر رابطے اور جواب دینے کے لیے یہ پلیٹ فارم فراہم کیا ہے۔ براہ کرم نیچے دیا گیا فارم پُر کریں اور اپنی درخواست جمع کرائیں"
+    contactIntroText: "ٹوئیلو نے آپ عزیز صارفین کے ساتھ بہتر رابطے اور جواب دینے کے لیے یہ پلیٹ فارم فراہم کیا ہے۔ براہ کرم نیچے دیا گیا فارم پُر کریں اور اپنی درخواست جمع کرائیں",
+    allPosts: "تمام پوسٹس"
   }
 };
 
