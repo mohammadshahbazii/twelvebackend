@@ -103,7 +103,8 @@ const translations = {
     noBlogResults: "No items found in the blog section",
     searchFor: "Search for",
     inFeatures: "in features",
-    noFeatureResults: "No items found in the app features section"
+    noFeatureResults: "No items found in the app features section",
+    allPosts: "All posts"
   },
   fa: {
     home: "صفحه اصلی",
@@ -209,7 +210,8 @@ const translations = {
     noBlogResults: "موردی در بخش وبلاگ و اخبار اپلیکیشن یافت نشد",
     searchFor: "جستجو در مورد",
     inFeatures: "در ویژگی ها",
-    noFeatureResults: "موردی در ویژگی های اپلیکیشن یافت نشد"
+    noFeatureResults: "موردی در ویژگی های اپلیکیشن یافت نشد",
+    allPosts: "همه پست ها"
   },
   ar: {
     home: "الرئيسية",
@@ -315,7 +317,8 @@ const translations = {
     noBlogResults: "لم يتم العثور على شيء في قسم المدونة والأخبار",
     searchFor: "البحث عن",
     inFeatures: "في الميزات",
-    noFeatureResults: "لم يتم العثور على شيء في ميزات التطبيق"
+    noFeatureResults: "لم يتم العثور على شيء في ميزات التطبيق",
+    allPosts: "كل المنشورات"
   },
   ur: {
     home: "ہوم",
@@ -421,7 +424,8 @@ const translations = {
     noBlogResults: "بلاگ اور خبروں کے حصے میں کوئی چیز نہیں ملی",
     searchFor: "کی تلاش",
     inFeatures: "فیچرز میں",
-    noFeatureResults: "ایپ کی خصوصیات میں کچھ نہیں ملا"
+    noFeatureResults: "ایپ کی خصوصیات میں کچھ نہیں ملا",
+    allPosts: "تمام پوسٹس"
   }
 };
 
