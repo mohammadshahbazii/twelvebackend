@@ -14,7 +14,7 @@
         <form role="search" action="/Search">
             <div class="input-group mb-3">
                 <input type="text"
-                    name="q"
+                       name="q"
                        class="form-control fs-6 navbar-search bg-light border border-0"
                        placeholder="جستجو" />
                 <button type="submit" class="input-group-text bg-light navbar-search-icon border border-0">
@@ -22,33 +22,39 @@
                 </button>
             </div>
         </form>
+        <select class="form-select form-select-sm language-selector mb-3" style="width:auto;">
+            <option value="en">English</option>
+            <option value="fa">فارسی</option>
+            <option value="ar">العربية</option>
+            <option value="ur">اردو</option>
+        </select>
         <ul class="navbar-nav border-bottom pb-5 mb-4">
             <li class="py-3 mobile-nav-item">
-                <a class="text-dark fs-6 p-3" aria-current="page" href="/>صفحه اصلی</a>
+                <a class="text-dark fs-6 p-3" aria-current="page" href="/" data-i18n-key="home">صفحه اصلی</a>
             </li>
             <li class="py-3 mobile-nav-item">
-                <a class="text-dark fs-6 p-3 " href="/Blog">بلاگ و اخبار</a>
+                <a class="text-dark fs-6 p-3 " href="/Blog" data-i18n-key="blog">بلاگ و اخبار</a>
             </li>
             <li class="py-3 mobile-nav-item">
-                <a class="text-dark fs-6 p-3" href="/Faq.html">سوالات متداول</a>
+                <a class="text-dark fs-6 p-3" href="/Faq" data-i18n-key="faq">سوالات متداول</a>
             </li>
             <li class="py-3 mobile-nav-item">
-                <a class="text-dark fs-6 p-3" href="/AppMenu">معرفی منوها</a>
+                <a class="text-dark fs-6 p-3" href="/AppMenu" data-i18n-key="menu">معرفی منوها</a>
             </li>
             <li class="py-3 mobile-nav-item">
-                <a class="text-dark fs-6 p-3 " href="/AboutUs">درباره ما</a>
+                <a class="text-dark fs-6 p-3 " href="/AboutUs" data-i18n-key="about">درباره ما</a>
             </li>
             <li class="py-3 mobile-nav-item">
-                <a class="text-dark fs-6 p-3" href="/ContactUs">ارتباط با ما</a>
+                <a class="text-dark fs-6 p-3" href="/ContactUs" data-i18n-key="contact">ارتباط با ما</a>
             </li>
         </ul>
-        <a href="/Download" class="my-3 fw-bold text-dark d-block">دانلود با لینک مستقیم</a>
+        <a href="/Download" class="my-3 fw-bold text-dark d-block" data-i18n-key="directDownload">دانلود با لینک مستقیم</a>
         <a href="/Download"
            class="blue-btn d-block w-100 mt-4 text-center font-Bold fs-6">
             <img src="/Assest/img/SVG/Main/download.svg"
                  width="20"
                  height="20"
-                 class="mx-2" />دانلود اپلیکیشن
+                 class="mx-2" /><span data-i18n-key="download">دانلود اپلیکیشن</span>
         </a>
     </div>
 </div>
@@ -83,49 +89,55 @@
                 <li class="nav-item navbar-item">
                     <a class="nav-link text-darkblue py-3 pe-2"
                        aria-current="page"
-                       href="/">صفحه اصلی</a>
+                       href="/" data-i18n-key="home">صفحه اصلی</a>
                 </li>
                 <li class="nav-item navbar-item">
-                    <a class="nav-link text-darkblue py-3 pe-3 " href="/Blog">بلاگ و اخبار</a>
+                    <a class="nav-link text-darkblue py-3 pe-3 " href="/Blog" data-i18n-key="blog">بلاگ و اخبار</a>
                 </li>
                 <li class="nav-item navbar-item">
-                    <a class="nav-link text-darkblue py-3 pe-3" href="/Faq">
+                    <a class="nav-link text-darkblue py-3 pe-3" href="/Faq" data-i18n-key="faq">
                         سوالات متداول
                     </a>
                 </li>
                 <li class="nav-item navbar-item">
                     <a class="nav-link text-darkblue py-3 pe-3"
-                       href="/AppMenu">
+                       href="/AppMenu" data-i18n-key="menu">
                         معرفی منو ها
                     </a>
                 </li>
                 <li class="nav-item navbar-item">
                     <a class="nav-link text-darkblue py-3 pe-3 "
-                       href="/AboutUs">درباره ما</a>
+                       href="/AboutUs" data-i18n-key="about">درباره ما</a>
                 </li>
                 <li class="nav-item navbar-item">
-                    <a class="nav-link text-darkblue py-3 pe-3" href="/ContactUs">ارتباط با ما</a>
+                    <a class="nav-link text-darkblue py-3 pe-3" href="/ContactUs" data-i18n-key="contact">ارتباط با ما</a>
                 </li>
             </ul>
             <div class="d-flex">
                 <form role="search" action="/Search">
                     <div class="input-group my-3">
                         <input type="text"
-                            name="q"
+                               name="q"
                                class="form-control navbar-search bg-light border border-0"
                                placeholder="جستجو" />
                         <button type="submit" class="input-group-text bg-light navbar-search-icon border border-0"
-                              id="inputGroup-sizing-default">
+                                id="inputGroup-sizing-default">
                             <img src="/Assest/img/SVG/Main/search-normal.svg" />
                         </button>
                     </div>
                 </form>
+                <select class="form-select form-select-sm language-selector my-3" style="width:auto;">
+                    <option value="en">English</option>
+                    <option value="fa">فارسی</option>
+                    <option value="ar">العربية</option>
+                    <option value="ur">اردو</option>
+                </select>
                 <a href="/Download"
                    class="blue-btn h-75 my-3 font-Bold text-light mx-2">
                     <img src="/Assest/img/SVG/Main/download.svg"
                          width="16"
                          height="16"
-                         class="mx-2" />دانلود اپلیکیشن
+                         class="mx-2" /><span data-i18n-key="download">دانلود اپلیکیشن</span>
                 </a>
             </div>
         </div>

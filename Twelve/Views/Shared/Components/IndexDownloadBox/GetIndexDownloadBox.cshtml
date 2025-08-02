@@ -2,19 +2,14 @@
 <div class="bg-white container download-box p-lg-5 pt-5 mx-auto">
     <div class="row">
         <div class="col-lg-6 col-md-12">
-            <h2 class="text-dark fs-1 font-ExtraBold fw-bold">
-                دانلود اپلیکیشن
-            </h2>
-            <p class="text-gray">
-                همین حالا میتونید، اپلیکیشن ((دوازده)) رو از طریق بازار، مایکت و یا با
-                لینک مستقیم دریافت کنید
-            </p>
+            <h2 class="text-dark fs-1 font-ExtraBold fw-bold" data-i18n-key="download"></h2>
+            <p class="text-gray" data-i18n-key="downloadDesc"></p>
         </div>
         <div class="col-lg-6 col-md-12">
             <div class="row">
                 <div class="col-lg-8 col-md-12">
                     <div class="d-none d-lg-block d-xl-block d-xxl-block">
-                        <p>شماره تلفن همراه خود را وارد کنید</p>
+                        <p data-i18n-key="enterPhone"></p>
                         <form>
                             <div class="input-group mb-3">
                                 <input type="text" id="phonenumber" name="phonenumber"
@@ -36,11 +31,11 @@
                                 <li class="nav-item">
                                     @if (item == Model.DownloadLinkGroups[0])
                                     {
-                                        <a class="nav-link no-bg text-dark active" style="margin-bottom:5px!important;" data-bs-toggle="pill" href="#g_@(item.GroupID)"> دانلود نسخه @item.GroupName</a>
+                                        <a class="nav-link no-bg text-dark active" style="margin-bottom:5px!important;" data-bs-toggle="pill" href="#g_@(item.GroupID)"><span data-i18n-key="downloadVersion"></span> @item.GroupName</a>
                                     }
                                     else
                                     {
-                                        <a class="nav-link no-bg text-dark" style="margin-bottom:5px!important;" data-bs-toggle="pill" href="#g_@(item.GroupID)"> دانلود نسخه @item.GroupName</a>
+                                        <a class="nav-link no-bg text-dark" style="margin-bottom:5px!important;" data-bs-toggle="pill" href="#g_@(item.GroupID)"><span data-i18n-key="downloadVersion"></span> @item.GroupName</a>
                                     }
                                 </li>
                             }
@@ -108,8 +103,7 @@
                                         <br>
                                         <a href="/Download"
                                            class="blue-btn p-4 d-block w-100 mt-4 text-center fw-bold fs-12">
-                                            <span class="fa fa-download mx-2"></span>دانلود مستقیم
-                                            اپلیکیشن
+                                            <span class="fa fa-download mx-2"></span><span data-i18n-key="downloadDirectApp"></span>
                                         </a>
                                     </div>
                                 }
@@ -193,15 +187,13 @@
                             </div>
 
                         </div>
-                        <p class="text-pencil fs-5 text-center">
-                            ما را در شبکه های اجتماعی دنبال کنید
-                        </p>
+                        <p class="text-pencil fs-5 text-center" data-i18n-key="followUs"></p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12">
                     <div class="d-none d-lg-block d-xl-block d-xxl-block">
-                        <a href="/Download" class="text-green2 d-block mb-3">دانلود با لینک مستقیم</a>
-                        <a onclick="SendSms()" class="green-btn d-block">ارسال لینک</a>
+                        <a href="/Download" class="text-green2 d-block mb-3" data-i18n-key="directDownload"></a>
+                        <a onclick="SendSms()" class="green-btn d-block" data-i18n-key="sendLink"></a>
                     </div>
                     <div class="d-lg-none d-xl-none d-xxl-none d-md-block d-sm-block"></div>
                 </div>

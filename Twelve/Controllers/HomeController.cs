@@ -6,22 +6,26 @@ using Twelve.Models;
 using Services;
 using Grpc.Core;
 using Utilities;
+using Microsoft.Extensions.Localization;
 
 namespace Twelve.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IStringLocalizer<HomeController> _localizer;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IStringLocalizer<HomeController> localizer)
         {
             _logger = logger;
+            _localizer = localizer;
         }
 
         public IActionResult Index()
         {
             ISiteRepository siteRepository = new SiteRepository();
             siteRepository.PlusVisit();
+            ViewData["WelcomeMessage"] = _localizer["WelcomeMessage"];
             return View();
         }
 

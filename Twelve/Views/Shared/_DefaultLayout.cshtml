@@ -1,5 +1,10 @@
-﻿<!DOCTYPE html>
-<html lang="fa" dir="rtl">
+﻿@using System.Globalization
+@{
+    var culture = CultureInfo.CurrentCulture;
+    var dir = culture.TextInfo.IsRightToLeft ? "rtl" : "ltr";
+}
+<!DOCTYPE html>
+<html lang="@culture.TwoLetterISOLanguageName" dir="@dir">
 <head>
   <title>دوازده</title>
   <!-- Required meta tags -->
@@ -59,6 +64,7 @@
   AOS.init();
 </script>
 @RenderSection("NavbarJs")
+    <script src="~/js/i18n.js" asp-append-version="true"></script>
 <script>
         function CopyUrl() {
             // Get the text field
