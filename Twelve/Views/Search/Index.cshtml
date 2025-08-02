@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 mt-5">
                         <h1 class="text-darkblue fw-bold fs-1 font-ExtraBold">
-                            جستجو در مورد "@ViewBag.q"
+                            <span data-i18n-key="searchFor">جستجو در مورد</span> "@ViewBag.q"
                         </h1>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                     }
                     else
                     {
-                        <p>موردی در سوالات متداول یافت نشد</p>
+                        <p data-i18n-key="noQuestionsFound">موردی در سوالات متداول یافت نشد</p>
                     }
                 </div>
             </div>
@@ -91,9 +91,9 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-12">
                         <h2 class="text-darkblue fw-bold d-inline-block font-ExtraBold">
-                            آخرین مقالات و خبر بر اساس "@ViewBag.q"
+                            <span data-i18n-key="latestArticlesNewsBasedOn">آخرین مقالات و اخبار بر اساس</span> "@ViewBag.q"
                         </h2>
-                        <p class="text-green2 fs-12 d-inline-block fw-bold mx-4">
+                        <p class="text-green2 fs-12 d-inline-block fw-bold mx-4" data-i18n-key="stayUpdatedArticles">
                             برای اطلاع از جدیدترین رویدادها و مقالات همراه ما باشید
                         </p>
                     </div>
@@ -131,7 +131,7 @@
                 }
                 else
                 {
-                    <p>موردی در بخش وبلاگ و اخبار اپلیکیشن یافت نشد</p>
+                    <p data-i18n-key="noBlogResults">موردی در بخش وبلاگ و اخبار اپلیکیشن یافت نشد</p>
                 }
             </div>
         </div>
@@ -142,7 +142,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12">
                     <h2 class="text-darkblue fw-bold d-inline-block font-ExtraBold">
-                        جستجوی "@ViewBag.q" در ویژگی ها
+                        <span data-i18n-key="searchFor">جستجو در مورد</span> "@ViewBag.q" <span data-i18n-key="inFeatures">در ویژگی ها</span>
                     </h2>
                 </div>
             </div>
@@ -177,7 +177,7 @@
             }
             else
             {
-                <p>موردی در ویژگی های اپلیکیشن یافت نشد</p>
+                <p data-i18n-key="noFeatureResults">موردی در ویژگی های اپلیکیشن یافت نشد</p>
             }
             <!-- Features -->
 

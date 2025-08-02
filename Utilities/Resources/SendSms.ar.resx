@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="DownloadSmsText" xml:space="preserve">
+    <value>عزيزي المستخدم،
+رابط تحميل تطبيق تويلف سوبر كالتالي:
+https://dl.12application.ir/twelve.apk</value>
+  </data>
+  <data name="PasswordSmsText" xml:space="preserve">
+    <value>عزيزي المستخدم،
+كلمة المرور الخاصة بك هي:
+{0}</value>
+  </data>
+  <data name="DownloadSmsSent" xml:space="preserve">
+    <value>تم إرسال رسالة نصية تحتوي على رابط التحميل إلى رقم هاتفك.</value>
+  </data>
+  <data name="PasswordSmsSent" xml:space="preserve">
+    <value>تم إرسال رسالة نصية تحتوي على كلمة المرور إلى رقم هاتفك.</value>
+  </data>
+  <data name="SmsError" xml:space="preserve">
+    <value>حدث خطأ أثناء إرسال الرسالة النصية. الرجاء المحاولة مرة أخرى.</value>
+  </data>
+</root>

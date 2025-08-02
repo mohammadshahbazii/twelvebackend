@@ -8,58 +8,58 @@
              alt="دوازده"
              class="footer-brand mb-5" />
         <div class="mt-5">
-            <p class="text-darkblue fw-bold fs-4">پشتیبانی کاربران</p>
+            <p class="text-darkblue fw-bold fs-4" data-i18n-key="userSupport">پشتیبانی کاربران</p>
             @await Component.InvokeAsync("SiteEmail")
         </div>
     </div>
     <div class="col-lg-2 col-md-12 d-none d-lg-block d-xl-block d-xxl-block">
         <div class="footer-title">
-            <h4 class="text-darkblue fw-bold fs-5">دسترسی سریع</h4>
+            <h4 class="text-darkblue fw-bold fs-5" data-i18n-key="quickAccess">دسترسی سریع</h4>
             <div></div>
         </div>
         <div class="mt-5">
-            <a href="/" class="text-pencil w-100 d-block my-4 fs-6">
+            <a href="/" class="text-pencil w-100 d-block my-4 fs-6" data-i18n-key="home">
                 صفحه اصلی
             </a>
-            <a href="/Faq" class="text-pencil w-100 d-block my-4 fs-6">
+            <a href="/Faq" class="text-pencil w-100 d-block my-4 fs-6" data-i18n-key="faq">
                 سوالات متداول
             </a>
             <a href="/ContactUs"
-               class="text-pencil w-100 d-block my-4 fs-6">
+               class="text-pencil w-100 d-block my-4 fs-6" data-i18n-key="contact">
                 ارتباط با ما
             </a>
-            <a href="/AboutUs" class="text-pencil w-100 d-block my-4 fs-6">
+            <a href="/AboutUs" class="text-pencil w-100 d-block my-4 fs-6" data-i18n-key="about">
                 درباره ما
             </a>
-            <a href="/AppMenu" class="text-pencil w-100 d-block my-4 fs-6">
+            <a href="/AppMenu" class="text-pencil w-100 d-block my-4 fs-6" data-i18n-key="menu">
                  معرفی منوها
             </a>
         </div>
     </div>
     <div class="col-lg-2 col-md-12 d-none d-lg-block d-xl-block d-xxl-block">
         <div class="footer-title">
-            <h4 class="text-darkblue fw-bold fs-5">رسانه‌های مرتبط</h4>
+            <h4 class="text-darkblue fw-bold fs-5" data-i18n-key="relatedMedia">رسانه‌های مرتبط</h4>
             <div></div>
         </div>
         <div class="mt-5">
-            <a href="https://masaf.ir/units?portalId=2" class="text-pencil w-100 d-block my-4 fs-6">
+            <a href="https://masaf.ir/units?portalId=2" class="text-pencil w-100 d-block my-4 fs-6" data-i18n-key="mahdiyaran">
                 مهدیاران
             </a>
-            <a href="https://ahlebeytmedia.ir/" class="text-pencil w-100 d-block my-4 fs-6">
+            <a href="https://ahlebeytmedia.ir/" class="text-pencil w-100 d-block my-4 fs-6" data-i18n-key="ahlulBaytMedia">
                 اهل بیت مدیا
             </a>
-            <a href="https://masaf.ir/" class="text-pencil w-100 d-block my-4 fs-6">
+            <a href="https://masaf.ir/" class="text-pencil w-100 d-block my-4 fs-6" data-i18n-key="masafInstitute">
                 موسسه مصاف ایرانیان
             </a>
         </div>
     </div>
     <div class="col-lg-5 col-md-12">
         <div class="footer-title">
-            <h4 class="text-darkblue fw-bold fs-5">دانلود سریع اپلیکیشن</h4>
+            <h4 class="text-darkblue fw-bold fs-5" data-i18n-key="fastAppDownload">دانلود سریع اپلیکیشن</h4>
             <div></div>
         </div>
         <div class="mt-5">
-            <p class="text-pencil mb-5">
+            <p class="text-pencil mb-5" data-i18n-key="superAppDesc">
                 سوپر اپلیکیشن دوازده، خلوتگاه منتظران امام زمان ارواحنافداه است
                 فضایی جامع از هرآنچه فکرش را بکنید؛ محیطی فراتر از انتظار
             </p>
@@ -106,11 +106,11 @@
     </div>
     <div class="col-lg-5 col-md-12 my-3">
         <p class="rights text-darkblue lh-lg text-justify">
-            کلیه حقوق این سایت، متعلق به شرکت
+            <span data-i18n-key="rightsPrefix">کلیه حقوق این سایت، متعلق به شرکت </span>
             <b class="fw-bold">
                 <a href="@ViewBag.SiteLink" class="text-darkblue">@ViewBag.SiteLinkTitle</a>
             </b>
-            می‌باشد.
+            <span data-i18n-key="rightsSuffix">می‌باشد.</span>
         </p>
     </div>
 </div>

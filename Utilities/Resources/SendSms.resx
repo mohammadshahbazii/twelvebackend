@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="DownloadSmsText" xml:space="preserve">
+    <value>با سلام و احترام
+لینک دانلود سوپر اپلیکیشن دوازده به شرح ذیل می باشد
+https://dl.12application.ir/twelve.apk</value>
+  </data>
+  <data name="PasswordSmsText" xml:space="preserve">
+    <value>با سلام و احترام
+رمز عبور شما به شرح ذیل می باشد
+{0}</value>
+  </data>
+  <data name="DownloadSmsSent" xml:space="preserve">
+    <value>کاربر گرامی ! پیامک حاوی لینک دانلود به شماره تلفن شما ارسال شد</value>
+  </data>
+  <data name="PasswordSmsSent" xml:space="preserve">
+    <value>پیامک حاوی رمز عبور به شماره تلفن شما ارسال شد</value>
+  </data>
+  <data name="SmsError" xml:space="preserve">
+    <value>کاربر گرامی ! هنگام عملیات خطایی رخ داد لطفا مجددا تلاش فرمایید</value>
+  </data>
+</root>
