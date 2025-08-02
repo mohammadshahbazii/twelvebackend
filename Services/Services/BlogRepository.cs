@@ -1053,6 +1053,7 @@ namespace Services
                 };
                 db.Blogs.Add(model);
                 db.SaveChanges();
+                blog.BlogID = model.BlogId;
 
                 var tags = blog.Tags.Split('،').ToList();
 
@@ -1199,6 +1200,28 @@ namespace Services
                 SelectedGroups = db.SelectedBlogGroups.Where(s => s.BlogId == BlogID).Select(s => s.BlogGroupId).ToList()
             };
 
+            var trEn = db.BlogTranslations.FirstOrDefault(t => t.BlogId == BlogID && t.Language == "en");
+            var trAr = db.BlogTranslations.FirstOrDefault(t => t.BlogId == BlogID && t.Language == "ar");
+            var trUr = db.BlogTranslations.FirstOrDefault(t => t.BlogId == BlogID && t.Language == "ur");
+            if (trEn != null)
+            {
+                model.TitleEn = trEn.Title;
+                model.ShortDescriptionEn = trEn.ShortDescription;
+                model.DescriptionEn = trEn.Description;
+            }
+            if (trAr != null)
+            {
+                model.TitleAr = trAr.Title;
+                model.ShortDescriptionAr = trAr.ShortDescription;
+                model.DescriptionAr = trAr.Description;
+            }
+            if (trUr != null)
+            {
+                model.TitleUr = trUr.Title;
+                model.ShortDescriptionUr = trUr.ShortDescription;
+                model.DescriptionUr = trUr.Description;
+            }
+
             var groups = db.BlogGroups.ToList();
             model.Groups = new List<BlogGroupNameViewModel>();
             foreach (var item in groups)
@@ -1210,6 +1233,31 @@ namespace Services
                 });
             }
             return model;
+        }
+
+        public void SaveTranslations(BlogCrudViewModel blog)
+        {
+            SaveBlogTranslation(blog.BlogID, "en", blog.TitleEn, blog.ShortDescriptionEn, blog.DescriptionEn);
+            SaveBlogTranslation(blog.BlogID, "ar", blog.TitleAr, blog.ShortDescriptionAr, blog.DescriptionAr);
+            SaveBlogTranslation(blog.BlogID, "ur", blog.TitleUr, blog.ShortDescriptionUr, blog.DescriptionUr);
+        }
+
+        private void SaveBlogTranslation(int blogId, string lang, string title, string shortDescription, string description)
+        {
+            if (string.IsNullOrWhiteSpace(title) && string.IsNullOrWhiteSpace(shortDescription) && string.IsNullOrWhiteSpace(description))
+            {
+                return;
+            }
+            var tr = db.BlogTranslations.FirstOrDefault(t => t.BlogId == blogId && t.Language == lang);
+            if (tr == null)
+            {
+                tr = new BlogTranslation { BlogId = blogId, Language = lang };
+                db.BlogTranslations.Add(tr);
+            }
+            tr.Title = title ?? "";
+            tr.ShortDescription = shortDescription ?? "";
+            tr.Description = description ?? "";
+            db.SaveChanges();
         }
 
         #region NewsCrud

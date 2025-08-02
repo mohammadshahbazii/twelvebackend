@@ -102,6 +102,7 @@ namespace Twelve.Areas.Admin.Controllers
             }
             if (blogRepository.Create(blog,imageProduct))
             {
+                blogRepository.SaveTranslations(blog);
                 return RedirectToAction("Index");
             }
             else
@@ -138,6 +139,7 @@ namespace Twelve.Areas.Admin.Controllers
             }
             if (blogRepository.Update(blog , imageProduct))
             {
+                blogRepository.SaveTranslations(blog);
                 return RedirectToAction("Index");
             }
             else

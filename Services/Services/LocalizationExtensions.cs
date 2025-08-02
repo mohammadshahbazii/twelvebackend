@@ -15,6 +15,10 @@ namespace Services
             var culture = CultureInfo.CurrentUICulture.Name;
             var entityName = typeof(T).Name;
             var idProp = typeof(T).GetProperties().FirstOrDefault(p => p.Name == entityName + "Id");
+            if (idProp == null)
+            {
+                idProp = typeof(T).GetProperties().FirstOrDefault(p => p.Name.EndsWith("Id", StringComparison.OrdinalIgnoreCase) && p.PropertyType == typeof(int));
+            }
             if (idProp == null) return;
             var id = (int)(idProp.GetValue(entity) ?? 0);
             var translations = db.EntityTranslations

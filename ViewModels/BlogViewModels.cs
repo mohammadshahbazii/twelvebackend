@@ -28,6 +28,15 @@ namespace ViewModels
         [Display(Name = "توضیحات")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string Description { get; set; }
+        public string TitleEn { get; set; }
+        public string TitleAr { get; set; }
+        public string TitleUr { get; set; }
+        public string ShortDescriptionEn { get; set; }
+        public string ShortDescriptionAr { get; set; }
+        public string ShortDescriptionUr { get; set; }
+        public string DescriptionEn { get; set; }
+        public string DescriptionAr { get; set; }
+        public string DescriptionUr { get; set; }
         public string ImageName { get; set; }
         public string Source { get; set; }
         public string Tags { get; set; }
