@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="DownloadSmsText" xml:space="preserve">
+    <value>Dear user,
+Here is the download link for Twelve Super App:
+https://dl.12application.ir/twelve.apk</value>
+  </data>
+  <data name="PasswordSmsText" xml:space="preserve">
+    <value>Dear user,
+Your password is:
+{0}</value>
+  </data>
+  <data name="DownloadSmsSent" xml:space="preserve">
+    <value>The SMS with the download link has been sent to your phone number.</value>
+  </data>
+  <data name="PasswordSmsSent" xml:space="preserve">
+    <value>An SMS containing your password has been sent to your phone number.</value>
+  </data>
+  <data name="SmsError" xml:space="preserve">
+    <value>An error occurred while sending the SMS. Please try again.</value>
+  </data>
+</root>

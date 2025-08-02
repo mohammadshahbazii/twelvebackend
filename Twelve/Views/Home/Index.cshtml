@@ -1,6 +1,7 @@
-﻿@{
+@{
     ViewData["Title"] = "Home Page";
 }
+<div class="alert alert-info" id="welcome-message">@ViewData["WelcomeMessage"]</div>
 @section NavbarJs {
 <script src="/Assest/js/Scrolled-GreenNav.js"></script>
 }
@@ -68,7 +69,7 @@
                     </div>
                     @await Component.InvokeAsync("IndexFaqContent")
 
-                    <a href="/ContactUs" class="btn btn-outline-dark mt-4">ارتباط با پشتیبانی</a>
+                    <a href="/ContactUs" class="btn btn-outline-dark mt-4" data-i18n-key="contactSupport">ارتباط با پشتیبانی</a>
                 </div>
                 <div class="col-lg-6 col-md-12 pt-5">
                     @await Component.InvokeAsync("IndexFaqs")

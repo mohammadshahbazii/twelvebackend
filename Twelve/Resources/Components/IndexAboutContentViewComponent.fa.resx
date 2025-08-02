@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>درباره دوازده</value>
+  </data>
+  <data name="AboutSubTitle" xml:space="preserve">
+    <value>چرا دوازده؟</value>
+  </data>
+  <data name="AboutDescription" xml:space="preserve">
+    <value>دوازده یک پلتفرم جامع است که مدیریت کسب‌وکار را ساده می‌کند.</value>
+  </data>
+</root>
