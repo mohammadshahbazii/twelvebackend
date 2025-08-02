@@ -1,5 +1,6 @@
+@using System.Globalization
 ﻿<!DOCTYPE html>
-<html>
+<html lang="@CultureInfo.CurrentUICulture.Name" dir="@((CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft ? "rtl" : "ltr"))">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -63,6 +64,14 @@
 
             <!-- Right navbar links -->
             <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <select class="form-select form-select-sm language-selector mx-3 my-2" style="width:auto;">
+                        <option value="en">English</option>
+                        <option value="fa">فارسی</option>
+                        <option value="ar">العربية</option>
+                        <option value="ur">اردو</option>
+                    </select>
+                </li>
                 <!-- Messages Dropdown Menu -->
                 <li class="nav-item">
                     <a class="nav-link" title="خروج" href="/Logout">
@@ -438,7 +447,8 @@
     <script src="~/ckeditor/ckeditor.js"></script>
     <script src="~/ckeditor/adapters/jquery.js"></script>
     @RenderSection("Ckeditor", false)
-
+    <script src="~/js/culture-cookie.js" asp-append-version="true"></script>
+    <script src="~/js/i18n.js" asp-append-version="true"></script>
 
 </body>
 </html>
