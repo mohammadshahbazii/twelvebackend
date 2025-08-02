@@ -11,6 +11,12 @@ namespace ViewModels
         public int FaqID { get; set; }
         public string Question { get; set; }
         public string Answer { get; set; }
+        public string QuestionEn { get; set; }
+        public string QuestionAr { get; set; }
+        public string QuestionUr { get; set; }
+        public string AnswerEn { get; set; }
+        public string AnswerAr { get; set; }
+        public string AnswerUr { get; set; }
         public bool IsMain { get; set; }
         public List<FaqsGroupsItemViewModel> Groups { get; set; }
         public List<int> SelectedGroups { get; set; }
