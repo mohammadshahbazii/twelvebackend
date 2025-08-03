@@ -17,6 +17,8 @@ namespace Services
         public bool Update(Advertisement advertisement , IFormFile ImageName);
         public bool Delete(Advertisement advertisement);
         public Advertisement GetByID(int adsID);
+        public AdvertisementCrudViewModel GetForEdit(int adsID);
         public List<AdvertisementsItemViewModel> GetAdvertisements();
+        public void SaveTranslations(AdvertisementCrudViewModel advertisement);
     }
 }

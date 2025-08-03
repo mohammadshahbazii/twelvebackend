@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services;
+using ViewModels;
 
 namespace Twelve.Areas.Admin.Controllers
 {
@@ -51,7 +52,7 @@ namespace Twelve.Areas.Admin.Controllers
         {
             if (adminRepository.CheckPermission(User.Identity.Name, "ویژگی ها"))
             {
-                return View();
+                return View(new FeatureCrudViewModel());
             }
             else
             {
@@ -61,32 +62,43 @@ namespace Twelve.Areas.Admin.Controllers
 
         [HttpPost]
         [Route("Create")]
-        public IActionResult Create(Feature feature, IFormFile imageProduct, IFormFile animeteFile, IFormFile imageFAProduct, IFormFile imageSAProduct , IFormFile introduceProduct)
+        public IActionResult Create(FeatureCrudViewModel feature, IFormFile imageProduct, IFormFile animeteFile, IFormFile imageFAProduct, IFormFile imageSAProduct , IFormFile introduceProduct)
         {
             if (imageProduct == null)
             {
                 ViewBag.Message = "لطفا تصویر مربوطه را وارد کنید";
-                return View();
+                return View(feature);
             }
             if (animeteFile == null)
             {
                 ViewBag.Message = "لطفا فایل انیمیشن مربوطه را وارد کنید";
-                return View();
+                return View(feature);
             }
             if (introduceProduct == null)
             {
                 ViewBag.Message = "لطفا تصویر معرفی نرم افزار در صفحه اول مربوطه را وارد کنید";
-                return View();
+                return View(feature);
             }
-
-            if (featuresRepository.Create(feature, imageProduct,animeteFile,imageFAProduct,imageSAProduct,introduceProduct))
+            var entity = new Feature
             {
+                Title = feature.Title,
+                ShortDescription = feature.ShortDescription,
+                FirstDescription = feature.FirstDescription,
+                FirstArticleTitle = feature.FirstArticleTitle,
+                FirstArticleDescription = feature.FirstArticleDescription,
+                SecondArticleTitle = feature.SecondArticleTitle,
+                SecondArticleDescription = feature.SecondArticleDescription
+            };
+            if (featuresRepository.Create(entity, imageProduct, animeteFile, imageFAProduct, imageSAProduct, introduceProduct))
+            {
+                feature.FeatureId = entity.FeatureId;
+                featuresRepository.SaveTranslations(feature);
                 return RedirectToAction("Index");
             }
             else
             {
                 ViewBag.Message = "هنگام عملیات خطایی رخ داد لطفا مجددا تلاش کنید";
-                return View();
+                return View(feature);
             }
         }
 
@@ -95,7 +107,7 @@ namespace Twelve.Areas.Admin.Controllers
         {
             if (adminRepository.CheckPermission(User.Identity.Name, "ویژگی ها"))
             {
-                var content = featuresRepository.GetByID(featureID);
+                var content = featuresRepository.GetForEdit(featureID);
                 return View(content);
             }
             else
@@ -106,16 +118,33 @@ namespace Twelve.Areas.Admin.Controllers
 
         [HttpPost]
         [Route("Update/{FeatureID}")]
-        public IActionResult Update(Feature feature, IFormFile imageProduct, IFormFile animeteFile, IFormFile imageFAProduct, IFormFile imageSAProduct, IFormFile introduceProduct)
+        public IActionResult Update(FeatureCrudViewModel feature, IFormFile imageProduct, IFormFile animeteFile, IFormFile imageFAProduct, IFormFile imageSAProduct, IFormFile introduceProduct)
         {
-            if (featuresRepository.Update(feature, imageProduct, animeteFile, imageFAProduct, imageSAProduct, introduceProduct))
+            var entity = new Feature
             {
+                FeatureId = feature.FeatureId,
+                Title = feature.Title,
+                ShortDescription = feature.ShortDescription,
+                FirstDescription = feature.FirstDescription,
+                FirstArticleTitle = feature.FirstArticleTitle,
+                FirstArticleDescription = feature.FirstArticleDescription,
+                SecondArticleTitle = feature.SecondArticleTitle,
+                SecondArticleDescription = feature.SecondArticleDescription,
+                ImageName = feature.ImageName,
+                AnimateFilename = feature.AnimateFilename,
+                FirstArticleImage = feature.FirstArticleImage,
+                SecondArticleImage = feature.SecondArticleImage,
+                IntroduceImageName = feature.IntroduceImageName
+            };
+            if (featuresRepository.Update(entity, imageProduct, animeteFile, imageFAProduct, imageSAProduct, introduceProduct))
+            {
+                featuresRepository.SaveTranslations(feature);
                 return RedirectToAction("Index");
             }
             else
             {
                 ViewBag.Message = "هنگام عملیات خطایی رخ داد لطفا مجددا تلاش کنید";
-                var content = featuresRepository.GetByID(feature.FeatureId);
+                var content = featuresRepository.GetForEdit(feature.FeatureId);
                 return View(content);
             }
         }
@@ -204,7 +233,7 @@ namespace Twelve.Areas.Admin.Controllers
             if (adminRepository.CheckPermission(User.Identity.Name, "ویژگی ها"))
             {
                 ViewBag.FeatureID = FeatureID;
-                return View();
+                return View(new FeatureItemCrudViewModel { FeatureId = FeatureID });
             }
             else
             {
@@ -214,17 +243,25 @@ namespace Twelve.Areas.Admin.Controllers
 
         [HttpPost]
         [Route("CreateItem/{FeatureID}")]
-        public IActionResult CreateItem(FeatureItem featureItem, IFormFile imageProduct)
+        public IActionResult CreateItem(FeatureItemCrudViewModel featureItem, IFormFile imageProduct)
         {
-            if (featuresRepository.CreateItem(featureItem, imageProduct))
+            var entity = new FeatureItem
             {
+                FeatureId = featureItem.FeatureId,
+                Title = featureItem.Title,
+                ShortDescription = featureItem.ShortDescription
+            };
+            if (featuresRepository.CreateItem(entity, imageProduct))
+            {
+                featureItem.FeaturesItemId = entity.FeaturesItemId;
+                featuresRepository.SaveItemTranslations(featureItem);
                 return RedirectToAction("ShowItems", new { FeatureID = featureItem.FeatureId });
             }
             else
             {
                 ViewBag.Message = "هنگام عملیات خطایی رخ داد لطفا مجددا تلاش کنید";
                 ViewBag.FeatureID = featureItem.FeatureId;
-                return View();
+                return View(featureItem);
             }
         }
 
@@ -233,7 +270,7 @@ namespace Twelve.Areas.Admin.Controllers
         {
             if (adminRepository.CheckPermission(User.Identity.Name, "ویژگی ها"))
             {
-                var content = featuresRepository.GetItemByID(InfoID);
+                var content = featuresRepository.GetItemForEdit(InfoID);
                 return View(content);
             }
             else
@@ -244,16 +281,25 @@ namespace Twelve.Areas.Admin.Controllers
 
         [HttpPost]
         [Route("UpdateItem/{InfoID}")]
-        public IActionResult UpdateItem(FeatureItem featureItem, IFormFile imageProduct)
+        public IActionResult UpdateItem(FeatureItemCrudViewModel featureItem, IFormFile imageProduct)
         {
-            if (featuresRepository.UpdateItem(featureItem, imageProduct))
+            var entity = new FeatureItem
             {
+                FeaturesItemId = featureItem.FeaturesItemId,
+                FeatureId = featureItem.FeatureId,
+                Title = featureItem.Title,
+                ShortDescription = featureItem.ShortDescription,
+                ImageName = featureItem.ImageName
+            };
+            if (featuresRepository.UpdateItem(entity, imageProduct))
+            {
+                featuresRepository.SaveItemTranslations(featureItem);
                 return RedirectToAction("ShowItems", new { FeatureID = featureItem.FeatureId });
             }
             else
             {
                 ViewBag.Message = "هنگام عملیات خطایی رخ داد لطفا مجددا تلاش کنید";
-                var content = featuresRepository.GetItemByID(featureItem.FeaturesItemId);
+                var content = featuresRepository.GetItemForEdit(featureItem.FeaturesItemId);
                 return View(content);
             }
         }

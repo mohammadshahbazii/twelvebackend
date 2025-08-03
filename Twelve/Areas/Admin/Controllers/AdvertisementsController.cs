@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services;
+using ViewModels;
 
 namespace Twelve.Areas.Admin.Controllers
 {
@@ -30,7 +31,7 @@ namespace Twelve.Areas.Admin.Controllers
         {
             if (adminRepository.CheckPermission(User.Identity.Name, "لیست تبلیغات"))
             {
-                return View();
+                return View(new AdvertisementCrudViewModel());
             }
             else
             {
@@ -40,21 +41,29 @@ namespace Twelve.Areas.Admin.Controllers
 
         [HttpPost]
         [Route("Create")]
-        public IActionResult Create(Advertisement Advertisements, IFormFile imageProduct)
+        public IActionResult Create(AdvertisementCrudViewModel advertisement, IFormFile imageProduct)
         {
             if (imageProduct == null)
             {
                 ViewBag.Message = "لطفا تصویر مورد نظر را وارد کنید";
-                return View();
+                return View(advertisement);
             }
-            if (advertisementsRepository.Create(Advertisements, imageProduct))
+            var entity = new Advertisement
             {
+                Title = advertisement.Title,
+                Link = advertisement.Link,
+                IsBanner = advertisement.IsBanner
+            };
+            if (advertisementsRepository.Create(entity, imageProduct))
+            {
+                advertisement.AdvertisementId = entity.AdvertisementId;
+                advertisementsRepository.SaveTranslations(advertisement);
                 return RedirectToAction("Index");
             }
             else
             {
                 ViewBag.Message = "هنگام عملیات خطایی رخ داد لطفا مجددا تلاش کنید";
-                return View();
+                return View(advertisement);
             }
         }
 
@@ -63,7 +72,7 @@ namespace Twelve.Areas.Admin.Controllers
         {
             if (adminRepository.CheckPermission(User.Identity.Name, "لیست تبلیغات"))
             {
-                var content = advertisementsRepository.GetByID(InfoID);
+                var content = advertisementsRepository.GetForEdit(InfoID);
                 return View(content);
             }
             else
@@ -74,24 +83,33 @@ namespace Twelve.Areas.Admin.Controllers
 
         [HttpPost]
         [Route("Update/{InfoID}")]
-        public IActionResult Update(Advertisement Advertisements, IFormFile imageProduct)
+        public IActionResult Update(AdvertisementCrudViewModel advertisement, IFormFile imageProduct)
         {
             if (ModelState.IsValid)
             {
-                if (advertisementsRepository.Update(Advertisements, imageProduct))
+                var entity = new Advertisement
                 {
+                    AdvertisementId = advertisement.AdvertisementId,
+                    Title = advertisement.Title,
+                    Link = advertisement.Link,
+                    IsBanner = advertisement.IsBanner,
+                    ImageName = advertisement.ImageName
+                };
+                if (advertisementsRepository.Update(entity, imageProduct))
+                {
+                    advertisementsRepository.SaveTranslations(advertisement);
                     return RedirectToAction("Index");
                 }
                 else
                 {
                     ViewBag.Message = "هنگام عملیات خطایی رخ داد لطفا مجددا تلاش کنید";
-                    return View();
+                    return View(advertisement);
                 }
             }
             else
             {
                 ViewBag.Message = "لطفا لینک مورد نظر را وارد کنید";
-                var content = advertisementsRepository.GetByID(Advertisements.AdvertisementId);
+                var content = advertisementsRepository.GetForEdit(advertisement.AdvertisementId);
                 return View(content);
             }
         }

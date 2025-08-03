@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services;
+using ViewModels;
 
 namespace Twelve.Areas.Admin.Controllers
 {
@@ -30,7 +31,7 @@ namespace Twelve.Areas.Admin.Controllers
         {
             if (adminRepository.CheckPermission(User.Identity.Name, "اطلاعات تماس"))
             {
-                return View();
+                return View(new CallInfoCrudViewModel());
             }
             else
             {
@@ -40,16 +41,24 @@ namespace Twelve.Areas.Admin.Controllers
 
         [HttpPost]
         [Route("Create")]
-        public IActionResult Create(CallInfo callInfo , IFormFile imageProduct)
+        public IActionResult Create(CallInfoCrudViewModel callInfo , IFormFile imageProduct)
         {
-            if (callInfoRepository.Create(callInfo,imageProduct))
+            var entity = new CallInfo
             {
+                Title = callInfo.Title,
+                ShortDescription = callInfo.ShortDescription,
+                Description = callInfo.Description
+            };
+            if (callInfoRepository.Create(entity,imageProduct))
+            {
+                callInfo.CallInfoId = entity.CallInfoId;
+                callInfoRepository.SaveTranslations(callInfo);
                 return RedirectToAction("Index");
             }
             else
             {
                 ViewBag.Message = "هنگام عملیات خطایی رخ داد لطفا مجددا تلاش کنید";
-                return View();
+                return View(callInfo);
             }
         }
 
@@ -58,7 +67,7 @@ namespace Twelve.Areas.Admin.Controllers
         {
             if (adminRepository.CheckPermission(User.Identity.Name, "اطلاعات تماس"))
             {
-                var content = callInfoRepository.GetByID(InfoID);
+                var content = callInfoRepository.GetForEdit(InfoID);
                 return View(content);
             }
             else
@@ -69,16 +78,25 @@ namespace Twelve.Areas.Admin.Controllers
 
         [HttpPost]
         [Route("Update/{InfoID}")]
-        public IActionResult Update(CallInfo callInfo, IFormFile imageProduct)
+        public IActionResult Update(CallInfoCrudViewModel callInfo, IFormFile imageProduct)
         {
-            if (callInfoRepository.Update(callInfo, imageProduct))
+            var entity = new CallInfo
             {
+                CallInfoId = callInfo.CallInfoId,
+                Title = callInfo.Title,
+                ShortDescription = callInfo.ShortDescription,
+                Description = callInfo.Description,
+                ImageName = callInfo.ImageName
+            };
+            if (callInfoRepository.Update(entity, imageProduct))
+            {
+                callInfoRepository.SaveTranslations(callInfo);
                 return RedirectToAction("Index");
             }
             else
             {
                 ViewBag.Message = "هنگام عملیات خطایی رخ داد لطفا مجددا تلاش کنید";
-                var content = callInfoRepository.GetByID(callInfo.CallInfoId);
+                var content = callInfoRepository.GetForEdit(callInfo.CallInfoId);
                 return View(content);
             }
         }

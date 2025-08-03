@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using System.Text;
 using System.Threading.Tasks;
 using DataLayer;
+using ViewModels;
 
 namespace Services
 {
@@ -17,5 +18,7 @@ namespace Services
         public bool Update(DataLayer.CallInfo callInfo ,IFormFile ImageName );
         public bool Create(DataLayer.CallInfo callInfo ,IFormFile ImageName );
         public List<DataLayer.CallInfo> GetCallInfoes();
+        public CallInfoCrudViewModel GetForEdit(int infoID);
+        public void SaveTranslations(CallInfoCrudViewModel callInfo);
     }
 }

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services;
-
+using ViewModels;
 namespace Twelve.Areas.Admin.Controllers
 {
     [Authorize]
@@ -33,38 +33,40 @@ namespace Twelve.Areas.Admin.Controllers
 
         [HttpPost]
         [Route("Create")]
-        public IActionResult Create(AboutUsArticle article, IFormFile imageProduct)
+        public IActionResult Create(AboutUsArticleCrudViewModel article, IFormFile imageProduct)
         {
             if (aboutUsArticlesRepository.Create(article, imageProduct))
             {
+                aboutUsArticlesRepository.SaveTranslations(article);
                 return RedirectToAction("index");
             }
             else
             {
                 ViewBag.Message = "هنگام عملیات خطایی رخ داد لطفا مجددا تلاش کنید";
-                return View();
+                return View(article);
             }
         }
 
         [Route("Update/{ArticleID}")]
         public IActionResult Update(int articleID)
         {
-            var content = aboutUsArticlesRepository.GetByID(articleID);
+            var content = aboutUsArticlesRepository.GetForEdit(articleID);
             return View(content);
         }
 
         [HttpPost]
         [Route("Update/{ArticleID}")]
-        public IActionResult Update(AboutUsArticle article, IFormFile imageProduct)
+        public IActionResult Update(AboutUsArticleCrudViewModel article, IFormFile imageProduct)
         {
             if (aboutUsArticlesRepository.Update(article, imageProduct))
             {
+                aboutUsArticlesRepository.SaveTranslations(article);
                 return RedirectToAction("index");
             }
             else
             {
                 ViewBag.Message = "هنگام عملیات خطایی رخ داد لطفا مجددا تلاش کنید";
-                var content = aboutUsArticlesRepository.GetByID(article.AboutUsArticleId);
+                var content = aboutUsArticlesRepository.GetForEdit(article.AboutUsArticleId);
                 return View(content);
             }
         }

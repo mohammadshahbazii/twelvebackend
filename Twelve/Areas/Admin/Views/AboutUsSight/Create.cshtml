@@ -1,4 +1,4 @@
-﻿@model DataLayer.AboutUsSight
+﻿@model ViewModels.AboutUsSightCrudViewModel
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
@@ -14,13 +14,53 @@
                     <!-- form start -->
                     <form role="form" method="post" enctype="multipart/form-data">
                         <div class="card-body">
-                            <div class="form-group">
-                                <label for="SightTitle">عنوان</label>
-                                <input type="text" name="SightTitle" class="form-control" id="SightTitle" placeholder="عنوان را وارد کنید">
-                            </div>
-                            <div class="form-group">
-                                <label for="SightDescription">توضیح تکمیلی</label>
-                                <textarea rows="5" class="form-control w-100" name="SightDescription" id="SightDescription" placeholder="توضیح تکمیلی را وارد کنید"></textarea>
+                            <ul class="nav nav-tabs" id="langTab" role="tablist">
+                                <li class="nav-item"><a class="nav-link active" id="fa-tab" data-toggle="tab" href="#fa" role="tab">FA</a></li>
+                                <li class="nav-item"><a class="nav-link" id="en-tab" data-toggle="tab" href="#en" role="tab">EN</a></li>
+                                <li class="nav-item"><a class="nav-link" id="ar-tab" data-toggle="tab" href="#ar" role="tab">AR</a></li>
+                                <li class="nav-item"><a class="nav-link" id="ur-tab" data-toggle="tab" href="#ur" role="tab">UR</a></li>
+                            </ul>
+                            <div class="tab-content p-3" id="langTabContent">
+                                <div class="tab-pane fade show active" id="fa" role="tabpanel">
+                                    <div class="form-group">
+                                        <label for="SightTitle">عنوان</label>
+                                        <input type="text" name="SightTitle" class="form-control" id="SightTitle" value="@Model?.SightTitle" placeholder="عنوان را وارد کنید">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="SightDescription">توضیح تکمیلی</label>
+                                        <textarea rows="5" class="form-control w-100" name="SightDescription" id="SightDescription" placeholder="توضیح تکمیلی را وارد کنید">@Model?.SightDescription</textarea>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="en" role="tabpanel">
+                                    <div class="form-group">
+                                        <label for="SightTitleEn">Title</label>
+                                        <input type="text" name="SightTitleEn" class="form-control" id="SightTitleEn" value="@Model?.SightTitleEn" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="SightDescriptionEn">Description</label>
+                                        <textarea rows="5" class="form-control w-100" name="SightDescriptionEn" id="SightDescriptionEn">@Model?.SightDescriptionEn</textarea>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="ar" role="tabpanel">
+                                    <div class="form-group">
+                                        <label for="SightTitleAr">Title</label>
+                                        <input type="text" name="SightTitleAr" class="form-control" id="SightTitleAr" value="@Model?.SightTitleAr" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="SightDescriptionAr">Description</label>
+                                        <textarea rows="5" class="form-control w-100" name="SightDescriptionAr" id="SightDescriptionAr">@Model?.SightDescriptionAr</textarea>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="ur" role="tabpanel">
+                                    <div class="form-group">
+                                        <label for="SightTitleUr">Title</label>
+                                        <input type="text" name="SightTitleUr" class="form-control" id="SightTitleUr" value="@Model?.SightTitleUr" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="SightDescriptionUr">Description</label>
+                                        <textarea rows="5" class="form-control w-100" name="SightDescriptionUr" id="SightDescriptionUr">@Model?.SightDescriptionUr</textarea>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group ">
                                 <div class="text-center">

@@ -17,5 +17,6 @@ namespace Services
 
         public IntroduceCrudViewModel GetModelForCreate();
         public IntroduceCrudViewModel GetByID(int introduceID);
+        public void SaveTranslations(IntroduceCrudViewModel model);
     }
 }

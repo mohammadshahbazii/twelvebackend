@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services;
 using System.Text.RegularExpressions;
+using ViewModels;
 
 namespace Twelve.Areas.Admin.Controllers
 {
@@ -45,8 +46,7 @@ namespace Twelve.Areas.Admin.Controllers
         {
             if (adminRepository.CheckPermission(User.Identity.Name, "اسلایدر ها"))
             {
-                ViewBag.GroupID = GroupID;
-                return View();
+                return View(new SliderCrudViewModel { SliderGroupId = GroupID });
             }
             else
             {
@@ -56,17 +56,25 @@ namespace Twelve.Areas.Admin.Controllers
 
         [HttpPost]
         [Route("Create/{GroupID}")]
-        public IActionResult Create(Slider slider, IFormFile imageProduct)
+        public IActionResult Create(SliderCrudViewModel slider, IFormFile imageProduct)
         {
-            if (slidersRepository.Create(slider, imageProduct))
+            var entity = new Slider
             {
+                SliderGroupId = slider.SliderGroupId,
+                Title = slider.Title,
+                ShortDescription = slider.ShortDescription,
+                Link = slider.Link
+            };
+            if (slidersRepository.Create(entity, imageProduct))
+            {
+                slider.SliderId = entity.SliderId;
+                slidersRepository.SaveTranslations(slider);
                 return RedirectToAction("Index");
             }
             else
             {
-                ViewBag.GroupID = slider.SliderGroupId;
                 ViewBag.Message = "هنگام عملیات خطایی رخ داد لطفا مجددا تلاش کنید";
-                return View();
+                return View(slider);
             }
         }
 
@@ -75,7 +83,7 @@ namespace Twelve.Areas.Admin.Controllers
         {
             if (adminRepository.CheckPermission(User.Identity.Name, "اسلایدر ها"))
             {
-                var content = slidersRepository.GetByID(InfoID);
+                var content = slidersRepository.GetForEdit(InfoID);
                 return View(content);
             }
             else
@@ -86,16 +94,26 @@ namespace Twelve.Areas.Admin.Controllers
 
         [HttpPost]
         [Route("Update/{InfoID}")]
-        public IActionResult Update(Slider slider, IFormFile imageProduct)
+        public IActionResult Update(SliderCrudViewModel slider, IFormFile imageProduct)
         {
-            if (slidersRepository.Update(slider, imageProduct))
+            var entity = new Slider
             {
+                SliderId = slider.SliderId,
+                SliderGroupId = slider.SliderGroupId,
+                Title = slider.Title,
+                ShortDescription = slider.ShortDescription,
+                Link = slider.Link,
+                ImageName = slider.ImageName
+            };
+            if (slidersRepository.Update(entity, imageProduct))
+            {
+                slidersRepository.SaveTranslations(slider);
                 return RedirectToAction("Index");
             }
             else
             {
                 ViewBag.Message = "هنگام عملیات خطایی رخ داد لطفا مجددا تلاش کنید";
-                var content = slidersRepository.GetByID(slider.SliderId);
+                var content = slidersRepository.GetForEdit(slider.SliderId);
                 return View(content);
             }
         }

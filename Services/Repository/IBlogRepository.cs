@@ -46,6 +46,7 @@ namespace Services
         public bool Delete(int ID);
         public BlogCrudViewModel GetModelForCreate();
         public BlogCrudViewModel GetByID(int BlogID);
+        public void SaveTranslations(BlogCrudViewModel blog);
         public BlogCommentsPageDataViewModel GetNewsComments(string q = "", int PageID = 1);
         public BlogCommentsPageDataViewModel GetNewsConfirmComments(string q = "", int PageID = 1);
         public BlogCommentsPageDataViewModel GetNewsAnswerComments(string q = "", int PageID = 1);

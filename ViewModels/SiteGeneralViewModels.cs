@@ -8,6 +8,93 @@ using System.Threading.Tasks;
 namespace ViewModels
 {
 
+    public class IndexContentCrudViewModel
+    {
+        public int IndexContentId { get; set; }
+        public string AboutTitle { get; set; }
+        public string AboutSubTitle { get; set; }
+        public string AboutDescription { get; set; }
+        public string FeatureTitle { get; set; }
+        public string FeatureSubTitle { get; set; }
+        public string FeatureDescription { get; set; }
+        public string FaqTitle { get; set; }
+        public string FaqSubTitle { get; set; }
+        public string FaqDescription { get; set; }
+        public string AboutTitleEn { get; set; }
+        public string AboutTitleAr { get; set; }
+        public string AboutTitleUr { get; set; }
+        public string AboutSubTitleEn { get; set; }
+        public string AboutSubTitleAr { get; set; }
+        public string AboutSubTitleUr { get; set; }
+        public string AboutDescriptionEn { get; set; }
+        public string AboutDescriptionAr { get; set; }
+        public string AboutDescriptionUr { get; set; }
+        public string FeatureTitleEn { get; set; }
+        public string FeatureTitleAr { get; set; }
+        public string FeatureTitleUr { get; set; }
+        public string FeatureSubTitleEn { get; set; }
+        public string FeatureSubTitleAr { get; set; }
+        public string FeatureSubTitleUr { get; set; }
+        public string FeatureDescriptionEn { get; set; }
+        public string FeatureDescriptionAr { get; set; }
+        public string FeatureDescriptionUr { get; set; }
+        public string FaqTitleEn { get; set; }
+        public string FaqTitleAr { get; set; }
+        public string FaqTitleUr { get; set; }
+        public string FaqSubTitleEn { get; set; }
+        public string FaqSubTitleAr { get; set; }
+        public string FaqSubTitleUr { get; set; }
+        public string FaqDescriptionEn { get; set; }
+        public string FaqDescriptionAr { get; set; }
+        public string FaqDescriptionUr { get; set; }
+    }
+
+    public class ContactUsContentCrudViewModel
+    {
+        public int ContactUsContentId { get; set; }
+        public string FirstSubTitle { get; set; }
+        public string FirstTitle { get; set; }
+        public string FristDescription { get; set; }
+        public string SecondSubTitle { get; set; }
+        public string SecondTitle { get; set; }
+        public string SecondDescription { get; set; }
+        public string FirstSubTitleEn { get; set; }
+        public string FirstSubTitleAr { get; set; }
+        public string FirstSubTitleUr { get; set; }
+        public string FirstTitleEn { get; set; }
+        public string FirstTitleAr { get; set; }
+        public string FirstTitleUr { get; set; }
+        public string FristDescriptionEn { get; set; }
+        public string FristDescriptionAr { get; set; }
+        public string FristDescriptionUr { get; set; }
+        public string SecondSubTitleEn { get; set; }
+        public string SecondSubTitleAr { get; set; }
+        public string SecondSubTitleUr { get; set; }
+        public string SecondTitleEn { get; set; }
+        public string SecondTitleAr { get; set; }
+        public string SecondTitleUr { get; set; }
+        public string SecondDescriptionEn { get; set; }
+        public string SecondDescriptionAr { get; set; }
+        public string SecondDescriptionUr { get; set; }
+    }
+
+    public class FeaturesContentCrudViewModel
+    {
+        public int FeatureContentId { get; set; }
+        public string FeaturesTitle { get; set; }
+        public string FeatruesSubTitle { get; set; }
+        public string FeaturesDescription { get; set; }
+        public string FeaturesTitleEn { get; set; }
+        public string FeaturesTitleAr { get; set; }
+        public string FeaturesTitleUr { get; set; }
+        public string FeatruesSubTitleEn { get; set; }
+        public string FeatruesSubTitleAr { get; set; }
+        public string FeatruesSubTitleUr { get; set; }
+        public string FeaturesDescriptionEn { get; set; }
+        public string FeaturesDescriptionAr { get; set; }
+        public string FeaturesDescriptionUr { get; set; }
+    }
+
     public class SeoTagsViewModel
     {
         public int BlogID { get; set; }

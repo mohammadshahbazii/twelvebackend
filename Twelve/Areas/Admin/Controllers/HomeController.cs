@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Services;
+using ViewModels;
 
 namespace Twelve.Areas.Admin.Controllers
 {
@@ -72,7 +73,7 @@ namespace Twelve.Areas.Admin.Controllers
 
         [HttpPost]
         [Route("IndexContent")]
-        public IActionResult IndexContent(IndexContent indexContent)
+        public IActionResult IndexContent(IndexContentCrudViewModel indexContent)
         {
             if (siteRepository.UpdateIndexContent(indexContent))
             {
@@ -93,7 +94,7 @@ namespace Twelve.Areas.Admin.Controllers
         {
             if (adminRepository.CheckPermission(User.Identity.Name, "تنظیمات"))
             {
-                var content = siteRepository.GetAboutUsContent();
+                var content = siteRepository.GetAboutUsContentForEdit();
                 return View(content);
             }
             else
@@ -104,18 +105,18 @@ namespace Twelve.Areas.Admin.Controllers
 
         [HttpPost]
         [Route("AboutUsContent")]
-        public IActionResult AboutUsContent(AboutUsContent aboutUsContent, IFormFile imageProduct , IFormFile downloadProduct)
+        public IActionResult AboutUsContent(AboutUsContentCrudViewModel aboutUsContent, IFormFile imageProduct, IFormFile downloadProduct)
         {
-            if (siteRepository.UpdateAboutUsContent(aboutUsContent,imageProduct,downloadProduct))
+            if (siteRepository.UpdateAboutUsContent(aboutUsContent, imageProduct, downloadProduct))
             {
                 ViewBag.Message = "عملیات با موفقیت انجام شد";
-                var content = siteRepository.GetAboutUsContent();
+                var content = siteRepository.GetAboutUsContentForEdit();
                 return View(content);
             }
             else
             {
                 ViewBag.Message = "هنگام عملیات خطایی رخ داد لطفا مجددا تلاش کنید";
-                var content = siteRepository.GetAboutUsContent();
+                var content = siteRepository.GetAboutUsContentForEdit();
                 return View(content);
             }
         }
@@ -136,7 +137,7 @@ namespace Twelve.Areas.Admin.Controllers
 
         [HttpPost]
         [Route("ContactUsContent")]
-        public IActionResult ContactUsContent(ContactUsContent contactUsContent)
+        public IActionResult ContactUsContent(ContactUsContentCrudViewModel contactUsContent)
         {
             if (siteRepository.UpdateContactUsContent(contactUsContent))
             {
@@ -158,7 +159,7 @@ namespace Twelve.Areas.Admin.Controllers
             if (adminRepository.CheckPermission(User.Identity.Name, "تنظیمات"))
             {
                 IFaqsRepository faqsRepository = new FaqsRepository();
-                var content = faqsRepository.GetFaqContent();
+                var content = faqsRepository.GetFaqContentForEdit();
                 return View(content);
             }
             else
@@ -169,20 +170,20 @@ namespace Twelve.Areas.Admin.Controllers
 
         [HttpPost]
         [Route("FaqContent")]
-        public IActionResult FaqContent(FaqContent aboutUsContent)
+        public IActionResult FaqContent(FaqContentCrudViewModel aboutUsContent)
         {
             IFaqsRepository faqsRepository = new FaqsRepository();
 
             if (faqsRepository.UpdateFaqContent(aboutUsContent))
             {
                 ViewBag.Message = "عملیات با موفقیت انجام شد";
-                var content = faqsRepository.GetFaqContent();
+                var content = faqsRepository.GetFaqContentForEdit();
                 return View(content);
             }
             else
             {
                 ViewBag.Message = "هنگام عملیات خطایی رخ داد لطفا مجددا تلاش کنید";
-                var content = faqsRepository.GetFaqContent();
+                var content = faqsRepository.GetFaqContentForEdit();
                 return View(content);
             }
         }
@@ -193,7 +194,7 @@ namespace Twelve.Areas.Admin.Controllers
             if (adminRepository.CheckPermission(User.Identity.Name, "تنظیمات"))
             {
                 IFeaturesRepository featuresRepository = new FeaturesRepository();
-                var content = featuresRepository.GetFeaturesContent();
+                var content = featuresRepository.GetFeaturesContentForEdit();
                 return View(content);
             }
             else
@@ -204,20 +205,20 @@ namespace Twelve.Areas.Admin.Controllers
 
         [HttpPost]
         [Route("AppMenuContent")]
-        public IActionResult AppMenuContent(FeaturesContent featuresContent)
+        public IActionResult AppMenuContent(FeaturesContentCrudViewModel featuresContent)
         {
             IFeaturesRepository featuresRepository = new FeaturesRepository();
 
             if (featuresRepository.UpdateFeaturesContent(featuresContent))
             {
                 ViewBag.Message = "عملیات با موفقیت انجام شد";
-                var content = featuresRepository.GetFeaturesContent();
+                var content = featuresRepository.GetFeaturesContentForEdit();
                 return View(content);
             }
             else
             {
                 ViewBag.Message = "هنگام عملیات خطایی رخ داد لطفا مجددا تلاش کنید";
-                var content = featuresRepository.GetFeaturesContent();
+                var content = featuresRepository.GetFeaturesContentForEdit();
                 return View(content);
             }
         }
