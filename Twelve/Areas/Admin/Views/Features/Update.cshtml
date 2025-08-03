@@ -1,4 +1,4 @@
-﻿@model DataLayer.Feature
+@model ViewModels.FeatureCrudViewModel
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
@@ -13,29 +13,83 @@
                     <!-- /.card-header -->
                     <!-- form start -->
                     <form role="form" method="post" enctype="multipart/form-data">
-                        @Html.HiddenFor(m => m.FeatureId)
-                        @Html.HiddenFor(m => m.ImageName)
-                        @Html.HiddenFor(m => m.AnimateFilename)
-                        @Html.HiddenFor(m => m.FirstArticleImage)
-                        @Html.HiddenFor(m => m.SecondArticleImage)
-                        @Html.HiddenFor(m => m.IntroduceImageName)
+                        <input type="hidden" name="FeatureId" value="@Model.FeatureId" />
+                        <input type="hidden" name="ImageName" value="@Model.ImageName" />
+                        <input type="hidden" name="AnimateFilename" value="@Model.AnimateFilename" />
+                        <input type="hidden" name="FirstArticleImage" value="@Model.FirstArticleImage" />
+                        <input type="hidden" name="SecondArticleImage" value="@Model.SecondArticleImage" />
+                        <input type="hidden" name="IntroduceImageName" value="@Model.IntroduceImageName" />
                         <div class="card-body">
-                            <div class="form-group">
-                                <label for="Title">عنوان</label>
-                                <input type="text" name="Title" class="form-control" id="Title" value="@Model.Title" placeholder="عنوان را وارد کنید">
-                                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="form-group">
-                                <label for="ShortDescription">توضیح کوتاه</label>
-                                <input type="text" class="form-control" name="ShortDescription" value="@Model.ShortDescription" id="ShortDescription" placeholder="توضیح کوتاه را وارد کنید">
-                                @Html.ValidationMessageFor(model => model.ShortDescription, "", new { @class = "text-danger" })
-
-                            </div>
-                            <div class="form-group">
-                                <label for="FirstDescription">توضیح</label>
-                                <textarea rows="5" class="form-control w-100" name="FirstDescription" id="FirstDescription" placeholder="توضیح را وارد کنید">@Model.FirstDescription</textarea>
-                                @Html.ValidationMessageFor(model => model.FirstDescription, "", new { @class = "text-danger" })
-
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul class="nav nav-tabs" id="langTab" role="tablist">
+                                        <li class="nav-item"><a class="nav-link active" id="fa-tab" data-toggle="tab" href="#fa" role="tab">FA</a></li>
+                                        <li class="nav-item"><a class="nav-link" id="en-tab" data-toggle="tab" href="#en" role="tab">EN</a></li>
+                                        <li class="nav-item"><a class="nav-link" id="ar-tab" data-toggle="tab" href="#ar" role="tab">AR</a></li>
+                                        <li class="nav-item"><a class="nav-link" id="ur-tab" data-toggle="tab" href="#ur" role="tab">UR</a></li>
+                                    </ul>
+                                    <div class="tab-content p-3" id="langTabContent">
+                                        <div class="tab-pane fade show active" id="fa" role="tabpanel">
+                                            <div class="form-group">
+                                                <label for="Title">عنوان</label>
+                                                <input type="text" name="Title" class="form-control" id="Title" value="@Model.Title" placeholder="عنوان را وارد کنید">
+                                                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ShortDescription">توضیح کوتاه</label>
+                                                <input type="text" class="form-control" name="ShortDescription" id="ShortDescription" value="@Model.ShortDescription" placeholder="توضیح کوتاه را وارد کنید">
+                                                @Html.ValidationMessageFor(model => model.ShortDescription, "", new { @class = "text-danger" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="FirstDescription">توضیح</label>
+                                                <textarea rows="5" class="form-control w-100" name="FirstDescription" id="FirstDescription" placeholder="توضیح را وارد کنید">@Model.FirstDescription</textarea>
+                                                @Html.ValidationMessageFor(model => model.FirstDescription, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="en" role="tabpanel">
+                                            <div class="form-group">
+                                                <label for="TitleEn">Title</label>
+                                                <input type="text" class="form-control" name="TitleEn" id="TitleEn" value="@Model.TitleEn" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ShortDescriptionEn">Short Description</label>
+                                                <input type="text" class="form-control" name="ShortDescriptionEn" id="ShortDescriptionEn" value="@Model.ShortDescriptionEn" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="FirstDescriptionEn">Description</label>
+                                                <textarea rows="5" class="form-control w-100" name="FirstDescriptionEn" id="FirstDescriptionEn">@Model.FirstDescriptionEn</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="ar" role="tabpanel">
+                                            <div class="form-group">
+                                                <label for="TitleAr">Title</label>
+                                                <input type="text" class="form-control" name="TitleAr" id="TitleAr" value="@Model.TitleAr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ShortDescriptionAr">Short Description</label>
+                                                <input type="text" class="form-control" name="ShortDescriptionAr" id="ShortDescriptionAr" value="@Model.ShortDescriptionAr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="FirstDescriptionAr">Description</label>
+                                                <textarea rows="5" class="form-control w-100" name="FirstDescriptionAr" id="FirstDescriptionAr">@Model.FirstDescriptionAr</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="ur" role="tabpanel">
+                                            <div class="form-group">
+                                                <label for="TitleUr">Title</label>
+                                                <input type="text" class="form-control" name="TitleUr" id="TitleUr" value="@Model.TitleUr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ShortDescriptionUr">Short Description</label>
+                                                <input type="text" class="form-control" name="ShortDescriptionUr" id="ShortDescriptionUr" value="@Model.ShortDescriptionUr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="FirstDescriptionUr">Description</label>
+                                                <textarea rows="5" class="form-control w-100" name="FirstDescriptionUr" id="FirstDescriptionUr">@Model.FirstDescriptionUr</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group ">
                                 <div class="text-center">
@@ -81,7 +135,7 @@
                                 </div>
                                 <div class="form-group m-3 ">
                                     <div class="text-center">
-                                        <img id="imageFAPreview" class="thumbnail w-100 my-5" src="~/Images/Features/@Model.FirstArticleImage" />
+                                        <img id="imageFAPreview" class="thumbnail my-5 w-100" src="~/Images/Features/@Model.FirstArticleImage" />
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-10">
@@ -105,7 +159,7 @@
                                 </div>
                                 <div class="form-group m-3 ">
                                     <div class="text-center">
-                                        <img id="imageSAPreview" class="thumbnail w-100 my-5" src="~/Images/Features/@Model.SecondArticleImage" />
+                                        <img id="imageSAPreview" class="thumbnail my-5 w-100" src="~/Images/Features/@Model.SecondArticleImage" />
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-10">
@@ -115,11 +169,8 @@
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                         <!-- /.card-body -->
-
                         <div class="card-footer">
                             <button type="submit" class="btn btn-warning">ثبت</button>
                             <a href="/Admin/Features" class="btn btn-info float-left">بازگشت به لیست</a>
@@ -131,12 +182,12 @@
         </div>
     </div><!-- /.container-fluid -->
 </div>
-@section Ckeditor {
-    <script>
-        $(function () {
-            $('#FirstDescription').ckeditor();
-        });
-    </script>
+@section Ckeditor{
+<script>
+    $(function () {
+        $('#FirstDescription').ckeditor();
+    });
+</script>
 }
 <script>
     imageProduct.onchange = evt => {

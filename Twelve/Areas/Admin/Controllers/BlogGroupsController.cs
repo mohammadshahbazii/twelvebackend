@@ -32,7 +32,7 @@ namespace Twelve.Areas.Admin.Controllers
         {
             if (adminRepository.CheckPermission(User.Identity.Name, "دسته بندی های اخبار"))
             {
-                return View();
+                return View(new BlogGroupCrudViewModel());
             }
             else
             {
@@ -42,16 +42,19 @@ namespace Twelve.Areas.Admin.Controllers
 
         [HttpPost]
         [Route("Create")]
-        public IActionResult Create(BlogGroup blogGroup)
+        public IActionResult Create(BlogGroupCrudViewModel blogGroup)
         {
-            if (blogGroupsRepository.Create(blogGroup))
+            var entity = new BlogGroup { GroupName = blogGroup.GroupName, ParentId = blogGroup.ParentId };
+            if (blogGroupsRepository.Create(entity))
             {
+                blogGroup.BlogGroupId = entity.BlogGroupId;
+                blogGroupsRepository.SaveTranslations(blogGroup);
                 return RedirectToAction("Index");
             }
             else
             {
                 ViewBag.Message = "هنگام عملیات خطایی رخ داد لطفا مجددا تلاش کنید";
-                return View();
+                return View(blogGroup);
             }
         }
 
@@ -60,7 +63,7 @@ namespace Twelve.Areas.Admin.Controllers
         {
             if (adminRepository.CheckPermission(User.Identity.Name, "دسته بندی های اخبار"))
             {
-                var content = blogGroupsRepository.GetByID(InfoID);
+                var content = blogGroupsRepository.GetForEdit(InfoID);
                 return View(content);
             }
             else
@@ -71,16 +74,18 @@ namespace Twelve.Areas.Admin.Controllers
 
         [HttpPost]
         [Route("Update/{InfoID}")]
-        public IActionResult Update(BlogGroup blogGroup)
+        public IActionResult Update(BlogGroupCrudViewModel blogGroup)
         {
-            if (blogGroupsRepository.Update(blogGroup))
+            var entity = new BlogGroup { BlogGroupId = blogGroup.BlogGroupId, GroupName = blogGroup.GroupName, ParentId = blogGroup.ParentId };
+            if (blogGroupsRepository.Update(entity))
             {
+                blogGroupsRepository.SaveTranslations(blogGroup);
                 return RedirectToAction("Index");
             }
             else
             {
                 ViewBag.Message = "هنگام عملیات خطایی رخ داد لطفا مجددا تلاش کنید";
-                var content = blogGroupsRepository.GetByID(blogGroup.BlogGroupId);
+                var content = blogGroupsRepository.GetForEdit(blogGroup.BlogGroupId);
                 return View(content);
             }
         }

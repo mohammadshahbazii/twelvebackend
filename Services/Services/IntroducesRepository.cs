@@ -22,7 +22,7 @@ namespace Services
                 }
                 foreach (var featureID in model.SelectedFeature)
                 {
-                    Introduce introduce = new Introduce() 
+                    Introduce introduce = new Introduce()
                     {
                         IntroduceTitle = model.Title,
                         IntroduceText = model.Description,
@@ -30,10 +30,11 @@ namespace Services
                     };
                     db.Introduces.Add(introduce);
                     db.SaveChanges();
+                    model.IntroduceID = introduce.IntroduceId;
                 }
                 return true;
             }
-            catch 
+            catch
             {
                 return false;
             }
@@ -62,11 +63,18 @@ namespace Services
         public IntroduceCrudViewModel GetByID(int introduceID)
         {
             var introduce = db.Introduces.Find(introduceID);
-            introduce.ApplyTranslation(db);
+            var translations = db.EntityTranslations.Where(t => t.EntityName == nameof(Introduce) && t.EntityId == introduceID).ToList();
             IntroduceCrudViewModel model = new IntroduceCrudViewModel()
             {
+                IntroduceID = introduceID,
                 Title = introduce.IntroduceTitle,
                 Description = introduce.IntroduceText,
+                TitleEn = translations.FirstOrDefault(t => t.Property == nameof(Introduce.IntroduceTitle) && t.Culture == "en")?.Value,
+                TitleAr = translations.FirstOrDefault(t => t.Property == nameof(Introduce.IntroduceTitle) && t.Culture == "ar")?.Value,
+                TitleUr = translations.FirstOrDefault(t => t.Property == nameof(Introduce.IntroduceTitle) && t.Culture == "ur")?.Value,
+                DescriptionEn = translations.FirstOrDefault(t => t.Property == nameof(Introduce.IntroduceText) && t.Culture == "en")?.Value,
+                DescriptionAr = translations.FirstOrDefault(t => t.Property == nameof(Introduce.IntroduceText) && t.Culture == "ar")?.Value,
+                DescriptionUr = translations.FirstOrDefault(t => t.Property == nameof(Introduce.IntroduceText) && t.Culture == "ur")?.Value
             };
             model.SelectedFeature = new List<int>();
             model.Features = new List<FeatureNameViewModel>();
@@ -139,6 +147,35 @@ namespace Services
             {
                 return false;
             }
+        }
+
+        public void SaveTranslations(IntroduceCrudViewModel model)
+        {
+            SaveTranslation(nameof(Introduce), model.IntroduceID, nameof(Introduce.IntroduceTitle), "en", model.TitleEn);
+            SaveTranslation(nameof(Introduce), model.IntroduceID, nameof(Introduce.IntroduceTitle), "ar", model.TitleAr);
+            SaveTranslation(nameof(Introduce), model.IntroduceID, nameof(Introduce.IntroduceTitle), "ur", model.TitleUr);
+            SaveTranslation(nameof(Introduce), model.IntroduceID, nameof(Introduce.IntroduceText), "en", model.DescriptionEn);
+            SaveTranslation(nameof(Introduce), model.IntroduceID, nameof(Introduce.IntroduceText), "ar", model.DescriptionAr);
+            SaveTranslation(nameof(Introduce), model.IntroduceID, nameof(Introduce.IntroduceText), "ur", model.DescriptionUr);
+        }
+
+        private void SaveTranslation(string entityName, int entityId, string property, string culture, string value)
+        {
+            if (string.IsNullOrWhiteSpace(value)) return;
+            var tr = db.EntityTranslations.FirstOrDefault(t => t.EntityName == entityName && t.EntityId == entityId && t.Property == property && t.Culture == culture);
+            if (tr == null)
+            {
+                tr = new EntityTranslation
+                {
+                    EntityName = entityName,
+                    EntityId = entityId,
+                    Property = property,
+                    Culture = culture
+                };
+                db.EntityTranslations.Add(tr);
+            }
+            tr.Value = value;
+            db.SaveChanges();
         }
     }
 }

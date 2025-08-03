@@ -47,6 +47,7 @@ namespace Twelve.Areas.Admin.Controllers
         {
             if (introducesRepository.Create(introduce))
             {
+                introducesRepository.SaveTranslations(introduce);
                 return RedirectToAction("Index");
             }
             else
@@ -77,6 +78,7 @@ namespace Twelve.Areas.Admin.Controllers
         {
             if (introducesRepository.Update(introduce))
             {
+                introducesRepository.SaveTranslations(introduce);
                 return RedirectToAction("Index");
             }
             else
