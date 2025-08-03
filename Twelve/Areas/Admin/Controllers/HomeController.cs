@@ -94,7 +94,7 @@ namespace Twelve.Areas.Admin.Controllers
         {
             if (adminRepository.CheckPermission(User.Identity.Name, "تنظیمات"))
             {
-                var content = siteRepository.GetAboutUsContent();
+                var content = siteRepository.GetAboutUsContentForEdit();
                 return View(content);
             }
             else
@@ -105,18 +105,18 @@ namespace Twelve.Areas.Admin.Controllers
 
         [HttpPost]
         [Route("AboutUsContent")]
-        public IActionResult AboutUsContent(AboutUsContent aboutUsContent, IFormFile imageProduct , IFormFile downloadProduct)
+        public IActionResult AboutUsContent(AboutUsContentCrudViewModel aboutUsContent, IFormFile imageProduct, IFormFile downloadProduct)
         {
-            if (siteRepository.UpdateAboutUsContent(aboutUsContent,imageProduct,downloadProduct))
+            if (siteRepository.UpdateAboutUsContent(aboutUsContent, imageProduct, downloadProduct))
             {
                 ViewBag.Message = "عملیات با موفقیت انجام شد";
-                var content = siteRepository.GetAboutUsContent();
+                var content = siteRepository.GetAboutUsContentForEdit();
                 return View(content);
             }
             else
             {
                 ViewBag.Message = "هنگام عملیات خطایی رخ داد لطفا مجددا تلاش کنید";
-                var content = siteRepository.GetAboutUsContent();
+                var content = siteRepository.GetAboutUsContentForEdit();
                 return View(content);
             }
         }

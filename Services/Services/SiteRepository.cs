@@ -583,6 +583,74 @@ namespace Services
             return item;
         }
 
+        public AboutUsContentCrudViewModel GetAboutUsContentForEdit()
+        {
+            var item = db.AboutUsContents.FirstOrDefault();
+            var translations = db.EntityTranslations.Where(t => t.EntityName == nameof(AboutUsContent) && t.EntityId == item.AboutUsContentId).ToList();
+            return new AboutUsContentCrudViewModel
+            {
+                AboutUsContentId = item.AboutUsContentId,
+                SubTitle = item.SubTitle,
+                Title = item.Title,
+                Description = item.Description,
+                ImageName = item.ImageName,
+                SecondSubTitle = item.SecondSubTitle,
+                SecondTitle = item.SecondTitle,
+                SecondDescription = item.SecondDescription,
+                ThirdSubTitle = item.ThirdSubTitle,
+                ThirdTitle = item.ThirdTitle,
+                DownloadImageName = item.DownloadImageName,
+                ForthSubTitle = item.ForthSubTitle,
+                ForthTitle = item.ForthTitle,
+                ForthDescription = item.ForthDescription,
+                LogoTitle = item.LogoTitle,
+                LogoSubTitle = item.LogoSubTitle,
+                LogoDescription = item.LogoDescription,
+                SubTitleEn = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.SubTitle) && t.Culture == "en")?.Value,
+                SubTitleAr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.SubTitle) && t.Culture == "ar")?.Value,
+                SubTitleUr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.SubTitle) && t.Culture == "ur")?.Value,
+                TitleEn = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.Title) && t.Culture == "en")?.Value,
+                TitleAr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.Title) && t.Culture == "ar")?.Value,
+                TitleUr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.Title) && t.Culture == "ur")?.Value,
+                DescriptionEn = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.Description) && t.Culture == "en")?.Value,
+                DescriptionAr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.Description) && t.Culture == "ar")?.Value,
+                DescriptionUr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.Description) && t.Culture == "ur")?.Value,
+                SecondSubTitleEn = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.SecondSubTitle) && t.Culture == "en")?.Value,
+                SecondSubTitleAr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.SecondSubTitle) && t.Culture == "ar")?.Value,
+                SecondSubTitleUr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.SecondSubTitle) && t.Culture == "ur")?.Value,
+                SecondTitleEn = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.SecondTitle) && t.Culture == "en")?.Value,
+                SecondTitleAr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.SecondTitle) && t.Culture == "ar")?.Value,
+                SecondTitleUr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.SecondTitle) && t.Culture == "ur")?.Value,
+                SecondDescriptionEn = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.SecondDescription) && t.Culture == "en")?.Value,
+                SecondDescriptionAr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.SecondDescription) && t.Culture == "ar")?.Value,
+                SecondDescriptionUr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.SecondDescription) && t.Culture == "ur")?.Value,
+                ThirdSubTitleEn = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.ThirdSubTitle) && t.Culture == "en")?.Value,
+                ThirdSubTitleAr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.ThirdSubTitle) && t.Culture == "ar")?.Value,
+                ThirdSubTitleUr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.ThirdSubTitle) && t.Culture == "ur")?.Value,
+                ThirdTitleEn = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.ThirdTitle) && t.Culture == "en")?.Value,
+                ThirdTitleAr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.ThirdTitle) && t.Culture == "ar")?.Value,
+                ThirdTitleUr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.ThirdTitle) && t.Culture == "ur")?.Value,
+                ForthSubTitleEn = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.ForthSubTitle) && t.Culture == "en")?.Value,
+                ForthSubTitleAr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.ForthSubTitle) && t.Culture == "ar")?.Value,
+                ForthSubTitleUr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.ForthSubTitle) && t.Culture == "ur")?.Value,
+                ForthTitleEn = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.ForthTitle) && t.Culture == "en")?.Value,
+                ForthTitleAr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.ForthTitle) && t.Culture == "ar")?.Value,
+                ForthTitleUr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.ForthTitle) && t.Culture == "ur")?.Value,
+                ForthDescriptionEn = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.ForthDescription) && t.Culture == "en")?.Value,
+                ForthDescriptionAr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.ForthDescription) && t.Culture == "ar")?.Value,
+                ForthDescriptionUr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.ForthDescription) && t.Culture == "ur")?.Value,
+                LogoTitleEn = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.LogoTitle) && t.Culture == "en")?.Value,
+                LogoTitleAr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.LogoTitle) && t.Culture == "ar")?.Value,
+                LogoTitleUr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.LogoTitle) && t.Culture == "ur")?.Value,
+                LogoSubTitleEn = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.LogoSubTitle) && t.Culture == "en")?.Value,
+                LogoSubTitleAr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.LogoSubTitle) && t.Culture == "ar")?.Value,
+                LogoSubTitleUr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.LogoSubTitle) && t.Culture == "ur")?.Value,
+                LogoDescriptionEn = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.LogoDescription) && t.Culture == "en")?.Value,
+                LogoDescriptionAr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.LogoDescription) && t.Culture == "ar")?.Value,
+                LogoDescriptionUr = translations.FirstOrDefault(t => t.Property == nameof(AboutUsContent.LogoDescription) && t.Culture == "ur")?.Value
+            };
+        }
+
         public List<AboutUsSight> GetAboutUsSights()
         {
             var items = db.AboutUsSights.ToList();
@@ -750,40 +818,91 @@ namespace Services
         }
 
 
-        public bool UpdateAboutUsContent(AboutUsContent content, IFormFile imageProduct, IFormFile downloadProduct)
+        public bool UpdateAboutUsContent(AboutUsContentCrudViewModel content, IFormFile imageProduct, IFormFile downloadProduct)
         {
             try
             {
+                var entity = db.AboutUsContents.Find(content.AboutUsContentId);
+                entity.SubTitle = content.SubTitle;
+                entity.Title = content.Title;
+                entity.Description = content.Description;
+                entity.SecondSubTitle = content.SecondSubTitle;
+                entity.SecondTitle = content.SecondTitle;
+                entity.SecondDescription = content.SecondDescription;
+                entity.ThirdSubTitle = content.ThirdSubTitle;
+                entity.ThirdTitle = content.ThirdTitle;
+                entity.ForthSubTitle = content.ForthSubTitle;
+                entity.ForthTitle = content.ForthTitle;
+                entity.ForthDescription = content.ForthDescription;
+                entity.LogoTitle = content.LogoTitle;
+                entity.LogoSubTitle = content.LogoSubTitle;
+                entity.LogoDescription = content.LogoDescription;
                 if (imageProduct != null)
                 {
-                    string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/Site", content.ImageName);
-
+                    string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/Site", entity.ImageName);
                     System.IO.File.Delete(imagePath);
-
-                    content.ImageName = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(imageProduct.FileName);
-                    string fullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/Site", content.ImageName);
+                    entity.ImageName = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(imageProduct.FileName);
+                    string fullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/Site", entity.ImageName);
                     using (var stream = new FileStream(fullPath, FileMode.Create))
                     {
                         imageProduct.CopyTo(stream);
                     }
-
                 }
                 if (downloadProduct != null)
                 {
-                    string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/Site", content.DownloadImageName);
-
+                    string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/Site", entity.DownloadImageName);
                     System.IO.File.Delete(imagePath);
-
-                    content.DownloadImageName = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(downloadProduct.FileName);
-                    string fullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/Site", content.DownloadImageName);
+                    entity.DownloadImageName = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(downloadProduct.FileName);
+                    string fullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/Site", entity.DownloadImageName);
                     using (var stream = new FileStream(fullPath, FileMode.Create))
                     {
                         downloadProduct.CopyTo(stream);
                     }
-
                 }
-                db.AboutUsContents.Update(content);
+                db.AboutUsContents.Update(entity);
                 db.SaveChanges();
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.SubTitle), "en", content.SubTitleEn);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.SubTitle), "ar", content.SubTitleAr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.SubTitle), "ur", content.SubTitleUr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.Title), "en", content.TitleEn);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.Title), "ar", content.TitleAr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.Title), "ur", content.TitleUr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.Description), "en", content.DescriptionEn);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.Description), "ar", content.DescriptionAr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.Description), "ur", content.DescriptionUr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.SecondSubTitle), "en", content.SecondSubTitleEn);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.SecondSubTitle), "ar", content.SecondSubTitleAr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.SecondSubTitle), "ur", content.SecondSubTitleUr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.SecondTitle), "en", content.SecondTitleEn);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.SecondTitle), "ar", content.SecondTitleAr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.SecondTitle), "ur", content.SecondTitleUr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.SecondDescription), "en", content.SecondDescriptionEn);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.SecondDescription), "ar", content.SecondDescriptionAr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.SecondDescription), "ur", content.SecondDescriptionUr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.ThirdSubTitle), "en", content.ThirdSubTitleEn);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.ThirdSubTitle), "ar", content.ThirdSubTitleAr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.ThirdSubTitle), "ur", content.ThirdSubTitleUr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.ThirdTitle), "en", content.ThirdTitleEn);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.ThirdTitle), "ar", content.ThirdTitleAr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.ThirdTitle), "ur", content.ThirdTitleUr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.ForthSubTitle), "en", content.ForthSubTitleEn);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.ForthSubTitle), "ar", content.ForthSubTitleAr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.ForthSubTitle), "ur", content.ForthSubTitleUr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.ForthTitle), "en", content.ForthTitleEn);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.ForthTitle), "ar", content.ForthTitleAr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.ForthTitle), "ur", content.ForthTitleUr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.ForthDescription), "en", content.ForthDescriptionEn);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.ForthDescription), "ar", content.ForthDescriptionAr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.ForthDescription), "ur", content.ForthDescriptionUr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.LogoTitle), "en", content.LogoTitleEn);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.LogoTitle), "ar", content.LogoTitleAr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.LogoTitle), "ur", content.LogoTitleUr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.LogoSubTitle), "en", content.LogoSubTitleEn);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.LogoSubTitle), "ar", content.LogoSubTitleAr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.LogoSubTitle), "ur", content.LogoSubTitleUr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.LogoDescription), "en", content.LogoDescriptionEn);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.LogoDescription), "ar", content.LogoDescriptionAr);
+                SaveTranslation(nameof(AboutUsContent), entity.AboutUsContentId, nameof(AboutUsContent.LogoDescription), "ur", content.LogoDescriptionUr);
                 return true;
             }
             catch

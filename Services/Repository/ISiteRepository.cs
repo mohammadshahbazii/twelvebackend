@@ -14,8 +14,9 @@ namespace Services
         #region Contents
         public IndexContentCrudViewModel GetIndexContent();
         public ContactUsContentCrudViewModel GetContactUsContent();
+        public AboutUsContentCrudViewModel GetAboutUsContentForEdit();
         public bool UpdateIndexContent(IndexContentCrudViewModel content);
-        public bool UpdateAboutUsContent(AboutUsContent content , IFormFile imageProduct , IFormFile downloadProduct);
+        public bool UpdateAboutUsContent(AboutUsContentCrudViewModel content, IFormFile imageProduct, IFormFile downloadProduct);
         public bool UpdateContactUsContent(ContactUsContentCrudViewModel content);
 
         #endregion Contents
