@@ -21,17 +21,20 @@ namespace Services
 
         public string GetFaqGroupNameByID(int GroupID)
         {
-            return db.FaqGroups.Find(GroupID).GroupName;
+            var item = db.FaqGroups.Find(GroupID);
+            item.ApplyTranslation(db);
+            return item.GroupName;
         }
 
         public List<FaqsGroupsItemViewModel> GetFaqGroups()
         {
             var items = db.FaqGroups.ToList();
+            items.ApplyTranslations(db);
             List<FaqsGroupsItemViewModel> model = new List<FaqsGroupsItemViewModel>();
 
             foreach (var item in items)
             {
-                model.Add(new FaqsGroupsItemViewModel 
+                model.Add(new FaqsGroupsItemViewModel
                 {
                     GroupID = item.FaqGroupId,
                     GroupName = item.GroupName
@@ -165,6 +168,24 @@ namespace Services
                 Question = faq.Question,
                 IsMain = faq.IsMain
             };
+            var trEn = db.FaqTranslations.FirstOrDefault(t => t.FaqId == FaqID && t.Language == "en");
+            var trAr = db.FaqTranslations.FirstOrDefault(t => t.FaqId == FaqID && t.Language == "ar");
+            var trUr = db.FaqTranslations.FirstOrDefault(t => t.FaqId == FaqID && t.Language == "ur");
+            if (trEn != null)
+            {
+                model.QuestionEn = trEn.Question;
+                model.AnswerEn = trEn.Answer;
+            }
+            if (trAr != null)
+            {
+                model.QuestionAr = trAr.Question;
+                model.AnswerAr = trAr.Answer;
+            }
+            if (trUr != null)
+            {
+                model.QuestionUr = trUr.Question;
+                model.AnswerUr = trUr.Answer;
+            }
             var groups = db.FaqGroups.ToList();
             model.Groups = new List<FaqsGroupsItemViewModel>();
             foreach (var group in groups)
@@ -178,6 +199,30 @@ namespace Services
             var selectedGroups = db.SelectedFaqGroups.Where(f => f.FaqId == FaqID).Select(f => f.FaqGroupId).ToList();
             model.SelectedGroups = selectedGroups;
             return model;
+        }
+
+        public void SaveTranslations(FaqsCrudViewModel faqs)
+        {
+            SaveFaqTranslation(faqs.FaqID, "en", faqs.QuestionEn, faqs.AnswerEn);
+            SaveFaqTranslation(faqs.FaqID, "ar", faqs.QuestionAr, faqs.AnswerAr);
+            SaveFaqTranslation(faqs.FaqID, "ur", faqs.QuestionUr, faqs.AnswerUr);
+        }
+
+        private void SaveFaqTranslation(int faqId, string lang, string question, string answer)
+        {
+            if (string.IsNullOrWhiteSpace(question) && string.IsNullOrWhiteSpace(answer))
+            {
+                return;
+            }
+            var tr = db.FaqTranslations.FirstOrDefault(t => t.FaqId == faqId && t.Language == lang);
+            if (tr == null)
+            {
+                tr = new FaqTranslation { FaqId = faqId, Language = lang };
+                db.FaqTranslations.Add(tr);
+            }
+            tr.Question = question ?? "";
+            tr.Answer = answer ?? "";
+            db.SaveChanges();
         }
 
         public bool Create(FaqsCrudViewModel faqs)
@@ -196,6 +241,7 @@ namespace Services
                 };
                 db.Faqs.Add(faq);
                 db.SaveChanges();
+                faqs.FaqID = faq.FaqId;
                 foreach (var item in faqs.SelectedGroups)
                 {
                     var selected = new SelectedFaqGroup() { FaqId = faq.FaqId , FaqGroupId = item };
@@ -329,23 +375,101 @@ namespace Services
             return db.FaqGroups.Find(id);
         }
 
-        public FaqContent GetFaqContent()
+        public FaqGroupCrudViewModel GetGroupForEdit(int id)
         {
-            return db.FaqContents.FirstOrDefault();
+            var group = db.FaqGroups.Find(id);
+            var translations = db.EntityTranslations.Where(t => t.EntityName == nameof(FaqGroup) && t.EntityId == id).ToList();
+            return new FaqGroupCrudViewModel
+            {
+                FaqGroupId = group.FaqGroupId,
+                GroupName = group.GroupName,
+                ParentId = group.ParentId,
+                GroupNameEn = translations.FirstOrDefault(t => t.Property == nameof(FaqGroup.GroupName) && t.Culture == "en")?.Value,
+                GroupNameAr = translations.FirstOrDefault(t => t.Property == nameof(FaqGroup.GroupName) && t.Culture == "ar")?.Value,
+                GroupNameUr = translations.FirstOrDefault(t => t.Property == nameof(FaqGroup.GroupName) && t.Culture == "ur")?.Value
+            };
         }
 
-        public bool UpdateFaqContent(FaqContent content )
+        public FaqContent GetFaqContent()
+        {
+            var item = db.FaqContents.FirstOrDefault();
+            item.ApplyTranslation(db);
+            return item;
+        }
+
+        public FaqContentCrudViewModel GetFaqContentForEdit()
+        {
+            var item = db.FaqContents.FirstOrDefault();
+            var translations = db.EntityTranslations.Where(t => t.EntityName == nameof(FaqContent) && t.EntityId == item.FaqContentId).ToList();
+            return new FaqContentCrudViewModel
+            {
+                FaqContentId = item.FaqContentId,
+                FaqContentTitle = item.FaqContentTitle,
+                FaqContentSubTitle = item.FaqContentSubTitle,
+                FaqContentDescription = item.FaqContentDescription,
+                FaqContentTitleEn = translations.FirstOrDefault(t => t.Property == nameof(FaqContent.FaqContentTitle) && t.Culture == "en")?.Value,
+                FaqContentTitleAr = translations.FirstOrDefault(t => t.Property == nameof(FaqContent.FaqContentTitle) && t.Culture == "ar")?.Value,
+                FaqContentTitleUr = translations.FirstOrDefault(t => t.Property == nameof(FaqContent.FaqContentTitle) && t.Culture == "ur")?.Value,
+                FaqContentSubTitleEn = translations.FirstOrDefault(t => t.Property == nameof(FaqContent.FaqContentSubTitle) && t.Culture == "en")?.Value,
+                FaqContentSubTitleAr = translations.FirstOrDefault(t => t.Property == nameof(FaqContent.FaqContentSubTitle) && t.Culture == "ar")?.Value,
+                FaqContentSubTitleUr = translations.FirstOrDefault(t => t.Property == nameof(FaqContent.FaqContentSubTitle) && t.Culture == "ur")?.Value,
+                FaqContentDescriptionEn = translations.FirstOrDefault(t => t.Property == nameof(FaqContent.FaqContentDescription) && t.Culture == "en")?.Value,
+                FaqContentDescriptionAr = translations.FirstOrDefault(t => t.Property == nameof(FaqContent.FaqContentDescription) && t.Culture == "ar")?.Value,
+                FaqContentDescriptionUr = translations.FirstOrDefault(t => t.Property == nameof(FaqContent.FaqContentDescription) && t.Culture == "ur")?.Value
+            };
+        }
+
+        public bool UpdateFaqContent(FaqContentCrudViewModel content)
         {
             try
             {
-                db.FaqContents.Update(content);
+                var entity = db.FaqContents.Find(content.FaqContentId);
+                entity.FaqContentTitle = content.FaqContentTitle;
+                entity.FaqContentSubTitle = content.FaqContentSubTitle;
+                entity.FaqContentDescription = content.FaqContentDescription;
+                db.FaqContents.Update(entity);
                 db.SaveChanges();
+                SaveTranslation(nameof(FaqContent), entity.FaqContentId, nameof(FaqContent.FaqContentTitle), "en", content.FaqContentTitleEn);
+                SaveTranslation(nameof(FaqContent), entity.FaqContentId, nameof(FaqContent.FaqContentTitle), "ar", content.FaqContentTitleAr);
+                SaveTranslation(nameof(FaqContent), entity.FaqContentId, nameof(FaqContent.FaqContentTitle), "ur", content.FaqContentTitleUr);
+                SaveTranslation(nameof(FaqContent), entity.FaqContentId, nameof(FaqContent.FaqContentSubTitle), "en", content.FaqContentSubTitleEn);
+                SaveTranslation(nameof(FaqContent), entity.FaqContentId, nameof(FaqContent.FaqContentSubTitle), "ar", content.FaqContentSubTitleAr);
+                SaveTranslation(nameof(FaqContent), entity.FaqContentId, nameof(FaqContent.FaqContentSubTitle), "ur", content.FaqContentSubTitleUr);
+                SaveTranslation(nameof(FaqContent), entity.FaqContentId, nameof(FaqContent.FaqContentDescription), "en", content.FaqContentDescriptionEn);
+                SaveTranslation(nameof(FaqContent), entity.FaqContentId, nameof(FaqContent.FaqContentDescription), "ar", content.FaqContentDescriptionAr);
+                SaveTranslation(nameof(FaqContent), entity.FaqContentId, nameof(FaqContent.FaqContentDescription), "ur", content.FaqContentDescriptionUr);
                 return true;
             }
-            catch 
+            catch
             {
                 return false;
             }
+        }
+
+        public void SaveGroupTranslations(FaqGroupCrudViewModel group)
+        {
+            SaveTranslation(nameof(FaqGroup), group.FaqGroupId, nameof(FaqGroup.GroupName), "en", group.GroupNameEn);
+            SaveTranslation(nameof(FaqGroup), group.FaqGroupId, nameof(FaqGroup.GroupName), "ar", group.GroupNameAr);
+            SaveTranslation(nameof(FaqGroup), group.FaqGroupId, nameof(FaqGroup.GroupName), "ur", group.GroupNameUr);
+        }
+
+        private void SaveTranslation(string entityName, int entityId, string property, string culture, string value)
+        {
+            if (string.IsNullOrWhiteSpace(value)) return;
+            var tr = db.EntityTranslations.FirstOrDefault(t => t.EntityName == entityName && t.EntityId == entityId && t.Property == property && t.Culture == culture);
+            if (tr == null)
+            {
+                tr = new EntityTranslation
+                {
+                    EntityName = entityName,
+                    EntityId = entityId,
+                    Property = property,
+                    Culture = culture
+                };
+                db.EntityTranslations.Add(tr);
+            }
+            tr.Value = value;
+            db.SaveChanges();
         }
     }
 }

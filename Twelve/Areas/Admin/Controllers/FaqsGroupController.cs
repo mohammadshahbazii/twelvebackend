@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services;
+using ViewModels;
 
 namespace Twelve.Areas.Admin.Controllers
 {
@@ -31,7 +32,7 @@ namespace Twelve.Areas.Admin.Controllers
         {
             if (adminRepository.CheckPermission(User.Identity.Name, "دسته بندی های اخبار"))
             {
-                return View();
+                return View(new FaqGroupCrudViewModel());
             }
             else
             {
@@ -41,16 +42,19 @@ namespace Twelve.Areas.Admin.Controllers
 
         [HttpPost]
         [Route("Create")]
-        public IActionResult Create(FaqGroup faqGroup)
+        public IActionResult Create(FaqGroupCrudViewModel faqGroup)
         {
-            if (faqsRepository.CreateGroup(faqGroup))
+            FaqGroup entity = new FaqGroup { GroupName = faqGroup.GroupName, ParentId = faqGroup.ParentId };
+            if (faqsRepository.CreateGroup(entity))
             {
+                faqGroup.FaqGroupId = entity.FaqGroupId;
+                faqsRepository.SaveGroupTranslations(faqGroup);
                 return RedirectToAction("Index");
             }
             else
             {
                 ViewBag.Message = "هنگام عملیات خطایی رخ داد لطفا مجددا تلاش کنید";
-                return View();
+                return View(faqGroup);
             }
         }
 
@@ -59,7 +63,7 @@ namespace Twelve.Areas.Admin.Controllers
         {
             if (adminRepository.CheckPermission(User.Identity.Name, "دسته بندی های اخبار"))
             {
-                var content = faqsRepository.GetGroupByID(InfoID);
+                var content = faqsRepository.GetGroupForEdit(InfoID);
                 return View(content);
             }
             else
@@ -70,16 +74,18 @@ namespace Twelve.Areas.Admin.Controllers
 
         [HttpPost]
         [Route("Update/{InfoID}")]
-        public IActionResult Update(FaqGroup faqGroup)
+        public IActionResult Update(FaqGroupCrudViewModel faqGroup)
         {
-            if (faqsRepository.UpdateGroup(faqGroup))
+            FaqGroup entity = new FaqGroup { FaqGroupId = faqGroup.FaqGroupId, GroupName = faqGroup.GroupName, ParentId = faqGroup.ParentId };
+            if (faqsRepository.UpdateGroup(entity))
             {
+                faqsRepository.SaveGroupTranslations(faqGroup);
                 return RedirectToAction("Index");
             }
             else
             {
                 ViewBag.Message = "هنگام عملیات خطایی رخ داد لطفا مجددا تلاش کنید";
-                var content = faqsRepository.GetByID(faqGroup.FaqGroupId);
+                var content = faqsRepository.GetGroupForEdit(faqGroup.FaqGroupId);
                 return View(content);
             }
         }

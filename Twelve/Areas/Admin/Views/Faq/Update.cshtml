@@ -1,4 +1,4 @@
-﻿@model ViewModels.FaqsCrudViewModel
+@model ViewModels.FaqsCrudViewModel
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
@@ -13,17 +13,57 @@
                     <!-- /.card-header -->
                     <!-- form start -->
                     <form role="form" method="post" enctype="multipart/form-data">
-                        @Html.HiddenFor(m=> m.FaqID)
+                        @Html.HiddenFor(m => m.FaqID)
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-9">
-                                    <div class="form-group">
-                                        <label for="Question">سوال</label>
-                                        <textarea rows="5" class="form-control w-100" name="Question" id="Question" placeholder="سوال را وارد کنید">@Model.Question</textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="Answer">پاسخ</label>
-                                        <textarea rows="5" class="form-control w-100" name="Answer" id="Answer" placeholder="پاسخ را وارد کنید">@Model.Answer</textarea>
+                                    <ul class="nav nav-tabs" id="langTab" role="tablist">
+                                        <li class="nav-item"><a class="nav-link active" id="fa-tab" data-toggle="tab" href="#fa" role="tab">FA</a></li>
+                                        <li class="nav-item"><a class="nav-link" id="en-tab" data-toggle="tab" href="#en" role="tab">EN</a></li>
+                                        <li class="nav-item"><a class="nav-link" id="ar-tab" data-toggle="tab" href="#ar" role="tab">AR</a></li>
+                                        <li class="nav-item"><a class="nav-link" id="ur-tab" data-toggle="tab" href="#ur" role="tab">UR</a></li>
+                                    </ul>
+                                    <div class="tab-content p-3" id="langTabContent">
+                                        <div class="tab-pane fade show active" id="fa" role="tabpanel">
+                                            <div class="form-group">
+                                                <label for="Question">سوال</label>
+                                                <textarea rows="5" class="form-control w-100" name="Question" id="Question" placeholder="سوال را وارد کنید">@Model.Question</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="Answer">پاسخ</label>
+                                                <textarea rows="5" class="form-control w-100" name="Answer" id="Answer" placeholder="پاسخ را وارد کنید">@Model.Answer</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="en" role="tabpanel">
+                                            <div class="form-group">
+                                                <label for="QuestionEn">Question</label>
+                                                <textarea rows="5" class="form-control w-100" name="QuestionEn" id="QuestionEn">@Model.QuestionEn</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="AnswerEn">Answer</label>
+                                                <textarea rows="5" class="form-control w-100" name="AnswerEn" id="AnswerEn">@Model.AnswerEn</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="ar" role="tabpanel">
+                                            <div class="form-group">
+                                                <label for="QuestionAr">Question</label>
+                                                <textarea rows="5" class="form-control w-100" name="QuestionAr" id="QuestionAr">@Model.QuestionAr</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="AnswerAr">Answer</label>
+                                                <textarea rows="5" class="form-control w-100" name="AnswerAr" id="AnswerAr">@Model.AnswerAr</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="ur" role="tabpanel">
+                                            <div class="form-group">
+                                                <label for="QuestionUr">Question</label>
+                                                <textarea rows="5" class="form-control w-100" name="QuestionUr" id="QuestionUr">@Model.QuestionUr</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="AnswerUr">Answer</label>
+                                                <textarea rows="5" class="form-control w-100" name="AnswerUr" id="AnswerUr">@Model.AnswerUr</textarea>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="form-check">
                                         @Html.CheckBoxFor(model => model.IsMain,htmlAttributes: new {@class="form-check-input"})
@@ -50,9 +90,8 @@
                             </div>
                         </div>
                         <!-- /.card-body -->
-
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-success">ثبت</button>
+                            <button type="submit" class="btn btn-warning">ثبت</button>
                             <a href="/Admin/Faq" class="btn btn-info float-left">بازگشت به لیست</a>
                         </div>
                     </form>
