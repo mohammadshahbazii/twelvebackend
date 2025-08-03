@@ -12,11 +12,11 @@ namespace Services
     public interface ISiteRepository : IDisposable
     {
         #region Contents
-        public IndexContent GetIndexContent();
-        public ContactUsContent GetContactUsContent();
-        public bool UpdateIndexContent(IndexContent content);
+        public IndexContentCrudViewModel GetIndexContent();
+        public ContactUsContentCrudViewModel GetContactUsContent();
+        public bool UpdateIndexContent(IndexContentCrudViewModel content);
         public bool UpdateAboutUsContent(AboutUsContent content , IFormFile imageProduct , IFormFile downloadProduct);
-        public bool UpdateContactUsContent(ContactUsContent content);
+        public bool UpdateContactUsContent(ContactUsContentCrudViewModel content);
 
         #endregion Contents
         public ContentItemViewModel GetContactUsSecondDescription();

@@ -652,19 +652,95 @@ namespace Services
         }
 
         #region Contents
-        public IndexContent GetIndexContent()
+        public IndexContentCrudViewModel GetIndexContent()
         {
             var item = db.IndexContents.FirstOrDefault();
-            item.ApplyTranslation(db);
-            return item;
+            var translations = db.EntityTranslations.Where(t => t.EntityName == nameof(IndexContent) && t.EntityId == item.IndexContentId).ToList();
+            return new IndexContentCrudViewModel
+            {
+                IndexContentId = item.IndexContentId,
+                AboutTitle = item.AboutTitle,
+                AboutSubTitle = item.AboutSubTitle,
+                AboutDescription = item.AboutDescription,
+                FeatureTitle = item.FeatureTitle,
+                FeatureSubTitle = item.FeatureSubTitle,
+                FeatureDescription = item.FeatureDescription,
+                FaqTitle = item.FaqTitle,
+                FaqSubTitle = item.FaqSubTitle,
+                FaqDescription = item.FaqDescription,
+                AboutTitleEn = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.AboutTitle) && t.Culture == "en")?.Value,
+                AboutTitleAr = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.AboutTitle) && t.Culture == "ar")?.Value,
+                AboutTitleUr = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.AboutTitle) && t.Culture == "ur")?.Value,
+                AboutSubTitleEn = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.AboutSubTitle) && t.Culture == "en")?.Value,
+                AboutSubTitleAr = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.AboutSubTitle) && t.Culture == "ar")?.Value,
+                AboutSubTitleUr = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.AboutSubTitle) && t.Culture == "ur")?.Value,
+                AboutDescriptionEn = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.AboutDescription) && t.Culture == "en")?.Value,
+                AboutDescriptionAr = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.AboutDescription) && t.Culture == "ar")?.Value,
+                AboutDescriptionUr = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.AboutDescription) && t.Culture == "ur")?.Value,
+                FeatureTitleEn = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.FeatureTitle) && t.Culture == "en")?.Value,
+                FeatureTitleAr = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.FeatureTitle) && t.Culture == "ar")?.Value,
+                FeatureTitleUr = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.FeatureTitle) && t.Culture == "ur")?.Value,
+                FeatureSubTitleEn = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.FeatureSubTitle) && t.Culture == "en")?.Value,
+                FeatureSubTitleAr = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.FeatureSubTitle) && t.Culture == "ar")?.Value,
+                FeatureSubTitleUr = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.FeatureSubTitle) && t.Culture == "ur")?.Value,
+                FeatureDescriptionEn = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.FeatureDescription) && t.Culture == "en")?.Value,
+                FeatureDescriptionAr = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.FeatureDescription) && t.Culture == "ar")?.Value,
+                FeatureDescriptionUr = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.FeatureDescription) && t.Culture == "ur")?.Value,
+                FaqTitleEn = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.FaqTitle) && t.Culture == "en")?.Value,
+                FaqTitleAr = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.FaqTitle) && t.Culture == "ar")?.Value,
+                FaqTitleUr = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.FaqTitle) && t.Culture == "ur")?.Value,
+                FaqSubTitleEn = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.FaqSubTitle) && t.Culture == "en")?.Value,
+                FaqSubTitleAr = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.FaqSubTitle) && t.Culture == "ar")?.Value,
+                FaqSubTitleUr = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.FaqSubTitle) && t.Culture == "ur")?.Value,
+                FaqDescriptionEn = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.FaqDescription) && t.Culture == "en")?.Value,
+                FaqDescriptionAr = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.FaqDescription) && t.Culture == "ar")?.Value,
+                FaqDescriptionUr = translations.FirstOrDefault(t => t.Property == nameof(IndexContent.FaqDescription) && t.Culture == "ur")?.Value
+            };
         }
 
-        public bool UpdateIndexContent(IndexContent content)
+        public bool UpdateIndexContent(IndexContentCrudViewModel content)
         {
             try
             {
-                db.IndexContents.Update(content);
+                var entity = db.IndexContents.Find(content.IndexContentId);
+                entity.AboutTitle = content.AboutTitle;
+                entity.AboutSubTitle = content.AboutSubTitle;
+                entity.AboutDescription = content.AboutDescription;
+                entity.FeatureTitle = content.FeatureTitle;
+                entity.FeatureSubTitle = content.FeatureSubTitle;
+                entity.FeatureDescription = content.FeatureDescription;
+                entity.FaqTitle = content.FaqTitle;
+                entity.FaqSubTitle = content.FaqSubTitle;
+                entity.FaqDescription = content.FaqDescription;
+                db.IndexContents.Update(entity);
                 db.SaveChanges();
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.AboutTitle), "en", content.AboutTitleEn);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.AboutTitle), "ar", content.AboutTitleAr);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.AboutTitle), "ur", content.AboutTitleUr);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.AboutSubTitle), "en", content.AboutSubTitleEn);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.AboutSubTitle), "ar", content.AboutSubTitleAr);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.AboutSubTitle), "ur", content.AboutSubTitleUr);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.AboutDescription), "en", content.AboutDescriptionEn);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.AboutDescription), "ar", content.AboutDescriptionAr);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.AboutDescription), "ur", content.AboutDescriptionUr);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.FeatureTitle), "en", content.FeatureTitleEn);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.FeatureTitle), "ar", content.FeatureTitleAr);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.FeatureTitle), "ur", content.FeatureTitleUr);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.FeatureSubTitle), "en", content.FeatureSubTitleEn);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.FeatureSubTitle), "ar", content.FeatureSubTitleAr);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.FeatureSubTitle), "ur", content.FeatureSubTitleUr);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.FeatureDescription), "en", content.FeatureDescriptionEn);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.FeatureDescription), "ar", content.FeatureDescriptionAr);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.FeatureDescription), "ur", content.FeatureDescriptionUr);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.FaqTitle), "en", content.FaqTitleEn);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.FaqTitle), "ar", content.FaqTitleAr);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.FaqTitle), "ur", content.FaqTitleUr);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.FaqSubTitle), "en", content.FaqSubTitleEn);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.FaqSubTitle), "ar", content.FaqSubTitleAr);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.FaqSubTitle), "ur", content.FaqSubTitleUr);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.FaqDescription), "en", content.FaqDescriptionEn);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.FaqDescription), "ar", content.FaqDescriptionAr);
+                SaveTranslation(nameof(IndexContent), entity.IndexContentId, nameof(IndexContent.FaqDescription), "ur", content.FaqDescriptionUr);
                 return true;
             }
             catch
@@ -716,12 +792,37 @@ namespace Services
             }
         }
 
-        public bool UpdateContactUsContent(ContactUsContent content)
+        public bool UpdateContactUsContent(ContactUsContentCrudViewModel content)
         {
             try
             {
-                db.ContactUsContents.Update(content);
+                var entity = db.ContactUsContents.Find(content.ContactUsContentId);
+                entity.FirstSubTitle = content.FirstSubTitle;
+                entity.FirstTitle = content.FirstTitle;
+                entity.FristDescription = content.FristDescription;
+                entity.SecondSubTitle = content.SecondSubTitle;
+                entity.SecondTitle = content.SecondTitle;
+                entity.SecondDescription = content.SecondDescription;
+                db.ContactUsContents.Update(entity);
                 db.SaveChanges();
+                SaveTranslation(nameof(ContactUsContent), entity.ContactUsContentId, nameof(ContactUsContent.FirstSubTitle), "en", content.FirstSubTitleEn);
+                SaveTranslation(nameof(ContactUsContent), entity.ContactUsContentId, nameof(ContactUsContent.FirstSubTitle), "ar", content.FirstSubTitleAr);
+                SaveTranslation(nameof(ContactUsContent), entity.ContactUsContentId, nameof(ContactUsContent.FirstSubTitle), "ur", content.FirstSubTitleUr);
+                SaveTranslation(nameof(ContactUsContent), entity.ContactUsContentId, nameof(ContactUsContent.FirstTitle), "en", content.FirstTitleEn);
+                SaveTranslation(nameof(ContactUsContent), entity.ContactUsContentId, nameof(ContactUsContent.FirstTitle), "ar", content.FirstTitleAr);
+                SaveTranslation(nameof(ContactUsContent), entity.ContactUsContentId, nameof(ContactUsContent.FirstTitle), "ur", content.FirstTitleUr);
+                SaveTranslation(nameof(ContactUsContent), entity.ContactUsContentId, nameof(ContactUsContent.FristDescription), "en", content.FristDescriptionEn);
+                SaveTranslation(nameof(ContactUsContent), entity.ContactUsContentId, nameof(ContactUsContent.FristDescription), "ar", content.FristDescriptionAr);
+                SaveTranslation(nameof(ContactUsContent), entity.ContactUsContentId, nameof(ContactUsContent.FristDescription), "ur", content.FristDescriptionUr);
+                SaveTranslation(nameof(ContactUsContent), entity.ContactUsContentId, nameof(ContactUsContent.SecondSubTitle), "en", content.SecondSubTitleEn);
+                SaveTranslation(nameof(ContactUsContent), entity.ContactUsContentId, nameof(ContactUsContent.SecondSubTitle), "ar", content.SecondSubTitleAr);
+                SaveTranslation(nameof(ContactUsContent), entity.ContactUsContentId, nameof(ContactUsContent.SecondSubTitle), "ur", content.SecondSubTitleUr);
+                SaveTranslation(nameof(ContactUsContent), entity.ContactUsContentId, nameof(ContactUsContent.SecondTitle), "en", content.SecondTitleEn);
+                SaveTranslation(nameof(ContactUsContent), entity.ContactUsContentId, nameof(ContactUsContent.SecondTitle), "ar", content.SecondTitleAr);
+                SaveTranslation(nameof(ContactUsContent), entity.ContactUsContentId, nameof(ContactUsContent.SecondTitle), "ur", content.SecondTitleUr);
+                SaveTranslation(nameof(ContactUsContent), entity.ContactUsContentId, nameof(ContactUsContent.SecondDescription), "en", content.SecondDescriptionEn);
+                SaveTranslation(nameof(ContactUsContent), entity.ContactUsContentId, nameof(ContactUsContent.SecondDescription), "ar", content.SecondDescriptionAr);
+                SaveTranslation(nameof(ContactUsContent), entity.ContactUsContentId, nameof(ContactUsContent.SecondDescription), "ur", content.SecondDescriptionUr);
                 return true;
             }
             catch
@@ -730,11 +831,38 @@ namespace Services
             }
         }
 
-        public ContactUsContent GetContactUsContent()
+        public ContactUsContentCrudViewModel GetContactUsContent()
         {
             var item = db.ContactUsContents.FirstOrDefault();
-            item.ApplyTranslation(db);
-            return item;
+            var translations = db.EntityTranslations.Where(t => t.EntityName == nameof(ContactUsContent) && t.EntityId == item.ContactUsContentId).ToList();
+            return new ContactUsContentCrudViewModel
+            {
+                ContactUsContentId = item.ContactUsContentId,
+                FirstSubTitle = item.FirstSubTitle,
+                FirstTitle = item.FirstTitle,
+                FristDescription = item.FristDescription,
+                SecondSubTitle = item.SecondSubTitle,
+                SecondTitle = item.SecondTitle,
+                SecondDescription = item.SecondDescription,
+                FirstSubTitleEn = translations.FirstOrDefault(t => t.Property == nameof(ContactUsContent.FirstSubTitle) && t.Culture == "en")?.Value,
+                FirstSubTitleAr = translations.FirstOrDefault(t => t.Property == nameof(ContactUsContent.FirstSubTitle) && t.Culture == "ar")?.Value,
+                FirstSubTitleUr = translations.FirstOrDefault(t => t.Property == nameof(ContactUsContent.FirstSubTitle) && t.Culture == "ur")?.Value,
+                FirstTitleEn = translations.FirstOrDefault(t => t.Property == nameof(ContactUsContent.FirstTitle) && t.Culture == "en")?.Value,
+                FirstTitleAr = translations.FirstOrDefault(t => t.Property == nameof(ContactUsContent.FirstTitle) && t.Culture == "ar")?.Value,
+                FirstTitleUr = translations.FirstOrDefault(t => t.Property == nameof(ContactUsContent.FirstTitle) && t.Culture == "ur")?.Value,
+                FristDescriptionEn = translations.FirstOrDefault(t => t.Property == nameof(ContactUsContent.FristDescription) && t.Culture == "en")?.Value,
+                FristDescriptionAr = translations.FirstOrDefault(t => t.Property == nameof(ContactUsContent.FristDescription) && t.Culture == "ar")?.Value,
+                FristDescriptionUr = translations.FirstOrDefault(t => t.Property == nameof(ContactUsContent.FristDescription) && t.Culture == "ur")?.Value,
+                SecondSubTitleEn = translations.FirstOrDefault(t => t.Property == nameof(ContactUsContent.SecondSubTitle) && t.Culture == "en")?.Value,
+                SecondSubTitleAr = translations.FirstOrDefault(t => t.Property == nameof(ContactUsContent.SecondSubTitle) && t.Culture == "ar")?.Value,
+                SecondSubTitleUr = translations.FirstOrDefault(t => t.Property == nameof(ContactUsContent.SecondSubTitle) && t.Culture == "ur")?.Value,
+                SecondTitleEn = translations.FirstOrDefault(t => t.Property == nameof(ContactUsContent.SecondTitle) && t.Culture == "en")?.Value,
+                SecondTitleAr = translations.FirstOrDefault(t => t.Property == nameof(ContactUsContent.SecondTitle) && t.Culture == "ar")?.Value,
+                SecondTitleUr = translations.FirstOrDefault(t => t.Property == nameof(ContactUsContent.SecondTitle) && t.Culture == "ur")?.Value,
+                SecondDescriptionEn = translations.FirstOrDefault(t => t.Property == nameof(ContactUsContent.SecondDescription) && t.Culture == "en")?.Value,
+                SecondDescriptionAr = translations.FirstOrDefault(t => t.Property == nameof(ContactUsContent.SecondDescription) && t.Culture == "ar")?.Value,
+                SecondDescriptionUr = translations.FirstOrDefault(t => t.Property == nameof(ContactUsContent.SecondDescription) && t.Culture == "ur")?.Value
+            };
         }
 
         public List<DownloadLinkGroupViewModel> GetDownloadLinkGoroups()
@@ -753,9 +881,28 @@ namespace Services
             return content;
         }
 
-        
+
 
 
         #endregion Contents
+
+        private void SaveTranslation(string entityName, int entityId, string property, string culture, string value)
+        {
+            if (string.IsNullOrWhiteSpace(value)) return;
+            var tr = db.EntityTranslations.FirstOrDefault(t => t.EntityName == entityName && t.EntityId == entityId && t.Property == property && t.Culture == culture);
+            if (tr == null)
+            {
+                tr = new EntityTranslation
+                {
+                    EntityName = entityName,
+                    EntityId = entityId,
+                    Property = property,
+                    Culture = culture
+                };
+                db.EntityTranslations.Add(tr);
+            }
+            tr.Value = value;
+            db.SaveChanges();
+        }
     }
 }

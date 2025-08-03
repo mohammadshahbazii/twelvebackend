@@ -22,6 +22,33 @@ namespace ViewModels
         public List<int> SelectedGroups { get; set; }
     }
 
+    public class FaqGroupCrudViewModel
+    {
+        public int FaqGroupId { get; set; }
+        public string GroupName { get; set; }
+        public string GroupNameEn { get; set; }
+        public string GroupNameAr { get; set; }
+        public string GroupNameUr { get; set; }
+        public int? ParentId { get; set; }
+    }
+
+    public class FaqContentCrudViewModel
+    {
+        public int FaqContentId { get; set; }
+        public string FaqContentTitle { get; set; }
+        public string FaqContentSubTitle { get; set; }
+        public string FaqContentDescription { get; set; }
+        public string FaqContentTitleEn { get; set; }
+        public string FaqContentTitleAr { get; set; }
+        public string FaqContentTitleUr { get; set; }
+        public string FaqContentSubTitleEn { get; set; }
+        public string FaqContentSubTitleAr { get; set; }
+        public string FaqContentSubTitleUr { get; set; }
+        public string FaqContentDescriptionEn { get; set; }
+        public string FaqContentDescriptionAr { get; set; }
+        public string FaqContentDescriptionUr { get; set; }
+    }
+
     public class FaqsPageDataViewModel
     {
         public List<FaqsGroupsItemViewModel> Groups { get; set; }

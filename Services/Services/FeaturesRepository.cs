@@ -622,18 +622,55 @@ namespace Services
 
         public FeaturesContent GetFeaturesContent()
         {
-            return db.FeaturesContents.FirstOrDefault();
+            var item = db.FeaturesContents.FirstOrDefault();
+            item.ApplyTranslation(db);
+            return item;
         }
 
-        public bool UpdateFeaturesContent(FeaturesContent content)
+        public FeaturesContentCrudViewModel GetFeaturesContentForEdit()
+        {
+            var item = db.FeaturesContents.FirstOrDefault();
+            var translations = db.EntityTranslations.Where(t => t.EntityName == nameof(FeaturesContent) && t.EntityId == item.FeatureContentId).ToList();
+            return new FeaturesContentCrudViewModel
+            {
+                FeatureContentId = item.FeatureContentId,
+                FeaturesTitle = item.FeaturesTitle,
+                FeatruesSubTitle = item.FeatruesSubTitle,
+                FeaturesDescription = item.FeaturesDescription,
+                FeaturesTitleEn = translations.FirstOrDefault(t => t.Property == nameof(FeaturesContent.FeaturesTitle) && t.Culture == "en")?.Value,
+                FeaturesTitleAr = translations.FirstOrDefault(t => t.Property == nameof(FeaturesContent.FeaturesTitle) && t.Culture == "ar")?.Value,
+                FeaturesTitleUr = translations.FirstOrDefault(t => t.Property == nameof(FeaturesContent.FeaturesTitle) && t.Culture == "ur")?.Value,
+                FeatruesSubTitleEn = translations.FirstOrDefault(t => t.Property == nameof(FeaturesContent.FeatruesSubTitle) && t.Culture == "en")?.Value,
+                FeatruesSubTitleAr = translations.FirstOrDefault(t => t.Property == nameof(FeaturesContent.FeatruesSubTitle) && t.Culture == "ar")?.Value,
+                FeatruesSubTitleUr = translations.FirstOrDefault(t => t.Property == nameof(FeaturesContent.FeatruesSubTitle) && t.Culture == "ur")?.Value,
+                FeaturesDescriptionEn = translations.FirstOrDefault(t => t.Property == nameof(FeaturesContent.FeaturesDescription) && t.Culture == "en")?.Value,
+                FeaturesDescriptionAr = translations.FirstOrDefault(t => t.Property == nameof(FeaturesContent.FeaturesDescription) && t.Culture == "ar")?.Value,
+                FeaturesDescriptionUr = translations.FirstOrDefault(t => t.Property == nameof(FeaturesContent.FeaturesDescription) && t.Culture == "ur")?.Value
+            };
+        }
+
+        public bool UpdateFeaturesContent(FeaturesContentCrudViewModel content)
         {
             try
             {
-                db.FeaturesContents.Update(content);
+                var entity = db.FeaturesContents.Find(content.FeatureContentId);
+                entity.FeaturesTitle = content.FeaturesTitle;
+                entity.FeatruesSubTitle = content.FeatruesSubTitle;
+                entity.FeaturesDescription = content.FeaturesDescription;
+                db.FeaturesContents.Update(entity);
                 db.SaveChanges();
+                SaveTranslation(nameof(FeaturesContent), entity.FeatureContentId, nameof(FeaturesContent.FeaturesTitle), "en", content.FeaturesTitleEn);
+                SaveTranslation(nameof(FeaturesContent), entity.FeatureContentId, nameof(FeaturesContent.FeaturesTitle), "ar", content.FeaturesTitleAr);
+                SaveTranslation(nameof(FeaturesContent), entity.FeatureContentId, nameof(FeaturesContent.FeaturesTitle), "ur", content.FeaturesTitleUr);
+                SaveTranslation(nameof(FeaturesContent), entity.FeatureContentId, nameof(FeaturesContent.FeatruesSubTitle), "en", content.FeatruesSubTitleEn);
+                SaveTranslation(nameof(FeaturesContent), entity.FeatureContentId, nameof(FeaturesContent.FeatruesSubTitle), "ar", content.FeatruesSubTitleAr);
+                SaveTranslation(nameof(FeaturesContent), entity.FeatureContentId, nameof(FeaturesContent.FeatruesSubTitle), "ur", content.FeatruesSubTitleUr);
+                SaveTranslation(nameof(FeaturesContent), entity.FeatureContentId, nameof(FeaturesContent.FeaturesDescription), "en", content.FeaturesDescriptionEn);
+                SaveTranslation(nameof(FeaturesContent), entity.FeatureContentId, nameof(FeaturesContent.FeaturesDescription), "ar", content.FeaturesDescriptionAr);
+                SaveTranslation(nameof(FeaturesContent), entity.FeatureContentId, nameof(FeaturesContent.FeaturesDescription), "ur", content.FeaturesDescriptionUr);
                 return true;
             }
-            catch 
+            catch
             {
                 return false;
             }

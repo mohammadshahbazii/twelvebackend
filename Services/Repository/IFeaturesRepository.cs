@@ -12,7 +12,8 @@ namespace Services
     public interface IFeaturesRepository : IDisposable
     {
         public FeaturesContent GetFeaturesContent();
-        public bool UpdateFeaturesContent(FeaturesContent content);
+        public FeaturesContentCrudViewModel GetFeaturesContentForEdit();
+        public bool UpdateFeaturesContent(FeaturesContentCrudViewModel content);
 
         public IntroduceAppViewModel GetIntroduceApp();
         public List<BlogItemViewModel> GetRelatedNews(int FeatureID);

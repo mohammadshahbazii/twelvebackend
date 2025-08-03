@@ -11,12 +11,15 @@ namespace Services
     public interface IFaqsRepository : IDisposable
     {
         public FaqContent GetFaqContent();
-        public bool UpdateFaqContent(FaqContent content);
+        public FaqContentCrudViewModel GetFaqContentForEdit();
+        public bool UpdateFaqContent(FaqContentCrudViewModel content);
         public bool CreateGroup(FaqGroup faqGroup);
         public bool UpdateGroup(FaqGroup faqGroup);
         public bool DeleteGroup(FaqGroup faqGroup);
 
         public FaqGroup GetGroupByID(int id);
+        public FaqGroupCrudViewModel GetGroupForEdit(int id);
+        public void SaveGroupTranslations(FaqGroupCrudViewModel group);
 
         public FaqsCrudViewModel GetModelForCreate();
         public FaqsCrudViewModel GetByID(int FaqID);
