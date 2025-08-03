@@ -458,7 +458,7 @@ function applyTranslations(lang) {
   });
   document.documentElement.setAttribute('lang', lang);
   const rtlLangs = ['fa', 'ar', 'ur'];
-  document.documentElement.setAttribute('dir', rtlLangs.includes(lang) ? 'rtl' : 'ltr');
+  
 }
 
 function setLanguage(lang) {

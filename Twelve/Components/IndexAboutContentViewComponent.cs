@@ -1,26 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Localization;
-using ViewModels;
+using Services;
 
 namespace Twelve.Components
 {
     public class IndexAboutContentViewComponent : ViewComponent
     {
-        private readonly IStringLocalizer<IndexAboutContentViewComponent> _localizer;
-
-        public IndexAboutContentViewComponent(IStringLocalizer<IndexAboutContentViewComponent> localizer)
-        {
-            _localizer = localizer;
-        }
-
+        ISiteRepository siteRepository = new SiteRepository();
         public IViewComponentResult Invoke()
         {
-            var content = new ContentItemViewModel
-            {
-                Title = _localizer["AboutTitle"],
-                SubTitle = _localizer["AboutSubTitle"],
-                Description = _localizer["AboutDescription"]
-            };
+            var content = siteRepository.GetIndexAbout();
             return View("GetIndexAboutContent", content);
         }
     }

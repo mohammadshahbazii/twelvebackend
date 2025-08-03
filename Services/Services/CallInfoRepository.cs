@@ -78,15 +78,15 @@ namespace Services
                 ImageName = call.ImageName
             };
             var tr = db.EntityTranslations.ToList();
-            model.TitleEn = tr.FirstOrDefault(t => t.EntityName == nameof(CallInfo) && t.EntityId == infoID && t.Property == nameof(CallInfo.Title) && t.Culture == "en")?.Value;
-            model.TitleAr = tr.FirstOrDefault(t => t.EntityName == nameof(CallInfo) && t.EntityId == infoID && t.Property == nameof(CallInfo.Title) && t.Culture == "ar")?.Value;
-            model.TitleUr = tr.FirstOrDefault(t => t.EntityName == nameof(CallInfo) && t.EntityId == infoID && t.Property == nameof(CallInfo.Title) && t.Culture == "ur")?.Value;
-            model.ShortDescriptionEn = tr.FirstOrDefault(t => t.EntityName == nameof(CallInfo) && t.EntityId == infoID && t.Property == nameof(CallInfo.ShortDescription) && t.Culture == "en")?.Value;
-            model.ShortDescriptionAr = tr.FirstOrDefault(t => t.EntityName == nameof(CallInfo) && t.EntityId == infoID && t.Property == nameof(CallInfo.ShortDescription) && t.Culture == "ar")?.Value;
-            model.ShortDescriptionUr = tr.FirstOrDefault(t => t.EntityName == nameof(CallInfo) && t.EntityId == infoID && t.Property == nameof(CallInfo.ShortDescription) && t.Culture == "ur")?.Value;
-            model.DescriptionEn = tr.FirstOrDefault(t => t.EntityName == nameof(CallInfo) && t.EntityId == infoID && t.Property == nameof(CallInfo.Description) && t.Culture == "en")?.Value;
-            model.DescriptionAr = tr.FirstOrDefault(t => t.EntityName == nameof(CallInfo) && t.EntityId == infoID && t.Property == nameof(CallInfo.Description) && t.Culture == "ar")?.Value;
-            model.DescriptionUr = tr.FirstOrDefault(t => t.EntityName == nameof(CallInfo) && t.EntityId == infoID && t.Property == nameof(CallInfo.Description) && t.Culture == "ur")?.Value;
+            model.TitleEn = tr.FirstOrDefault(t => t.EntityName == nameof(DataLayer.CallInfo) && t.EntityId == infoID && t.Property == nameof(DataLayer.CallInfo.Title) && t.Culture == "en")?.Value;
+            model.TitleAr = tr.FirstOrDefault(t => t.EntityName == nameof(DataLayer.CallInfo) && t.EntityId == infoID && t.Property == nameof(DataLayer.CallInfo.Title) && t.Culture == "ar")?.Value;
+            model.TitleUr = tr.FirstOrDefault(t => t.EntityName == nameof(DataLayer.CallInfo) && t.EntityId == infoID && t.Property == nameof(DataLayer.CallInfo.Title) && t.Culture == "ur")?.Value;
+            model.ShortDescriptionEn = tr.FirstOrDefault(t => t.EntityName == nameof(DataLayer.CallInfo) && t.EntityId == infoID && t.Property == nameof(DataLayer.CallInfo.ShortDescription) && t.Culture == "en")?.Value;
+            model.ShortDescriptionAr = tr.FirstOrDefault(t => t.EntityName == nameof(DataLayer.CallInfo) && t.EntityId == infoID && t.Property == nameof(DataLayer.CallInfo.ShortDescription) && t.Culture == "ar")?.Value;
+            model.ShortDescriptionUr = tr.FirstOrDefault(t => t.EntityName == nameof(DataLayer.CallInfo) && t.EntityId == infoID && t.Property == nameof(DataLayer.CallInfo.ShortDescription) && t.Culture == "ur")?.Value;
+            model.DescriptionEn = tr.FirstOrDefault(t => t.EntityName == nameof(DataLayer.CallInfo) && t.EntityId == infoID && t.Property == nameof(DataLayer.CallInfo.Description) && t.Culture == "en")?.Value;
+            model.DescriptionAr = tr.FirstOrDefault(t => t.EntityName == nameof(DataLayer.CallInfo) && t.EntityId == infoID && t.Property == nameof(DataLayer.CallInfo.Description) && t.Culture == "ar")?.Value;
+            model.DescriptionUr = tr.FirstOrDefault(t => t.EntityName == nameof(DataLayer.CallInfo) && t.EntityId == infoID && t.Property == nameof(DataLayer.CallInfo.Description) && t.Culture == "ur")?.Value;
             return model;
         }
 
@@ -136,15 +136,15 @@ namespace Services
 
         public void SaveTranslations(CallInfoCrudViewModel callInfo)
         {
-            SaveTranslation(nameof(CallInfo), callInfo.CallInfoId, nameof(CallInfo.Title), "en", callInfo.TitleEn);
-            SaveTranslation(nameof(CallInfo), callInfo.CallInfoId, nameof(CallInfo.Title), "ar", callInfo.TitleAr);
-            SaveTranslation(nameof(CallInfo), callInfo.CallInfoId, nameof(CallInfo.Title), "ur", callInfo.TitleUr);
-            SaveTranslation(nameof(CallInfo), callInfo.CallInfoId, nameof(CallInfo.ShortDescription), "en", callInfo.ShortDescriptionEn);
-            SaveTranslation(nameof(CallInfo), callInfo.CallInfoId, nameof(CallInfo.ShortDescription), "ar", callInfo.ShortDescriptionAr);
-            SaveTranslation(nameof(CallInfo), callInfo.CallInfoId, nameof(CallInfo.ShortDescription), "ur", callInfo.ShortDescriptionUr);
-            SaveTranslation(nameof(CallInfo), callInfo.CallInfoId, nameof(CallInfo.Description), "en", callInfo.DescriptionEn);
-            SaveTranslation(nameof(CallInfo), callInfo.CallInfoId, nameof(CallInfo.Description), "ar", callInfo.DescriptionAr);
-            SaveTranslation(nameof(CallInfo), callInfo.CallInfoId, nameof(CallInfo.Description), "ur", callInfo.DescriptionUr);
+            SaveTranslation(nameof(DataLayer.CallInfo), callInfo.CallInfoId, nameof(DataLayer.CallInfo.Title), "en", callInfo.TitleEn);
+            SaveTranslation(nameof(DataLayer.CallInfo), callInfo.CallInfoId, nameof(DataLayer.CallInfo.Title), "ar", callInfo.TitleAr);
+            SaveTranslation(nameof(DataLayer.CallInfo), callInfo.CallInfoId, nameof(DataLayer.CallInfo.Title), "ur", callInfo.TitleUr);
+            SaveTranslation(nameof(DataLayer.CallInfo), callInfo.CallInfoId, nameof(DataLayer.CallInfo.ShortDescription), "en", callInfo.ShortDescriptionEn);
+            SaveTranslation(nameof(DataLayer.CallInfo), callInfo.CallInfoId, nameof(DataLayer.CallInfo.ShortDescription), "ar", callInfo.ShortDescriptionAr);
+            SaveTranslation(nameof(DataLayer.CallInfo), callInfo.CallInfoId, nameof(DataLayer.CallInfo.ShortDescription), "ur", callInfo.ShortDescriptionUr);
+            SaveTranslation(nameof(DataLayer.CallInfo), callInfo.CallInfoId, nameof(DataLayer.CallInfo.Description), "en", callInfo.DescriptionEn);
+            SaveTranslation(nameof(DataLayer.CallInfo), callInfo.CallInfoId, nameof(DataLayer.CallInfo.Description), "ar", callInfo.DescriptionAr);
+            SaveTranslation(nameof(DataLayer.CallInfo), callInfo.CallInfoId, nameof(DataLayer.CallInfo.Description), "ur", callInfo.DescriptionUr);
         }
 
         private void SaveTranslation(string entityName, int entityId, string property, string culture, string value)

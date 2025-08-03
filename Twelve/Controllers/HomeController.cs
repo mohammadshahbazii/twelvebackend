@@ -65,6 +65,12 @@ namespace Twelve.Controllers
             return View();
         }
 
+        [Route("PrivacyPolicy")]
+        public IActionResult PrivacyPolicy()
+        {
+            return View();
+        }
+
         [Route("GetIntroduceSlider/{featureID}")]
         public IActionResult GetIntroduceSlider(int featureID)
         {
@@ -78,10 +84,6 @@ namespace Twelve.Controllers
             return siteRepository.SubmitMessage(fullname, Email, Phonenumber, Subject, Text);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
 
         [Route("Download")]
         public IActionResult Download()
