@@ -81,7 +81,7 @@
                                         @foreach (var item in Model.Groups)
                                         {
                                             <div class="form-check m-2">
-                                                <input type="checkbox" class="form-check-input" id="@item.GroupID" @((Model.SelectedGroups.Any(s => s == item.GroupID) ? "checked" : "")) name="SelectedGroups" value="@item.GroupID">
+                                                <input type="checkbox" class="form-check-input" id="@item.GroupID" name="SelectedGroups" value="@item.GroupID">
                                                 <label class="form-check-label" for="@item.GroupID">@item.GroupName</label>
                                             </div>
                                         }

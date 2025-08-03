@@ -87,13 +87,15 @@ namespace Services
                 var faqs = db.Faqs.Skip(skip).Take(take).ToList();
                 foreach (var item in faqs)
                 {
-                    List<string> groups = db.SelectedFaqGroups.Where(g => g.FaqId == item.FaqId).Select(f => f.FaqGroup.GroupName).ToList();
-                    model.Faqs.Add(new FaqsItemViewModel() 
+                    var tr = db.FaqTranslations.FirstOrDefault(t => t.FaqId == item.FaqId && t.Language == CurrentCulture);
+                    var groups = db.SelectedFaqGroups.Where(g => g.FaqId == item.FaqId).Select(f => f.FaqGroup).ToList();
+                    groups.ApplyTranslations(db);
+                    model.Faqs.Add(new FaqsItemViewModel()
                     {
                         FaqID = item.FaqId,
-                        Answer = item.Answer,
-                        Question = item.Question,
-                        GroupName = string.Join(" ، ", groups)
+                        Answer = tr?.Answer ?? item.Answer,
+                        Question = tr?.Question ?? item.Question,
+                        GroupName = string.Join(" ، ", groups.Select(g => g.GroupName))
                     });
                 }
                 double pCount = Convert.ToDouble(Convert.ToDouble(db.Faqs.ToList().Count()) / Convert.ToDouble(take));
@@ -106,13 +108,15 @@ namespace Services
                 var faqs = db.Faqs.Where(f => f.Question.Contains(q) || f.Answer.Contains(q)).Skip(skip).Take(take).ToList();
                 foreach (var item in faqs)
                 {
-                    List<string> groups = db.SelectedFaqGroups.Where(g => g.FaqId == item.FaqId).Select(f => f.FaqGroup.GroupName).ToList();
+                    var tr = db.FaqTranslations.FirstOrDefault(t => t.FaqId == item.FaqId && t.Language == CurrentCulture);
+                    var groups = db.SelectedFaqGroups.Where(g => g.FaqId == item.FaqId).Select(f => f.FaqGroup).ToList();
+                    groups.ApplyTranslations(db);
                     model.Faqs.Add(new FaqsItemViewModel()
                     {
                         FaqID = item.FaqId,
-                        Answer = item.Answer,
-                        Question = item.Question,
-                        GroupName = string.Join(" ، ", groups)
+                        Answer = tr?.Answer ?? item.Answer,
+                        Question = tr?.Question ?? item.Question,
+                        GroupName = string.Join(" ، ", groups.Select(g => g.GroupName))
                     });
                 }
                 double pCount = Convert.ToDouble(Convert.ToDouble(db.Faqs.Where(f => f.Question.Contains(q) || f.Answer.Contains(q)).ToList().Count()) / Convert.ToDouble(take));
