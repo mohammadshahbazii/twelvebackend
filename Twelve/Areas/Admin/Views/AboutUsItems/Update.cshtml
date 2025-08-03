@@ -1,4 +1,4 @@
-﻿@model DataLayer.AboutUsItem
+﻿@model ViewModels.AboutUsItemCrudViewModel
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
@@ -16,13 +16,53 @@
                         <input type="hidden" name="AboutUsItemId" id="AboutUsItemId" value="@Model.AboutUsItemId" />
                         <input type="hidden" name="ImageName" id="ImageName" value="@Model.ImageName" />
                         <div class="card-body">
-                            <div class="form-group">
-                                <label for="ItemTitle">عنوان</label>
-                                <input type="text" name="ItemTitle" class="form-control" value="@Model.ItemTitle" id="ItemTitle" placeholder="عنوان را وارد کنید">
-                            </div>
-                            <div class="form-group">
-                                <label for="ItemDescription">توضیح تکمیلی</label>
-                                <textarea rows="5" class="form-control w-100" name="ItemDescription" id="ItemDescription" placeholder="توضیح تکمیلی را وارد کنید">@Model.ItemDescription</textarea>
+                            <ul class="nav nav-tabs" id="langTab" role="tablist">
+                                <li class="nav-item"><a class="nav-link active" id="fa-tab" data-toggle="tab" href="#fa" role="tab">FA</a></li>
+                                <li class="nav-item"><a class="nav-link" id="en-tab" data-toggle="tab" href="#en" role="tab">EN</a></li>
+                                <li class="nav-item"><a class="nav-link" id="ar-tab" data-toggle="tab" href="#ar" role="tab">AR</a></li>
+                                <li class="nav-item"><a class="nav-link" id="ur-tab" data-toggle="tab" href="#ur" role="tab">UR</a></li>
+                            </ul>
+                            <div class="tab-content p-3" id="langTabContent">
+                                <div class="tab-pane fade show active" id="fa" role="tabpanel">
+                                    <div class="form-group">
+                                        <label for="ItemTitle">عنوان</label>
+                                        <input type="text" name="ItemTitle" class="form-control" value="@Model.ItemTitle" id="ItemTitle" placeholder="عنوان را وارد کنید">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ItemDescription">توضیح تکمیلی</label>
+                                        <textarea rows="5" class="form-control w-100" name="ItemDescription" id="ItemDescription" placeholder="توضیح تکمیلی را وارد کنید">@Model.ItemDescription</textarea>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="en" role="tabpanel">
+                                    <div class="form-group">
+                                        <label for="ItemTitleEn">Title</label>
+                                        <input type="text" name="ItemTitleEn" class="form-control" id="ItemTitleEn" value="@Model.ItemTitleEn" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ItemDescriptionEn">Description</label>
+                                        <textarea rows="5" class="form-control w-100" name="ItemDescriptionEn" id="ItemDescriptionEn">@Model.ItemDescriptionEn</textarea>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="ar" role="tabpanel">
+                                    <div class="form-group">
+                                        <label for="ItemTitleAr">Title</label>
+                                        <input type="text" name="ItemTitleAr" class="form-control" id="ItemTitleAr" value="@Model.ItemTitleAr" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ItemDescriptionAr">Description</label>
+                                        <textarea rows="5" class="form-control w-100" name="ItemDescriptionAr" id="ItemDescriptionAr">@Model.ItemDescriptionAr</textarea>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="ur" role="tabpanel">
+                                    <div class="form-group">
+                                        <label for="ItemTitleUr">Title</label>
+                                        <input type="text" name="ItemTitleUr" class="form-control" id="ItemTitleUr" value="@Model.ItemTitleUr" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ItemDescriptionUr">Description</label>
+                                        <textarea rows="5" class="form-control w-100" name="ItemDescriptionUr" id="ItemDescriptionUr">@Model.ItemDescriptionUr</textarea>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group ">
                                 <div class="text-center">

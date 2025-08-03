@@ -1,4 +1,4 @@
-﻿@model ViewModels.BlogCrudViewModel
+@model ViewModels.BlogCrudViewModel
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
@@ -18,17 +18,69 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-9">
-                                    <div class="form-group">
-                                        <label for="Title">عنوان</label>
-                                        <input type="text" class="form-control w-100" value="@Model.Title"  name="Title" id="Title" placeholder="عنوان را وارد کنید" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ShortDescription">توضیح کوتاه</label>
-                                        <textarea rows="5" class="form-control w-100" name="ShortDescription" id="ShortDescription" placeholder="توضیح کوتاه را وارد کنید">@Model.ShortDescription</textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="Description">متن</label>
-                                        <textarea rows="5" class="form-control w-100" name="Description" id="Description" placeholder="متن را وارد کنید">@Model.Description</textarea>
+                                    <ul class="nav nav-tabs" id="langTab" role="tablist">
+                                        <li class="nav-item"><a class="nav-link active" id="fa-tab" data-toggle="tab" href="#fa" role="tab">FA</a></li>
+                                        <li class="nav-item"><a class="nav-link" id="en-tab" data-toggle="tab" href="#en" role="tab">EN</a></li>
+                                        <li class="nav-item"><a class="nav-link" id="ar-tab" data-toggle="tab" href="#ar" role="tab">AR</a></li>
+                                        <li class="nav-item"><a class="nav-link" id="ur-tab" data-toggle="tab" href="#ur" role="tab">UR</a></li>
+                                    </ul>
+                                    <div class="tab-content p-3" id="langTabContent">
+                                        <div class="tab-pane fade show active" id="fa" role="tabpanel">
+                                            <div class="form-group">
+                                                <label for="Title">عنوان</label>
+                                                <input type="text" class="form-control w-100" value="@Model.Title" name="Title" id="Title" placeholder="عنوان را وارد کنید" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ShortDescription">توضیح کوتاه</label>
+                                                <textarea rows="5" class="form-control w-100" name="ShortDescription" id="ShortDescription" placeholder="توضیح کوتاه را وارد کنید">@Model.ShortDescription</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="Description">متن</label>
+                                                <textarea rows="5" class="form-control w-100" name="Description" id="Description" placeholder="متن را وارد کنید">@Model.Description</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="en" role="tabpanel">
+                                            <div class="form-group">
+                                                <label for="TitleEn">Title</label>
+                                                <input type="text" class="form-control w-100" name="TitleEn" id="TitleEn" value="@Model.TitleEn" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ShortDescriptionEn">Short Description</label>
+                                                <textarea rows="5" class="form-control w-100" name="ShortDescriptionEn" id="ShortDescriptionEn">@Model.ShortDescriptionEn</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="DescriptionEn">Description</label>
+                                                <textarea rows="5" class="form-control w-100" name="DescriptionEn" id="DescriptionEn">@Model.DescriptionEn</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="ar" role="tabpanel">
+                                            <div class="form-group">
+                                                <label for="TitleAr">Title</label>
+                                                <input type="text" class="form-control w-100" name="TitleAr" id="TitleAr" value="@Model.TitleAr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ShortDescriptionAr">Short Description</label>
+                                                <textarea rows="5" class="form-control w-100" name="ShortDescriptionAr" id="ShortDescriptionAr">@Model.ShortDescriptionAr</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="DescriptionAr">Description</label>
+                                                <textarea rows="5" class="form-control w-100" name="DescriptionAr" id="DescriptionAr">@Model.DescriptionAr</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="ur" role="tabpanel">
+                                            <div class="form-group">
+                                                <label for="TitleUr">Title</label>
+                                                <input type="text" class="form-control w-100" name="TitleUr" id="TitleUr" value="@Model.TitleUr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ShortDescriptionUr">Short Description</label>
+                                                <textarea rows="5" class="form-control w-100" name="ShortDescriptionUr" id="ShortDescriptionUr">@Model.ShortDescriptionUr</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="DescriptionUr">Description</label>
+                                                <textarea rows="5" class="form-control w-100" name="DescriptionUr" id="DescriptionUr">@Model.DescriptionUr</textarea>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="form-group ">
                                         <div class="text-center">
@@ -78,7 +130,6 @@
                             </div>
                         </div>
                         <!-- /.card-body -->
-
                         <div class="card-footer">
                             <button type="submit" class="btn btn-warning">ثبت</button>
                             <a href="/Admin/Blog" class="btn btn-info float-left">بازگشت به لیست</a>
@@ -94,6 +145,9 @@
     <script>
         $(function () {
             $('#Description').ckeditor();
+            $('#DescriptionEn').ckeditor();
+            $('#DescriptionAr').ckeditor();
+            $('#DescriptionUr').ckeditor();
         });
     </script>
 }

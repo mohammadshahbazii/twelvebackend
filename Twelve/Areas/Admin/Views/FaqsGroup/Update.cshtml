@@ -1,4 +1,4 @@
-﻿@model DataLayer.FaqGroup
+﻿@model ViewModels.FaqGroupCrudViewModel
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
@@ -16,9 +16,37 @@
                         @Html.HiddenFor(m=> m.FaqGroupId)
                         @Html.HiddenFor(m=> m.ParentId)
                         <div class="card-body">
-                            <div class="form-group">
-                                <label for="GroupName">عنوان</label>
-                                <input type="text" name="GroupName" class="form-control" value="@Model.GroupName" id="GroupName" placeholder="عنوان را وارد کنید">
+                            <ul class="nav nav-tabs" id="langTab" role="tablist">
+                                <li class="nav-item"><a class="nav-link active" id="fa-tab" data-toggle="tab" href="#fa" role="tab">FA</a></li>
+                                <li class="nav-item"><a class="nav-link" id="en-tab" data-toggle="tab" href="#en" role="tab">EN</a></li>
+                                <li class="nav-item"><a class="nav-link" id="ar-tab" data-toggle="tab" href="#ar" role="tab">AR</a></li>
+                                <li class="nav-item"><a class="nav-link" id="ur-tab" data-toggle="tab" href="#ur" role="tab">UR</a></li>
+                            </ul>
+                            <div class="tab-content p-3" id="langTabContent">
+                                <div class="tab-pane fade show active" id="fa" role="tabpanel">
+                                    <div class="form-group">
+                                        <label for="GroupName">عنوان</label>
+                                        <input type="text" name="GroupName" class="form-control" id="GroupName" value="@Model.GroupName" placeholder="عنوان را وارد کنید" />
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="en" role="tabpanel">
+                                    <div class="form-group">
+                                        <label for="GroupNameEn">Title</label>
+                                        <input type="text" name="GroupNameEn" class="form-control" id="GroupNameEn" value="@Model.GroupNameEn" />
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="ar" role="tabpanel">
+                                    <div class="form-group">
+                                        <label for="GroupNameAr">Title</label>
+                                        <input type="text" name="GroupNameAr" class="form-control" id="GroupNameAr" value="@Model.GroupNameAr" />
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="ur" role="tabpanel">
+                                    <div class="form-group">
+                                        <label for="GroupNameUr">Title</label>
+                                        <input type="text" name="GroupNameUr" class="form-control" id="GroupNameUr" value="@Model.GroupNameUr" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <!-- /.card-body -->

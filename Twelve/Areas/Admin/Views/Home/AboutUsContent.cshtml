@@ -1,4 +1,4 @@
-﻿@model DataLayer.AboutUsContent
+@model ViewModels.AboutUsContentCrudViewModel
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
@@ -19,17 +19,245 @@
                                 <input type="hidden" name="ImageName" id="ImageName" value="@Model.ImageName" />
                                 <input type="hidden" name="DownloadImageName" id="DownloadImageName" value="@Model.DownloadImageName" />
                                 <div class="card-body">
-                                    <div class="form-group">
-                                        <label for="Title">عنوان هدر</label>
-                                        <input type="text" name="Title" class="form-control" value="@Model.Title" id="Title" placeholder="عنوان هدر را وارد کنید">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="SubTitle">زیر عنوان هدر</label>
-                                        <input type="text" class="form-control" name="SubTitle" value="@Model.SubTitle" id="SubTitle" placeholder="زیر عنوان هدر را وارد کنید">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="Description">توضیحات هدر</label>
-                                        <textarea rows="5" name="Description" class="form-control w-100" name="Description">@Model.Description</textarea>
+                                    <ul class="nav nav-tabs" id="langTab" role="tablist">
+                                        <li class="nav-item"><a class="nav-link active" id="fa-tab" data-toggle="tab" href="#fa" role="tab">FA</a></li>
+                                        <li class="nav-item"><a class="nav-link" id="en-tab" data-toggle="tab" href="#en" role="tab">EN</a></li>
+                                        <li class="nav-item"><a class="nav-link" id="ar-tab" data-toggle="tab" href="#ar" role="tab">AR</a></li>
+                                        <li class="nav-item"><a class="nav-link" id="ur-tab" data-toggle="tab" href="#ur" role="tab">UR</a></li>
+                                    </ul>
+                                    <div class="tab-content p-3" id="langTabContent">
+                                        <div class="tab-pane fade show active" id="fa" role="tabpanel">
+                                            <div class="form-group">
+                                                <label for="Title">عنوان هدر</label>
+                                                <input type="text" name="Title" class="form-control" value="@Model.Title" id="Title" placeholder="عنوان هدر را وارد کنید">
+                                            </div>
+                        <div class="form-group">
+                                                <label for="SubTitle">زیر عنوان هدر</label>
+                                                <input type="text" class="form-control" name="SubTitle" value="@Model.SubTitle" id="SubTitle" placeholder="زیر عنوان هدر را وارد کنید">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="Description">توضیحات هدر</label>
+                                                <textarea rows="5" name="Description" class="form-control w-100">@Model.Description</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="SecondTitle">عنوان ویژگی های نرم افزار</label>
+                                                <input type="text" name="SecondTitle" class="form-control" value="@Model.SecondTitle" id="SecondTitle" placeholder="عنوان ویژگی های نرم افزار را وارد کنید">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="SecondSubTitle">زیر عنوان ویژگی های نرم افزار</label>
+                                                <input type="text" class="form-control" name="SecondSubTitle" value="@Model.SecondSubTitle" id="SecondSubTitle" placeholder="زیر عنوان ویژگی های نرم افزار را وارد کنید">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="SecondDescription">توضیحات ویژگی های نرم افزار</label>
+                                                <textarea rows="5" name="SecondDescription" class="form-control w-100">@Model.SecondDescription</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ThirdTitle">عنوان سوالات متداول</label>
+                                                <input type="text" name="ThirdTitle" class="form-control" value="@Model.ThirdTitle" id="ThirdTitle" placeholder="عنوان سوالات مداول را وارد کنید">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ThirdSubTitle">زیر عنوان سوالات متداول</label>
+                                                <input type="text" class="form-control" name="ThirdSubTitle" value="@Model.ThirdSubTitle" id="ThirdSubTitle" placeholder="زیر عنوان سوالات متداول را وارد کنید">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ForthTitle">عنوان پاراگراف پایین دانلود باکس</label>
+                                                <input type="text" name="ForthTitle" class="form-control" value="@Model.ForthTitle" id="ForthTitle" placeholder="عنوان پاراگراف پایین دانلود باکس را وارد کنید">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ForthSubTitle">زیر عنوان پاراگراف پایین دانلود باکس</label>
+                                                <input type="text" class="form-control" name="ForthSubTitle" value="@Model.ForthSubTitle" id="ForthSubTitle" placeholder="زیر عنوان پاراگراف پایین دانلود باکس را وارد کنید">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ForthDescription">توضیحات پاراگراف پایین دانلود باکس</label>
+                                                <textarea rows="5" name="ForthDescription" class="form-control w-100">@Model.ForthDescription</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="LogoTitle">عنوان بخش لوگو</label>
+                                                <input type="text" name="LogoTitle" class="form-control" value="@Model.LogoTitle" id="LogoTitle" placeholder="عنوان بخش لوگو را وارد کنید">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="LogoSubTitle">زیر عنوان بخش لوگو</label>
+                                                <input type="text" class="form-control" name="LogoSubTitle" value="@Model.LogoSubTitle" id="LogoSubTitle" placeholder="زیر عنوان بخش لوگو را وارد کنید">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="LogoDescription">توضیحات بخش لوگو</label>
+                                                <textarea rows="5" name="LogoDescription" class="form-control w-100">@Model.LogoDescription</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="en" role="tabpanel">
+                                            <div class="form-group">
+                                                <label for="TitleEn">Header Title</label>
+                                                <input type="text" name="TitleEn" class="form-control" value="@Model.TitleEn" id="TitleEn" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="SubTitleEn">Header Subtitle</label>
+                                                <input type="text" class="form-control" name="SubTitleEn" value="@Model.SubTitleEn" id="SubTitleEn" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="DescriptionEn">Header Description</label>
+                                                <textarea rows="5" name="DescriptionEn" class="form-control w-100">@Model.DescriptionEn</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="SecondTitleEn">Feature Title</label>
+                                                <input type="text" name="SecondTitleEn" class="form-control" value="@Model.SecondTitleEn" id="SecondTitleEn" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="SecondSubTitleEn">Feature Subtitle</label>
+                                                <input type="text" class="form-control" name="SecondSubTitleEn" value="@Model.SecondSubTitleEn" id="SecondSubTitleEn" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="SecondDescriptionEn">Feature Description</label>
+                                                <textarea rows="5" name="SecondDescriptionEn" class="form-control w-100">@Model.SecondDescriptionEn</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ThirdTitleEn">FAQ Title</label>
+                                                <input type="text" name="ThirdTitleEn" class="form-control" value="@Model.ThirdTitleEn" id="ThirdTitleEn" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ThirdSubTitleEn">FAQ Subtitle</label>
+                                                <input type="text" class="form-control" name="ThirdSubTitleEn" value="@Model.ThirdSubTitleEn" id="ThirdSubTitleEn" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ForthTitleEn">Bottom Paragraph Title</label>
+                                                <input type="text" name="ForthTitleEn" class="form-control" value="@Model.ForthTitleEn" id="ForthTitleEn" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ForthSubTitleEn">Bottom Paragraph Subtitle</label>
+                                                <input type="text" class="form-control" name="ForthSubTitleEn" value="@Model.ForthSubTitleEn" id="ForthSubTitleEn" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ForthDescriptionEn">Bottom Paragraph Description</label>
+                                                <textarea rows="5" name="ForthDescriptionEn" class="form-control w-100">@Model.ForthDescriptionEn</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="LogoTitleEn">Logo Title</label>
+                                                <input type="text" name="LogoTitleEn" class="form-control" value="@Model.LogoTitleEn" id="LogoTitleEn" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="LogoSubTitleEn">Logo Subtitle</label>
+                                                <input type="text" class="form-control" name="LogoSubTitleEn" value="@Model.LogoSubTitleEn" id="LogoSubTitleEn" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="LogoDescriptionEn">Logo Description</label>
+                                                <textarea rows="5" name="LogoDescriptionEn" class="form-control w-100">@Model.LogoDescriptionEn</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="ar" role="tabpanel">
+                                            <div class="form-group">
+                                                <label for="TitleAr">Header Title</label>
+                                                <input type="text" name="TitleAr" class="form-control" value="@Model.TitleAr" id="TitleAr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="SubTitleAr">Header Subtitle</label>
+                                                <input type="text" class="form-control" name="SubTitleAr" value="@Model.SubTitleAr" id="SubTitleAr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="DescriptionAr">Header Description</label>
+                                                <textarea rows="5" name="DescriptionAr" class="form-control w-100">@Model.DescriptionAr</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="SecondTitleAr">Feature Title</label>
+                                                <input type="text" name="SecondTitleAr" class="form-control" value="@Model.SecondTitleAr" id="SecondTitleAr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="SecondSubTitleAr">Feature Subtitle</label>
+                                                <input type="text" class="form-control" name="SecondSubTitleAr" value="@Model.SecondSubTitleAr" id="SecondSubTitleAr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="SecondDescriptionAr">Feature Description</label>
+                                                <textarea rows="5" name="SecondDescriptionAr" class="form-control w-100">@Model.SecondDescriptionAr</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ThirdTitleAr">FAQ Title</label>
+                                                <input type="text" name="ThirdTitleAr" class="form-control" value="@Model.ThirdTitleAr" id="ThirdTitleAr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ThirdSubTitleAr">FAQ Subtitle</label>
+                                                <input type="text" class="form-control" name="ThirdSubTitleAr" value="@Model.ThirdSubTitleAr" id="ThirdSubTitleAr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ForthTitleAr">Bottom Paragraph Title</label>
+                                                <input type="text" name="ForthTitleAr" class="form-control" value="@Model.ForthTitleAr" id="ForthTitleAr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ForthSubTitleAr">Bottom Paragraph Subtitle</label>
+                                                <input type="text" class="form-control" name="ForthSubTitleAr" value="@Model.ForthSubTitleAr" id="ForthSubTitleAr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ForthDescriptionAr">Bottom Paragraph Description</label>
+                                                <textarea rows="5" name="ForthDescriptionAr" class="form-control w-100">@Model.ForthDescriptionAr</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="LogoTitleAr">Logo Title</label>
+                                                <input type="text" name="LogoTitleAr" class="form-control" value="@Model.LogoTitleAr" id="LogoTitleAr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="LogoSubTitleAr">Logo Subtitle</label>
+                                                <input type="text" class="form-control" name="LogoSubTitleAr" value="@Model.LogoSubTitleAr" id="LogoSubTitleAr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="LogoDescriptionAr">Logo Description</label>
+                                                <textarea rows="5" name="LogoDescriptionAr" class="form-control w-100">@Model.LogoDescriptionAr</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="ur" role="tabpanel">
+                                            <div class="form-group">
+                                                <label for="TitleUr">Header Title</label>
+                                                <input type="text" name="TitleUr" class="form-control" value="@Model.TitleUr" id="TitleUr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="SubTitleUr">Header Subtitle</label>
+                                                <input type="text" class="form-control" name="SubTitleUr" value="@Model.SubTitleUr" id="SubTitleUr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="DescriptionUr">Header Description</label>
+                                                <textarea rows="5" name="DescriptionUr" class="form-control w-100">@Model.DescriptionUr</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="SecondTitleUr">Feature Title</label>
+                                                <input type="text" name="SecondTitleUr" class="form-control" value="@Model.SecondTitleUr" id="SecondTitleUr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="SecondSubTitleUr">Feature Subtitle</label>
+                                                <input type="text" class="form-control" name="SecondSubTitleUr" value="@Model.SecondSubTitleUr" id="SecondSubTitleUr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="SecondDescriptionUr">Feature Description</label>
+                                                <textarea rows="5" name="SecondDescriptionUr" class="form-control w-100">@Model.SecondDescriptionUr</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ThirdTitleUr">FAQ Title</label>
+                                                <input type="text" name="ThirdTitleUr" class="form-control" value="@Model.ThirdTitleUr" id="ThirdTitleUr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ThirdSubTitleUr">FAQ Subtitle</label>
+                                                <input type="text" class="form-control" name="ThirdSubTitleUr" value="@Model.ThirdSubTitleUr" id="ThirdSubTitleUr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ForthTitleUr">Bottom Paragraph Title</label>
+                                                <input type="text" name="ForthTitleUr" class="form-control" value="@Model.ForthTitleUr" id="ForthTitleUr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ForthSubTitleUr">Bottom Paragraph Subtitle</label>
+                                                <input type="text" class="form-control" name="ForthSubTitleUr" value="@Model.ForthSubTitleUr" id="ForthSubTitleUr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ForthDescriptionUr">Bottom Paragraph Description</label>
+                                                <textarea rows="5" name="ForthDescriptionUr" class="form-control w-100">@Model.ForthDescriptionUr</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="LogoTitleUr">Logo Title</label>
+                                                <input type="text" name="LogoTitleUr" class="form-control" value="@Model.LogoTitleUr" id="LogoTitleUr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="LogoSubTitleUr">Logo Subtitle</label>
+                                                <input type="text" class="form-control" name="LogoSubTitleUr" value="@Model.LogoSubTitleUr" id="LogoSubTitleUr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="LogoDescriptionUr">Logo Description</label>
+                                                <textarea rows="5" name="LogoDescriptionUr" class="form-control w-100">@Model.LogoDescriptionUr</textarea>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="form-group ">
                                         <div class="text-center">
@@ -42,18 +270,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="SecondTitle">عنوان ویژگی های نرم افزار</label>
-                                        <input type="text" name="SecondTitle" class="form-control" value="@Model.SecondTitle" id="SecondTitle" placeholder="عنوان ویژگی های نرم افزار را وارد کنید">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="SecondSubTitle">زیر عنوان ویژگی های نرم افزار</label>
-                                        <input type="text" class="form-control" name="SecondSubTitle" value="@Model.SecondSubTitle" id="SecondSubTitle" placeholder="زیر عنوان ویژگی های نرم افزار را وارد کنید">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="SecondDescription">توضیحات ویژگی های نرم افزار</label>
-                                        <textarea rows="5" name="SecondDescription" class="form-control w-100" name="SecondDescription">@Model.SecondDescription</textarea>
-                                    </div>
                                     <div class="form-group ">
                                         <div class="text-center">
                                             <img id="downloadPreview" class="thumbnail my-5 w-50 mx-auto" src="~/Images/Site/@Model.DownloadImageName" />
@@ -65,42 +281,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="ThirdTitle">عنوان سوالات متداول</label>
-                                        <input type="text" name="ThirdTitle" class="form-control" value="@Model.ThirdTitle" id="ThirdTitle" placeholder="عنوان سوالات متداول را وارد کنید">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ThirdSubTitle">زیر عنوان سوالات متداول</label>
-                                        <input type="text" class="form-control" name="ThirdSubTitle" value="@Model.ThirdSubTitle" id="ThirdSubTitle" placeholder="زیر عنوان سوالات متداول را وارد کنید">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ForthTitle">عنوان پاراگراف پایین دانلود باکس</label>
-                                        <input type="text" name="ForthTitle" class="form-control" value="@Model.ForthTitle" id="ForthTitle" placeholder="عنوان پاراگراف پایین دانلود باکس را وارد کنید">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ForthSubTitle">زیر عنوان پاراگراف پایین دانلود باکس</label>
-                                        <input type="text" class="form-control" name="ForthSubTitle" value="@Model.ForthSubTitle" id="ForthSubTitle" placeholder="زیر عنوان پاراگراف پایین دانلود باکس را وارد کنید">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ForthDescription">توضیحات پاراگراف پایین دانلود باکس</label>
-                                        <textarea rows="5" name="ForthDescription" class="form-control w-100" name="ForthDescription">@Model.ForthDescription</textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="LogoTitle">عنوان بخش لوگو</label>
-                                        <input type="text" name="LogoTitle" class="form-control" value="@Model.LogoTitle" id="LogoTitle" placeholder="عنوان بخش لوگو را وارد کنید">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="LogoSubTitle">زیر عنوان بخش لوگو</label>
-                                        <input type="text" class="form-control" name="LogoSubTitle" value="@Model.LogoSubTitle" id="LogoSubTitle" placeholder="زیر عنوان بخش لوگو را وارد کنید">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="LogoDescription">توضیحات بخش لوگو</label>
-                                        <textarea rows="5" name="LogoDescription" class="form-control w-100" name="LogoDescription">@Model.LogoDescription</textarea>
-                                    </div>
-
                                 </div>
                                 <!-- /.card-body -->
-
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-warning">ثبت</button>
                                 </div>

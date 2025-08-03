@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModels;
 
 namespace Services
 {
@@ -12,8 +13,10 @@ namespace Services
     {
         public List<AboutUsArticle> GetAboutUsArticles();
         public AboutUsArticle GetByID(int aboutUsArticleID);
-        public bool Create(AboutUsArticle aboutUsArticle , IFormFile ImageName);
-        public bool Update(AboutUsArticle aboutUsArticle , IFormFile ImageName);
+        public AboutUsArticleCrudViewModel GetForEdit(int aboutUsArticleID);
+        public bool Create(AboutUsArticleCrudViewModel aboutUsArticle, IFormFile ImageName);
+        public bool Update(AboutUsArticleCrudViewModel aboutUsArticle, IFormFile ImageName);
         public bool Delete(AboutUsArticle aboutUsArticle);
+        public void SaveTranslations(AboutUsArticleCrudViewModel aboutUsArticle);
     }
 }

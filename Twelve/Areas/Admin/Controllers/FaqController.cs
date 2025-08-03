@@ -52,6 +52,7 @@ namespace Twelve.Areas.Admin.Controllers
         {
             if (faqsRepository.Create(faqs))
             {
+                faqsRepository.SaveTranslations(faqs);
                 return RedirectToAction("Index");
             }
             else
@@ -82,6 +83,7 @@ namespace Twelve.Areas.Admin.Controllers
         {
             if (faqsRepository.Update(faqs))
             {
+                faqsRepository.SaveTranslations(faqs);
                 return RedirectToAction("Index");
             }
             else

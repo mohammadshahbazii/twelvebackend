@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -180,6 +181,27 @@ namespace Services
             return item;
         }
 
+        public FeatureItemCrudViewModel GetItemForEdit(int ItemID)
+        {
+            var item = db.FeatureItems.Find(ItemID);
+            var model = new FeatureItemCrudViewModel
+            {
+                FeaturesItemId = item.FeaturesItemId,
+                FeatureId = item.FeatureId,
+                Title = item.Title,
+                ShortDescription = item.ShortDescription,
+                ImageName = item.ImageName
+            };
+            var tr = db.EntityTranslations.ToList();
+            model.TitleEn = tr.FirstOrDefault(t => t.EntityName == "FeatureItem" && t.EntityId == ItemID && t.Property == "Title" && t.Culture == "en")?.Value;
+            model.TitleAr = tr.FirstOrDefault(t => t.EntityName == "FeatureItem" && t.EntityId == ItemID && t.Property == "Title" && t.Culture == "ar")?.Value;
+            model.TitleUr = tr.FirstOrDefault(t => t.EntityName == "FeatureItem" && t.EntityId == ItemID && t.Property == "Title" && t.Culture == "ur")?.Value;
+            model.ShortDescriptionEn = tr.FirstOrDefault(t => t.EntityName == "FeatureItem" && t.EntityId == ItemID && t.Property == "ShortDescription" && t.Culture == "en")?.Value;
+            model.ShortDescriptionAr = tr.FirstOrDefault(t => t.EntityName == "FeatureItem" && t.EntityId == ItemID && t.Property == "ShortDescription" && t.Culture == "ar")?.Value;
+            model.ShortDescriptionUr = tr.FirstOrDefault(t => t.EntityName == "FeatureItem" && t.EntityId == ItemID && t.Property == "ShortDescription" && t.Culture == "ur")?.Value;
+            return model;
+        }
+
         public bool CreateItem(FeatureItem featureItem, IFormFile ImageName)
         {
             try
@@ -252,6 +274,16 @@ namespace Services
             }
         }
 
+        public void SaveItemTranslations(FeatureItemCrudViewModel item)
+        {
+            SaveTranslation("FeatureItem", item.FeaturesItemId, "Title", "en", item.TitleEn);
+            SaveTranslation("FeatureItem", item.FeaturesItemId, "Title", "ar", item.TitleAr);
+            SaveTranslation("FeatureItem", item.FeaturesItemId, "Title", "ur", item.TitleUr);
+            SaveTranslation("FeatureItem", item.FeaturesItemId, "ShortDescription", "en", item.ShortDescriptionEn);
+            SaveTranslation("FeatureItem", item.FeaturesItemId, "ShortDescription", "ar", item.ShortDescriptionAr);
+            SaveTranslation("FeatureItem", item.FeaturesItemId, "ShortDescription", "ur", item.ShortDescriptionUr);
+        }
+
         public bool Create(Feature feature, IFormFile ImageName, IFormFile AnimateFile, IFormFile FirstArticleImage, IFormFile SecondArticleImage ,  IFormFile IntroduceImage)
         {
             try
@@ -309,6 +341,50 @@ namespace Services
         public Feature GetByID(int id)
         {
             return db.Features.Find(id);
+        }
+
+        public FeatureCrudViewModel GetForEdit(int id)
+        {
+            var feature = db.Features.Find(id);
+            var model = new FeatureCrudViewModel
+            {
+                FeatureId = feature.FeatureId,
+                Title = feature.Title,
+                ShortDescription = feature.ShortDescription,
+                FirstDescription = feature.FirstDescription,
+                FirstArticleTitle = feature.FirstArticleTitle,
+                FirstArticleDescription = feature.FirstArticleDescription,
+                SecondArticleTitle = feature.SecondArticleTitle,
+                SecondArticleDescription = feature.SecondArticleDescription,
+                ImageName = feature.ImageName,
+                AnimateFilename = feature.AnimateFilename,
+                FirstArticleImage = feature.FirstArticleImage,
+                SecondArticleImage = feature.SecondArticleImage,
+                IntroduceImageName = feature.IntroduceImageName
+            };
+            var tr = db.EntityTranslations.ToList();
+            model.TitleEn = tr.FirstOrDefault(t => t.EntityName == "Feature" && t.EntityId == id && t.Property == "Title" && t.Culture == "en")?.Value;
+            model.TitleAr = tr.FirstOrDefault(t => t.EntityName == "Feature" && t.EntityId == id && t.Property == "Title" && t.Culture == "ar")?.Value;
+            model.TitleUr = tr.FirstOrDefault(t => t.EntityName == "Feature" && t.EntityId == id && t.Property == "Title" && t.Culture == "ur")?.Value;
+            model.ShortDescriptionEn = tr.FirstOrDefault(t => t.EntityName == "Feature" && t.EntityId == id && t.Property == "ShortDescription" && t.Culture == "en")?.Value;
+            model.ShortDescriptionAr = tr.FirstOrDefault(t => t.EntityName == "Feature" && t.EntityId == id && t.Property == "ShortDescription" && t.Culture == "ar")?.Value;
+            model.ShortDescriptionUr = tr.FirstOrDefault(t => t.EntityName == "Feature" && t.EntityId == id && t.Property == "ShortDescription" && t.Culture == "ur")?.Value;
+            model.FirstDescriptionEn = tr.FirstOrDefault(t => t.EntityName == "Feature" && t.EntityId == id && t.Property == "FirstDescription" && t.Culture == "en")?.Value;
+            model.FirstDescriptionAr = tr.FirstOrDefault(t => t.EntityName == "Feature" && t.EntityId == id && t.Property == "FirstDescription" && t.Culture == "ar")?.Value;
+            model.FirstDescriptionUr = tr.FirstOrDefault(t => t.EntityName == "Feature" && t.EntityId == id && t.Property == "FirstDescription" && t.Culture == "ur")?.Value;
+            model.FirstArticleTitleEn = tr.FirstOrDefault(t => t.EntityName == "Feature" && t.EntityId == id && t.Property == "FirstArticleTitle" && t.Culture == "en")?.Value;
+            model.FirstArticleTitleAr = tr.FirstOrDefault(t => t.EntityName == "Feature" && t.EntityId == id && t.Property == "FirstArticleTitle" && t.Culture == "ar")?.Value;
+            model.FirstArticleTitleUr = tr.FirstOrDefault(t => t.EntityName == "Feature" && t.EntityId == id && t.Property == "FirstArticleTitle" && t.Culture == "ur")?.Value;
+            model.FirstArticleDescriptionEn = tr.FirstOrDefault(t => t.EntityName == "Feature" && t.EntityId == id && t.Property == "FirstArticleDescription" && t.Culture == "en")?.Value;
+            model.FirstArticleDescriptionAr = tr.FirstOrDefault(t => t.EntityName == "Feature" && t.EntityId == id && t.Property == "FirstArticleDescription" && t.Culture == "ar")?.Value;
+            model.FirstArticleDescriptionUr = tr.FirstOrDefault(t => t.EntityName == "Feature" && t.EntityId == id && t.Property == "FirstArticleDescription" && t.Culture == "ur")?.Value;
+            model.SecondArticleTitleEn = tr.FirstOrDefault(t => t.EntityName == "Feature" && t.EntityId == id && t.Property == "SecondArticleTitle" && t.Culture == "en")?.Value;
+            model.SecondArticleTitleAr = tr.FirstOrDefault(t => t.EntityName == "Feature" && t.EntityId == id && t.Property == "SecondArticleTitle" && t.Culture == "ar")?.Value;
+            model.SecondArticleTitleUr = tr.FirstOrDefault(t => t.EntityName == "Feature" && t.EntityId == id && t.Property == "SecondArticleTitle" && t.Culture == "ur")?.Value;
+            model.SecondArticleDescriptionEn = tr.FirstOrDefault(t => t.EntityName == "Feature" && t.EntityId == id && t.Property == "SecondArticleDescription" && t.Culture == "en")?.Value;
+            model.SecondArticleDescriptionAr = tr.FirstOrDefault(t => t.EntityName == "Feature" && t.EntityId == id && t.Property == "SecondArticleDescription" && t.Culture == "ar")?.Value;
+            model.SecondArticleDescriptionUr = tr.FirstOrDefault(t => t.EntityName == "Feature" && t.EntityId == id && t.Property == "SecondArticleDescription" && t.Culture == "ur")?.Value;
+            return model;
         }
 
         public bool Update(Feature feature, IFormFile ImageName, IFormFile AnimateFile, IFormFile FirstArticleImage, IFormFile SecondArticleImage, IFormFile IntroduceImage)
@@ -426,6 +502,31 @@ namespace Services
             }
         }
 
+        public void SaveTranslations(FeatureCrudViewModel feature)
+        {
+            SaveTranslation("Feature", feature.FeatureId, "Title", "en", feature.TitleEn);
+            SaveTranslation("Feature", feature.FeatureId, "Title", "ar", feature.TitleAr);
+            SaveTranslation("Feature", feature.FeatureId, "Title", "ur", feature.TitleUr);
+            SaveTranslation("Feature", feature.FeatureId, "ShortDescription", "en", feature.ShortDescriptionEn);
+            SaveTranslation("Feature", feature.FeatureId, "ShortDescription", "ar", feature.ShortDescriptionAr);
+            SaveTranslation("Feature", feature.FeatureId, "ShortDescription", "ur", feature.ShortDescriptionUr);
+            SaveTranslation("Feature", feature.FeatureId, "FirstDescription", "en", feature.FirstDescriptionEn);
+            SaveTranslation("Feature", feature.FeatureId, "FirstDescription", "ar", feature.FirstDescriptionAr);
+            SaveTranslation("Feature", feature.FeatureId, "FirstDescription", "ur", feature.FirstDescriptionUr);
+            SaveTranslation("Feature", feature.FeatureId, "FirstArticleTitle", "en", feature.FirstArticleTitleEn);
+            SaveTranslation("Feature", feature.FeatureId, "FirstArticleTitle", "ar", feature.FirstArticleTitleAr);
+            SaveTranslation("Feature", feature.FeatureId, "FirstArticleTitle", "ur", feature.FirstArticleTitleUr);
+            SaveTranslation("Feature", feature.FeatureId, "FirstArticleDescription", "en", feature.FirstArticleDescriptionEn);
+            SaveTranslation("Feature", feature.FeatureId, "FirstArticleDescription", "ar", feature.FirstArticleDescriptionAr);
+            SaveTranslation("Feature", feature.FeatureId, "FirstArticleDescription", "ur", feature.FirstArticleDescriptionUr);
+            SaveTranslation("Feature", feature.FeatureId, "SecondArticleTitle", "en", feature.SecondArticleTitleEn);
+            SaveTranslation("Feature", feature.FeatureId, "SecondArticleTitle", "ar", feature.SecondArticleTitleAr);
+            SaveTranslation("Feature", feature.FeatureId, "SecondArticleTitle", "ur", feature.SecondArticleTitleUr);
+            SaveTranslation("Feature", feature.FeatureId, "SecondArticleDescription", "en", feature.SecondArticleDescriptionEn);
+            SaveTranslation("Feature", feature.FeatureId, "SecondArticleDescription", "ar", feature.SecondArticleDescriptionAr);
+            SaveTranslation("Feature", feature.FeatureId, "SecondArticleDescription", "ur", feature.SecondArticleDescriptionUr);
+        }
+
         public bool Delete(Feature feature)
         {
             try
@@ -521,18 +622,55 @@ namespace Services
 
         public FeaturesContent GetFeaturesContent()
         {
-            return db.FeaturesContents.FirstOrDefault();
+            var item = db.FeaturesContents.FirstOrDefault();
+            item.ApplyTranslation(db);
+            return item;
         }
 
-        public bool UpdateFeaturesContent(FeaturesContent content)
+        public FeaturesContentCrudViewModel GetFeaturesContentForEdit()
+        {
+            var item = db.FeaturesContents.FirstOrDefault();
+            var translations = db.EntityTranslations.Where(t => t.EntityName == nameof(FeaturesContent) && t.EntityId == item.FeatureContentId).ToList();
+            return new FeaturesContentCrudViewModel
+            {
+                FeatureContentId = item.FeatureContentId,
+                FeaturesTitle = item.FeaturesTitle,
+                FeatruesSubTitle = item.FeatruesSubTitle,
+                FeaturesDescription = item.FeaturesDescription,
+                FeaturesTitleEn = translations.FirstOrDefault(t => t.Property == nameof(FeaturesContent.FeaturesTitle) && t.Culture == "en")?.Value,
+                FeaturesTitleAr = translations.FirstOrDefault(t => t.Property == nameof(FeaturesContent.FeaturesTitle) && t.Culture == "ar")?.Value,
+                FeaturesTitleUr = translations.FirstOrDefault(t => t.Property == nameof(FeaturesContent.FeaturesTitle) && t.Culture == "ur")?.Value,
+                FeatruesSubTitleEn = translations.FirstOrDefault(t => t.Property == nameof(FeaturesContent.FeatruesSubTitle) && t.Culture == "en")?.Value,
+                FeatruesSubTitleAr = translations.FirstOrDefault(t => t.Property == nameof(FeaturesContent.FeatruesSubTitle) && t.Culture == "ar")?.Value,
+                FeatruesSubTitleUr = translations.FirstOrDefault(t => t.Property == nameof(FeaturesContent.FeatruesSubTitle) && t.Culture == "ur")?.Value,
+                FeaturesDescriptionEn = translations.FirstOrDefault(t => t.Property == nameof(FeaturesContent.FeaturesDescription) && t.Culture == "en")?.Value,
+                FeaturesDescriptionAr = translations.FirstOrDefault(t => t.Property == nameof(FeaturesContent.FeaturesDescription) && t.Culture == "ar")?.Value,
+                FeaturesDescriptionUr = translations.FirstOrDefault(t => t.Property == nameof(FeaturesContent.FeaturesDescription) && t.Culture == "ur")?.Value
+            };
+        }
+
+        public bool UpdateFeaturesContent(FeaturesContentCrudViewModel content)
         {
             try
             {
-                db.FeaturesContents.Update(content);
+                var entity = db.FeaturesContents.Find(content.FeatureContentId);
+                entity.FeaturesTitle = content.FeaturesTitle;
+                entity.FeatruesSubTitle = content.FeatruesSubTitle;
+                entity.FeaturesDescription = content.FeaturesDescription;
+                db.FeaturesContents.Update(entity);
                 db.SaveChanges();
+                SaveTranslation(nameof(FeaturesContent), entity.FeatureContentId, nameof(FeaturesContent.FeaturesTitle), "en", content.FeaturesTitleEn);
+                SaveTranslation(nameof(FeaturesContent), entity.FeatureContentId, nameof(FeaturesContent.FeaturesTitle), "ar", content.FeaturesTitleAr);
+                SaveTranslation(nameof(FeaturesContent), entity.FeatureContentId, nameof(FeaturesContent.FeaturesTitle), "ur", content.FeaturesTitleUr);
+                SaveTranslation(nameof(FeaturesContent), entity.FeatureContentId, nameof(FeaturesContent.FeatruesSubTitle), "en", content.FeatruesSubTitleEn);
+                SaveTranslation(nameof(FeaturesContent), entity.FeatureContentId, nameof(FeaturesContent.FeatruesSubTitle), "ar", content.FeatruesSubTitleAr);
+                SaveTranslation(nameof(FeaturesContent), entity.FeatureContentId, nameof(FeaturesContent.FeatruesSubTitle), "ur", content.FeatruesSubTitleUr);
+                SaveTranslation(nameof(FeaturesContent), entity.FeatureContentId, nameof(FeaturesContent.FeaturesDescription), "en", content.FeaturesDescriptionEn);
+                SaveTranslation(nameof(FeaturesContent), entity.FeatureContentId, nameof(FeaturesContent.FeaturesDescription), "ar", content.FeaturesDescriptionAr);
+                SaveTranslation(nameof(FeaturesContent), entity.FeatureContentId, nameof(FeaturesContent.FeaturesDescription), "ur", content.FeaturesDescriptionUr);
                 return true;
             }
-            catch 
+            catch
             {
                 return false;
             }
@@ -543,6 +681,28 @@ namespace Services
             return db.Features.ToList();
         }
 
-        
+        private void SaveTranslation(string entityName, int entityId, string property, string culture, string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return;
+            }
+            var tr = db.EntityTranslations.FirstOrDefault(t => t.EntityName == entityName && t.EntityId == entityId && t.Property == property && t.Culture == culture);
+            if (tr == null)
+            {
+                tr = new EntityTranslation
+                {
+                    EntityName = entityName,
+                    EntityId = entityId,
+                    Property = property,
+                    Culture = culture
+                };
+                db.EntityTranslations.Add(tr);
+            }
+            tr.Value = value;
+            db.SaveChanges();
+        }
+
+
     }
 }

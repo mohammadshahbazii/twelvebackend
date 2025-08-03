@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services;
-
+using ViewModels;
 namespace Twelve.Areas.Admin.Controllers
 {
     [Authorize]
@@ -33,38 +33,40 @@ namespace Twelve.Areas.Admin.Controllers
 
         [HttpPost]
         [Route("Create")]
-        public IActionResult Create(AboutUsItem item, IFormFile imageProduct)
+        public IActionResult Create(AboutUsItemCrudViewModel item, IFormFile imageProduct)
         {
             if (aboutUsItemsRepository.Create(item, imageProduct))
             {
+                aboutUsItemsRepository.SaveTranslations(item);
                 return RedirectToAction("index");
             }
             else
             {
                 ViewBag.Message = "هنگام عملیات خطایی رخ داد لطفا مجددا تلاش کنید";
-                return View();
+                return View(item);
             }
         }
 
         [Route("Update/{ItemID}")]
         public IActionResult Update(int itemID)
         {
-            var content = aboutUsItemsRepository.GetByID(itemID);
+            var content = aboutUsItemsRepository.GetForEdit(itemID);
             return View(content);
         }
 
         [HttpPost]
         [Route("Update/{ItemID}")]
-        public IActionResult Update(AboutUsItem item, IFormFile imageProduct)
+        public IActionResult Update(AboutUsItemCrudViewModel item, IFormFile imageProduct)
         {
             if (aboutUsItemsRepository.Update(item, imageProduct))
             {
+                aboutUsItemsRepository.SaveTranslations(item);
                 return RedirectToAction("index");
             }
             else
             {
                 ViewBag.Message = "هنگام عملیات خطایی رخ داد لطفا مجددا تلاش کنید";
-                var content = aboutUsItemsRepository.GetByID(item.AboutUsItemId);
+                var content = aboutUsItemsRepository.GetForEdit(item.AboutUsItemId);
                 return View(content);
             }
         }
