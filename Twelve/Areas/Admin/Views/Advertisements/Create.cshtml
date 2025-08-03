@@ -1,4 +1,4 @@
-﻿@model DataLayer.Advertisement
+@model ViewModels.AdvertisementCrudViewModel
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
@@ -14,9 +14,45 @@
                     <!-- form start -->
                     <form role="form" method="post" enctype="multipart/form-data">
                         <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#fa" role="tab">FA</a></li>
+                                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#en" role="tab">EN</a></li>
+                                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#ar" role="tab">AR</a></li>
+                                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#ur" role="tab">UR</a></li>
+                                    </ul>
+                                    <div class="tab-content p-3">
+                                        <div class="tab-pane fade show active" id="fa" role="tabpanel">
+                                            <div class="form-group">
+                                                <label for="Title">عنوان</label>
+                                                <input type="text" name="Title" class="form-control" id="Title" value="@Model?.Title" />
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="en" role="tabpanel">
+                                            <div class="form-group">
+                                                <label for="TitleEn">Title</label>
+                                                <input type="text" class="form-control" name="TitleEn" id="TitleEn" value="@Model?.TitleEn" />
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="ar" role="tabpanel">
+                                            <div class="form-group">
+                                                <label for="TitleAr">Title</label>
+                                                <input type="text" class="form-control" name="TitleAr" id="TitleAr" value="@Model?.TitleAr" />
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="ur" role="tabpanel">
+                                            <div class="form-group">
+                                                <label for="TitleUr">Title</label>
+                                                <input type="text" class="form-control" name="TitleUr" id="TitleUr" value="@Model?.TitleUr" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label for="Link">لینک</label>
-                                <input type="text" class="form-control" asp-for="Link" name="Link" id="Link" placeholder=" لینک را وارد کنید">
+                                <input type="text" class="form-control" name="Link" id="Link" value="@Model?.Link" placeholder=" لینک را وارد کنید">
                                 @Html.ValidationMessageFor(model => model.Link,"", new { @class = "text-danger" })
                             </div>
                             <div class="form-group ">

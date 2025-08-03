@@ -15,6 +15,7 @@ namespace Services
         public bool Update(Slider slider , IFormFile ImageName);
         public bool Create(Slider slider, IFormFile ImageName);
         public Slider GetByID(int SliderID);
+        public SliderCrudViewModel GetForEdit(int sliderId);
         public List<Slider> GetSliders(int GroupID);
         public List<SliderGroup> GetSliderGroups();
         public IndexSliderViewModel GetIndexHeader();
@@ -23,5 +24,6 @@ namespace Services
         public List<IndexSliderItemViewModel> GetContactUsSlider();
         public List<IndexSliderItemViewModel> GetBlogSlider();
         public List<IndexSliderItemViewModel> GetQoutesSlider();
+        public void SaveTranslations(SliderCrudViewModel slider);
     }
 }

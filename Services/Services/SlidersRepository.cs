@@ -107,6 +107,28 @@ namespace Services
             return item;
         }
 
+        public SliderCrudViewModel GetForEdit(int sliderId)
+        {
+            var slider = db.Sliders.Find(sliderId);
+            var model = new SliderCrudViewModel
+            {
+                SliderId = slider.SliderId,
+                SliderGroupId = slider.SliderGroupId,
+                Title = slider.Title,
+                ShortDescription = slider.ShortDescription,
+                Link = slider.Link,
+                ImageName = slider.ImageName
+            };
+            var tr = db.EntityTranslations.ToList();
+            model.TitleEn = tr.FirstOrDefault(t => t.EntityName == nameof(Slider) && t.EntityId == sliderId && t.Property == nameof(Slider.Title) && t.Culture == "en")?.Value;
+            model.TitleAr = tr.FirstOrDefault(t => t.EntityName == nameof(Slider) && t.EntityId == sliderId && t.Property == nameof(Slider.Title) && t.Culture == "ar")?.Value;
+            model.TitleUr = tr.FirstOrDefault(t => t.EntityName == nameof(Slider) && t.EntityId == sliderId && t.Property == nameof(Slider.Title) && t.Culture == "ur")?.Value;
+            model.ShortDescriptionEn = tr.FirstOrDefault(t => t.EntityName == nameof(Slider) && t.EntityId == sliderId && t.Property == nameof(Slider.ShortDescription) && t.Culture == "en")?.Value;
+            model.ShortDescriptionAr = tr.FirstOrDefault(t => t.EntityName == nameof(Slider) && t.EntityId == sliderId && t.Property == nameof(Slider.ShortDescription) && t.Culture == "ar")?.Value;
+            model.ShortDescriptionUr = tr.FirstOrDefault(t => t.EntityName == nameof(Slider) && t.EntityId == sliderId && t.Property == nameof(Slider.ShortDescription) && t.Culture == "ur")?.Value;
+            return model;
+        }
+
         public List<IndexSliderItemViewModel> GetContactUsSlider()
         {
             var content = db.Sliders.Where(s => s.SliderGroupId == 6).OrderByDescending(s => s.SliderId).ToList();
@@ -237,6 +259,42 @@ namespace Services
                 return false;
             }
 
+        }
+
+        public void SaveTranslations(SliderCrudViewModel slider)
+        {
+            SaveTranslation(nameof(Slider), slider.SliderId, nameof(Slider.Title), "en", slider.TitleEn);
+            SaveTranslation(nameof(Slider), slider.SliderId, nameof(Slider.Title), "ar", slider.TitleAr);
+            SaveTranslation(nameof(Slider), slider.SliderId, nameof(Slider.Title), "ur", slider.TitleUr);
+            SaveTranslation(nameof(Slider), slider.SliderId, nameof(Slider.ShortDescription), "en", slider.ShortDescriptionEn);
+            SaveTranslation(nameof(Slider), slider.SliderId, nameof(Slider.ShortDescription), "ar", slider.ShortDescriptionAr);
+            SaveTranslation(nameof(Slider), slider.SliderId, nameof(Slider.ShortDescription), "ur", slider.ShortDescriptionUr);
+        }
+
+        private void SaveTranslation(string entityName, int entityId, string property, string culture, string value)
+        {
+            var tr = db.EntityTranslations.FirstOrDefault(t => t.EntityName == entityName && t.EntityId == entityId && t.Property == property && t.Culture == culture);
+            if (tr == null)
+            {
+                if (!string.IsNullOrWhiteSpace(value))
+                {
+                    db.EntityTranslations.Add(new EntityTranslation
+                    {
+                        EntityName = entityName,
+                        EntityId = entityId,
+                        Property = property,
+                        Culture = culture,
+                        Value = value
+                    });
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                tr.Value = value;
+                db.EntityTranslations.Update(tr);
+                db.SaveChanges();
+            }
         }
     }
 }

@@ -22,7 +22,6 @@ namespace Services
                 {
                     return false;
                 }
-                advertisement.Title = "Ads";
                 advertisement.ImageName = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(ImageName.FileName);
                 string fullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/Ads", advertisement.ImageName);
                 using (var stream = new FileStream(fullPath, FileMode.Create))
@@ -67,11 +66,12 @@ namespace Services
             List<AdvertisementsItemViewModel> model = new List<AdvertisementsItemViewModel>();
             foreach (var item in items)
             {
-                model.Add(new AdvertisementsItemViewModel() 
+                model.Add(new AdvertisementsItemViewModel()
                 {
                     AdvertisementID = item.AdvertisementId,
                     ImageName = item.ImageName,
-                    Link = item.Link
+                    Link = item.Link,
+                    Title = item.Title
                 });
             }
             return model;
@@ -89,6 +89,24 @@ namespace Services
             var item = db.Advertisements.Find(adsID);
             item.ApplyTranslation(db);
             return item;
+        }
+
+        public AdvertisementCrudViewModel GetForEdit(int adsID)
+        {
+            var ad = db.Advertisements.Find(adsID);
+            var model = new AdvertisementCrudViewModel
+            {
+                AdvertisementId = ad.AdvertisementId,
+                Title = ad.Title,
+                Link = ad.Link,
+                IsBanner = ad.IsBanner,
+                ImageName = ad.ImageName
+            };
+            var tr = db.EntityTranslations.ToList();
+            model.TitleEn = tr.FirstOrDefault(t => t.EntityName == nameof(Advertisement) && t.EntityId == adsID && t.Property == nameof(Advertisement.Title) && t.Culture == "en")?.Value;
+            model.TitleAr = tr.FirstOrDefault(t => t.EntityName == nameof(Advertisement) && t.EntityId == adsID && t.Property == nameof(Advertisement.Title) && t.Culture == "ar")?.Value;
+            model.TitleUr = tr.FirstOrDefault(t => t.EntityName == nameof(Advertisement) && t.EntityId == adsID && t.Property == nameof(Advertisement.Title) && t.Culture == "ur")?.Value;
+            return model;
         }
 
         public List<Advertisement> GetLittleAds()
@@ -125,6 +143,39 @@ namespace Services
             catch
             {
                 return false;
+            }
+        }
+
+        public void SaveTranslations(AdvertisementCrudViewModel advertisement)
+        {
+            SaveTranslation(nameof(Advertisement), advertisement.AdvertisementId, nameof(Advertisement.Title), "en", advertisement.TitleEn);
+            SaveTranslation(nameof(Advertisement), advertisement.AdvertisementId, nameof(Advertisement.Title), "ar", advertisement.TitleAr);
+            SaveTranslation(nameof(Advertisement), advertisement.AdvertisementId, nameof(Advertisement.Title), "ur", advertisement.TitleUr);
+        }
+
+        private void SaveTranslation(string entityName, int entityId, string property, string culture, string value)
+        {
+            var tr = db.EntityTranslations.FirstOrDefault(t => t.EntityName == entityName && t.EntityId == entityId && t.Property == property && t.Culture == culture);
+            if (tr == null)
+            {
+                if (!string.IsNullOrWhiteSpace(value))
+                {
+                    db.EntityTranslations.Add(new EntityTranslation
+                    {
+                        EntityName = entityName,
+                        EntityId = entityId,
+                        Property = property,
+                        Culture = culture,
+                        Value = value
+                    });
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                tr.Value = value;
+                db.EntityTranslations.Update(tr);
+                db.SaveChanges();
             }
         }
     }

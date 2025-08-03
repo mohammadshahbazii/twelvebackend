@@ -1,4 +1,4 @@
-﻿@model DataLayer.Slider
+@model ViewModels.SliderCrudViewModel
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
@@ -17,13 +17,57 @@
                         <input type="hidden" name="SliderGroupId" id="SliderGroupId" value="@Model.SliderGroupId" />
                         <input type="hidden" name="ImageName" id="ImageName" value="@Model.ImageName" />
                         <div class="card-body">
-                            <div class="form-group">
-                                <label for="Title">عنوان</label>
-                                <input type="text" name="Title" class="form-control" value="@Model.Title" id="Title" placeholder="عنوان را وارد کنید">
-                            </div>
-                            <div class="form-group">
-                                <label for="ShortDescription">توضیح کوتاه</label>
-                                <input type="text" class="form-control" name="ShortDescription" value="@Model.ShortDescription" id="ShortDescription" placeholder="توضیح کوتاه را وارد کنید">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#fa" role="tab">FA</a></li>
+                                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#en" role="tab">EN</a></li>
+                                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#ar" role="tab">AR</a></li>
+                                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#ur" role="tab">UR</a></li>
+                                    </ul>
+                                    <div class="tab-content p-3">
+                                        <div class="tab-pane fade show active" id="fa" role="tabpanel">
+                                            <div class="form-group">
+                                                <label for="Title">عنوان</label>
+                                                <input type="text" name="Title" class="form-control" value="@Model.Title" id="Title" placeholder="عنوان را وارد کنید">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ShortDescription">توضیح کوتاه</label>
+                                                <input type="text" class="form-control" name="ShortDescription" value="@Model.ShortDescription" id="ShortDescription" placeholder="توضیح کوتاه را وارد کنید">
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="en" role="tabpanel">
+                                            <div class="form-group">
+                                                <label for="TitleEn">Title</label>
+                                                <input type="text" class="form-control" name="TitleEn" id="TitleEn" value="@Model?.TitleEn" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ShortDescriptionEn">Short Description</label>
+                                                <input type="text" class="form-control" name="ShortDescriptionEn" id="ShortDescriptionEn" value="@Model?.ShortDescriptionEn" />
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="ar" role="tabpanel">
+                                            <div class="form-group">
+                                                <label for="TitleAr">Title</label>
+                                                <input type="text" class="form-control" name="TitleAr" id="TitleAr" value="@Model?.TitleAr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ShortDescriptionAr">Short Description</label>
+                                                <input type="text" class="form-control" name="ShortDescriptionAr" id="ShortDescriptionAr" value="@Model?.ShortDescriptionAr" />
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="ur" role="tabpanel">
+                                            <div class="form-group">
+                                                <label for="TitleUr">Title</label>
+                                                <input type="text" class="form-control" name="TitleUr" id="TitleUr" value="@Model?.TitleUr" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ShortDescriptionUr">Short Description</label>
+                                                <input type="text" class="form-control" name="ShortDescriptionUr" id="ShortDescriptionUr" value="@Model?.ShortDescriptionUr" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="Link">لینک</label>
