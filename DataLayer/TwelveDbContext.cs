@@ -39,6 +39,8 @@ public partial class TwelveDbContext : DbContext
 
     public virtual DbSet<BlogTag> BlogTags { get; set; }
 
+    public virtual DbSet<BlogTranslation> BlogTranslations { get; set; }
+
     public virtual DbSet<CallInfo> CallInfoes { get; set; }
 
     public virtual DbSet<CallInfoLink> CallInfoLinks { get; set; }
@@ -49,11 +51,15 @@ public partial class TwelveDbContext : DbContext
 
     public virtual DbSet<DownloadLinkGroup> DownloadLinkGroups { get; set; }
 
+    public virtual DbSet<EntityTranslation> EntityTranslations { get; set; }
+
     public virtual DbSet<Faq> Faqs { get; set; }
 
     public virtual DbSet<FaqContent> FaqContents { get; set; }
 
     public virtual DbSet<FaqGroup> FaqGroups { get; set; }
+
+    public virtual DbSet<FaqTranslation> FaqTranslations { get; set; }
 
     public virtual DbSet<Feature> Features { get; set; }
 
@@ -103,7 +109,7 @@ public partial class TwelveDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("data source=.;initial catalog=Twelve_DB;Trusted_Connection=True;integrated security=True;MultipleActiveResultSets=true;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("data source=185.79.157.4\\MSSQLSERVER2019;User ID =Twelve;Password =!48HhTv$4rUrZ8;initial catalog=Twelve_DB;Trusted_Connection=False;integrated security=False;MultipleActiveResultSets=true;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -215,6 +221,19 @@ public partial class TwelveDbContext : DbContext
                 .HasConstraintName("FK_BlogTags_Blogs");
         });
 
+        modelBuilder.Entity<BlogTranslation>(entity =>
+        {
+            entity.HasKey(e => e.BlogTranslationId).HasName("PK__BlogTran__F18EDB2AE781167D");
+
+            entity.Property(e => e.BlogTranslationId).HasColumnName("BlogTranslationID");
+            entity.Property(e => e.BlogId).HasColumnName("BlogID");
+            entity.Property(e => e.Language).HasMaxLength(5);
+
+            entity.HasOne(d => d.Blog).WithMany(p => p.BlogTranslations)
+                .HasForeignKey(d => d.BlogId)
+                .HasConstraintName("FK_BlogTranslations_Blogs");
+        });
+
         modelBuilder.Entity<CallInfo>(entity =>
         {
             entity.Property(e => e.CallInfoId).HasColumnName("CallInfoID");
@@ -263,6 +282,17 @@ public partial class TwelveDbContext : DbContext
             entity.Property(e => e.GroupName).HasMaxLength(350);
         });
 
+        modelBuilder.Entity<EntityTranslation>(entity =>
+        {
+            entity.HasKey(e => e.EntityTranslationId).HasName("PK__EntityTr__37D36D4E646AE97F");
+
+            entity.Property(e => e.EntityTranslationId).HasColumnName("EntityTranslationID");
+            entity.Property(e => e.Culture).HasMaxLength(10);
+            entity.Property(e => e.EntityId).HasColumnName("EntityID");
+            entity.Property(e => e.EntityName).HasMaxLength(100);
+            entity.Property(e => e.Property).HasMaxLength(100);
+        });
+
         modelBuilder.Entity<Faq>(entity =>
         {
             entity.Property(e => e.FaqId).HasColumnName("FaqID");
@@ -278,6 +308,19 @@ public partial class TwelveDbContext : DbContext
             entity.Property(e => e.FaqGroupId).HasColumnName("FaqGroupID");
             entity.Property(e => e.GroupName).HasMaxLength(250);
             entity.Property(e => e.ParentId).HasColumnName("ParentID");
+        });
+
+        modelBuilder.Entity<FaqTranslation>(entity =>
+        {
+            entity.HasKey(e => e.FaqTranslationId).HasName("PK__FaqTrans__692FD32559529C7E");
+
+            entity.Property(e => e.FaqTranslationId).HasColumnName("FaqTranslationID");
+            entity.Property(e => e.FaqId).HasColumnName("FaqID");
+            entity.Property(e => e.Language).HasMaxLength(5);
+
+            entity.HasOne(d => d.Faq).WithMany(p => p.FaqTranslations)
+                .HasForeignKey(d => d.FaqId)
+                .HasConstraintName("FK_FaqTranslations_Faqs");
         });
 
         modelBuilder.Entity<Feature>(entity =>
@@ -526,6 +569,7 @@ public partial class TwelveDbContext : DbContext
             entity.Property(e => e.BlogBannerImage).HasMaxLength(150);
             entity.Property(e => e.Email).HasMaxLength(350);
             entity.Property(e => e.PhoneNumber).HasMaxLength(50);
+            entity.Property(e => e.SiteLink).HasMaxLength(250);
             entity.Property(e => e.Title).HasMaxLength(250);
         });
 

@@ -29,6 +29,8 @@ public partial class Blog
 
     public virtual ICollection<BlogTag> BlogTags { get; set; } = new List<BlogTag>();
 
+    public virtual ICollection<BlogTranslation> BlogTranslations { get; set; } = new List<BlogTranslation>();
+
     public virtual ICollection<SelectedBlogGroup> SelectedBlogGroups { get; set; } = new List<SelectedBlogGroup>();
 
     public virtual ICollection<SelectedRelatedBlog> SelectedRelatedBlogMainBlogs { get; set; } = new List<SelectedRelatedBlog>();

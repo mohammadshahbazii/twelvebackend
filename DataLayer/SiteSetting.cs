@@ -22,4 +22,10 @@ public partial class SiteSetting
     public int DownloadCount { get; set; }
 
     public string? BlogBannerImage { get; set; }
+
+    public string? SiteLink { get; set; }
+
+    public string? SiteLinkTitle { get; set; }
+
+    public string? JsonFileName { get; set; }
 }

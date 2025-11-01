@@ -70,6 +70,21 @@ namespace Twelve.Controllers
             return ViewComponent("IntroduceAppSlider",new { FeatureID = featureID });
         }
 
+        [HttpGet]
+        [Route(".well-known/assetlinks.json")]
+        public IActionResult GetAssetLinks()
+        {
+            ISiteRepository siteRepository = new SiteRepository();
+            var settings = siteRepository.GetSiteSetting();
+
+            if (settings == null || string.IsNullOrWhiteSpace(settings.JsonFileName))
+            {
+                return Content("[]", "application/json");
+            }
+
+            return Content(settings.JsonFileName, "application/json");
+        }
+
         [Route("SubmitMessage")]
         public string SubmitMessage(string fullname, string Email, string Phonenumber, string Subject, string Text)
         {
